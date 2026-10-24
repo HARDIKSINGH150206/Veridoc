@@ -1,0 +1,40 @@
+[project]
+name = "veridoc"
+version = "0.0.0"
+description = "From chat to verified document, while you're still chatting. Drafting and record-keeping aid, not legal advice."
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "fastapi>=0.115",
+    "pydantic>=2.7,<3",
+    "uvicorn>=0.30",
+]
+
+[dependency-groups]
+dev = [
+    "mypy>=1.10",
+    "pytest>=8.2",
+    "ruff>=0.5",
+]
+
+[tool.uv]
+# Application, not a library: nothing is built or installed as a package yet.
+package = false
+
+[tool.pytest.ini_options]
+# Tests live inside the package they test (packages/<name>/tests/).
+testpaths = ["packages"]
+addopts = "-ra"
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+extend-exclude = ["docs/source"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM"]
+
+[tool.mypy]
+python_version = "3.11"
+strict = true
+exclude = ["docs/source"]
