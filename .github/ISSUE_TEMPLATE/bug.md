@@ -2,7 +2,7 @@
 name: Bug
 about: Something does not work as the PRD says
 title: "[Bug] short title"
-labels: ["bug"]
+labels: ["type:bug"]
 ---
 
 ## What happened

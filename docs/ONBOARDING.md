@@ -455,11 +455,11 @@ The project moves through Phase 0 Setup, 1 Foundation, 2 Core loop, 3 Agreement,
 `packages/contracts` holds the shared Pydantic models that cross area boundaries: Message, VoiceNote, Term, Flag, Score, Suggestion, HandshakeAnswer, Recap, Confirmation, Version, Receipt, DisputePack. It is the only shared code. Why it comes first: all four areas build against these shapes, so they must be agreed before feature code.
 
 **To propose a change, exactly:**
-1. Open an issue labelled `contracts` describing the need and the affected areas.
+1. Open an issue labelled `type:contracts` describing the need and the affected areas.
 2. Branch from `dev`: `git checkout -b feat/shared-contract-<name>`.
 3. Change only `packages/contracts` (and the fixtures that must follow, with their owners' agreement). Prefer adding optional fields over renaming or removing.
 4. Add or update the contract tests.
-5. Open a pull request into `dev` labelled `contracts`. Request review from all four members.
+5. Open a pull request into `dev` labelled `type:contracts`. Request review from all four members.
 6. All four approve. Then merge.
 7. Feature code that needs the change comes in a separate, later pull request.
 

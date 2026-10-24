@@ -26,7 +26,7 @@ flowchart TB
 
 **How here.**
 1. On day 1 the team writes `packages/contracts` together: Message, VoiceNote, Term, Flag, Score, Suggestion, HandshakeAnswer, Recap, Confirmation, Version, Receipt, DisputePack.
-2. A change later is its own small pull request, labelled `contracts`, reviewed by all four, merged before the feature code that needs it.
+2. A change later is its own small pull request, labelled `type:contracts`, reviewed by all four, merged before the feature code that needs it.
 3. Breaking changes (renaming or removing a field) bump a `contract_version` and list every affected area in the pull request.
 4. Prefer adding optional fields over changing existing ones.
 5. Nobody changes a contract inside a feature pull request.
@@ -112,7 +112,7 @@ flowchart TB
 **Why.** Finishing beats starting. Limits expose blockers early.
 
 **How here.**
-1. Columns: Backlog, Ready, In progress, In review, Done. Labels for area, phase and priority (MVP, P1, Roadmap). Details in [ONBOARDING](ONBOARDING.md) section 14.
+1. Columns: Backlog, Ready, In progress, In review, Done. Labels for area, phase and priority (`priority:mvp`, `priority:p1`). Details in [ONBOARDING](ONBOARDING.md) section 14.
 2. Every pull request links to an issue (`Closes #N`).
 3. Move your own card. If you are blocked, say so in the standup and add the `blocked` label.
 4. Issues come from [PHASES](PHASES.md) checklists; a pull request ticks the box.

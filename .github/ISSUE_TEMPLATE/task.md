@@ -2,7 +2,7 @@
 name: Task
 about: A piece of work from PHASES.md or the PRD
 title: "[Area N] short title"
-labels: ["task"]
+labels: ["type:task"]
 ---
 
 ## Goal
