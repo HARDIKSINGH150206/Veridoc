@@ -1,0 +1,56 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+*.egg-info/
+dist/
+build/
+.coverage
+htmlcov/
+
+# Node
+node_modules/
+npm-debug.log*
+
+# OS and editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# Secrets and environment
+.env
+.env.*
+!.env.example
+
+# Model weights (only models/manifest.json is tracked)
+*.gguf
+*.bin
+*.safetensors
+*.onnx
+models/*
+!models/manifest.json
+
+# Eval reports are generated
+eval/reports/*
+!eval/reports/.gitkeep
+
+# Real chats and user data (never commit)
+real-chats/
+*.vault
+*.sqlite
+*.sqlite-wal
+*.sqlite-shm
+*.db
+WhatsApp Chat*.txt
+WhatsApp Chat*.zip
+
+# Build output and packaging artefacts
+out/
+*.log
+packaging/runtimes/
+packaging/dist/

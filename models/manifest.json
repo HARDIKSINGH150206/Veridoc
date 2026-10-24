@@ -1,0 +1,4 @@
+{
+  "_note": "Model names and SHA-256 only. Never commit weights. Exact models TBD pending benchmarks.",
+  "models": []
+}
