@@ -58,7 +58,7 @@ Always branch from `dev`, never from `main`. Pull and rebase every morning: `git
 | Create the environment and install | `uv sync` |
 | Install pre-commit hooks | `uv run pre-commit install` (run once per clone) |
 | Install JavaScript test dependencies | `TBD` |
-| Create or upgrade the vault schema (Alembic) | `TBD` (will run `alembic upgrade head` against a vault under `VERIDOC_HOME`) |
+| Create or upgrade the vault schema (Alembic) | `uv run alembic -c packages/vault/alembic.ini -x url=sqlite:///<path-to-vault-database> upgrade head` (the app calls `packages.vault.migrate.upgrade(url)` with a URL built from `VERIDOC_HOME`) |
 
 ## 5. Models
 
@@ -99,7 +99,7 @@ Tests live inside each package under `packages/<name>/tests/`.
 | Dependency audit | `TBD` (pip-audit) |
 | Trust report | `TBD` |
 | Offline check (all screens load with the network blocked) | `TBD` |
-| Migration check (insert-only triggers block UPDATE and DELETE after `alembic upgrade head`) | `TBD` |
+| Migration check (the baseline migrates up and down on a scratch database) | `uv run pytest packages/vault` (insert-only trigger tests are added with the tables) |
 
 All of these run in CI once `.github/workflows/` is added.
 
