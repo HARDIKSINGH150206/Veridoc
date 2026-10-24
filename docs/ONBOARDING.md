@@ -89,7 +89,7 @@ winget install --id Microsoft.VisualStudioCode -e
 winget install --id OpenJS.NodeJS.LTS -e
 powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"
 ```
-Close and reopen PowerShell after installing. Check versions:
+Close and reopen PowerShell after installing. If `python` opens the Microsoft Store, turn off the "App execution aliases" for Python in Windows Settings, or use `py -3.11` instead. Check versions:
 ```
 git --version
 gh --version
@@ -116,7 +116,7 @@ uv --version
 code --version
 node --version
 ```
-On Apple Silicon use the native arm64 tools (Homebrew does this by default).
+On Apple Silicon use the native arm64 tools (Homebrew does this by default). If `code` is not found, open VS Code, press Cmd+Shift+P and run "Shell Command: Install 'code' command in PATH".
 
 ### Linux (Ubuntu or Debian)
 
@@ -125,7 +125,24 @@ sudo apt update
 sudo apt install -y git python3.11 python3.11-venv nodejs npm curl
 curl -LsSf https://astral.sh/uv/install.sh | sh
 ```
-If `python3.11` is not available on your release, install it from your distribution's backports or use `uv python install 3.11` (uv downloads Python for you). Install `gh` by following https://github.com/cli/cli/blob/trunk/docs/install_linux.md. Install VS Code from https://code.visualstudio.com/docs/setup/linux. Check versions:
+If `python3.11` is not available on your release, use `uv python install 3.11` (uv downloads Python for you).
+
+Install GitHub CLI from its official apt repository:
+```
+sudo mkdir -p -m 755 /etc/apt/keyrings
+wget -qO- https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo tee /etc/apt/keyrings/githubcli-archive-keyring.gpg > /dev/null
+sudo chmod go+r /etc/apt/keyrings/githubcli-archive-keyring.gpg
+echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | sudo tee /etc/apt/sources.list.d/github-cli.list > /dev/null
+sudo apt update
+sudo apt install -y gh
+```
+Other distributions: https://github.com/cli/cli/blob/trunk/docs/install_linux.md.
+
+Install VS Code:
+```
+sudo snap install --classic code
+```
+Other ways: https://code.visualstudio.com/docs/setup/linux. Restart the terminal, then check versions:
 ```
 git --version
 gh --version
@@ -154,7 +171,12 @@ Install from the Extensions panel or with `code --install-extension <id>`:
 
 ### Claude Code or Codex (optional)
 
-Install the one your area uses by following its official instructions (Claude Code: https://docs.claude.com/en/docs/claude-code; Codex: the OpenAI Codex CLI documentation). They read `CLAUDE.md` or `AGENTS.md`. Read section 20 before using one.
+Both need Node.js (installed above). The npm commands are the same on Windows (PowerShell), macOS and Linux:
+```
+npm install -g @anthropic-ai/claude-code
+npm install -g @openai/codex
+```
+Install only the one your area uses. On macOS and Linux, if npm reports a permission error, do not use `sudo`; set a user npm prefix (`npm config set prefix ~/.npm-global` and add `~/.npm-global/bin` to your `PATH`), or follow the official instructions (Claude Code: https://docs.claude.com/en/docs/claude-code; Codex: the OpenAI Codex CLI documentation). Check with `claude --version` or `codex --version`. They read `CLAUDE.md` or `AGENTS.md`. Read section 20 before using one.
 
 ## 6. Configure Git
 
@@ -203,6 +225,14 @@ Press Enter to accept the default file; set a passphrase. Then print the public 
 | macOS | `cat ~/.ssh/id_ed25519.pub` |
 | Linux | `cat ~/.ssh/id_ed25519.pub` |
 
+Start the SSH agent and add the key so you are not asked for the passphrase every time:
+
+| System | Commands |
+|---|---|
+| Windows (PowerShell, run as administrator once) | `Get-Service ssh-agent \| Set-Service -StartupType Manual` then `Start-Service ssh-agent` then (normal PowerShell) `ssh-add $env:USERPROFILE\.ssh\id_ed25519` |
+| macOS | `ssh-add --apple-use-keychain ~/.ssh/id_ed25519` |
+| Linux | `eval "$(ssh-agent -s)"` then `ssh-add ~/.ssh/id_ed25519` |
+
 **Verify access:**
 ```
 gh auth status
@@ -218,7 +248,7 @@ git checkout dev
 ```
 Always work from `dev`. (With SSH use `git@github.com:HARDIKSINGH150206/Veridoc.git`.)
 
-Next steps. The code does not exist yet, so the exact commands are `TBD`; the expected ones are shown and will be confirmed in [SETUP](SETUP.md).
+Next steps. The code does not exist yet, so the exact commands are `TBD`; the expected ones are shown and will be confirmed in [SETUP](SETUP.md). Git, `gh`, `uv` and `uv run` commands are identical on Windows, macOS and Linux; where a command differs, all three versions are shown.
 
 1. **Install dependencies:** expected `uv sync` (TBD).
 2. **Install pre-commit hooks:** expected `uv run pre-commit install` (TBD). Why: it runs ruff and the secret scan on every commit so mistakes never leave your machine.
@@ -240,11 +270,13 @@ Next steps. The code does not exist yet, so the exact commands are `TBD`; the ex
 
    The output must equal the hash in the manifest. If not, delete the file and download again. Why: a swapped model could change results.
 5. **Run the tests to confirm the setup:** expected `uv run pytest` (TBD). All tests should pass on a fresh clone. If they do not, ask for help (section 23) before changing anything.
-6. **Check the folder layout** (works today):
-```
-python3 scripts/check_folder_tree.py
-```
-   On Windows use `python scripts\check_folder_tree.py`. Expected last line: `OK`.
+6. **Check the folder layout** (works today). Expected last line: `OK`.
+
+| System | Command |
+|---|---|
+| Windows | `python scripts\check_folder_tree.py` |
+| macOS | `python3 scripts/check_folder_tree.py` |
+| Linux | `python3 scripts/check_folder_tree.py` |
 
 ## 8. Repository tour
 
@@ -527,7 +559,7 @@ The non-negotiables from `CLAUDE.md`, in plain words:
 - [ ] I configured Git (name, email, `pull.rebase true`, line endings)
 - [ ] `gh auth status` shows I am logged in
 - [ ] I cloned the repo and checked out `dev`
-- [ ] I ran `python3 scripts/check_folder_tree.py` and saw `OK`
+- [ ] I ran the folder check (`python scripts\check_folder_tree.py` on Windows, `python3 scripts/check_folder_tree.py` on macOS and Linux) and saw `OK`
 - [ ] I installed dependencies and pre-commit hooks (when available)
 - [ ] I copied `.env.example` to `.env` (and did not commit it)
 - [ ] I downloaded the models and verified their hashes (when available)
