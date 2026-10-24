@@ -19,7 +19,7 @@ Status: Draft v1
 | ADR-010 | Recaps from fixed templates, not free AI text |
 | ADR-011 | Echo-code confirmation instead of links or app installs for the counterparty |
 | ADR-012 | SHA-256, salted Merkle tree, domain separation, JCS canonicalisation |
-| ADR-013 | Tamper-evident wording, never tamper-proof |
+| ADR-013 | Tamper-evident wording only |
 | ADR-014 | Optional Polygon anchoring for independent timestamps |
 | ADR-015 | Static offline verify page in vanilla JavaScript |
 | ADR-016 | Playbook-driven generic engine; two playbooks in the MVP |
@@ -136,7 +136,7 @@ Status: Draft v1
 - **Alternatives considered:** A plain hash of the whole file; a blockchain-only design; SHA-3 or BLAKE3.
 - **Consequences:** WebCrypto supports SHA-256 natively. Salts must be stored with the vault. Spec changes need new vectors.
 
-## ADR-013 Tamper-evident wording, never tamper-proof
+## ADR-013 Tamper-evident wording only
 
 - **Status:** Accepted
 - **Date:** 2026-10-25

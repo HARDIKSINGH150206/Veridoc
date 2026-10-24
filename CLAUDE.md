@@ -7,7 +7,7 @@ Status: Draft v1
 
 ## Project summary
 
-VeriDoc turns a WhatsApp deal conversation into a verified record while the chat is still going on. It runs locally, extracts terms with rules plus a small local model, flags ambiguity and gaps, suggests the next message, builds a template-based recap confirmed by an echo code, and keeps a tamper-evident vault with an offline verify page. Problem statement LS-06. It is a drafting and record-keeping aid, not legal advice. The project is built from scratch; DigiVault informed design only and no DigiVault code is reused.
+VeriDoc turns a WhatsApp deal conversation into a verified record while the chat is still going on. It runs locally, extracts terms with rules plus a small local model, flags ambiguity and gaps, suggests the next message, builds a template-based recap confirmed by an echo code, and keeps a tamper-evident vault with an offline verify page. Problem statement LS-06. It is a drafting and record-keeping aid, not legal advice. The project is built from scratch (see `docs/PRIOR_WORK.md`).
 
 Read first: [PRD](docs/PRD.md), [ARCHITECTURE](docs/ARCHITECTURE.md), [INTEGRITY_SPEC](docs/INTEGRITY_SPEC.md), [AI_SPEC](docs/AI_SPEC.md), [DECISIONS](docs/DECISIONS.md). Also: [TEAM_GUIDE](docs/TEAM_GUIDE.md), [LIMITS](docs/LIMITS.md), [THREAT_MODEL](docs/THREAT_MODEL.md).
 

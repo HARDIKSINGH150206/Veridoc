@@ -41,7 +41,7 @@ Status labels (symbol and word, never colour alone): ✓ Clear · ! Ambiguous ·
 | Keyboard | All actions reachable; visible focus; no keyboard trap |
 | Disclaimers | "Drafting aid, not legal advice" on S6, S10, About. The authenticity limit on S8 and S9. |
 | Words to use | tamper-evident, court-ready evidence package, record |
-| Words to avoid | proof of authenticity, guaranteed, legal advice (except in "not legal advice"), fake detection |
+| Words to avoid | proof of authenticity, certainty claims, legal advice (except in "not legal advice"), fake detection |
 | Errors | Say what happened, what is safe, and what to do next. No codes alone. |
 | Loading | Show progress for transcription and model loading with a plain label |
 | Mock data | Area 4 builds every screen against mock data shaped like `packages/contracts` |

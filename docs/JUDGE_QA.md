@@ -96,7 +96,7 @@ Hypothesis, not validated: free offline individual version, then a paid team tie
 No. It is a delivery vehicle and demo proof. The same build installs on a laptop.
 
 **What did you build for this event?**
-All code is new. DigiVault informed the integrity design only. See PRIOR_WORK.
+All code is new. See PRIOR_WORK for where the design ideas came from.
 
 **What is not built?**
 Android app, phone web app, in-person voice sealing, UPI screenshot check, CA countersign, cloud sync, teams and billing, WhatsApp extension. P1 items are listed in the roadmap.

@@ -1,6 +1,6 @@
 # Integrity Specification
 
-This document defines exactly how VeriDoc hashes records, builds the Merkle tree and version chain, derives the echo code, and verifies a receipt. Python (`packages/integrity`) and JavaScript (`apps/verify`) must follow it byte for byte. The design is informed by the team's earlier DigiVault project; no DigiVault code is reused (see [PRIOR_WORK](PRIOR_WORK.md)).
+This document defines exactly how VeriDoc hashes records, builds the Merkle tree and version chain, derives the echo code, and verifies a receipt. Python (`packages/integrity`) and JavaScript (`apps/verify`) must follow it byte for byte. Background on where the design ideas come from is in [PRIOR_WORK](PRIOR_WORK.md).
 
 Last updated: 2026-10-25
 Status: Draft v1
