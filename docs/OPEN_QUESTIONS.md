@@ -70,7 +70,6 @@ The ground rule is: this prompt wins, then `docs/source/VeriDoc-Final-Idea.md`, 
 
 | ID | Question | Where it appears | Owner |
 |---|---|---|---|
-| Q-33 | CI workflows (tests, lint, gitleaks, pip-audit, offline check) | SETUP, `.github/workflows/` | TBD |
 | Q-34 | PDF renderer: fpdf2 with uharfbuzz, or browser rendering | ARCHITECTURE section 8 | TBD |
 | Q-35 | Tier detection rule for "old CPU" | PERFORMANCE section 1 | TBD |
 | Q-36 | The three benchmark laptops | PERFORMANCE section 4 | TBD |
@@ -107,3 +106,4 @@ The ground rule is: this prompt wins, then `docs/source/VeriDoc-Final-Idea.md`, 
 | Q-30 | Members: Samanway @notorious1337 (Area 1), Abhishek @absksync (Area 2), Jhashank @NYN-05 (Area 3), Hardik @HARDIKSINGH150206 (Area 4). | 2026-10-25 | TEAM_GUIDE, ONBOARDING, CODEOWNERS, CLAUDE.md, AGENTS.md |
 | Q-31 | Document owners set in TEAM_GUIDE; Hardik is editor of shared docs. | 2026-10-25 | TEAM_GUIDE, ONBOARDING, CODEOWNERS, CLAUDE.md, AGENTS.md |
 | Q-32 | Branch protection set on main and dev (see GIT_WORKFLOW section 7 for the next steps). | 2026-10-25 | TEAM_GUIDE, ONBOARDING, CODEOWNERS, CLAUDE.md, AGENTS.md |
+| Q-33 | CI workflow added: `.github/workflows/ci.yml`, required checks `checks` and `secrets` on dev and main. | 2026-10-25 | GIT_WORKFLOW, DEVELOPMENT_METHODOLOGY, PHASES |
