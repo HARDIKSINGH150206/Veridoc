@@ -122,6 +122,7 @@ A change is done when:
 7. No secrets, real chats, model weights or content in logs.
 8. Wording follows LIMITS (tamper-evident, court-ready evidence package, targets are targets).
 9. The change is linked to requirement IDs.
+10. **No hardcoding** (see CLAUDE.md): configuration only from `apps/api/settings.py`, business rules in playbooks, templates and the model manifest, stubs only in tests or demo mode with `# STUB: replaced by #<issue>`, no sample names or amounts in logic. `python scripts/check_hardcoding.py` passes.
 
 ## 7. Priority tags
 

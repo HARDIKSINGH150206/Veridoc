@@ -141,6 +141,7 @@ flowchart TB
 3. pytest for every package
 4. contract tests
 5. gitleaks secret scan (and pip-audit on the dependency pull request)
+5a. `python scripts/check_hardcoding.py` (no hardcoded paths, localhost, ports, sample data or unmarked stubs)
 6. integrity tamper tests and the Python and JavaScript test-vector comparison
 7. offline check (screens load with the network blocked), once the frontend exists
 
