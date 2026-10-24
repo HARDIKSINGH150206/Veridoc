@@ -7,6 +7,7 @@ requires-python = ">=3.11"
 dependencies = [
     "fastapi>=0.115",
     "pydantic>=2.7,<3",
+    "pydantic-settings>=2.3",
     "uvicorn>=0.30",
 ]
 
@@ -23,8 +24,10 @@ dev = [
 package = false
 
 [tool.pytest.ini_options]
-# Tests live inside the package they test (packages/<name>/tests/).
-testpaths = ["packages"]
+# Tests live inside the package they test (packages/<name>/tests/), next to the app
+# settings (apps/api/tests/) and next to the scripts they check (scripts/tests/).
+testpaths = ["packages", "apps", "scripts"]
+pythonpath = ["."]
 addopts = "-ra"
 
 [tool.ruff]
@@ -38,4 +41,6 @@ select = ["E", "F", "I", "UP", "B", "SIM"]
 [tool.mypy]
 python_version = "3.11"
 strict = true
+explicit_package_bases = true
+mypy_path = "."
 exclude = ["docs/source"]

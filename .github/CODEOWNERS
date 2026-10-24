@@ -24,6 +24,7 @@
 /packages/vault/                  @NYN-05
 /test-vectors/                    @NYN-05
 /apps/api/main.py                 @NYN-05
+/apps/api/settings.py             @NYN-05
 /apps/api/routers/vault.py        @NYN-05
 /apps/api/routers/export.py       @NYN-05
 
