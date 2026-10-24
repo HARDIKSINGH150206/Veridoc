@@ -440,7 +440,7 @@ GitHub Projects (link TBD).
 | In review | A pull request is open |
 | Done | Merged into `dev` |
 
-**Labels.** Area (`area:1-ingest`, `area:2-intelligence`, `area:3-integrity`, `area:4-frontend`, `area:shared`), phase (`phase:0` to `phase:5`), priority (`MVP`, `P1`, `Roadmap`), type (`task`, `bug`, `contracts`, `blocked`).
+**Labels.** Area (`area:1-ingest-release`, `area:2-ai-ml`, `area:3-backend-integrity`, `area:4-frontend-blockchain`), phase (`phase:0` to `phase:5`), priority (`priority:mvp`, `priority:p1`), type (`type:task`, `type:bug`, `type:contracts`). Shared work carries only phase, priority and type labels. Add `blocked` when you are waiting on someone.
 
 **How to pick a task.** Take the top card in Ready that is in your area and the current phase. Tick off the matching box in [PHASES](PHASES.md) in your pull request. Move your own card. If you are blocked, add the `blocked` label and say so in the standup.
 
