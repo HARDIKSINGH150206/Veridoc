@@ -77,7 +77,7 @@ Speech models for faster-whisper are downloaded the same way and listed in the m
 
 | Task | Command |
 |---|---|
-| Start the app in development | `TBD` |
+| Start the app in development | `uv run uvicorn apps.api.main:app` (listens on 127.0.0.1 only; the launcher in `packaging/` will wrap this) |
 | Open the UI | `http://127.0.0.1:<port>` (the port is printed at startup) |
 | Force safe mode | Set `VERIDOC_SAFE_MODE=1` (name only; behaviour `TBD`) |
 | Open the verify page | Open `apps/verify/verify.html` directly in a browser |
