@@ -52,7 +52,7 @@ Dependency files (`pyproject.toml`, `uv.lock`) have one named owner: TBD.
 | `fix/<name>` | A bug fix |
 | `docs/<name>` | Documentation |
 
-`main` is protected: no direct pushes; changes arrive by pull request.
+`main` should be protected on GitHub (setting TBD): no direct pushes; changes arrive by pull request.
 
 ## 4. Commits
 
