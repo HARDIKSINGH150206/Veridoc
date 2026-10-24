@@ -1,0 +1,525 @@
+{
+  "description": "Made-up ambiguous deal: delivery is vague, final payment and late penalty are missing. Hashes are fake placeholders, not computed.",
+  "playbook": {
+    "key": "supply_order",
+    "version": 1
+  },
+  "participants": [
+    {
+      "id": "p1",
+      "display_name": "Raju",
+      "role": "party",
+      "is_me": true
+    },
+    {
+      "id": "p2",
+      "display_name": "Meena",
+      "role": "party",
+      "is_me": false
+    }
+  ],
+  "messages": [
+    {
+      "id": "deal-ambiguous-m1",
+      "deal_id": "deal-ambiguous",
+      "seq": 1,
+      "sender_id": "p1",
+      "ts": "2026-10-12T10:02:00+05:30",
+      "text": "200 shirts, 480 each ok?",
+      "attachment_hash": null,
+      "is_system": false,
+      "origin": "export"
+    },
+    {
+      "id": "deal-ambiguous-m2",
+      "deal_id": "deal-ambiguous",
+      "seq": 2,
+      "sender_id": "p2",
+      "ts": "2026-10-12T10:04:00+05:30",
+      "text": "ok. delivery next week",
+      "attachment_hash": null,
+      "is_system": false,
+      "origin": "export"
+    },
+    {
+      "id": "deal-ambiguous-m3",
+      "deal_id": "deal-ambiguous",
+      "seq": 3,
+      "sender_id": "p1",
+      "ts": "2026-10-12T10:05:00+05:30",
+      "text": "advance half now",
+      "attachment_hash": null,
+      "is_system": false,
+      "origin": "export"
+    },
+    {
+      "id": "deal-ambiguous-m4",
+      "deal_id": "deal-ambiguous",
+      "seq": 4,
+      "sender_id": "p2",
+      "ts": "2026-10-12T10:21:00+05:30",
+      "text": "done sent 48000",
+      "attachment_hash": null,
+      "is_system": false,
+      "origin": "export"
+    },
+    {
+      "id": "deal-ambiguous-m5",
+      "deal_id": "deal-ambiguous",
+      "seq": 5,
+      "sender_id": "p1",
+      "ts": "2026-10-13T09:15:00+05:30",
+      "text": "received. will message when ready",
+      "attachment_hash": null,
+      "is_system": false,
+      "origin": "export"
+    }
+  ],
+  "voice_notes": [],
+  "terms": [
+    {
+      "id": "deal-ambiguous-t-parties",
+      "deal_id": "deal-ambiguous",
+      "key": "parties",
+      "value_type": "party",
+      "value": "Raju, Meena",
+      "unit": null,
+      "raw": null,
+      "state": "clear",
+      "origin": "rules",
+      "confidence": "high",
+      "needs_review": false,
+      "sources": [
+        {
+          "kind": "message",
+          "message_id": "deal-ambiguous-m1",
+          "quote": null
+        }
+      ],
+      "alternatives": [],
+      "confirmed_at": "2026-10-13T09:30:00+05:30",
+      "acknowledged_by_other": true
+    },
+    {
+      "id": "deal-ambiguous-t-scope",
+      "deal_id": "deal-ambiguous",
+      "key": "scope",
+      "value_type": "text",
+      "value": "shirts",
+      "unit": null,
+      "raw": "shirts",
+      "state": "clear",
+      "origin": "rules",
+      "confidence": "high",
+      "needs_review": false,
+      "sources": [
+        {
+          "kind": "message",
+          "message_id": "deal-ambiguous-m1",
+          "quote": "200 shirts"
+        }
+      ],
+      "alternatives": [],
+      "confirmed_at": "2026-10-13T09:30:00+05:30",
+      "acknowledged_by_other": true
+    },
+    {
+      "id": "deal-ambiguous-t-quantity",
+      "deal_id": "deal-ambiguous",
+      "key": "quantity",
+      "value_type": "quantity",
+      "value": "200",
+      "unit": "shirts",
+      "raw": "200 shirts",
+      "state": "clear",
+      "origin": "rules",
+      "confidence": "high",
+      "needs_review": false,
+      "sources": [
+        {
+          "kind": "message",
+          "message_id": "deal-ambiguous-m1",
+          "quote": "200 shirts"
+        }
+      ],
+      "alternatives": [],
+      "confirmed_at": "2026-10-13T09:30:00+05:30",
+      "acknowledged_by_other": true
+    },
+    {
+      "id": "deal-ambiguous-t-price",
+      "deal_id": "deal-ambiguous",
+      "key": "price",
+      "value_type": "money",
+      "value": "48000",
+      "unit": "paise",
+      "raw": "480 each",
+      "state": "clear",
+      "origin": "rules",
+      "confidence": "high",
+      "needs_review": false,
+      "sources": [
+        {
+          "kind": "message",
+          "message_id": "deal-ambiguous-m1",
+          "quote": "480 each"
+        }
+      ],
+      "alternatives": [],
+      "confirmed_at": "2026-10-13T09:30:00+05:30",
+      "acknowledged_by_other": true
+    },
+    {
+      "id": "deal-ambiguous-t-advance",
+      "deal_id": "deal-ambiguous",
+      "key": "advance",
+      "value_type": "money",
+      "value": "4800000",
+      "unit": "paise",
+      "raw": "sent 48000",
+      "state": "clear",
+      "origin": "rules",
+      "confidence": "high",
+      "needs_review": false,
+      "sources": [
+        {
+          "kind": "message",
+          "message_id": "deal-ambiguous-m4",
+          "quote": "sent 48000"
+        },
+        {
+          "kind": "message",
+          "message_id": "deal-ambiguous-m5",
+          "quote": "received"
+        }
+      ],
+      "alternatives": [],
+      "confirmed_at": "2026-10-13T09:30:00+05:30",
+      "acknowledged_by_other": true
+    },
+    {
+      "id": "deal-ambiguous-t-delivery_date",
+      "deal_id": "deal-ambiguous",
+      "key": "delivery_date",
+      "value_type": "date",
+      "value": null,
+      "unit": null,
+      "raw": "next week",
+      "state": "ambiguous",
+      "origin": "rules",
+      "confidence": "high",
+      "needs_review": false,
+      "sources": [
+        {
+          "kind": "message",
+          "message_id": "deal-ambiguous-m2",
+          "quote": "delivery next week"
+        }
+      ],
+      "alternatives": [],
+      "confirmed_at": "2026-10-13T09:30:00+05:30",
+      "acknowledged_by_other": false
+    },
+    {
+      "id": "deal-ambiguous-t-final_payment",
+      "deal_id": "deal-ambiguous",
+      "key": "final_payment",
+      "value_type": "money",
+      "value": null,
+      "unit": null,
+      "raw": null,
+      "state": "missing",
+      "origin": "rules",
+      "confidence": "high",
+      "needs_review": false,
+      "sources": [],
+      "alternatives": [],
+      "confirmed_at": null,
+      "acknowledged_by_other": false
+    },
+    {
+      "id": "deal-ambiguous-t-late_penalty",
+      "deal_id": "deal-ambiguous",
+      "key": "late_penalty",
+      "value_type": "text",
+      "value": null,
+      "unit": null,
+      "raw": null,
+      "state": "missing",
+      "origin": "rules",
+      "confidence": "high",
+      "needs_review": false,
+      "sources": [],
+      "alternatives": [],
+      "confirmed_at": null,
+      "acknowledged_by_other": false
+    }
+  ],
+  "flags": [
+    {
+      "id": "deal-ambiguous-f1",
+      "deal_id": "deal-ambiguous",
+      "kind": "ambiguous",
+      "rule_id": "rel_date",
+      "term_key": "delivery_date",
+      "reason": "A relative date with no fixed day. 'Next week' could be 5 to 12 days away depending on the reader.",
+      "language": "en",
+      "sources": [
+        {
+          "kind": "message",
+          "message_id": "deal-ambiguous-m2",
+          "quote": "delivery next week"
+        }
+      ],
+      "created_at": "2026-10-13T09:30:00+05:30",
+      "resolved_at": null
+    },
+    {
+      "id": "deal-ambiguous-f2",
+      "deal_id": "deal-ambiguous",
+      "kind": "missing",
+      "rule_id": "required_term",
+      "term_key": "final_payment",
+      "reason": "No message says when the balance is due.",
+      "language": "en",
+      "sources": [],
+      "created_at": "2026-10-13T09:30:00+05:30",
+      "resolved_at": null
+    },
+    {
+      "id": "deal-ambiguous-f3",
+      "deal_id": "deal-ambiguous",
+      "kind": "missing",
+      "rule_id": "required_term",
+      "term_key": "late_penalty",
+      "reason": "Nothing says what happens if delivery is late.",
+      "language": "en",
+      "sources": [],
+      "created_at": "2026-10-13T09:30:00+05:30",
+      "resolved_at": null
+    }
+  ],
+  "score": {
+    "deal_id": "deal-ambiguous",
+    "ts": "2026-10-13T09:30:00+05:30",
+    "total": 61,
+    "breakdown": [
+      {
+        "term_key": "parties",
+        "weight": 10,
+        "present": true,
+        "clear": true,
+        "acknowledged": true,
+        "points": 10.0
+      },
+      {
+        "term_key": "scope",
+        "weight": 10,
+        "present": true,
+        "clear": true,
+        "acknowledged": true,
+        "points": 10.0
+      },
+      {
+        "term_key": "quantity",
+        "weight": 10,
+        "present": true,
+        "clear": true,
+        "acknowledged": true,
+        "points": 10.0
+      },
+      {
+        "term_key": "price",
+        "weight": 15,
+        "present": true,
+        "clear": true,
+        "acknowledged": true,
+        "points": 15.0
+      },
+      {
+        "term_key": "advance",
+        "weight": 10,
+        "present": true,
+        "clear": true,
+        "acknowledged": true,
+        "points": 10.0
+      },
+      {
+        "term_key": "delivery_date",
+        "weight": 15,
+        "present": true,
+        "clear": false,
+        "acknowledged": false,
+        "points": 6.0
+      },
+      {
+        "term_key": "final_payment",
+        "weight": 15,
+        "present": false,
+        "clear": false,
+        "acknowledged": false,
+        "points": 0.0
+      },
+      {
+        "term_key": "late_penalty",
+        "weight": 15,
+        "present": false,
+        "clear": false,
+        "acknowledged": false,
+        "points": 0.0
+      }
+    ],
+    "trigger": "confirm_term"
+  },
+  "suggestions": [
+    {
+      "id": "deal-ambiguous-s1",
+      "deal_id": "deal-ambiguous",
+      "target_term_keys": [
+        "delivery_date",
+        "final_payment"
+      ],
+      "tone": "polite",
+      "language": "en",
+      "text": "Just to confirm, delivery by 15 Nov and the balance 48,000 on delivery, right?",
+      "created_at": "2026-10-13T09:30:00+05:30",
+      "copied_at": null
+    }
+  ],
+  "handshake_questions": [
+    {
+      "term_key": "delivery_date",
+      "prompt": "What is the delivery date?",
+      "language": "en",
+      "value_type": "date"
+    },
+    {
+      "term_key": "final_payment",
+      "prompt": "When is the balance due?",
+      "language": "en",
+      "value_type": "text"
+    },
+    {
+      "term_key": "late_penalty",
+      "prompt": "What happens if delivery is late?",
+      "language": "en",
+      "value_type": "text"
+    },
+    {
+      "term_key": "price",
+      "prompt": "What is the price for each shirt?",
+      "language": "en",
+      "value_type": "money"
+    }
+  ],
+  "sealed_answers": [
+    {
+      "deal_id": "deal-ambiguous",
+      "party_id": "p1",
+      "order": 1,
+      "mode": "handover",
+      "seal_hash": "000000000000000000000000000000000000000000000000000000000000012d",
+      "sealed_at": "2026-10-24T11:02:00+05:30",
+      "revealed_at": "2026-10-24T11:15:00+05:30",
+      "answers": [
+        {
+          "term_key": "delivery_date",
+          "value": "2026-11-15",
+          "raw": "15 Nov"
+        },
+        {
+          "term_key": "final_payment",
+          "value": "on delivery",
+          "raw": "on delivery"
+        },
+        {
+          "term_key": "late_penalty",
+          "value": "none",
+          "raw": "none"
+        },
+        {
+          "term_key": "price",
+          "value": "48000",
+          "raw": "480"
+        }
+      ]
+    },
+    {
+      "deal_id": "deal-ambiguous",
+      "party_id": "p2",
+      "order": 2,
+      "mode": "reply",
+      "seal_hash": "000000000000000000000000000000000000000000000000000000000000012e",
+      "sealed_at": "2026-10-24T11:09:00+05:30",
+      "revealed_at": "2026-10-24T11:15:00+05:30",
+      "answers": [
+        {
+          "term_key": "delivery_date",
+          "value": "2026-11-22",
+          "raw": "22 Nov"
+        },
+        {
+          "term_key": "final_payment",
+          "value": "30 days after delivery",
+          "raw": "30 days after delivery"
+        },
+        {
+          "term_key": "late_penalty",
+          "value": "none",
+          "raw": "none"
+        },
+        {
+          "term_key": "price",
+          "value": "48000",
+          "raw": "480"
+        }
+      ]
+    }
+  ],
+  "recaps": [],
+  "confirmations": [],
+  "versions": [],
+  "version_diffs": [],
+  "receipts": [
+    {
+      "spec_version": "0.1-draft",
+      "deal_id": "deal-ambiguous",
+      "leaf_count": 5,
+      "root": "0000000000000000000000000000000000000000000000000000000000000191",
+      "chain": [],
+      "recorded_at": "2026-10-13T09:31:00+05:30",
+      "anchor": null,
+      "receipt_hash": "0000000000000000000000000000000000000000000000000000000000000579"
+    }
+  ],
+  "verify_results": [
+    {
+      "verdict": "unchanged",
+      "spec_version": "0.1-draft",
+      "checks": [
+        {
+          "name": "chain",
+          "status": "pass",
+          "detail": "all links match"
+        },
+        {
+          "name": "merkle_root",
+          "status": "pass",
+          "detail": "root matches the receipt"
+        },
+        {
+          "name": "timestamp_order",
+          "status": "pass",
+          "detail": null
+        },
+        {
+          "name": "anchor",
+          "status": "not_anchored",
+          "detail": "device clock only"
+        }
+      ],
+      "first_difference": null
+    }
+  ],
+  "dispute_packs": []
+}

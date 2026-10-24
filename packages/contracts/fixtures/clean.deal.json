@@ -1,0 +1,791 @@
+{
+  "description": "Made-up clean deal: every term clear and acknowledged, recap confirmed by both. Hashes are fake placeholders, not computed.",
+  "playbook": {
+    "key": "supply_order",
+    "version": 1
+  },
+  "participants": [
+    {
+      "id": "p1",
+      "display_name": "Asha",
+      "role": "party",
+      "is_me": true
+    },
+    {
+      "id": "p2",
+      "display_name": "Bilal",
+      "role": "party",
+      "is_me": false
+    }
+  ],
+  "messages": [
+    {
+      "id": "deal-clean-m1",
+      "deal_id": "deal-clean",
+      "seq": 1,
+      "sender_id": "p1",
+      "ts": "2026-09-01T14:00:00+05:30",
+      "text": "Hi Bilal, 50 mugs at 120 each, total 6000. OK?",
+      "attachment_hash": null,
+      "is_system": false,
+      "origin": "export"
+    },
+    {
+      "id": "deal-clean-m2",
+      "deal_id": "deal-clean",
+      "seq": 2,
+      "sender_id": "p2",
+      "ts": "2026-09-01T14:03:00+05:30",
+      "text": "Yes, done. 50 mugs, 120 each.",
+      "attachment_hash": null,
+      "is_system": false,
+      "origin": "export"
+    },
+    {
+      "id": "deal-clean-m3",
+      "deal_id": "deal-clean",
+      "seq": 3,
+      "sender_id": "p1",
+      "ts": "2026-09-01T14:05:00+05:30",
+      "text": "I will pay 3000 today and 3000 on delivery.",
+      "attachment_hash": null,
+      "is_system": false,
+      "origin": "export"
+    },
+    {
+      "id": "deal-clean-m4",
+      "deal_id": "deal-clean",
+      "seq": 4,
+      "sender_id": "p2",
+      "ts": "2026-09-01T14:06:00+05:30",
+      "text": "Agreed. Delivery on 20 Sept.",
+      "attachment_hash": null,
+      "is_system": false,
+      "origin": "export"
+    },
+    {
+      "id": "deal-clean-m5",
+      "deal_id": "deal-clean",
+      "seq": 5,
+      "sender_id": "p1",
+      "ts": "2026-09-01T14:10:00+05:30",
+      "text": "If late by more than 3 days, 5 percent off the balance.",
+      "attachment_hash": null,
+      "is_system": false,
+      "origin": "export"
+    },
+    {
+      "id": "deal-clean-m6",
+      "deal_id": "deal-clean",
+      "seq": 6,
+      "sender_id": "p2",
+      "ts": "2026-09-01T14:11:00+05:30",
+      "text": "Fine, agreed.",
+      "attachment_hash": null,
+      "is_system": false,
+      "origin": "export"
+    },
+    {
+      "id": "deal-clean-m7",
+      "deal_id": "deal-clean",
+      "seq": 7,
+      "sender_id": "p1",
+      "ts": "2026-09-01T14:20:00+05:30",
+      "text": "Sent 3000.",
+      "attachment_hash": null,
+      "is_system": false,
+      "origin": "export"
+    }
+  ],
+  "voice_notes": [],
+  "terms": [
+    {
+      "id": "deal-clean-t-parties",
+      "deal_id": "deal-clean",
+      "key": "parties",
+      "value_type": "party",
+      "value": "Asha, Bilal",
+      "unit": null,
+      "raw": null,
+      "state": "clear",
+      "origin": "rules",
+      "confidence": "high",
+      "needs_review": false,
+      "sources": [
+        {
+          "kind": "message",
+          "message_id": "deal-clean-m1",
+          "quote": null
+        }
+      ],
+      "alternatives": [],
+      "confirmed_at": "2026-09-01T14:30:00+05:30",
+      "acknowledged_by_other": true
+    },
+    {
+      "id": "deal-clean-t-scope",
+      "deal_id": "deal-clean",
+      "key": "scope",
+      "value_type": "text",
+      "value": "mugs",
+      "unit": null,
+      "raw": "mugs",
+      "state": "clear",
+      "origin": "rules",
+      "confidence": "high",
+      "needs_review": false,
+      "sources": [
+        {
+          "kind": "message",
+          "message_id": "deal-clean-m1",
+          "quote": "50 mugs"
+        }
+      ],
+      "alternatives": [],
+      "confirmed_at": "2026-09-01T14:30:00+05:30",
+      "acknowledged_by_other": true
+    },
+    {
+      "id": "deal-clean-t-quantity",
+      "deal_id": "deal-clean",
+      "key": "quantity",
+      "value_type": "quantity",
+      "value": "50",
+      "unit": "mugs",
+      "raw": "50 mugs",
+      "state": "clear",
+      "origin": "rules",
+      "confidence": "high",
+      "needs_review": false,
+      "sources": [
+        {
+          "kind": "message",
+          "message_id": "deal-clean-m2",
+          "quote": "50 mugs"
+        }
+      ],
+      "alternatives": [],
+      "confirmed_at": "2026-09-01T14:30:00+05:30",
+      "acknowledged_by_other": true
+    },
+    {
+      "id": "deal-clean-t-price",
+      "deal_id": "deal-clean",
+      "key": "price",
+      "value_type": "money",
+      "value": "12000",
+      "unit": "paise",
+      "raw": "120 each",
+      "state": "clear",
+      "origin": "rules",
+      "confidence": "high",
+      "needs_review": false,
+      "sources": [
+        {
+          "kind": "message",
+          "message_id": "deal-clean-m2",
+          "quote": "120 each"
+        }
+      ],
+      "alternatives": [],
+      "confirmed_at": "2026-09-01T14:30:00+05:30",
+      "acknowledged_by_other": true
+    },
+    {
+      "id": "deal-clean-t-advance",
+      "deal_id": "deal-clean",
+      "key": "advance",
+      "value_type": "money",
+      "value": "300000",
+      "unit": "paise",
+      "raw": "3000 today",
+      "state": "clear",
+      "origin": "rules",
+      "confidence": "high",
+      "needs_review": false,
+      "sources": [
+        {
+          "kind": "message",
+          "message_id": "deal-clean-m3",
+          "quote": "3000 today"
+        },
+        {
+          "kind": "message",
+          "message_id": "deal-clean-m7",
+          "quote": "Sent 3000"
+        }
+      ],
+      "alternatives": [],
+      "confirmed_at": "2026-09-01T14:30:00+05:30",
+      "acknowledged_by_other": true
+    },
+    {
+      "id": "deal-clean-t-delivery_date",
+      "deal_id": "deal-clean",
+      "key": "delivery_date",
+      "value_type": "date",
+      "value": "2026-09-20",
+      "unit": "iso8601",
+      "raw": "20 Sept",
+      "state": "clear",
+      "origin": "rules",
+      "confidence": "high",
+      "needs_review": false,
+      "sources": [
+        {
+          "kind": "message",
+          "message_id": "deal-clean-m4",
+          "quote": "Delivery on 20 Sept"
+        }
+      ],
+      "alternatives": [],
+      "confirmed_at": "2026-09-01T14:30:00+05:30",
+      "acknowledged_by_other": true
+    },
+    {
+      "id": "deal-clean-t-final_payment",
+      "deal_id": "deal-clean",
+      "key": "final_payment",
+      "value_type": "money",
+      "value": "300000",
+      "unit": "paise",
+      "raw": "3000 on delivery",
+      "state": "clear",
+      "origin": "rules",
+      "confidence": "high",
+      "needs_review": false,
+      "sources": [
+        {
+          "kind": "message",
+          "message_id": "deal-clean-m3",
+          "quote": "3000 on delivery"
+        },
+        {
+          "kind": "message",
+          "message_id": "deal-clean-m4",
+          "quote": "Agreed"
+        }
+      ],
+      "alternatives": [],
+      "confirmed_at": "2026-09-01T14:30:00+05:30",
+      "acknowledged_by_other": true
+    },
+    {
+      "id": "deal-clean-t-late_penalty",
+      "deal_id": "deal-clean",
+      "key": "late_penalty",
+      "value_type": "text",
+      "value": "5 percent off the balance after 3 days",
+      "unit": "text",
+      "raw": "5 percent off the balance",
+      "state": "clear",
+      "origin": "rules",
+      "confidence": "high",
+      "needs_review": false,
+      "sources": [
+        {
+          "kind": "message",
+          "message_id": "deal-clean-m5",
+          "quote": "5 percent off the balance"
+        },
+        {
+          "kind": "message",
+          "message_id": "deal-clean-m6",
+          "quote": "Fine, agreed"
+        }
+      ],
+      "alternatives": [],
+      "confirmed_at": "2026-09-01T14:30:00+05:30",
+      "acknowledged_by_other": true
+    }
+  ],
+  "flags": [],
+  "score": {
+    "deal_id": "deal-clean",
+    "ts": "2026-09-01T14:30:00+05:30",
+    "total": 100,
+    "breakdown": [
+      {
+        "term_key": "parties",
+        "weight": 10,
+        "present": true,
+        "clear": true,
+        "acknowledged": true,
+        "points": 10.0
+      },
+      {
+        "term_key": "scope",
+        "weight": 10,
+        "present": true,
+        "clear": true,
+        "acknowledged": true,
+        "points": 10.0
+      },
+      {
+        "term_key": "quantity",
+        "weight": 10,
+        "present": true,
+        "clear": true,
+        "acknowledged": true,
+        "points": 10.0
+      },
+      {
+        "term_key": "price",
+        "weight": 15,
+        "present": true,
+        "clear": true,
+        "acknowledged": true,
+        "points": 15.0
+      },
+      {
+        "term_key": "advance",
+        "weight": 10,
+        "present": true,
+        "clear": true,
+        "acknowledged": true,
+        "points": 10.0
+      },
+      {
+        "term_key": "delivery_date",
+        "weight": 15,
+        "present": true,
+        "clear": true,
+        "acknowledged": true,
+        "points": 15.0
+      },
+      {
+        "term_key": "final_payment",
+        "weight": 15,
+        "present": true,
+        "clear": true,
+        "acknowledged": true,
+        "points": 15.0
+      },
+      {
+        "term_key": "late_penalty",
+        "weight": 15,
+        "present": true,
+        "clear": true,
+        "acknowledged": true,
+        "points": 15.0
+      }
+    ],
+    "trigger": "recap_confirmed"
+  },
+  "suggestions": [],
+  "handshake_questions": [],
+  "sealed_answers": [],
+  "recaps": [
+    {
+      "id": "deal-clean-r1",
+      "deal_id": "deal-clean",
+      "version_n": 1,
+      "language": "en",
+      "lines": [
+        {
+          "term_key": "parties",
+          "text": "Hi Bilal, just confirming what we discussed:",
+          "sources": [
+            {
+              "kind": "message",
+              "message_id": "deal-clean-m1",
+              "quote": null
+            }
+          ]
+        },
+        {
+          "term_key": "quantity",
+          "text": "50 mugs at 120 = 6,000",
+          "sources": [
+            {
+              "kind": "message",
+              "message_id": "deal-clean-m1",
+              "quote": null
+            }
+          ]
+        },
+        {
+          "term_key": "advance",
+          "text": "3,000 advance received",
+          "sources": [
+            {
+              "kind": "message",
+              "message_id": "deal-clean-m1",
+              "quote": null
+            }
+          ]
+        },
+        {
+          "term_key": "delivery_date",
+          "text": "Delivery by 20 Sept",
+          "sources": [
+            {
+              "kind": "message",
+              "message_id": "deal-clean-m1",
+              "quote": null
+            }
+          ]
+        },
+        {
+          "term_key": "final_payment",
+          "text": "Balance 3,000 on delivery",
+          "sources": [
+            {
+              "kind": "message",
+              "message_id": "deal-clean-m1",
+              "quote": null
+            }
+          ]
+        },
+        {
+          "term_key": "late_penalty",
+          "text": "If late by more than 3 days: 5 percent off the balance",
+          "sources": [
+            {
+              "kind": "message",
+              "message_id": "deal-clean-m1",
+              "quote": null
+            }
+          ]
+        }
+      ],
+      "text": "Hi Bilal, just confirming what we discussed:\n50 mugs at 120 = 6,000\n3,000 advance received\nDelivery by 20 Sept\nBalance 3,000 on delivery\nIf late by more than 3 days: 5 percent off the balance\nIf all correct, reply: CONFIRM 7F3K",
+      "recap_hash": "00000000000000000000000000000000000000000000000000000000000001f5",
+      "echo_code": {
+        "code": "7F3K",
+        "recap_hash": "00000000000000000000000000000000000000000000000000000000000001f5",
+        "version_n": 1
+      },
+      "created_at": "2026-09-01T14:35:00+05:30"
+    }
+  ],
+  "confirmations": [
+    {
+      "id": "deal-clean-c1",
+      "recap_id": "deal-clean-r1",
+      "party_id": "p1",
+      "state": "confirmed",
+      "reply_text": null,
+      "reply_ts": null,
+      "sender_entered_by_user": false,
+      "failure": null,
+      "checked_at": "2026-09-01T14:36:00+05:30"
+    },
+    {
+      "id": "deal-clean-c2",
+      "recap_id": "deal-clean-r1",
+      "party_id": "p2",
+      "state": "confirmed",
+      "reply_text": "CONFIRM 7F3K",
+      "reply_ts": "2026-09-01T14:41:00+05:30",
+      "sender_entered_by_user": false,
+      "failure": null,
+      "checked_at": "2026-09-01T14:42:00+05:30"
+    }
+  ],
+  "versions": [
+    {
+      "id": "deal-clean-v1",
+      "deal_id": "deal-clean",
+      "n": 1,
+      "playbook": {
+        "key": "supply_order",
+        "version": 1
+      },
+      "terms": [
+        {
+          "id": "deal-clean-t-parties",
+          "deal_id": "deal-clean",
+          "key": "parties",
+          "value_type": "party",
+          "value": "Asha, Bilal",
+          "unit": null,
+          "raw": null,
+          "state": "clear",
+          "origin": "rules",
+          "confidence": "high",
+          "needs_review": false,
+          "sources": [
+            {
+              "kind": "message",
+              "message_id": "deal-clean-m1",
+              "quote": null
+            }
+          ],
+          "alternatives": [],
+          "confirmed_at": "2026-09-01T14:30:00+05:30",
+          "acknowledged_by_other": true
+        },
+        {
+          "id": "deal-clean-t-scope",
+          "deal_id": "deal-clean",
+          "key": "scope",
+          "value_type": "text",
+          "value": "mugs",
+          "unit": null,
+          "raw": "mugs",
+          "state": "clear",
+          "origin": "rules",
+          "confidence": "high",
+          "needs_review": false,
+          "sources": [
+            {
+              "kind": "message",
+              "message_id": "deal-clean-m1",
+              "quote": "50 mugs"
+            }
+          ],
+          "alternatives": [],
+          "confirmed_at": "2026-09-01T14:30:00+05:30",
+          "acknowledged_by_other": true
+        },
+        {
+          "id": "deal-clean-t-quantity",
+          "deal_id": "deal-clean",
+          "key": "quantity",
+          "value_type": "quantity",
+          "value": "50",
+          "unit": "mugs",
+          "raw": "50 mugs",
+          "state": "clear",
+          "origin": "rules",
+          "confidence": "high",
+          "needs_review": false,
+          "sources": [
+            {
+              "kind": "message",
+              "message_id": "deal-clean-m2",
+              "quote": "50 mugs"
+            }
+          ],
+          "alternatives": [],
+          "confirmed_at": "2026-09-01T14:30:00+05:30",
+          "acknowledged_by_other": true
+        },
+        {
+          "id": "deal-clean-t-price",
+          "deal_id": "deal-clean",
+          "key": "price",
+          "value_type": "money",
+          "value": "12000",
+          "unit": "paise",
+          "raw": "120 each",
+          "state": "clear",
+          "origin": "rules",
+          "confidence": "high",
+          "needs_review": false,
+          "sources": [
+            {
+              "kind": "message",
+              "message_id": "deal-clean-m2",
+              "quote": "120 each"
+            }
+          ],
+          "alternatives": [],
+          "confirmed_at": "2026-09-01T14:30:00+05:30",
+          "acknowledged_by_other": true
+        },
+        {
+          "id": "deal-clean-t-advance",
+          "deal_id": "deal-clean",
+          "key": "advance",
+          "value_type": "money",
+          "value": "300000",
+          "unit": "paise",
+          "raw": "3000 today",
+          "state": "clear",
+          "origin": "rules",
+          "confidence": "high",
+          "needs_review": false,
+          "sources": [
+            {
+              "kind": "message",
+              "message_id": "deal-clean-m3",
+              "quote": "3000 today"
+            },
+            {
+              "kind": "message",
+              "message_id": "deal-clean-m7",
+              "quote": "Sent 3000"
+            }
+          ],
+          "alternatives": [],
+          "confirmed_at": "2026-09-01T14:30:00+05:30",
+          "acknowledged_by_other": true
+        },
+        {
+          "id": "deal-clean-t-delivery_date",
+          "deal_id": "deal-clean",
+          "key": "delivery_date",
+          "value_type": "date",
+          "value": "2026-09-20",
+          "unit": "iso8601",
+          "raw": "20 Sept",
+          "state": "clear",
+          "origin": "rules",
+          "confidence": "high",
+          "needs_review": false,
+          "sources": [
+            {
+              "kind": "message",
+              "message_id": "deal-clean-m4",
+              "quote": "Delivery on 20 Sept"
+            }
+          ],
+          "alternatives": [],
+          "confirmed_at": "2026-09-01T14:30:00+05:30",
+          "acknowledged_by_other": true
+        },
+        {
+          "id": "deal-clean-t-final_payment",
+          "deal_id": "deal-clean",
+          "key": "final_payment",
+          "value_type": "money",
+          "value": "300000",
+          "unit": "paise",
+          "raw": "3000 on delivery",
+          "state": "clear",
+          "origin": "rules",
+          "confidence": "high",
+          "needs_review": false,
+          "sources": [
+            {
+              "kind": "message",
+              "message_id": "deal-clean-m3",
+              "quote": "3000 on delivery"
+            },
+            {
+              "kind": "message",
+              "message_id": "deal-clean-m4",
+              "quote": "Agreed"
+            }
+          ],
+          "alternatives": [],
+          "confirmed_at": "2026-09-01T14:30:00+05:30",
+          "acknowledged_by_other": true
+        },
+        {
+          "id": "deal-clean-t-late_penalty",
+          "deal_id": "deal-clean",
+          "key": "late_penalty",
+          "value_type": "text",
+          "value": "5 percent off the balance after 3 days",
+          "unit": "text",
+          "raw": "5 percent off the balance",
+          "state": "clear",
+          "origin": "rules",
+          "confidence": "high",
+          "needs_review": false,
+          "sources": [
+            {
+              "kind": "message",
+              "message_id": "deal-clean-m5",
+              "quote": "5 percent off the balance"
+            },
+            {
+              "kind": "message",
+              "message_id": "deal-clean-m6",
+              "quote": "Fine, agreed"
+            }
+          ],
+          "alternatives": [],
+          "confirmed_at": "2026-09-01T14:30:00+05:30",
+          "acknowledged_by_other": true
+        }
+      ],
+      "terms_digest": "0000000000000000000000000000000000000000000000000000000000000259",
+      "root": "000000000000000000000000000000000000000000000000000000000000025a",
+      "link": "000000000000000000000000000000000000000000000000000000000000025b",
+      "prev_link": null,
+      "reason_message_id": null,
+      "created_at": "2026-09-01T14:36:00+05:30"
+    }
+  ],
+  "version_diffs": [],
+  "receipts": [
+    {
+      "spec_version": "0.1-draft",
+      "deal_id": "deal-clean",
+      "leaf_count": 8,
+      "root": "000000000000000000000000000000000000000000000000000000000000025a",
+      "chain": [
+        {
+          "version_n": 1,
+          "terms_digest": "0000000000000000000000000000000000000000000000000000000000000259",
+          "root": "000000000000000000000000000000000000000000000000000000000000025a",
+          "link": "000000000000000000000000000000000000000000000000000000000000025b"
+        }
+      ],
+      "recorded_at": "2026-09-01T14:42:00+05:30",
+      "anchor": null,
+      "receipt_hash": "0000000000000000000000000000000000000000000000000000000000000642"
+    }
+  ],
+  "verify_results": [
+    {
+      "verdict": "unchanged",
+      "spec_version": "0.1-draft",
+      "checks": [
+        {
+          "name": "chain",
+          "status": "pass",
+          "detail": "all links match"
+        },
+        {
+          "name": "merkle_root",
+          "status": "pass",
+          "detail": "root matches the receipt"
+        },
+        {
+          "name": "timestamp_order",
+          "status": "pass",
+          "detail": null
+        },
+        {
+          "name": "anchor",
+          "status": "not_anchored",
+          "detail": "device clock only"
+        }
+      ],
+      "first_difference": null
+    }
+  ],
+  "dispute_packs": [
+    {
+      "deal_id": "deal-clean",
+      "parts": [
+        {
+          "name": "timeline",
+          "included": true
+        },
+        {
+          "name": "evidence_index",
+          "included": true
+        },
+        {
+          "name": "terms_all_versions",
+          "included": true
+        },
+        {
+          "name": "certificate_draft",
+          "included": true
+        },
+        {
+          "name": "verification_guide",
+          "included": true
+        },
+        {
+          "name": "receipt_bundle",
+          "included": true
+        }
+      ],
+      "certificate_status": "unsigned_draft",
+      "disclaimer_shown": true,
+      "masked": false,
+      "page_count": 14,
+      "size_bytes": 1258291,
+      "file_digest": null,
+      "created_at": "2026-09-02T10:00:00+05:30"
+    }
+  ]
+}
