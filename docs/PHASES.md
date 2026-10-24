@@ -43,7 +43,7 @@ Goal: everyone can build, test and merge. A thin end-to-end path (the walking sk
 - [ ] Everyone completes the first-day checklist in [ONBOARDING](ONBOARDING.md)
 - [ ] Contracts agreed together and merged: Message, VoiceNote, Term, Flag, Score, Suggestion, HandshakeAnswer, Recap, Confirmation, Version, Receipt, DisputePack (reviewed by all four)
 - [x] `pyproject.toml` and `uv.lock` created by the dependency owner (Jhashank; Hardik until the invitation is accepted)
-- [ ] Pre-commit with ruff and gitleaks working
+- [x] Pre-commit with ruff and gitleaks working
 - [ ] `.env.example` with names only
 - [ ] Project board created with columns, labels and the first issues from this file
 - [ ] Jhashank accepts the repository invitation; Area 3 issues are reassigned from Hardik (Q-49)

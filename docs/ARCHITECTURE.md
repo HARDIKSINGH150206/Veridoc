@@ -332,6 +332,7 @@ Veridoc/
 ├── CHANGELOG.md               combined from changes/ at phase end by the release lead
 ├── .gitattributes              line endings (LF) and binary file rules
 ├── .gitignore                  Python, Node, OS, secrets, weights, reports, real chats
+├── .pre-commit-config.yaml     ruff (lint, format) and gitleaks on every commit
 ├── .editorconfig               indentation and final newline rules
 ├── CLAUDE.md
 ├── AGENTS.md
