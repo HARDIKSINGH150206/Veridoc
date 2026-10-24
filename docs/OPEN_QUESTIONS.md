@@ -79,7 +79,7 @@ The ground rule is: this prompt wins, then `docs/source/VeriDoc-Final-Idea.md`, 
 | Q-40 | Confirmation-rate, time-to-confirm and score-improvement baselines from a pilot | PRD section 15 | Samanway |
 | Q-41 | Generate real test vectors with a script; Python and JS must both reproduce them. | INTEGRITY_SPEC sections 6 and 13 | Jhashank |
 | Q-42 | User research: who interviews, participant mix and the notes folder | USER_RESEARCH section 3 | Samanway |
-| Q-43 | Team chat platform and the project board link | ONBOARDING sections 4 and 14 | Hardik |
+| Q-43 | Team chat platform (the project board exists: https://github.com/users/HARDIKSINGH150206/projects/1; make it public or add collaborators) | ONBOARDING sections 4 and 14 | Hardik |
 | Q-44 | Who owns GitHub repository settings (branch protection, merge settings, tag protection) | GIT_WORKFLOW section 7 | Hardik |
 | Q-45 | Where security incidents (such as a pushed secret) are recorded | ONBOARDING section 21 | Hardik |
 | Q-46 | Licence check of each chosen model for redistribution on a USB stick | MODEL_CARD | Abhishek |

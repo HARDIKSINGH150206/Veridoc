@@ -74,7 +74,7 @@ Ask Hardik (repo owner) if anything is missing.
 - [ ] Two-factor authentication turned on in GitHub (Settings, Password and authentication). Reason: the repo holds the evidence layer.
 - [ ] An invitation to `HARDIKSINGH150206/Veridoc` accepted (check your email or github.com/notifications)
 - [ ] Added to the team chat (platform TBD)
-- [ ] Added to the project board (GitHub Projects, link TBD)
+- [ ] Added to the project board (https://github.com/users/HARDIKSINGH150206/projects/1)
 - [ ] Your GitHub handle is in `.github/CODEOWNERS` (current handles: `@notorious1337` Samanway, `@absksync` Abhishek, `@NYN-05` Jhashank, `@HARDIKSINGH150206` Hardik)
 
 ## 5. Install tools
@@ -432,7 +432,7 @@ Why: a readable history, and tools can build the changelog.
 
 ## 14. The project board
 
-GitHub Projects (link TBD).
+GitHub Projects: https://github.com/users/HARDIKSINGH150206/projects/1 (project "VeriDoc"). The board is private to the owner until teammates are added as project collaborators or it is made public.
 
 | Column | Meaning |
 |---|---|

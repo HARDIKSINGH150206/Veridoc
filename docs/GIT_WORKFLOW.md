@@ -229,7 +229,7 @@ If the release lead prefers, open a pull request from `main` into `dev` instead 
 
 ## 7. GitHub settings to configure
 
-Already set (2026-10-25): default branch `main`; protection on `main` and `dev` with a pull request required, 0 approvals, no force pushes, no deletion. Settings below are to be configured as the team grows. Owner of settings: Hardik (repo owner).
+Applied and read back (2026-10-25): default branch `main`; protection on `main` and `dev` with a pull request required, 0 approvals, required checks `checks` and `secrets` (strict), conversation resolution required, no force pushes, no deletion, code-owner review off until Jhashank accepts the invitation; rebase merging off, branches deleted automatically after merge; a repository ruleset "protect release tags v*" that blocks creating, moving and deleting `v*` tags except for repository admins. The tables below describe the target; the remaining open items are raising approvals to 1 from Phase 1, code-owner review and including administrators. Owner of settings: Hardik (repo owner).
 
 ### Branch protection for `main`
 
@@ -250,7 +250,7 @@ Already set (2026-10-25): default branch `main`; protection on `main` and `dev` 
 
 ### Branch protection for `dev`
 
-Same as `main`, with: required approving reviews 0 now and 1 from Phase 1; linear history On (squash merges only); status checks On (`checks`, `secrets`).
+Same as `main`: required approving reviews 0 now and 1 from Phase 1; status checks On (`checks`, `secrets`). Linear history stays **Off** on `dev` too, because the `main` into `dev` sync pull requests use merge commits.
 
 ### Repository merge settings
 
@@ -260,7 +260,7 @@ Same as `main`, with: required approving reviews 0 now and 1 from Phase 1; linea
 | Allow merge commits | On (used only for `dev` into `main`) |
 | Allow rebase merging | Off |
 | Automatically delete head branches | On |
-| Tag protection | Pattern `v*`: only the release lead (Hardik) may create tags |
+| Tag protection | Ruleset on `refs/tags/v*`: only repository admins (the release lead, Hardik) may create, move or delete tags |
 
 Example commands (to be run by the repo owner; they change repo settings):
 
