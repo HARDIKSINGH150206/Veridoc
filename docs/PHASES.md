@@ -68,7 +68,7 @@ Goal: everyone can build, test and merge. A thin end-to-end path (the walking sk
 - [ ] `scripts/make_test_vectors.py` plan and file layout in `test-vectors/integrity/` agreed (Q-41)
 - [ ] Alembic initialised in `packages/vault/migrations/` (empty baseline)
 - [ ] Router auto-discovery implemented in `apps/api/main.py` (ADR-022)
-- [ ] CI workflow files in `.github/workflows/`: lint, types, tests, contract tests, secret scan, tamper tests (Q-33)
+- [x] CI workflow `.github/workflows/ci.yml`: ruff, format, mypy, pytest, folder, hardcoding, design-token and gitleaks checks (tamper tests join when they exist) (Q-33)
 - [ ] `packages/contracts` stewarded: the first agreed models merged (all four review)
 
 ### Area 4: Frontend and Blockchain (Hardik)

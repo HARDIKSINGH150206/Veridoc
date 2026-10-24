@@ -239,7 +239,7 @@ Already set (2026-10-25): default branch `main`; protection on `main` and `dev` 
 | Required approving reviews | 0 now; raise to 1 at the start of Phase 1 |
 | Dismiss stale approvals on new commits | On (once approvals are required) |
 | Require review from code owners | On once CODEOWNERS has real handles |
-| Require status checks to pass | On once CI exists (lint, types, tests, contract tests, secret scan, tamper tests) |
+| Require status checks to pass | On, with the checks `checks` and `secrets` from `.github/workflows/ci.yml` (strict: branch must be up to date) |
 | Require branches to be up to date | On |
 | Require conversation resolution | On |
 | Require linear history | Off (`main` uses merge commits) |
@@ -250,7 +250,7 @@ Already set (2026-10-25): default branch `main`; protection on `main` and `dev` 
 
 ### Branch protection for `dev`
 
-Same as `main`, with: required approving reviews 0 now and 1 from Phase 1; linear history On (squash merges only); status checks On once CI exists.
+Same as `main`, with: required approving reviews 0 now and 1 from Phase 1; linear history On (squash merges only); status checks On (`checks`, `secrets`).
 
 ### Repository merge settings
 

@@ -146,7 +146,7 @@ flowchart TB
 6. integrity tamper tests and the Python and JavaScript test-vector comparison
 7. offline check (screens load with the network blocked), once the frontend exists
 
-The CI workflow files are a Phase 0 task (Q-33). Until they exist, run the same commands locally before pushing.
+The CI workflow is `.github/workflows/ci.yml` (jobs `checks` and `secrets`, both required on `dev` and `main`). Run the same commands locally before pushing. Integrity tamper tests and the offline screen check join the workflow when those tests exist.
 
 ## 11. Pairing at integration seams
 
