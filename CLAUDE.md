@@ -60,6 +60,14 @@ Shared, changed only by small reviewed pull requests: `packages/contracts`, `doc
 - Conventional Commits, for example `feat(ingest): parse iPhone export headers`. Small commits.
 - Add the attribution line your tool requires to commit messages.
 
+## No hardcoding
+
+1. All configuration comes from one settings module, `apps/api/settings.py` (pydantic-settings, reading `VERIDOC_*` environment variables and `.env`). No paths, ports, model names, URLs or keys in code. Packages receive configuration as arguments; only the API layer reads settings.
+2. Business rules live in data, not code: required terms, ambiguity rules, score weights and legal hints in `playbooks/*.yaml`; recap and suggestion wording in `playbooks/templates/`; model choices and SHA-256 hashes in `models/manifest.json`; hardware tier thresholds in settings.
+3. Stubs and fixtures are allowed only in tests and in demo mode. Demo mode is the `VERIDOC_DEMO_MODE` setting, never a code edit. Mark every stub `# STUB: replaced by #<issue>` and link a real issue.
+4. No logic may depend on sample names, amounts or dates (Raju, Meena, 480, 48000, 15 Nov). They live only in tests, fixtures and eval data.
+5. `python scripts/check_hardcoding.py` must pass (pre-commit and CI). A single line may opt out with a comment `hardcoding: ok (<reason>)`; say so in the pull request.
+
 ## Definition of done
 
 1. Tests exist and pass, inside the package they test (write tests first).
@@ -70,18 +78,20 @@ Shared, changed only by small reviewed pull requests: `packages/contracts`, `doc
 5. Threat model row added or updated when a new input or boundary is added.
 6. Wording follows `docs/LIMITS.md`.
 7. Linked to requirement IDs.
+8. `python scripts/check_hardcoding.py` passes (see No hardcoding).
 
 ## Commands
 
-All `TBD` until the code exists. Fill in when it lands.
+Fill the remaining `TBD` when the code lands.
 
 | Task | Command |
 |---|---|
-| Install | TBD |
+| Install | `uv sync` |
 | Run | TBD |
-| Test | TBD |
-| Lint | TBD |
-| Type check | TBD |
+| Test | `uv run pytest` |
+| Lint | `uv run ruff check .` and `uv run ruff format --check .` |
+| Type check | `uv run mypy .` |
+| Hardcoding check | `python scripts/check_hardcoding.py` |
 | Trust report | TBD |
 
 ## Code style

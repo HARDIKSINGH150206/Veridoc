@@ -297,6 +297,7 @@ Veridoc/
 ├── apps/
 │   ├── api/                    FastAPI app, thin layer of routes only
 │   │   ├── main.py             loads routers automatically; hotspot, Area 3 only
+│   │   ├── settings.py         the one settings module (pydantic-settings); Area 3
 │   │   └── routers/
 │   │       ├── ingest.py       Area 1: import and voice
 │   │       ├── agreement.py    Area 1: recap and Blind Handshake
@@ -411,12 +412,14 @@ Names only. Values live in a local `.env` (never committed) or in the launcher; 
 | `VERIDOC_MANIFEST_PATH` | Path to `models/manifest.json` |
 | `VERIDOC_MAX_IMPORT_MB` | Import size cap |
 | `VERIDOC_LOG_LEVEL` | Log level |
+| `VERIDOC_DEMO_MODE` | Switch stubs and fixtures on for the demo (never a code edit) |
+| `VERIDOC_TIER_HIGH_MIN_RAM_GB`, `VERIDOC_TIER_DEFAULT_MIN_RAM_GB`, `VERIDOC_TIER_LOW_MIN_RAM_GB` | Hardware tier thresholds in GB of RAM (tuned by benchmark, Q-35) |
 | `VERIDOC_FEATURE_FLAGS` | Comma-separated names of unfinished features to switch on (see DEVELOPMENT_METHODOLOGY) |
 | `VERIDOC_ANCHOR_ENABLED` | Enable anchoring (P1; default off) |
 | `VERIDOC_ANCHOR_RPC` | Anchoring network endpoint (P1) |
 | `VERIDOC_SHARE_BASE_URL` | Share server base (P1) |
 
-No secret is ever a default value in code.
+No secret is ever a default value in code. All settings are read by one module, `apps/api/settings.py` (pydantic-settings, environment variables plus `.env`); packages receive values as arguments. Business rules are data (playbooks, templates, `models/manifest.json`), not code. `scripts/check_hardcoding.py` enforces this.
 
 ## 13. Logging rules
 

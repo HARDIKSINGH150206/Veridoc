@@ -287,6 +287,7 @@ Veridoc/
 ├── apps/
 │   ├── api/                    FastAPI app, thin layer of routes only
 │   │   ├── main.py             loads routers automatically; Area 3 only
+│   │   ├── settings.py         the one settings module; Area 3
 │   │   └── routers/
 │   │       ├── ingest.py       Area 1: import and voice
 │   │       ├── agreement.py    Area 1: recap and Blind Handshake
@@ -357,7 +358,7 @@ Steps with commands:
 3. **Create a branch from `dev`.** `git checkout -b feat/ingest-android-parser` (area word: `ingest`, `intelligence`, `integrity`, `frontend`).
 4. **Write tests first.** Put them in the package's own `tests/` folder. They fail at first. Why: tests define "done" and protect the evidence layer.
 5. **Build** the smallest piece that makes the tests pass.
-6. **Run checks locally.** Expected (TBD until code exists): `uv run ruff check .`, `uv run ruff format --check .`, `uv run mypy .`, `uv run pytest`. Pre-commit also runs on commit.
+6. **Run checks locally:** `uv run ruff check .`, `uv run ruff format --check .`, `uv run mypy .`, `uv run pytest` and `python scripts/check_hardcoding.py` (on Windows `python scripts\check_hardcoding.py`). The hardcoding check must pass: see section 19. Pre-commit also runs on commit.
 7. **Commit** small and often with Conventional Commits (section 12).
 8. **Add a changelog fragment** `changes/feat-ingest-android-parser.md` (see `changes/README.md`).
 9. **Push.** First time: `git push -u origin feat/ingest-android-parser`.
@@ -421,6 +422,7 @@ Why: a readable history, and tools can build the changelog.
 - [ ] Wording follows LIMITS (tamper-evident, targets are targets)
 - [ ] Hashing, Merkle, chain, echo code or verify changes also update INTEGRITY_SPEC and test vectors
 - [ ] The AI layer does not write to the vault or hash path
+- [ ] No hardcoding: no paths, ports, URLs or model names in code (settings module only); no sample names or amounts in logic; every stub marked `# STUB: replaced by #<issue>`; `check_hardcoding.py` passes
 - [ ] Docs updated; threat model row updated for any new input or boundary
 - [ ] Changelog fragment present
 
@@ -496,7 +498,8 @@ The non-negotiables from `CLAUDE.md`, in plain words:
 8. **Follow the drop order** and do not start P1 before the MVP passes.
 9. **Stay in your area.** Describe changes needed elsewhere; do not make them.
 10. **Tests live inside their package.**
-11. **If unsure, stop and ask,** and add the question to [OPEN_QUESTIONS](OPEN_QUESTIONS.md).
+11. **No hardcoding.** Configuration comes only from the settings module (`apps/api/settings.py`); business rules live in playbooks, templates and `models/manifest.json`; stubs and fixtures live only in tests or demo mode and are marked `# STUB: replaced by #<issue>`; code never depends on sample names, amounts or dates. Why: hardcoded values break on someone else's machine and hide rules that should be reviewable data. `python scripts/check_hardcoding.py` checks it.
+12. **If unsure, stop and ask,** and add the question to [OPEN_QUESTIONS](OPEN_QUESTIONS.md).
 
 ## 20. Using Claude Code and Codex
 
