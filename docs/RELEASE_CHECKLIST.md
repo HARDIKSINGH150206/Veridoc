@@ -12,7 +12,7 @@ Release lead: Hardik. Phase and tag: fill in per release (`v0.N-phaseN`).
 - [ ] All pull requests meant for this phase are merged into `dev`
 - [ ] `dev` is frozen for the checklist run (no other merges)
 - [ ] The phase gate in PHASES.md is read aloud and each item is checked below
-- [ ] Open issues labelled `blocked` or `contracts` for this phase are resolved or consciously deferred (noted)
+- [ ] Open issues labelled `blocked` or `type:contracts` for this phase are resolved or consciously deferred (noted)
 
 ## 2. Automated checks on `dev`
 
