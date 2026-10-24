@@ -4,7 +4,7 @@
 
 ## Area
 
-- [ ] Area 1: Ingest and Voice
+- [ ] Area 1: Ingest, Voice and Agreement
 - [ ] Area 2: Intelligence
 - [ ] Area 3: Integrity and Vault
 - [ ] Area 4: Frontend and Packaging

@@ -30,8 +30,8 @@ Read first: [PRD](docs/PRD.md), [ARCHITECTURE](docs/ARCHITECTURE.md), [INTEGRITY
 
 | Area | Owns |
 |---|---|
-| 1. Ingest and Voice | `packages/ingest`, `apps/api/routers/ingest.py`, sample chats |
-| 2. Intelligence | `packages/intelligence`, `playbooks/`, `eval/`, `apps/api/routers/analysis.py` |
+| 1. Ingest, Voice and Agreement | `packages/ingest`, `apps/api/routers/ingest.py`, `playbooks/templates/`, sample chats |
+| 2. Intelligence | `packages/intelligence`, `playbooks/` (except `playbooks/templates/`), `eval/`, `apps/api/routers/analysis.py` |
 | 3. Integrity and Vault | `packages/integrity`, `packages/vault`, `apps/verify`, `test-vectors/`, `apps/api/routers/vault.py`, `apps/api/routers/export.py` |
 | 4. Frontend and Packaging | `apps/web`, `packaging/`, `apps/api/main.py` |
 

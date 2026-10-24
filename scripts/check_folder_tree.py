@@ -55,7 +55,7 @@ for raw in paths:
 top_in_tree = {p.split("/")[0] for p in paths}
 top_in_tree |= {"pyproject.toml", "uv.lock", ".git"}
 for entry in sorted(ROOT.iterdir()):
-    if entry.name not in top_in_tree and entry.name not in {".gitignore", "CONTRIBUTING.md", "SECURITY.md"}:
+    if entry.name not in top_in_tree and entry.name not in {"CONTRIBUTING.md", "SECURITY.md"}:
         errors.append(f"on disk but not in ARCHITECTURE tree: {entry.name}")
 
 # CODEOWNERS paths exist and are covered by the tree
