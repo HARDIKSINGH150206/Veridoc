@@ -92,6 +92,7 @@ Fill the remaining `TBD` when the code lands.
 | Lint | `uv run ruff check .` and `uv run ruff format --check .` |
 | Type check | `uv run mypy .` |
 | Hardcoding check | `python scripts/check_hardcoding.py` |
+| Design token check | `python scripts/check_design_tokens.py` |
 | Trust report | TBD |
 
 ## Code style
@@ -101,7 +102,7 @@ Fill the remaining `TBD` when the code lands.
 - Pure functions in the integrity engine: bytes in, bytes out, no I/O, no clock, no randomness except the salt source passed in.
 - No network calls outside the anchoring and share modules.
 - Routers are thin; logic lives in packages.
-- Frontend: static HTML and JavaScript, no CDN, all assets bundled, every status shows a symbol and a word.
+- Frontend: static HTML and JavaScript, no CDN, all assets bundled, every status shows a symbol and a word. Use only the tokens in `apps/web/assets/design-tokens.css` (no raw colours, font sizes or radii); `python scripts/check_design_tokens.py` must pass.
 - Match the style of the surrounding code.
 
 ## When unsure

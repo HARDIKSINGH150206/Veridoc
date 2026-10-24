@@ -308,6 +308,9 @@ Veridoc/
 │   │   ├── components/         shared UI pieces, Area 4 only
 │   │   ├── screens/            one folder per screen: s1-deals ... s12-whatsapp
 │   │   └── assets/             bundled CSS, JS and Indic fonts, no CDN
+│   │       ├── design-tokens.css   the one tokens file: colours, spacing, type, radii, light and dark
+│   │       ├── fonts.css           @font-face for the bundled fonts
+│   │       └── fonts/              Noto Sans, Devanagari and Kannada (woff2, SIL OFL)
 │   └── verify/                 standalone verify.html, Area 4
 ├── packages/
 │   ├── contracts/              shared Pydantic schemas, the ONLY shared code
