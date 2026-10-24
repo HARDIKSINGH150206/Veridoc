@@ -4,10 +4,10 @@
 
 ## Area
 
-- [ ] Area 1: Ingest, Voice and Agreement
-- [ ] Area 2: Intelligence
-- [ ] Area 3: Integrity and Vault
-- [ ] Area 4: Frontend and Packaging
+- [ ] Area 1: Ingest, Agreement and Release (Samanway)
+- [ ] Area 2: AI and ML (Abhishek)
+- [ ] Area 3: Backend, Integrity and Vault (Jhashank)
+- [ ] Area 4: Frontend and Blockchain (Hardik)
 - [ ] Shared (contracts, docs, .github)
 
 ## Linked requirement IDs

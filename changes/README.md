@@ -1,6 +1,6 @@
 # Changelog fragments
 
-Each pull request adds one file here instead of editing `CHANGELOG.md`. Two pull requests then never touch the same file, so the changelog never causes a merge conflict. The release lead (Area 4) combines the fragments into `CHANGELOG.md` at the end of each phase and deletes them.
+Each pull request adds one file here instead of editing `CHANGELOG.md`. Two pull requests then never touch the same file, so the changelog never causes a merge conflict. The release lead (Hardik, Area 4) combines the fragments into `CHANGELOG.md` at the end of each phase and deletes them.
 
 ## File name
 

@@ -1,6 +1,6 @@
 # Onboarding
 
-This file takes a developer who has never seen VeriDoc from zero to a first merged pull request. It is written for a beginner: numbered steps, exact commands for Windows, macOS and Linux, and a short reason for each rule. Follow the sections in order. Member names are `TBD`.
+This file takes a developer who has never seen VeriDoc from zero to a first merged pull request. It is written for a beginner: numbered steps, exact commands for Windows, macOS and Linux, and a short reason for each rule. Follow the sections in order. Members: Samanway (Area 1), Abhishek (Area 2), Jhashank (Area 3) and Hardik (Area 4).
 
 Last updated: 2026-10-25
 Status: Draft v1
@@ -43,37 +43,39 @@ Read them in this order. Plan about two hours. You do not need to memorise them;
 
 ## 3. Team and areas
 
-The repository is split into four ownership areas so each person mostly edits their own folders. Member names are `TBD`.
+The repository is split into four ownership areas so each person mostly edits their own folders. Members: Samanway (Area 1), Abhishek (Area 2), Jhashank (Area 3) and Hardik (Area 4).
 
 | Area | Owns | Role | Member |
 |---|---|---|---|
-| 1. Ingest, Voice and Agreement | `packages/ingest`, `apps/api/routers/ingest.py`, `apps/api/routers/agreement.py`, `playbooks/templates/`, sample chats | Ingest and agreement lead | TBD |
-| 2. Intelligence | `packages/intelligence`, `playbooks/` (except `playbooks/templates/`), `eval/`, `apps/api/routers/analysis.py` | AI and rules lead | TBD |
-| 3. Integrity and Vault | `packages/integrity`, `packages/vault`, `apps/verify`, `test-vectors/`, `apps/api/routers/vault.py`, `apps/api/routers/export.py` | Integrity lead | TBD |
-| 4. Frontend and Packaging | `apps/web`, `packaging/`, `apps/api/main.py` | UI and release lead | TBD |
+| 1. Ingest, Agreement and Release | `packages/ingest`, `apps/api/routers/ingest.py`, `apps/api/routers/agreement.py`, `playbooks/templates/`, `packaging/`, sample chats and demo voice notes | Ingest, agreement and release lead | Samanway (@notorious1337) |
+| 2. AI and ML | `packages/intelligence`, `playbooks/` (except `playbooks/templates/`), `eval/`, `apps/api/routers/analysis.py` | AI and ML lead | Abhishek (@absksync) |
+| 3. Backend, Integrity and Vault | `apps/api/main.py`, `packages/contracts` (steward), `packages/integrity` (except `packages/integrity/anchoring/`), `packages/vault`, `test-vectors/`, `apps/api/routers/vault.py`, `apps/api/routers/export.py`, `.github/workflows/`, `pyproject.toml`, `uv.lock` | Backend and integrity lead | Jhashank (@NYN-05, invitation pending; Hardik covers until accepted) |
+| 4. Frontend and Blockchain | `apps/web`, `apps/verify`, `packages/integrity/anchoring/` | Frontend and blockchain lead; project release lead | Hardik (@HARDIKSINGH150206) |
 
-Shared by all, changed only by small reviewed pull requests: `packages/contracts`, `docs/`, `.github/`.
+Shared by all, changed only by small reviewed pull requests: `packages/contracts` (steward: Jhashank; every change still needs all four reviewers), `docs/`, `.github/` (except `.github/workflows/`, Area 3). Jhashank's invitation is pending; until it is accepted Hardik covers Area 3 work.
 
 **Hotspots and who owns them (and why: one owner per hotspot means no two people edit the same file at once):**
 
 | Hotspot | Owner | What you do instead of editing it |
 |---|---|---|
 | Contracts (`packages/contracts`) | All four, by pull request | Open a small contracts pull request, see section 16 |
-| Dependency files (`pyproject.toml`, `uv.lock`) | One named dependency owner (TBD) | Open an issue asking for the dependency |
-| Design tokens (`apps/web/assets/design-tokens.css`) | Area 4 | Ask in an issue |
-| Migrations (`packages/vault/migrations/`) | Area 3 | Open an issue describing the schema change you need |
-| `apps/api/main.py` | Area 4 | You never need to edit it: routers load automatically (ADR-022) |
+| Dependency files (`pyproject.toml`, `uv.lock`) | Area 3 (Jhashank) | Open an issue asking for the dependency |
+| Design tokens (`apps/web/assets/design-tokens.css`) | Area 4 (Hardik) | Ask in an issue |
+| Migrations (`packages/vault/migrations/`) | Area 3 (Jhashank) | Open an issue describing the schema change you need |
+| `apps/api/main.py` | Area 3 (Jhashank) | You never need to edit it: routers load automatically (ADR-022) |
+| Release (merge `dev` into `main`, tags, changelog) | Hardik | Ask in the team chat |
+| Hardware tier thresholds and model choice | Abhishek | Open an issue |
 
 ## 4. Access checklist
 
-Ask the person who invited you (TBD) if anything is missing.
+Ask Hardik (repo owner) if anything is missing.
 
 - [ ] A GitHub account, with your name or a recognisable username
 - [ ] Two-factor authentication turned on in GitHub (Settings, Password and authentication). Reason: the repo holds the evidence layer.
 - [ ] An invitation to `HARDIKSINGH150206/Veridoc` accepted (check your email or github.com/notifications)
 - [ ] Added to the team chat (platform TBD)
 - [ ] Added to the project board (GitHub Projects, link TBD)
-- [ ] Your GitHub handle sent to the team so it can replace the `@TBD-member-N` placeholder in `.github/CODEOWNERS`
+- [ ] Your GitHub handle is in `.github/CODEOWNERS` (current handles: `@notorious1337` Samanway, `@absksync` Abhishek, `@NYN-05` Jhashank, `@HARDIKSINGH150206` Hardik)
 
 ## 5. Install tools
 
@@ -284,7 +286,7 @@ Next steps. The code does not exist yet, so the exact commands are `TBD`; the ex
 Veridoc/
 ├── apps/
 │   ├── api/                    FastAPI app, thin layer of routes only
-│   │   ├── main.py             loads routers automatically; Area 4 only
+│   │   ├── main.py             loads routers automatically; Area 3 only
 │   │   └── routers/
 │   │       ├── ingest.py       Area 1: import and voice
 │   │       ├── agreement.py    Area 1: recap and Blind Handshake
@@ -292,18 +294,18 @@ Veridoc/
 │   │       ├── vault.py        Area 3
 │   │       └── export.py       Area 3
 │   ├── web/                    Area 4: screens, components, bundled assets (no CDN)
-│   └── verify/                 Area 3: standalone offline verify.html
+│   └── verify/                 Area 4: standalone offline verify.html
 ├── packages/
 │   ├── contracts/              shared schemas, the ONLY shared code (all four, by PR)
-│   ├── ingest/                 Area 1: parser, media, voice, recap builder, Blind Handshake logic
-│   ├── intelligence/           Area 2: rules, local AI, flags, score, suggestion
-│   ├── integrity/              Area 3: hashing, Merkle, version chain, echo code, anchoring
+│   ├── ingest/                 Area 1: parser, media, voice import wiring, recap builder, Blind Handshake logic
+│   ├── intelligence/           Area 2: rules, local AI, flags, score, suggestion, speech runner (speech/)
+│   ├── integrity/              Area 3: hashing, Merkle, version chain, echo code; anchoring/ is Area 4
 │   └── vault/                  Area 3: SQLite, encryption, audit table, migrations, dispute pack
 ├── playbooks/                  Area 2: YAML playbooks
 │   └── templates/              Area 1: recap and suggestion templates (en, hi)
 ├── eval/                       Area 2: eval chats, labels, runner, reports (ignored)
 ├── test-vectors/integrity/     Area 3: hashes Python and JavaScript must both match
-├── packaging/                  Area 4: launchers, runtimes, tier detection
+├── packaging/                  Area 1: launchers, runtimes, tier detection, end-to-end tests
 ├── models/manifest.json        model names and SHA-256 only
 ├── scripts/                    dev helpers (folder check, test vectors, trust report)
 ├── changes/                    changelog fragments, one per pull request
@@ -369,7 +371,7 @@ Steps with commands:
 
 | Branch | What it is | Who may merge into it |
 |---|---|---|
-| `main` | Stable. Phase releases only. Always runnable. | Release lead (Area 4), by pull request from `dev`, after the phase gate |
+| `main` | Stable. Phase releases only. Always runnable. | Release lead (Hardik, Area 4), by pull request from `dev`, after the phase gate |
 | `dev` | Integration. All finished features land here. | Anyone, by pull request, after review and green checks |
 | `feat/<area>-<name>`, `fix/<name>`, `docs/<name>`, `chore/<name>` | Your work, from `dev` | You, then it is deleted |
 | `hotfix/<name>` | Urgent fix, from `main` | Release lead |
@@ -540,12 +542,12 @@ The non-negotiables from `CLAUDE.md`, in plain words:
 
 | Need | Ask |
 |---|---|
-| Git, GitHub, branch protection, releases | Release lead (Area 4), TBD |
-| Import, parsing, voice, recap templates, Blind Handshake | Area 1 lead, TBD |
-| Rules, AI, flags, score, playbooks, eval | Area 2 lead, TBD |
-| Hashing, vault, encryption, migrations, verify page | Area 3 lead, TBD |
-| Screens, packaging, launcher | Area 4 lead, TBD |
-| Dependencies | Dependency owner, TBD |
+| Git, GitHub, branch protection, releases | Hardik (release lead) |
+| Import, parsing, recap templates, Blind Handshake, packaging, launcher, benchmarks, demo runbook | Samanway (Area 1) |
+| Rules, AI, voice transcription model, flags, score, playbooks, eval, model and tier choice | Abhishek (Area 2) |
+| Hashing, vault, encryption, migrations, API main, CI, dependencies, contracts | Jhashank (Area 3; Hardik covers until the invitation is accepted) |
+| Screens, design tokens, verify page, anchoring | Hardik (Area 4) |
+| Dependencies | Jhashank (Area 3) |
 | Legal wording or privacy | Do not guess. Add to OPEN_QUESTIONS; a lawyer must confirm. |
 
 **How to write a good question.** Say: what you wanted to do; the exact command you ran; the exact error (copy and paste text, not a photo); what you already tried; your OS and branch. Do not paste secrets or real chats. Ask in the team chat, not in a private message, so others can learn. If you are stuck for more than an hour, ask.
@@ -576,11 +578,11 @@ The non-negotiables from `CLAUDE.md`, in plain words:
 
 **Why is the code not there yet?** We are in the documentation and setup phase. Phase 0 builds the skeleton.
 
-**What if I need a new library?** Open an issue for the dependency owner. They batch dependency changes once a day.
+**What if I need a new library?** Open an issue for Jhashank (Area 3). Dependency changes are batched once a day.
 
 **What if I need a new field in a model?** Follow section 16.
 
-**What if I need a database change?** Ask Area 3 in an issue. They write the migration.
+**What if I need a database change?** Ask Jhashank (Area 3) in an issue. They write the migration.
 
 **Can I use the Hindi or Kannada text I wrote?** Only after a native speaker reviews it (OPEN_QUESTIONS Q-17, Q-18). Mark it as a draft until then.
 

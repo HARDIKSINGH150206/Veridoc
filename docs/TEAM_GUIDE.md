@@ -1,6 +1,6 @@
 # Team Guide
 
-This guide tells the four team members how to work together: branching, commits, reviews, the definition of done, priority tags, ownership areas and the merge-conflict rules. Member names are `TBD`; roles are described only.
+This guide tells the four team members how to work together: branching, commits, reviews, the definition of done, priority tags, ownership areas and the merge-conflict rules. Members and their GitHub handles are listed below. Jhashank's repository invitation is still pending, so Hardik covers Area 3 work until it is accepted.
 
 Last updated: 2026-10-25
 Status: Draft v1
@@ -9,37 +9,50 @@ Status: Draft v1
 
 | Area | Owns | Role | Member |
 |---|---|---|---|
-| 1. Ingest, Voice and Agreement | `packages/ingest`, `apps/api/routers/ingest.py`, `apps/api/routers/agreement.py`, `playbooks/templates/`, sample chats | Ingest and agreement lead | TBD |
-| 2. Intelligence | `packages/intelligence`, `playbooks/` (except `playbooks/templates/`), `eval/`, `apps/api/routers/analysis.py` | AI and rules lead | TBD |
-| 3. Integrity and Vault | `packages/integrity`, `packages/vault`, `apps/verify`, `test-vectors/`, `apps/api/routers/vault.py`, `apps/api/routers/export.py` | Integrity lead | TBD |
-| 4. Frontend and Packaging | `apps/web`, `packaging/`, `apps/api/main.py` | UI and release lead | TBD |
+| 1. Ingest, Agreement and Release | `packages/ingest`, `apps/api/routers/ingest.py`, `apps/api/routers/agreement.py`, `playbooks/templates/`, `packaging/`, sample chats and demo voice notes | Ingest, agreement and release lead | Samanway (@notorious1337) |
+| 2. AI and ML | `packages/intelligence`, `playbooks/` (except `playbooks/templates/`), `eval/`, `apps/api/routers/analysis.py` | AI and ML lead | Abhishek (@absksync) |
+| 3. Backend, Integrity and Vault | `apps/api/main.py`, `packages/contracts` (steward), `packages/integrity` (except `packages/integrity/anchoring/`), `packages/vault`, `test-vectors/`, `apps/api/routers/vault.py`, `apps/api/routers/export.py`, `.github/workflows/`, `pyproject.toml`, `uv.lock` | Backend and integrity lead | Jhashank (@NYN-05, invitation pending; Hardik covers until accepted) |
+| 4. Frontend and Blockchain | `apps/web`, `apps/verify`, `packages/integrity/anchoring/` | Frontend and blockchain lead; project release lead | Hardik (@HARDIKSINGH150206) |
 
-Shared by all, changed only by small reviewed pull requests: `packages/contracts`, `docs/`, `.github/`.
+Shared by all, changed only by small reviewed pull requests: `packages/contracts` (steward: Jhashank; every change still needs all four reviewers), `docs/`, `.github/` (except `.github/workflows/`, Area 3).
 
-Dependency files (`pyproject.toml`, `uv.lock`) have one named owner: TBD.
+Dependency files (`pyproject.toml`, `uv.lock`) are owned by Area 3 (Jhashank).
 
-Hotspots and their owners: contracts process (all four, by pull request), dependency files (named owner TBD), design tokens `apps/web/assets/design-tokens.css` (Area 4), migrations `packages/vault/migrations/` (Area 3), `apps/api/main.py` (Area 4, rarely edited because of router auto-discovery).
+**Hotspot owners:**
 
-The release lead (Area 4) combines changelog fragments into `CHANGELOG.md` at phase end. `models/manifest.json` and `scripts/` are changed by the area that needs the change, with a review from the Area 2 lead (models) or the Area 3 lead (scripts that touch hashing).
+| Hotspot | Owner |
+|---|---|
+| Release lead (merge `dev` into `main`, tags, changelog) | Hardik |
+| Dependency files and migrations | Jhashank |
+| Design tokens `apps/web/assets/design-tokens.css` | Hardik |
+| Contracts steward (`packages/contracts`) | Jhashank |
+| `apps/api/main.py` (rarely edited because of router auto-discovery) | Jhashank |
+| Anchoring (`packages/integrity/anchoring/`) | Hardik |
+| Hardware tier thresholds and model choice | Abhishek |
+
+While Jhashank's invitation is pending, Hardik does the Area 3 work and Area 3 issues are assigned to Hardik. When Jhashank accepts, the issues are reassigned (OPEN_QUESTIONS Q-49).
+
+The release lead (Hardik) combines changelog fragments into `CHANGELOG.md` at phase end. `models/manifest.json` and `scripts/` are changed by the area that needs the change, with a review from Abhishek (models) or Jhashank (scripts that touch hashing).
 
 ### Document owners
 
 | Document | Owner area |
 |---|---|
-| PRD, ROADMAP, DEMO_SCRIPT, JUDGE_QA, GLOSSARY, OPEN_QUESTIONS | TBD (shared; one named editor) |
-| ARCHITECTURE, DECISIONS | All areas review; one named editor TBD |
-| INTEGRITY_SPEC, DATA_MODEL, THREAT_MODEL | Area 3 |
-| AI_SPEC, PLAYBOOKS, EVALUATION | Area 2 |
-| UX_FLOWS, SETUP, PERFORMANCE, DEMO_DAY_RUNBOOK, RELEASE_CHECKLIST | Area 4 |
-| ONBOARDING, GIT_WORKFLOW, PHASES, DEVELOPMENT_METHODOLOGY | TBD (shared; one named editor) |
-| USER_RESEARCH, DATASET_CARD, MODEL_CARD | Area 2 (USER_RESEARCH: TBD) |
+| PRD, ROADMAP, JUDGE_QA, GLOSSARY, OPEN_QUESTIONS | Shared; Hardik is the named editor |
+| ARCHITECTURE, DECISIONS | All areas review; Hardik is the named editor |
+| INTEGRITY_SPEC, DATA_MODEL, THREAT_MODEL | Area 3 (anchoring sections: Area 4) |
+| AI_SPEC, PLAYBOOKS, EVALUATION, MODEL_CARD, DATASET_CARD | Area 2 |
+| UX_FLOWS | Area 4 |
+| SETUP, PERFORMANCE, DEMO_SCRIPT, DEMO_DAY_RUNBOOK, USER_RESEARCH | Area 1 (tier thresholds in PERFORMANCE: Area 2) |
+| RELEASE_CHECKLIST, GIT_WORKFLOW | Area 4 (Hardik, release lead) |
+| ONBOARDING, PHASES, DEVELOPMENT_METHODOLOGY | Shared; Hardik is the named editor |
 | PRIVACY, LIMITS | Area 3 with Area 4 for UI copy |
-| PRIOR_WORK | TBD |
+| PRIOR_WORK | Hardik |
 
 ## 2. Merge-conflict rules
 
 1. **Contracts first.** On day 1 the team agrees `packages/contracts` together: Message, VoiceNote, Term, Flag, Score, Suggestion, HandshakeAnswer, Recap, Confirmation, Version, Receipt, DisputePack. Any later change is its own small pull request reviewed by all four.
-2. **One owner per hotspot.** `apps/api/main.py` (Area 4), `apps/web/components/` (Area 4), dependency files (named owner). Others request changes instead of editing.
+2. **One owner per hotspot.** `apps/api/main.py` (Area 3), `apps/web/components/` (Area 4), dependency files and migrations (Area 3). Others request changes instead of editing.
 3. **Short branches.** One feature per branch, merged within 1 to 2 days. Unfinished work merges early behind a feature flag.
 4. **Rebase every morning.** `git pull --rebase origin dev` before starting work, and pull before you push.
 5. **Never commit generated files:** reports, caches, model weights, `node_modules`, build output.
@@ -49,9 +62,9 @@ The release lead (Area 4) combines changelog fragments into `CHANGELOG.md` at ph
 9. **AI coding tools** (Claude Code, Codex) are run by each member only inside that member's area.
 10. **Router auto-discovery.** `apps/api/main.py` loads every module in `apps/api/routers/` (ADR-022). Nobody edits `main.py` to add a route.
 11. **Changelog fragments.** Each pull request adds `changes/<branch-name>.md` and never edits `CHANGELOG.md`. The release lead combines fragments at phase end.
-12. **Migrations are Area 3 only.** Other areas request schema changes. Alembic multiple heads are fixed by Area 3 (see ONBOARDING section 22).
+12. **Migrations are Area 3 only (Jhashank).** Other areas request schema changes. Alembic multiple heads are fixed by Area 3 (see ONBOARDING section 22).
 13. **One dependency pull request per day.** The dependency owner batches changes so `uv.lock` never conflicts.
-14. **Design tokens in one file** (`apps/web/assets/design-tokens.css`, Area 4). Every screen has its own CSS file.
+14. **Design tokens in one file** (`apps/web/assets/design-tokens.css`, Area 4, Hardik). Every screen has its own CSS file.
 15. **Line endings and style files.** `.gitattributes` (LF) and `.editorconfig` are in the repo; do not override them locally.
 16. **No generated files in Git:** reports, OpenAPI dumps, build output, caches.
 
@@ -91,7 +104,7 @@ Format: `type(scope): short summary`, for example `feat(ingest): parse iPhone ex
 
 1. Use the pull request template: summary, area, linked requirement IDs, checklist, whether contracts changed.
 2. Keep pull requests small (aim for under about 300 changed lines). Add a changelog fragment in `changes/` (see `changes/README.md`).
-3. One reviewer from another area. Contracts, hashing and verify changes need the Area 3 lead. Contract changes need all four.
+3. One reviewer from another area. Contracts and hashing changes need Jhashank (Area 3); verify-page changes need Hardik (Area 4) and Jhashank. Contract changes need all four.
 4. Reviewers check: requirement IDs, tests, wording rules, no content in logs, ownership boundaries.
 5. Squash or rebase merge; keep history readable.
 6. Anyone who is stuck for more than an hour asks in the team channel.
@@ -130,8 +143,9 @@ Issues and pull requests carry one tag. Follow the drop order if time runs short
 ## 9. Day-1 checklist
 
 1. Agree `packages/contracts` together (rule 1).
-2. Name the dependency owner and fill CODEOWNERS.
-3. Name document owners.
+2. Confirm CODEOWNERS handles (done: see `.github/CODEOWNERS`).
+3. Confirm document owners (done: table above).
 4. Set up pre-commit with ruff and gitleaks.
 5. Add CI workflows.
 6. Fill OPEN_QUESTIONS owners.
+7. Jhashank accepts the repository invitation; Area 3 issues are reassigned from Hardik.

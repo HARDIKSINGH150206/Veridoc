@@ -5,7 +5,7 @@ This document gives the full branch model with exact commands: creating a branch
 Last updated: 2026-10-25
 Status: Draft v1
 
-Remote: `https://github.com/HARDIKSINGH150206/Veridoc.git` (called `origin`). Member names are `TBD`. See [ONBOARDING](ONBOARDING.md) for the beginner path and [TEAM_GUIDE](TEAM_GUIDE.md) for team rules.
+Remote: `https://github.com/HARDIKSINGH150206/Veridoc.git` (called `origin`). Members: Samanway, Abhishek, Jhashank, Hardik (see TEAM_GUIDE). See [ONBOARDING](ONBOARDING.md) for the beginner path and [TEAM_GUIDE](TEAM_GUIDE.md) for team rules.
 
 ## 1. Branch model
 
@@ -32,7 +32,7 @@ gitGraph
 
 | Branch | Purpose | Who merges into it | How |
 |---|---|---|---|
-| `main` | Stable. Phase releases only. Always runnable. | Release lead (Area 4), after the phase gate in [RELEASE_CHECKLIST](RELEASE_CHECKLIST.md) | Pull request from `dev`, **merge commit** |
+| `main` | Stable. Phase releases only. Always runnable. | Release lead (Hardik), after the phase gate in [RELEASE_CHECKLIST](RELEASE_CHECKLIST.md) | Pull request from `dev`, **merge commit** |
 | `dev` | Integration. Every finished feature lands here. | Any member, after review | Pull request from a feature branch, **squash merge** |
 | `feat/<area>-<name>` | One feature, from `dev` | Its author | Deleted after merge |
 | `fix/<name>` | One bug fix, from `dev` | Its author | Deleted after merge |
@@ -164,7 +164,7 @@ If `git branch -d` refuses because of the squash, use `git branch -D` after chec
 
 ## 5. Phase release: `dev` into `main`
 
-Done by the release lead (Area 4) at the end of each phase, after the phase gate in [PHASES](PHASES.md) and [RELEASE_CHECKLIST](RELEASE_CHECKLIST.md) pass.
+Done by the release lead (Hardik) at the end of each phase, after the phase gate in [PHASES](PHASES.md) and [RELEASE_CHECKLIST](RELEASE_CHECKLIST.md) pass.
 
 1. Freeze `dev` for the integration hour: no merges while the checklist runs.
 2. Combine the changelog fragments into `CHANGELOG.md` in a `chore/changelog-phaseN` branch from `dev`, delete the fragments, and merge that pull request into `dev` first.
@@ -229,7 +229,7 @@ If the release lead prefers, open a pull request from `main` into `dev` instead 
 
 ## 7. GitHub settings to configure
 
-Already set (2026-10-25): default branch `main`; protection on `main` and `dev` with a pull request required, 0 approvals, no force pushes, no deletion. Settings below are to be configured as the team grows. Owner of settings: TBD.
+Already set (2026-10-25): default branch `main`; protection on `main` and `dev` with a pull request required, 0 approvals, no force pushes, no deletion. Settings below are to be configured as the team grows. Owner of settings: Hardik (repo owner).
 
 ### Branch protection for `main`
 
@@ -243,7 +243,7 @@ Already set (2026-10-25): default branch `main`; protection on `main` and `dev` 
 | Require branches to be up to date | On |
 | Require conversation resolution | On |
 | Require linear history | Off (`main` uses merge commits) |
-| Restrict who can push | Release lead only for hotfix merges |
+| Restrict who can push | Release lead (Hardik) only for hotfix merges |
 | Allow force pushes | Off |
 | Allow deletions | Off |
 | Include administrators | Off now; On before the demo |
@@ -260,7 +260,7 @@ Same as `main`, with: required approving reviews 0 now and 1 from Phase 1; linea
 | Allow merge commits | On (used only for `dev` into `main`) |
 | Allow rebase merging | Off |
 | Automatically delete head branches | On |
-| Tag protection | Pattern `v*`: only the release lead may create tags |
+| Tag protection | Pattern `v*`: only the release lead (Hardik) may create tags |
 
 Example commands (to be run by the repo owner; they change repo settings):
 
