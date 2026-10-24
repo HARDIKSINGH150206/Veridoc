@@ -3,7 +3,9 @@
 Dev helper. Run from anywhere: python3 scripts/check_folder_tree.py
 Exit code 0 if everything matches, 1 otherwise.
 """
+
 import re
+import subprocess
 import sys
 from pathlib import Path
 
@@ -12,7 +14,10 @@ errors: list[str] = []
 
 
 def tree_paths(md: str) -> list[str]:
-    block = re.search(r"```\n(Veridoc/\n.*?)```", md, re.S).group(1)
+    found = re.search(r"```\n(Veridoc/\n.*?)```", md, re.S)
+    if found is None:
+        raise SystemExit("could not find the Veridoc/ tree block in ARCHITECTURE.md")
+    block = found.group(1)
     stack: list[tuple[int, str]] = []
     out: list[str] = []
     for line in block.splitlines()[1:]:
@@ -54,13 +59,29 @@ for raw in paths:
 # every top-level entry on disk should appear in the tree
 top_in_tree = {p.split("/")[0] for p in paths}
 top_in_tree |= {"pyproject.toml", "uv.lock", ".git"}
+
+
+def git_ignored(name: str) -> bool:
+    return (
+        subprocess.run(
+            ["git", "check-ignore", "-q", name], cwd=ROOT, capture_output=True
+        ).returncode
+        == 0
+    )
+
+
 for entry in sorted(ROOT.iterdir()):
+    if git_ignored(entry.name):
+        continue  # caches and virtual environments are not part of the tree
     if entry.name not in top_in_tree and entry.name not in {"CONTRIBUTING.md", "SECURITY.md"}:
         errors.append(f"on disk but not in ARCHITECTURE tree: {entry.name}")
 
 # CODEOWNERS paths exist and are covered by the tree
-co = [l.split()[0] for l in (ROOT / ".github/CODEOWNERS").read_text().splitlines()
-      if l.strip() and not l.startswith("#")]
+co = [
+    line.split()[0]
+    for line in (ROOT / ".github/CODEOWNERS").read_text().splitlines()
+    if line.strip() and not line.startswith("#")
+]
 tree_set = {p.rstrip("/") for p in paths}
 for c in co:
     rel = c.lstrip("/").rstrip("/")
@@ -71,6 +92,7 @@ for c in co:
         errors.append(f"in CODEOWNERS but missing on disk: {c}")
     if rel not in tree_set and not any(t.startswith(rel + "/") for t in tree_set):
         errors.append(f"in CODEOWNERS but not in ARCHITECTURE tree: {c}")
+
 
 # ownership tables must list the same paths in every document
 def owned(path: str) -> dict[str, set[str]]:

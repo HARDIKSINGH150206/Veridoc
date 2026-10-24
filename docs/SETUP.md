@@ -55,7 +55,7 @@ Always branch from `dev`, never from `main`. Pull and rebase every morning: `git
 
 | Step | Command |
 |---|---|
-| Create the environment and install | `TBD` |
+| Create the environment and install | `uv sync` |
 | Install pre-commit hooks | `TBD` (will be `pre-commit install`) |
 | Install JavaScript test dependencies | `TBD` |
 | Create or upgrade the vault schema (Alembic) | `TBD` (will run `alembic upgrade head` against a vault under `VERIDOC_HOME`) |
@@ -88,11 +88,11 @@ Tests live inside each package under `packages/<name>/tests/`.
 
 | Task | Command |
 |---|---|
-| Run all Python tests | `TBD` |
+| Run all Python tests | `uv run pytest` (exits with code 5 while no tests exist yet) |
 | Run one package's tests | `TBD` |
 | Run the JavaScript cross-language vector test | `TBD` |
-| Lint | `TBD` (ruff) |
-| Type check | `TBD` (mypy) |
+| Lint | `uv run ruff check .` and `uv run ruff format --check .` |
+| Type check | `uv run mypy .` |
 | Secret scan | `TBD` (gitleaks) |
 | Dependency audit | `TBD` (pip-audit) |
 | Trust report | `TBD` |
