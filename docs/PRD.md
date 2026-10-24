@@ -702,7 +702,7 @@ A version is confirmed only when both parties are confirmed. The user's own conf
 
 #### FR-DSP-005 Indic text rendering
 - **Priority:** MVP
-- **Description:** PDF renders Devanagari correctly (shaped text) with bundled fonts. See ADR-012 and the risk in section 17.
+- **Description:** PDF renders Devanagari correctly (shaped text) with bundled fonts. See the technology table in ARCHITECTURE and the risk in section 17.
 - **Acceptance:**
   - Given a Hindi recap, When the PDF is built, Then a visual check against the browser rendering shows no broken conjuncts.
 
