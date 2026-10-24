@@ -75,6 +75,7 @@ flowchart TB
 flowchart TB
   subgraph Routers["apps/api/routers"]
     R1["ingest.py"]
+    R1B["agreement.py"]
     R2["analysis.py"]
     R3["vault.py"]
     R4["export.py"]
@@ -111,6 +112,7 @@ flowchart TB
     DP["Dispute pack"]
   end
   R1 --> Ingest
+  R1B --> Ingest
   R2 --> Intel
   R3 --> Integ
   R3 --> Vault
@@ -295,7 +297,8 @@ Veridoc/
 │   ├── api/                    FastAPI app, thin layer of routes only
 │   │   ├── main.py             registers routers; hotspot, Area 4 only
 │   │   └── routers/
-│   │       ├── ingest.py       Area 1
+│   │       ├── ingest.py       Area 1: import and voice
+│   │       ├── agreement.py    Area 1: recap and Blind Handshake
 │   │       ├── analysis.py     Area 2
 │   │       ├── vault.py        Area 3
 │   │       └── export.py       Area 3
@@ -334,7 +337,7 @@ Each package has its own `tests/` folder inside it. There is no shared top-level
 
 | Area | Owns | Role |
 |---|---|---|
-| 1. Ingest, Voice and Agreement | `packages/ingest`, `apps/api/routers/ingest.py`, `playbooks/templates/`, sample chats | Ingest and agreement lead |
+| 1. Ingest, Voice and Agreement | `packages/ingest`, `apps/api/routers/ingest.py`, `apps/api/routers/agreement.py`, `playbooks/templates/`, sample chats | Ingest and agreement lead |
 | 2. Intelligence | `packages/intelligence`, `playbooks/` (except `playbooks/templates/`), `eval/`, `apps/api/routers/analysis.py` | AI and rules lead |
 | 3. Integrity and Vault | `packages/integrity`, `packages/vault`, `apps/verify`, `test-vectors/`, `apps/api/routers/vault.py`, `apps/api/routers/export.py` | Integrity lead |
 | 4. Frontend and Packaging | `apps/web`, `packaging/`, `apps/api/main.py` | UI and release lead |
@@ -361,10 +364,10 @@ All routes are under `/api`, bind to 127.0.0.1, require the session token header
 | analysis | `POST /deals/{id}/terms/{key}/correct` | value | term, audit event |
 | analysis | `POST /deals/{id}/terms/{key}/reject` | none | term |
 | analysis | `GET /deals/{id}/suggestion?tone=` | none | suggestion |
-| ingest | `POST /deals/{id}/handshake/start` | none | questions |
-| ingest | `POST /deals/{id}/handshake/answers` | party, answers | seal record (refused until the first set is sealed) |
-| ingest | `POST /deals/{id}/handshake/reveal` | none | side-by-side result |
-| ingest | `POST /deals/{id}/recap` | language | recap text, lines, code |
+| agreement | `POST /deals/{id}/handshake/start` | none | questions |
+| agreement | `POST /deals/{id}/handshake/answers` | party, answers | seal record (refused until the first set is sealed) |
+| agreement | `POST /deals/{id}/handshake/reveal` | none | side-by-side result |
+| agreement | `POST /deals/{id}/recap` | language | recap text, lines, code |
 | vault | `POST /deals/{id}/recaps/{rid}/check-reply` | pasted text, sender | confirmation state |
 | vault | `GET /deals/{id}/versions` and `/versions/diff?a=&b=` | none | versions, diff |
 | vault | `GET /deals/{id}/receipt` | none | receipt |

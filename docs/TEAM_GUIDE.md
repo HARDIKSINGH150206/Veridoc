@@ -9,7 +9,7 @@ Status: Draft v1
 
 | Area | Owns | Role | Member |
 |---|---|---|---|
-| 1. Ingest, Voice and Agreement | `packages/ingest`, `apps/api/routers/ingest.py`, `playbooks/templates/`, sample chats | Ingest and agreement lead | TBD |
+| 1. Ingest, Voice and Agreement | `packages/ingest`, `apps/api/routers/ingest.py`, `apps/api/routers/agreement.py`, `playbooks/templates/`, sample chats | Ingest and agreement lead | TBD |
 | 2. Intelligence | `packages/intelligence`, `playbooks/` (except `playbooks/templates/`), `eval/`, `apps/api/routers/analysis.py` | AI and rules lead | TBD |
 | 3. Integrity and Vault | `packages/integrity`, `packages/vault`, `apps/verify`, `test-vectors/`, `apps/api/routers/vault.py`, `apps/api/routers/export.py` | Integrity lead | TBD |
 | 4. Frontend and Packaging | `apps/web`, `packaging/`, `apps/api/main.py` | UI and release lead | TBD |

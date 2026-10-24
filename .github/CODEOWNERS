@@ -7,6 +7,7 @@
 # Area 1
 /packages/ingest/                 @TBD-member-1
 /apps/api/routers/ingest.py       @TBD-member-1
+/apps/api/routers/agreement.py    @TBD-member-1
 
 # Area 2
 /packages/intelligence/           @TBD-member-2
