@@ -73,7 +73,7 @@ Goal: everyone can build, test and merge. A thin end-to-end path (the walking sk
 
 ### Area 4: Frontend and Blockchain (Hardik)
 - [x] `apps/web/assets/design-tokens.css` created; one CSS file per screen rule agreed
-- [ ] Screens S1 to S3 render from fixtures (no backend needed)
+- [ ] Screens S1 to S3 render from fixtures (no backend needed). Static layout done (placeholder content, tokens only, offline); data binding waits for the contracts (PR #40)
 - [ ] Server-sent events client with a fixture stream
 
 **Walking skeleton (all areas):**
