@@ -48,7 +48,7 @@ Goal: everyone can build, test and merge. A thin end-to-end path (the walking sk
 - [ ] Project board created with columns, labels and the first issues from this file
 - [ ] Jhashank accepts the repository invitation; Area 3 issues are reassigned from Hardik (Q-49)
 - [ ] GitHub settings from GIT_WORKFLOW section 7 reviewed
-- [ ] OPEN_QUESTIONS owners assigned
+- [x] OPEN_QUESTIONS owners assigned
 
 ### Area 1: Ingest, Agreement and Release (Samanway)
 - [ ] Three synthetic sample chats (clean, ambiguous, contradictory) and one voice sample committed as fixtures
