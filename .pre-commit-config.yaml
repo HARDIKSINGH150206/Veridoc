@@ -15,6 +15,12 @@ repos:
         language: python
         pass_filenames: false
         types_or: [python, javascript, html, css]
+      - id: check-design-tokens
+        name: design tokens only (no raw colours, no CDN)
+        entry: python scripts/check_design_tokens.py
+        language: python
+        pass_filenames: false
+        types_or: [css, html]
   - repo: https://github.com/gitleaks/gitleaks
     rev: v8.30.1
     hooks:

@@ -1,0 +1,176 @@
+/*
+  VeriDoc design tokens. The ONLY place raw colours, sizes, radii and font stacks are defined.
+  Owner: Area 4. Every screen has its own CSS file and uses these tokens through var(--name).
+  Check: python scripts/check_design_tokens.py (also runs in pre-commit and CI).
+
+  Themes: light is the default. Dark follows the system setting, and can be forced either way with
+  <html data-theme="light"> or <html data-theme="dark">. The dark colours appear twice (system
+  setting and forced); a test keeps the two copies identical.
+
+  Status colours always come with a symbol and a word. Never show a status by colour alone.
+  The English words below are the defaults; Hindi and Kannada words come from the UI string files.
+  Use: .status::before { content: var(--status-clear-symbol); } and put the word in the markup.
+
+  Matches the wireframe style (docs/source/veridoc-wireframes.html): one accent colour, an 8 px
+  spacing grid, desktop layout 1120 px wide.
+*/
+
+:root {
+  color-scheme: light;
+
+  /* ---- Colour: surfaces and text ---- */
+  --color-bg: #EEF0F4;
+  --color-surface: #FFFFFF;
+  --color-surface-alt: #F5F6F9;
+  --color-fill: #E6E9EE;
+  --color-border: #8A94A3;
+  --color-border-soft: #C5CBD5;
+  --color-text: #1B2430;
+  --color-text-muted: #556070;
+  --color-shadow: #141E32;
+
+  /* ---- Colour: the one accent ---- */
+  --color-accent: #2B59D9;
+  --color-accent-soft: #E7EDFD;
+  --color-on-accent: #FFFFFF;
+  --color-focus: #2B59D9;
+
+  /* ---- Colour: status (always paired with a symbol and a word) ---- */
+  --status-clear-fg: #1B7448;
+  --status-clear-bg: #E5F4EC;
+  --status-clear-border: #8CC7A6;
+  --status-ambiguous-fg: #8F5600;
+  --status-ambiguous-bg: #FFF1D6;
+  --status-ambiguous-border: #E3C77F;
+  --status-missing-fg: #4A5565;
+  --status-missing-bg: #EDEFF3;
+  --status-missing-border: #AEB6C2;
+  --status-conflict-fg: #B02318;
+  --status-conflict-bg: #FCE9E7;
+  --status-conflict-border: #E39B94;
+
+  /* ---- Status symbols and default English words ---- */
+  --status-clear-symbol: "✓";
+  --status-clear-label: "Clear";
+  --status-ambiguous-symbol: "!";
+  --status-ambiguous-label: "Ambiguous";
+  --status-missing-symbol: "○";
+  --status-missing-label: "Missing";
+  --status-conflict-symbol: "⚠";
+  --status-conflict-label: "Conflict";
+
+  /* ---- Type: families (Latin, Devanagari and Kannada are bundled, see fonts.css) ---- */
+  --font-body: "Noto Sans", "Noto Sans Devanagari", "Noto Sans Kannada", system-ui, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
+  /* ---- Type: scale in rem so the user can zoom to 200% (body text is 16 px or more) ---- */
+  --font-size-xs: 0.75rem;
+  --font-size-sm: 0.875rem;
+  --font-size-base: 1rem;
+  --font-size-md: 1.125rem;
+  --font-size-lg: 1.25rem;
+  --font-size-xl: 1.5rem;
+  --font-size-2xl: 1.875rem;
+  --font-size-3xl: 2.25rem;
+  --font-weight-regular: 400;
+  --font-weight-bold: 700;
+  --line-height-tight: 1.25;
+  --line-height-normal: 1.5;
+  --line-height-indic: 1.75;
+
+  /* ---- Spacing: 0.25 rem steps on the 8 px grid ---- */
+  --space-0: 0rem;
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+  --space-8: 4rem;
+
+  /* ---- Radii ---- */
+  --radius-sm: 0.25rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-pill: 999px;
+  --radius-round: 50%;
+
+  /* ---- Layout, controls, focus, shadow, motion ---- */
+  --layout-max: 70rem;
+  --control-height: 2.75rem;
+  --border-width: 1px;
+  --focus-ring-width: 2px;
+  --focus-ring-offset: 2px;
+  --shadow-sm: 0 1px 2px color-mix(in srgb, var(--color-shadow) 8%, transparent);
+  --shadow-md: 0 4px 12px color-mix(in srgb, var(--color-shadow) 14%, transparent);
+  --duration-fast: 120ms;
+  --duration-base: 200ms;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --color-bg: #12161C;
+    --color-surface: #1B212A;
+    --color-surface-alt: #222A35;
+    --color-fill: #2A3340;
+    --color-border: #6E7A8C;
+    --color-border-soft: #3A4452;
+    --color-text: #E8ECF2;
+    --color-text-muted: #A3AEBD;
+    --color-shadow: #000000;
+    --color-accent: #8AA8FF;
+    --color-accent-soft: #1E2A4D;
+    --color-on-accent: #0B1020;
+    --color-focus: #8AA8FF;
+    --status-clear-fg: #6FD3A0;
+    --status-clear-bg: #12301F;
+    --status-clear-border: #2F7A53;
+    --status-ambiguous-fg: #F2B450;
+    --status-ambiguous-bg: #3A2A0A;
+    --status-ambiguous-border: #8A6A22;
+    --status-missing-fg: #B6C0CE;
+    --status-missing-bg: #2A3340;
+    --status-missing-border: #5A6677;
+    --status-conflict-fg: #FF8A7E;
+    --status-conflict-bg: #3E1613;
+    --status-conflict-border: #95433B;
+  }
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --color-bg: #12161C;
+  --color-surface: #1B212A;
+  --color-surface-alt: #222A35;
+  --color-fill: #2A3340;
+  --color-border: #6E7A8C;
+  --color-border-soft: #3A4452;
+  --color-text: #E8ECF2;
+  --color-text-muted: #A3AEBD;
+  --color-shadow: #000000;
+  --color-accent: #8AA8FF;
+  --color-accent-soft: #1E2A4D;
+  --color-on-accent: #0B1020;
+  --color-focus: #8AA8FF;
+  --status-clear-fg: #6FD3A0;
+  --status-clear-bg: #12301F;
+  --status-clear-border: #2F7A53;
+  --status-ambiguous-fg: #F2B450;
+  --status-ambiguous-bg: #3A2A0A;
+  --status-ambiguous-border: #8A6A22;
+  --status-missing-fg: #B6C0CE;
+  --status-missing-bg: #2A3340;
+  --status-missing-border: #5A6677;
+  --status-conflict-fg: #FF8A7E;
+  --status-conflict-bg: #3E1613;
+  --status-conflict-border: #95433B;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --duration-fast: 0ms;
+    --duration-base: 0ms;
+  }
+}
