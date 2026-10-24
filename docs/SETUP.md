@@ -48,7 +48,7 @@ Always branch from `dev`, never from `main`. Pull and rebase every morning: `git
 
 ## 3. Environment
 
-1. Copy `.env.example` to `.env` (the example file will list names only; see ARCHITECTURE section 12 for the names). `.env` is git-ignored and must never be committed.
+1. Copy `.env.example` to `.env` (the example file lists names only; see ARCHITECTURE section 12 for what each one means). `.env` is git-ignored and must never be committed.
 2. Set `VERIDOC_HOME` to a folder outside the repository.
 
 ## 4. Install dependencies
