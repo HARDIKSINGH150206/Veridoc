@@ -29,6 +29,8 @@ flowchart LR
 
 Status labels (symbol and word, never colour alone): ✓ Clear · ! Ambiguous · ○ Missing · ⚠ Conflict. Build priority tags: MVP, P1, Roadmap.
 
+Wireframe numbers (for example Evidence strength 68, "Present 5 of 8") are illustrative only. Every number shown in the built product, and in the demo, comes from the real formula in PRD FR-SCO-001.
+
 ## 2. Global rules
 
 | Rule | Detail |
@@ -104,7 +106,7 @@ Status labels (symbol and word, never colour alone): ✓ Clear · ! Ambiguous ·
 
 **Error.** Model failed: "The AI helper is unavailable. Showing rules-only results." Nothing is lost.
 
-**Copy rules.** "Use this" copies the text for you to send in WhatsApp; the app never sends. After a reply is imported show "Score 61 to 76" style before and after.
+**Copy rules.** "Use this" copies the text for you to send in WhatsApp; the app never sends. After a reply is imported show the before and after score as computed by the formula.
 
 ### S4 Term detail and source (MVP)
 
@@ -229,11 +231,11 @@ Status labels (symbol and word, never colour alone): ✓ Clear · ! Ambiguous ·
 **Elements.**
 1. Vault and recovery: Passphrase (Change), Recovery key (shown once at setup; Print key). Plain warning: "If both are lost, the data cannot be opened."
 2. Language: UI and recap language.
-3. AI and models: Extraction model name (TBD) with "Hash verified" or "Hash mismatch"; Speech to text status; Cloud AI Off (Disabled); Safe mode Rules only (On or Off).
+3. AI and models: Extraction model name (TBD) with "Hash verified" or "Hash mismatch"; Speech to text model and hash status (MVP); Cloud AI Off (Disabled); Safe mode Rules only (On or Off).
 4. Timestamping: "Anchor receipts when online" (P1, Off by default; "Sends only a hash, never chat content").
 5. About and limits: the exact wording from [LIMITS](LIMITS.md).
 
-**Note.** The wireframe shows speech to text as "Not enabled, Roadmap". The PRD makes voice transcription an MVP feature (conflict logged in OPEN_QUESTIONS). The PRD wins.
+**Note.** The wireframe shows speech to text as "Not enabled, Roadmap". That is superseded: voice transcription (faster-whisper) is MVP, so S11 shows its model name (TBD pending benchmarks) and hash-check status. Resolved in OPEN_QUESTIONS.
 
 **States.** First run (set passphrase, show recovery key); locked; unlocked; safe mode on with reason.
 

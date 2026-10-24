@@ -11,17 +11,12 @@ The ground rule is: this prompt wins, then `docs/source/VeriDoc-Final-Idea.md`, 
 
 | ID | Conflict | Sources | Resolution used | Owner |
 |---|---|---|---|---|
-| C-01 | Counterparty confirmation: the idea document uses a one-tap link; the wireframes (S6, S12) and the master prompt use an echo code replied in WhatsApp | Idea section 2 and 4; wireframes S6, S12 | Echo code (ADR-011) | TBD |
-| C-02 | Kannada recap is listed in the idea document's core flow and screen 2; the master prompt and wireframe S6 make it P1 | Idea sections 2, 4; wireframe S6 | P1 after native-speaker review | TBD |
-| C-03 | Speech to text: the idea document calls voice-note support a strong add-on; wireframe S11 shows "Speech to text: Not enabled, Roadmap"; the master prompt makes it MVP with faster-whisper | Idea section 4; wireframe S11 | MVP, faster-whisper (ADR-009) | TBD |
-| C-04 | Speech engine: idea names Whisper.cpp; master prompt names faster-whisper | Idea section 7 | faster-whisper | TBD |
 | C-05 | Model: idea names Qwen2.5 7B Q4 with 3B fallback; master prompt says model choices are TBD with hardware tiers (7B, 3B, 1.5B, safe mode) | Idea section 7 | Tiers, models TBD pending benchmarks | TBD |
 | C-06 | Backend: idea says "Python FastAPI or Node"; master prompt fixes Python | Idea section 7 | Python, FastAPI | TBD |
 | C-07 | Frontend: idea says static HTML, JS and Tailwind; master prompt requires bundled assets with no CDN | Idea section 7 | Bundled CSS and JS, no CDN; whether Tailwind is used as a build-time tool is Area 4's choice | TBD |
 | C-08 | Prior work: idea says the integrity layer is "reused from our earlier DigiVault design"; master prompt says build from scratch with no code reuse | Idea section 7 | From scratch; design ideas only (PRIOR_WORK) | TBD |
 | C-09 | Anchoring: the idea document lists blockchain anchoring as roadmap; master prompt makes optional anchoring P1 | Idea section 4; wireframe S8 (P1) | P1 | TBD |
 | C-10 | Deal types: wireframe S2 shows only supply or order enabled and "Freelance job, later"; master prompt ships two playbooks in the MVP | Wireframe S2 | Two playbooks in the MVP | TBD |
-| C-11 | Evidence Strength example: wireframes show 68 with "Present 5 of 8, Clear 3 of 8, Acknowledged 2 of 8" and the idea demo shows 68 then 90; the formula in PRD FR-SCO-001 gives 61 for the same chat | Wireframe S3; idea section 11 | Formula wins; wireframe numbers are placeholders. Demo numbers must come from the real formula | TBD |
 | C-12 | Dispute-readiness view ("here is what you could prove today") appears as an add-on in the idea document and is not in the master prompt's feature list | Idea section 4 | Not built; Evidence Strength score covers the need | TBD |
 | C-13 | Idea document says a pendrive of 16 GB; master prompt says USB 3 stick, exFAT, without a size | Idea sections 3, 6 | USB 3, exFAT; size TBD | TBD |
 | C-14 | Wireframe S12 and S6 mention the word "fingerprint" for the hash; master prompt uses "hash" | Wireframe S6 | UI may use "fingerprint" as plain-language copy; docs use "hash" | TBD |
@@ -94,4 +89,8 @@ The ground rule is: this prompt wins, then `docs/source/VeriDoc-Final-Idea.md`, 
 
 | ID | Resolution | Date | Document changed |
 |---|---|---|---|
-| (none yet) | | | |
+| C-01 | Confirmation = echo code (ADR-011). Idea document marked superseded. | 2026-10-25 | PRD, UX_FLOWS, DEMO_SCRIPT, source idea note |
+| C-02 | Kannada = P1, after native-speaker review. | 2026-10-25 | PRD, UX_FLOWS, DEMO_SCRIPT, source idea note |
+| C-03 | Speech-to-text = MVP. | 2026-10-25 | PRD, UX_FLOWS, DEMO_SCRIPT, source idea note |
+| C-04 | faster-whisper (ADR-009). | 2026-10-25 | PRD, UX_FLOWS, DEMO_SCRIPT, source idea note |
+| C-11 | FR-SCO-001 formula kept. Demo numbers come from the real formula; wireframe values are illustrative only. | 2026-10-25 | PRD, UX_FLOWS, DEMO_SCRIPT, source idea note |

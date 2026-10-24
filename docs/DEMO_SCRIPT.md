@@ -51,6 +51,9 @@ The dispute pack (S10) is mentioned in one sentence ("one export for a lawyer or
 
 ## 4. Success criteria
 
+**Numbers on screen.** Every score and metric shown in the demo comes from the real formula (PRD FR-SCO-001) or from a named trust report. The values in the wireframes (for example 68) are illustrative only and must not be spoken as results. Rehearse with the actual computed score for the chosen sample.
+
+
 See PRD section 15. In short: runs offline on a second laptop; flags shown; score rises; Hindi recap confirmed; tamper test names the changed message; within about four minutes.
 
 ## 5. Fallback plan

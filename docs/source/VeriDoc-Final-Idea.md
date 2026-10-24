@@ -1,3 +1,5 @@
+> **Note (2026-10-25):** This document is a source input and is superseded by `docs/PRD.md` wherever the two differ. Known differences: confirmation uses an echo code, not a one-tap link; Kannada recap is P1; voice-to-text (faster-whisper) is MVP; model choices follow hardware tiers and are TBD; Evidence Strength follows the PRD formula (FR-SCO-001); the integrity layer is written from scratch. See `docs/OPEN_QUESTIONS.md`. The text below is unchanged.
+
 # Vachan: Handshake → Recap → Receipt
 
 *Working name ("Vachan" means promise). Problem statement: LS-06, From Handshake to Contract (Informal Agreements). Rename it to whatever your team prefers.*
