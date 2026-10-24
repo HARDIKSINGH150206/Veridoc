@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Deals - VeriDoc</title>
+  <link rel="stylesheet" href="../../assets/fonts.css">
+  <link rel="stylesheet" href="../../assets/design-tokens.css">
+  <link rel="stylesheet" href="../../components/components.css">
+  <link rel="stylesheet" href="deals.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <header class="app-header">
+    <div class="app-header__inner">
+      <a class="app-header__brand" href="index.html">VeriDoc</a>
+      <nav class="app-nav" aria-label="Main">
+        <a class="app-nav__item" href="index.html" aria-current="page">Deals</a>
+        <a class="app-nav__item" href="../s2-import/index.html">Import</a>
+        <span class="app-nav__item app-nav__item--later" title="Settings screen comes later">Settings</span>
+      </nav>
+      <div class="app-header__right">
+        <span class="mode-indicator">Offline mode</span>
+        <button class="btn btn--small" type="button">Lock vault</button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main" class="page">
+    <p class="placeholder-banner" role="note">
+      <strong>Layout preview.</strong>
+      <span>Every name, number and date on this page is placeholder content. Nothing is loaded from the app yet.</span>
+    </p>
+
+    <div class="page-title">
+      <div>
+        <h1>Deals</h1>
+        <p class="page-title__sub" data-placeholder>N deals · N need a reply · stored on this device</p>
+      </div>
+      <a class="btn btn--primary" href="../s2-import/index.html">New deal</a>
+    </div>
+
+    <section class="toolbar" aria-label="Find and filter deals">
+      <div class="toolbar__row">
+        <div class="field toolbar__search">
+          <label class="field__label" for="search">Search deals or people</label>
+          <input class="input" id="search" type="search" placeholder="Search deals or people">
+        </div>
+      </div>
+      <ul class="tabs" aria-label="Filter">
+        <li><button class="tab" type="button" aria-pressed="true">All</button></li>
+        <li><button class="tab" type="button" aria-pressed="false">Needs attention</button></li>
+        <li><button class="tab" type="button" aria-pressed="false">Awaiting confirmation</button></li>
+        <li><button class="tab" type="button" aria-pressed="false">Confirmed</button></li>
+      </ul>
+    </section>
+
+    <section class="card" aria-labelledby="list-title">
+      <h2 id="list-title" class="visually-hidden">Deal list</h2>
+      <div class="table-wrap">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Deal</th>
+              <th scope="col">Evidence strength</th>
+              <th scope="col">Open gaps</th>
+              <th scope="col">Next date</th>
+              <th scope="col">Status</th>
+              <th scope="col"><span class="visually-hidden">Open</span></th>
+            </tr>
+          </thead>
+          <tbody data-placeholder>
+            <tr class="is-attention">
+              <td><span class="deal-name"><strong>Party A × Party B</strong><span class="muted">Placeholder deal one · supply or order</span></span></td>
+              <td><span class="score"><progress class="meter" max="100" value="42" aria-label="Evidence strength 42 out of 100">42</progress><span class="score__value">42</span></span></td>
+              <td><span class="status status--conflict"><span class="status__symbol" aria-hidden="true"></span>Conflict</span> <span class="muted">1 conflict · 4 gaps</span></td>
+              <td class="muted">Not set</td>
+              <td>Draft</td>
+              <td><a class="btn btn--small" href="../s3-workspace/index.html">Open</a></td>
+            </tr>
+            <tr>
+              <td><span class="deal-name"><strong>Party C × Party D</strong><span class="muted">Placeholder deal two · supply or order</span></span></td>
+              <td><span class="score"><progress class="meter" max="100" value="68" aria-label="Evidence strength 68 out of 100">68</progress><span class="score__value">68</span></span></td>
+              <td><span class="status status--missing"><span class="status__symbol" aria-hidden="true"></span>Missing</span> <span class="muted">2 gaps</span></td>
+              <td class="muted">DD Mon · delivery</td>
+              <td>Awaiting confirmation</td>
+              <td><a class="btn btn--small" href="../s3-workspace/index.html">Open</a></td>
+            </tr>
+            <tr>
+              <td><span class="deal-name"><strong>Party E × Party F</strong><span class="muted">Placeholder deal three · supply or order</span></span></td>
+              <td><span class="score"><progress class="meter" max="100" value="77" aria-label="Evidence strength 77 out of 100">77</progress><span class="score__value">77</span></span></td>
+              <td><span class="status status--ambiguous"><span class="status__symbol" aria-hidden="true"></span>Ambiguous</span> <span class="muted">1 gap</span></td>
+              <td class="muted">DD Mon · delivery</td>
+              <td>Awaiting reply</td>
+              <td><a class="btn btn--small" href="../s3-workspace/index.html">Open</a></td>
+            </tr>
+            <tr>
+              <td><span class="deal-name"><strong>Party G × Party H</strong><span class="muted">Placeholder deal four · supply or order</span></span></td>
+              <td><span class="score"><progress class="meter" max="100" value="91" aria-label="Evidence strength 91 out of 100">91</progress><span class="score__value">91</span></span></td>
+              <td><span class="status status--clear"><span class="status__symbol" aria-hidden="true"></span>Clear</span> <span class="muted">0 gaps</span></td>
+              <td class="muted">DD Mon · payment</td>
+              <td>Confirmed</td>
+              <td><a class="btn btn--small" href="../s3-workspace/index.html">Open</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

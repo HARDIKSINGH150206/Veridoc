@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Placeholder deal - VeriDoc</title>
+  <link rel="stylesheet" href="../../assets/fonts.css">
+  <link rel="stylesheet" href="../../assets/design-tokens.css">
+  <link rel="stylesheet" href="../../components/components.css">
+  <link rel="stylesheet" href="workspace.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <header class="app-header">
+    <div class="app-header__inner">
+      <a class="app-header__brand" href="../s1-deals/index.html">VeriDoc</a>
+      <nav class="app-nav" aria-label="Main">
+        <a class="app-nav__item" href="../s1-deals/index.html">Deals</a>
+        <a class="app-nav__item" href="../s2-import/index.html">Import</a>
+        <span class="app-nav__item app-nav__item--later" title="Settings screen comes later">Settings</span>
+      </nav>
+      <div class="app-header__right">
+        <span class="mode-indicator">Offline mode</span>
+        <button class="btn btn--small" type="button" disabled title="The recap screen comes later">Recap</button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main" class="page">
+    <p class="placeholder-banner" role="note">
+      <strong>Layout preview.</strong>
+      <span>All messages, terms, numbers and the suggested text are placeholder content. Nothing is analysed yet.</span>
+    </p>
+
+    <div class="page-title">
+      <div>
+        <p class="breadcrumb"><a href="../s1-deals/index.html">Deals</a> › Placeholder deal</p>
+        <h1>Placeholder deal</h1>
+      </div>
+    </div>
+
+    <div class="workspace">
+      <section class="card" aria-labelledby="chat-title">
+        <div class="card__head">
+          <h2 id="chat-title"><span class="step" aria-hidden="true">1</span> Chat · Party A ↔ Party B</h2>
+          <span class="muted" data-placeholder>N messages</span>
+        </div>
+        <div class="chat" data-placeholder>
+          <div class="message message--me">
+            <span class="message__meta">Party A · #1 · DD Mon HH:MM</span>
+            <span><mark class="term term--clear">N units</mark>, <mark class="term term--clear">₹ NNN each</mark> ok?</span>
+          </div>
+          <div class="message">
+            <span class="message__meta">Party B · #2 · DD Mon HH:MM</span>
+            <span>ok. <mark class="term term--ambiguous">delivery next week</mark><span class="visually-hidden"> (ambiguous)</span></span>
+          </div>
+          <div class="message message--me">
+            <span class="message__meta">Party A · #3 · DD Mon HH:MM</span>
+            <span>advance half now</span>
+          </div>
+          <div class="message">
+            <span class="message__meta">Party B · #4 · DD Mon HH:MM</span>
+            <span>done sent <mark class="term term--clear">₹ NN,NNN</mark></span>
+          </div>
+        </div>
+        <div class="legend" aria-label="Highlight key">
+          <span class="muted">Highlights show where each term came from:</span>
+          <span class="status status--ambiguous"><span class="status__symbol" aria-hidden="true"></span>Ambiguous</span>
+          <span class="status status--clear"><span class="status__symbol" aria-hidden="true"></span>Clear</span>
+        </div>
+        <div class="composer">
+          <label class="visually-hidden" for="new-message">Type a message</label>
+          <input class="input" id="new-message" type="text" placeholder="Type a message…">
+          <button class="btn btn--primary" type="button">Send</button>
+        </div>
+      </section>
+
+      <div class="side">
+        <section class="card strength" aria-labelledby="strength-title">
+          <div class="card__head">
+            <h2 id="strength-title"><span class="step" aria-hidden="true">2</span> Evidence strength</h2>
+          </div>
+          <div class="strength__row" data-placeholder>
+            <span class="strength__total">68 / 100</span>
+          </div>
+          <progress class="meter" max="100" value="68" aria-label="Evidence strength 68 out of 100">68</progress>
+          <p class="muted" data-placeholder>Present N of N · Clear N of N · Acknowledged by both N of N</p>
+        </section>
+
+        <section class="card" aria-labelledby="terms-title">
+          <div class="card__head">
+            <h2 id="terms-title"><span class="step" aria-hidden="true">3</span> Terms found</h2>
+          </div>
+          <ul class="terms" data-placeholder>
+            <li class="terms__item">
+              <div><div class="terms__label">Parties</div><div class="terms__value">Party A, Party B</div></div>
+              <span class="status status--clear"><span class="status__symbol" aria-hidden="true"></span>Clear</span>
+              <div class="terms__source">Source #1</div>
+            </li>
+            <li class="terms__item">
+              <div><div class="terms__label">Scope</div><div class="terms__value">Item one or item two</div></div>
+              <span class="status status--conflict"><span class="status__symbol" aria-hidden="true"></span>Conflict</span>
+              <div class="terms__source">Sources #1, #5</div>
+            </li>
+            <li class="terms__item">
+              <div><div class="terms__label">Price</div><div class="terms__value">₹ NNN each</div></div>
+              <span class="status status--clear"><span class="status__symbol" aria-hidden="true"></span>Clear</span>
+              <div class="terms__source">Source #1</div>
+            </li>
+            <li class="terms__item">
+              <div><div class="terms__label">Delivery</div><div class="terms__value">“next week”</div></div>
+              <span class="status status--ambiguous"><span class="status__symbol" aria-hidden="true"></span>Ambiguous</span>
+              <div class="terms__source">Source #2</div>
+            </li>
+            <li class="terms__item">
+              <div><div class="terms__label">Final payment</div><div class="terms__value">Not mentioned</div></div>
+              <span class="status status--missing"><span class="status__symbol" aria-hidden="true"></span>Missing</span>
+              <div class="terms__source">No source</div>
+            </li>
+          </ul>
+        </section>
+
+        <section class="card" aria-labelledby="suggestion-title">
+          <div class="card__head">
+            <h2 id="suggestion-title"><span class="step" aria-hidden="true">4</span> Suggested next message</h2>
+          </div>
+          <ul class="tabs" aria-label="Tone">
+            <li><button class="tab" type="button" aria-pressed="false">Casual</button></li>
+            <li><button class="tab" type="button" aria-pressed="true">Polite</button></li>
+            <li><button class="tab" type="button" aria-pressed="false">Firm</button></li>
+          </ul>
+          <p class="suggestion" data-placeholder>Just to confirm, delivery by DD Mon and the balance ₹ NN,NNN on delivery, right?</p>
+          <p class="muted" data-placeholder>Closes: Delivery, Final payment</p>
+          <div class="actions">
+            <button class="btn" type="button">Edit</button>
+            <button class="btn btn--primary" type="button">Use this</button>
+          </div>
+        </section>
+      </div>
+    </div>
+  </main>
+</body>
+</html>
