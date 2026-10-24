@@ -1,1 +1,1 @@
-START.bat, start.sh, portable runtimes, hardware tier detection. Owner: Area 4.
+START.bat, start.sh, portable runtimes, hardware tier detection. Owner: Area 1.

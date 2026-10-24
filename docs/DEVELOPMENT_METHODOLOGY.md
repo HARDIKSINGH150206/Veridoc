@@ -26,7 +26,7 @@ flowchart TB
 
 **How here.**
 1. On day 1 the team writes `packages/contracts` together: Message, VoiceNote, Term, Flag, Score, Suggestion, HandshakeAnswer, Recap, Confirmation, Version, Receipt, DisputePack.
-2. A change later is its own small pull request, labelled `contracts`, reviewed by all four, merged before the feature code that needs it.
+2. A change later is its own small pull request, labelled `type:contracts`, reviewed by all four, merged before the feature code that needs it.
 3. Breaking changes (renaming or removing a field) bump a `contract_version` and list every affected area in the pull request.
 4. Prefer adding optional fields over changing existing ones.
 5. Nobody changes a contract inside a feature pull request.
@@ -112,7 +112,7 @@ flowchart TB
 **Why.** Finishing beats starting. Limits expose blockers early.
 
 **How here.**
-1. Columns: Backlog, Ready, In progress, In review, Done. Labels for area, phase and priority (MVP, P1, Roadmap). Details in [ONBOARDING](ONBOARDING.md) section 14.
+1. Columns: Backlog, Ready, In progress, In review, Done. Labels for area, phase and priority (`priority:mvp`, `priority:p1`). Details in [ONBOARDING](ONBOARDING.md) section 14.
 2. Every pull request links to an issue (`Closes #N`).
 3. Move your own card. If you are blocked, say so in the standup and add the `blocked` label.
 4. Issues come from [PHASES](PHASES.md) checklists; a pull request ticks the box.
@@ -152,11 +152,13 @@ The CI workflow files are a Phase 0 task (Q-33). Until they exist, run the same 
 
 **Why.** Misunderstandings at joints are the main source of rework.
 
-**How here.** Planned pairs:
-1. Area 3 with Area 4: the verify page and its screen, the receipt bundle format.
-2. Area 2 with Area 4: AI and rules output on the workspace screen (SSE events, needs-review display).
-3. Area 1 with Area 3: import commit and vault write; seal-before-submit for the Blind Handshake.
-4. Area 1 with Area 2: sample chats, term sources and voice time ranges.
+**How here.** Planned pairs (six seams):
+1. **Verify page and hashing** (Hardik + Jhashank): the verify page must pass Jhashank's test vectors; they agree the receipt bundle format and run Python and JavaScript side by side.
+2. **Model tiers and launcher** (Abhishek + Samanway): Abhishek sets tier thresholds and model choice; Samanway's launcher detects the tier and starts the right model; they test on the three laptops.
+3. **AI output and the workspace screen** (Abhishek + Hardik): SSE events for terms, flags and score, and how needs-review is displayed.
+4. **Recap and handshake with the vault** (Samanway + Jhashank): import commit and vault write; seal-before-submit for the Blind Handshake.
+5. **Voice interface** (Abhishek + Samanway): the speech interface Abhishek owns and the import step that calls it; sample voice notes and time ranges.
+6. **Contracts** (Jhashank + everyone): any contract change is shaped by the steward before the pull request.
 Pairs agree the outcome in writing (a contract change, a fixture, an issue) before they part.
 
 ## 12. AI coding discipline
@@ -180,10 +182,10 @@ These repository measures work together with the practices above.
 | # | Measure | Detail |
 |---|---|---|
 | 1 | Router auto-discovery | `apps/api/main.py` loads every module in `apps/api/routers/` automatically (ADR-022), so nobody edits it to add a route. |
-| 2 | Changelog fragments | Each pull request adds `changes/<branch-name>.md`. `CHANGELOG.md` is combined by the release lead at phase end. See `changes/README.md`. |
-| 3 | Migrations owned by Area 3 | Other areas request schema changes in an issue. Area 3 writes the Alembic migration. See below for multiple heads. |
+| 2 | Changelog fragments | Each pull request adds `changes/<branch-name>.md`. `CHANGELOG.md` is combined by the release lead (Hardik) at phase end. See `changes/README.md`. |
+| 3 | Migrations owned by Area 3 | Other areas request schema changes in an issue. Area 3 (Jhashank) writes the Alembic migration. See below for multiple heads. |
 | 4 | One dependency pull request per day | The dependency owner batches changes so `uv.lock` never conflicts. Others ask for a dependency in an issue. |
-| 5 | Design tokens in one file | `apps/web/assets/design-tokens.css` is owned by Area 4. Every screen has its own CSS file. |
+| 5 | Design tokens in one file | `apps/web/assets/design-tokens.css` is owned by Area 4 (Hardik). Every screen has its own CSS file. |
 | 6 | `.gitattributes` | `* text=auto eol=lf` plus binary rules, so Windows and macOS line endings never create diffs. |
 | 7 | `.editorconfig` | Consistent indentation and final newline. |
 | 8 | Generated files never committed | Reports, OpenAPI dumps, build output, caches. `.gitignore` blocks them. |

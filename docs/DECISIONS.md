@@ -14,7 +14,7 @@ Status: Draft v1
 | ADR-005 | Python with FastAPI for the backend |
 | ADR-006 | SQLite in WAL mode for local storage |
 | ADR-007 | Rules first, AI second; AI only suggests and never touches the hash path |
-| ADR-008 | llama.cpp with small open models and hardware tiers; no RAG; no fine-tuning claims |
+| ADR-008 | llama.cpp with small open models and hardware tiers; no RAG |
 | ADR-009 | faster-whisper for voice notes, transcribed at import |
 | ADR-010 | Recaps from fixed templates, not free AI text |
 | ADR-011 | Echo-code confirmation instead of links or app installs for the counterparty |
@@ -29,6 +29,7 @@ Status: Draft v1
 | ADR-020 | Features cut |
 | ADR-021 | SQLAlchemy 2.0 with Alembic; no object store in MVP |
 | ADR-022 | Router auto-discovery in apps/api/main.py |
+| ADR-023 | Optional fine-tuning with an eval gate |
 
 ## ADR-001 Build from scratch; DigiVault informs design only
 
@@ -64,7 +65,7 @@ Status: Draft v1
 - **Context:** The idea deck sells a portable stick. The product value is the record and the flow, not the hardware.
 - **Decision:** Package VeriDoc so it runs from a USB 3 exFAT stick on Windows, macOS and Linux with START.bat or start.sh. The same build also installs on a laptop. Pendrive tiers are the first thing cut after the share link, Blind Handshake and Kannada.
 - **Alternatives considered:** Installer only; web hosting only.
-- **Consequences:** Portable runtimes add packaging work (Area 4). The product does not depend on the stick.
+- **Consequences:** Portable runtimes add packaging work (Area 1). The product does not depend on the stick.
 
 ## ADR-005 Python with FastAPI for the backend
 
@@ -93,13 +94,13 @@ Status: Draft v1
 - **Alternatives considered:** AI-only extraction; AI auto-confirm.
 - **Consequences:** Works without a model (safe mode). More engineering for parsers. Safer evidence.
 
-## ADR-008 llama.cpp with small open models and hardware tiers; no RAG; no fine-tuning claims
+## ADR-008 llama.cpp with small open models and hardware tiers; no RAG
 
 - **Status:** Accepted
 - **Date:** 2026-10-25
 - **Context:** Laptops range from 4 GB to 16 GB RAM. No GPU can be assumed. Extraction is schema-driven and needs no retrieval corpus.
-- **Decision:** Run open instruction models through llama.cpp (llama-cpp-python) with JSON-schema-constrained output. Pick about 7B, 3B or 1.5B by RAM at startup; safe mode below that. Model files are pinned by SHA-256 in models/manifest.json. Exact models are TBD pending benchmarks. No RAG. No claim of fine-tuning.
-- **Alternatives considered:** Cloud API; ONNX models; fine-tuned LoRA; RAG over legal text.
+- **Decision:** Run open instruction models through llama.cpp (llama-cpp-python) with JSON-schema-constrained output. Pick about 7B, 3B or 1.5B by RAM at startup; safe mode below that. Model files are pinned by SHA-256 in models/manifest.json. Exact models are TBD pending benchmarks. No RAG. Fine-tuning is optional and gated by ADR-023; no fine-tuning claim is made unless it ships.
+- **Alternatives considered:** Cloud API; ONNX models; RAG over legal text. (Fine-tuning is handled in ADR-023.)
 - **Consequences:** Weaker on Hinglish and Kannada-English; accuracy reported per language. Model benchmark task for Area 2.
 
 ## ADR-009 faster-whisper for voice notes, transcribed at import
@@ -206,7 +207,7 @@ Status: Draft v1
 - **Status:** Accepted
 - **Date:** 2026-10-25
 - **Context:** The scope must be defendable and finished.
-- **Decision:** Cut: counterparty reliability scores, fake-chat detection claims, verdict prediction, contract template library, full payment ledger, late-interest calculator, formal-notice escalation, LoRA fine-tuning claims, RAG. Reasons: they cannot be validated, drift into legal practice, or are outside LS-06.
+- **Decision:** Cut: counterparty reliability scores, fake-chat detection claims, verdict prediction, contract template library, full payment ledger, late-interest calculator, formal-notice escalation, fine-tuning claims that are not backed by an eval gate (ADR-023), RAG. Reasons: they cannot be validated, drift into legal practice, or are outside LS-06.
 - **Alternatives considered:** Keep a subset as stretch goals.
 - **Consequences:** A tighter story. Each is listed in PRD non-goals so nobody builds it by accident.
 
@@ -223,7 +224,23 @@ Status: Draft v1
 
 - **Status:** Accepted
 - **Date:** 2026-10-25
-- **Context:** `apps/api/main.py` is a hotspot owned by Area 4. If every new route needed an edit there, three other areas would queue for one file and conflict often.
+- **Context:** `apps/api/main.py` is a hotspot owned by Area 3 (Jhashank). If every new route needed an edit there, three other areas would queue for one file and conflict often.
 - **Decision:** `main.py` loads every module in `apps/api/routers/` automatically. Each module exposes one router object by a fixed name. Adding a route means editing only the router file in your own area. Nobody edits `main.py` to add a route.
 - **Alternatives considered:** Explicit imports in `main.py`; one router per area registered by hand; a plugin entry-point system.
-- **Consequences:** A new router file is picked up with no other change. A broken router module is reported at startup by name rather than silently skipped. Router modules must be import-safe (no work at import time). Area 4 writes the loader in Phase 0.
+- **Consequences:** A new router file is picked up with no other change. A broken router module is reported at startup by name rather than silently skipped. Router modules must be import-safe (no work at import time). Area 3 writes the loader in Phase 0.
+
+## ADR-023 Optional fine-tuning with an eval gate
+
+- **Status:** Accepted
+- **Date:** 2026-10-25
+- **Context:** An earlier decision said we make no fine-tuning claim. A small model fine-tuned on Indian informal-deal chats (Hinglish, Kannada-English) might beat the base model on our fields, but we cannot know until we measure. The team has an AI and ML owner who can run it. A claim without a measurement would damage trust.
+- **Decision:** Fine-tuning (for example LoRA) is a P1 task owned by Abhishek (Area 2). It is shipped, and claimed in any document, slide or answer, only if the fine-tuned model beats the base model of the same tier on the held-out eval split. Gate:
+  1. Field-level F1 on the held-out split is higher than the base model's by at least a margin (value TBD, OPEN_QUESTIONS Q-50).
+  2. No regression on grounding failures, prompt-injection fixtures, needs-review rate or any language slice beyond a tolerance (TBD, Q-50).
+  3. Training data is synthetic or consented, contains none of the eval or held-out chats, and is recorded in the DATASET_CARD.
+  4. The base model's and the fine-tuned model's licences allow our use and redistribution (Q-46).
+  5. The fine-tuned file is pinned by SHA-256 in `models/manifest.json`; weights are never committed.
+  6. Results, data description and limits are written in MODEL_CARD.md before shipping.
+  If the gate is not met, the base model ships and no fine-tuning claim is made. All other safeguards (grounding, human confirmation, safe mode) apply unchanged.
+- **Alternatives considered:** Never fine-tune; fine-tune and claim without a gate; fine-tune in the MVP.
+- **Consequences:** Extra work after the MVP (Phase 5). The base-model path stays the default and must always work. The eval set must stay clean: no tuning on the held-out split.

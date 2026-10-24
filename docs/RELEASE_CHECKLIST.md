@@ -1,18 +1,18 @@
 # Release Checklist
 
-This checklist lists what must pass before `dev` is merged into `main` at the end of a phase. The release lead (Area 4) runs it with the other three members during the integration hour. Phase-specific gates are in [PHASES](PHASES.md); this list is the common part. Steps for the merge and tag are in [GIT_WORKFLOW](GIT_WORKFLOW.md) section 5.
+This checklist lists what must pass before `dev` is merged into `main` at the end of a phase. The release lead (Hardik, Area 4) runs it with the other three members during the integration hour. Phase-specific gates are in [PHASES](PHASES.md); this list is the common part. Steps for the merge and tag are in [GIT_WORKFLOW](GIT_WORKFLOW.md) section 5.
 
 Last updated: 2026-10-25
 Status: Draft v1
 
-Release lead: TBD. Phase and tag: fill in per release (`v0.N-phaseN`).
+Release lead: Hardik. Phase and tag: fill in per release (`v0.N-phaseN`).
 
 ## 1. Before you start
 
 - [ ] All pull requests meant for this phase are merged into `dev`
 - [ ] `dev` is frozen for the checklist run (no other merges)
 - [ ] The phase gate in PHASES.md is read aloud and each item is checked below
-- [ ] Open issues labelled `blocked` or `contracts` for this phase are resolved or consciously deferred (noted)
+- [ ] Open issues labelled `blocked` or `type:contracts` for this phase are resolved or consciously deferred (noted)
 
 ## 2. Automated checks on `dev`
 

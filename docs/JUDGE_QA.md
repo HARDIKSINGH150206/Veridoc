@@ -59,7 +59,7 @@ No. It is tamper-evident: a change after saving is detected, not prevented.
 ## AI
 
 **Which model do you use? Did you train it?**
-We run small open models locally with schema-constrained output. Exact models are chosen after benchmarks (TBD). We do not train or fine-tune and make no claim of it.
+We run small open models locally with schema-constrained output. Exact models are chosen after benchmarks (TBD). By default we use the base models. Fine-tuning is an optional later task, and we would claim it only if it beats the base model on our eval set; the comparison goes in the model card.
 
 **What if the AI is wrong?**
 The AI only suggests. Every value must appear in a real message or transcript span. If rules and AI disagree, the term is marked needs review. A person confirms every term. Without the model, safe mode runs rules only.
@@ -102,7 +102,7 @@ All code is new. See PRIOR_WORK for where the design ideas came from.
 Android app, phone web app, in-person voice sealing, UPI screenshot check, CA countersign, cloud sync, teams and billing, WhatsApp extension. P1 items are listed in the roadmap.
 
 **What did you cut and why?**
-Reliability scores, fake-chat detection claims, verdict prediction, a template library, a payment ledger, an interest calculator, notice escalation, fine-tuning claims and RAG. They cannot be validated, drift into legal practice, or are outside LS-06.
+Reliability scores, fake-chat detection claims, verdict prediction, a template library, a payment ledger, an interest calculator, notice escalation, fine-tuning claims without an eval gate, and RAG. They cannot be validated, drift into legal practice, or are outside LS-06.
 
 **Will the other party really reply with a code?**
 It is one short WhatsApp reply to a friendly message, with no link and no install. The confirmation rate is a metric we will measure in a pilot; we have no number yet.

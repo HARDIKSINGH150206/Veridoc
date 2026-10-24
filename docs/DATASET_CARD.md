@@ -1,6 +1,6 @@
 # Dataset Card
 
-This is a template for documenting a dataset used by VeriDoc, such as the eval set of about 100 labelled chats (see [EVALUATION](EVALUATION.md)). Copy the template once per dataset (for example `docs/datasets/eval-v1.md`) and fill it in. The first card, for the eval set, is not filled yet. Owner: Area 2 (TBD member). No real personal data goes into any dataset in this repository.
+This is a template for documenting a dataset used by VeriDoc, such as the eval set of about 100 labelled chats (see [EVALUATION](EVALUATION.md)). Copy the template once per dataset (for example `docs/datasets/eval-v1.md`) and fill it in. The first card, for the eval set, is not filled yet. Owner: Area 2 (Abhishek). No real personal data goes into any dataset in this repository.
 
 Last updated: 2026-10-25
 Status: Draft v1
@@ -44,7 +44,7 @@ Status: Draft v1
 - Anonymisation steps and who checked:
 
 ### 6. Distribution and splits
-- Training use: none (VeriDoc does not fine-tune models; no fine-tuning claim is made)
+- Training use: none by default. If optional fine-tuning (ADR-023) is run, list here the training files, their source and consent, and confirm that no eval or held-out chat was used for training.
 - Evaluation use: rules and prompt development splits, held-out split
 - Which chats were used to tune rules or prompts, recorded by id:
 

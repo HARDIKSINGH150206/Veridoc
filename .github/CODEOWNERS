@@ -1,39 +1,43 @@
-# Folder ownership. Replace the placeholders with GitHub handles on day 1.
-# Area 1: @TBD-member-1  Ingest, Voice and Agreement
-# Area 2: @TBD-member-2  Intelligence
-# Area 3: @TBD-member-3  Integrity and Vault
-# Area 4: @TBD-member-4  Frontend and Packaging
+# Folder ownership. Last match wins, so specific lines come after general ones.
+# Area 1: @notorious1337        Samanway   Ingest, Agreement and Release
+# Area 2: @absksync             Abhishek   AI and ML
+# Area 3: @NYN-05               Jhashank   Backend, Integrity and Vault
+#         (invitation pending: until it is accepted, Hardik covers Area 3 work)
+# Area 4: @HARDIKSINGH150206    Hardik     Frontend and Blockchain; project release lead
 
 # Area 1
-/packages/ingest/                 @TBD-member-1
-/apps/api/routers/ingest.py       @TBD-member-1
-/apps/api/routers/agreement.py    @TBD-member-1
+/packages/ingest/                 @notorious1337
+/apps/api/routers/ingest.py       @notorious1337
+/apps/api/routers/agreement.py    @notorious1337
+/packaging/                       @notorious1337
 
 # Area 2
-/packages/intelligence/           @TBD-member-2
-/playbooks/                       @TBD-member-2
-/playbooks/templates/             @TBD-member-1   # must stay after /playbooks/ (last match wins)
-/eval/                            @TBD-member-2
-/apps/api/routers/analysis.py     @TBD-member-2
+/packages/intelligence/           @absksync
+/playbooks/                       @absksync
+/playbooks/templates/             @notorious1337   # Area 1; must stay after /playbooks/
+/eval/                            @absksync
+/apps/api/routers/analysis.py     @absksync
 
 # Area 3
-/packages/integrity/              @TBD-member-3
-/packages/vault/                  @TBD-member-3
-/apps/verify/                     @TBD-member-3
-/test-vectors/                    @TBD-member-3
-/apps/api/routers/vault.py        @TBD-member-3
-/apps/api/routers/export.py       @TBD-member-3
+/packages/integrity/              @NYN-05
+/packages/integrity/anchoring/    @HARDIKSINGH150206   # Area 4; must stay after /packages/integrity/
+/packages/vault/                  @NYN-05
+/test-vectors/                    @NYN-05
+/apps/api/main.py                 @NYN-05
+/apps/api/routers/vault.py        @NYN-05
+/apps/api/routers/export.py       @NYN-05
 
 # Area 4
-/apps/web/                        @TBD-member-4
-/packaging/                       @TBD-member-4
-/apps/api/main.py                 @TBD-member-4
+/apps/web/                        @HARDIKSINGH150206
+/apps/verify/                     @HARDIKSINGH150206
+/CHANGELOG.md                     @HARDIKSINGH150206
 
 # Shared: all four review
-/packages/contracts/              @TBD-member-1 @TBD-member-2 @TBD-member-3 @TBD-member-4
-/docs/                            @TBD-member-1 @TBD-member-2 @TBD-member-3 @TBD-member-4
-/.github/                         @TBD-member-1 @TBD-member-2 @TBD-member-3 @TBD-member-4
+/packages/contracts/              @notorious1337 @absksync @NYN-05 @HARDIKSINGH150206
+/docs/                            @notorious1337 @absksync @NYN-05 @HARDIKSINGH150206
+/.github/                         @notorious1337 @absksync @NYN-05 @HARDIKSINGH150206
+/.github/workflows/               @NYN-05   # Area 3; must stay after /.github/
 
-# Dependency owner (one named person, TBD)
-/pyproject.toml                   @TBD-member-4
-/uv.lock                          @TBD-member-4
+# Dependency files: Area 3 (Jhashank)
+/pyproject.toml                   @NYN-05
+/uv.lock                          @NYN-05
