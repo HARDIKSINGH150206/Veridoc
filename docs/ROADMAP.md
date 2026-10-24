@@ -28,7 +28,7 @@ Status: Draft v1
 
 ### P1 (after MVP acceptance passes)
 
-Selective disclosure · privacy mask on exports · share link · Kannada recap (after native-speaker review) · read-aloud recap · Paper Seal · optional public anchoring · integrity red flags · stamp-duty hint for one or two states · reminders for agreed dates · wider voice-to-text contradiction detection.
+Selective disclosure · privacy mask on exports · share link · Kannada recap (after native-speaker review) · read-aloud recap · Paper Seal · optional public anchoring · integrity red flags · stamp-duty hint for one or two states · reminders for agreed dates · wider voice-to-text contradiction detection · optional fine-tuning with an eval gate (ADR-023).
 
 ### Roadmap (not built)
 
@@ -36,7 +36,7 @@ Android app with "Share to VeriDoc" · installable phone web app · in-person vo
 
 ## 2. Cut list (will not be built)
 
-Counterparty reliability scores · fake-chat detection claims · verdict prediction · contract template library · full payment ledger · late-interest calculator · formal-notice escalation · LoRA fine-tuning claims · RAG. Reasons are in [DECISIONS](DECISIONS.md) ADR-020.
+Counterparty reliability scores · fake-chat detection claims · verdict prediction · contract template library · full payment ledger · late-interest calculator · formal-notice escalation · fine-tuning claims without an eval gate (ADR-023) · RAG. Reasons are in [DECISIONS](DECISIONS.md) ADR-020.
 
 ## 3. Drop order if time runs short
 

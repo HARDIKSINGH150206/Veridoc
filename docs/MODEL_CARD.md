@@ -1,6 +1,6 @@
 # Model Card
 
-This is a template for documenting each model VeriDoc runs locally: the extraction language models for each hardware tier and the speech models. Copy it once per model into the table at the end and fill in the details after the benchmark. Exact models are `TBD` pending benchmarks (OPEN_QUESTIONS Q-13, Q-14). Owner: Area 2 (TBD member). No accuracy or speed figure is entered until a trust report measures it. Model weights are never committed; only names and SHA-256 hashes go into `models/manifest.json`.
+This is a template for documenting each model VeriDoc runs locally: the extraction language models for each hardware tier and the speech models. Copy it once per model into the table at the end and fill in the details after the benchmark. Exact models are `TBD` pending benchmarks (OPEN_QUESTIONS Q-13, Q-14). Owner: Area 2 (Abhishek). No accuracy or speed figure is entered until a trust report measures it. Model weights are never committed; only names and SHA-256 hashes go into `models/manifest.json`.
 
 Last updated: 2026-10-25
 Status: Draft v1
@@ -59,12 +59,20 @@ Target: field-level extraction at or above 90% on the eval set (target, to be me
 - Sarcasm, quoted text and long negotiations can mislead extraction.
 - Control: grounding, needs-review marking, human confirmation, safe mode.
 
-### 8. Decision record
+### 8. Base versus fine-tuned (only if fine-tuning was run, ADR-023)
+| Model | Held-out F1 | Grounding failures | Injection fixtures changed | Worst language slice | Report date and commit |
+|---|---|---|---|---|---|
+| Base | TBD | TBD | TBD | TBD | TBD |
+| Fine-tuned | TBD | TBD | TBD | TBD | TBD |
+
+The fine-tuned model ships only if it passes the gate in ADR-023. If it does not, state that here and keep the base model.
+
+### 9. Decision record
 - Why this model was chosen for this tier (benchmark summary, link to the ADR in DECISIONS.md): TBD
 - Alternatives tested: TBD
 - Reviewer: TBD
 
-### 9. Change log
+### 10. Change log
 | Date | Change | Commit |
 |---|---|---|
 | TBD | TBD | TBD |
