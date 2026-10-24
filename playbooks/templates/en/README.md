@@ -1,1 +1,1 @@
-English recap templates. Owner: Area 2.
+English recap templates. Owner: Area 1.

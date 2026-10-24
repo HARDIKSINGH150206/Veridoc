@@ -167,18 +167,29 @@ Model files are pinned in `models/manifest.json` (name, size and SHA-256 only; w
 - Safe mode also activates if hardware is below the Low tier, the model hash fails, or the model fails to load twice.
 - In safe mode: rules, flags, score, suggestion, recap, vault and verify page all work. Voice notes are stored and hashed but not transcribed. A banner shows "Safe mode: rules only".
 
-## 12. What the AI must not do
+## 12. Optional fine-tuning (P1)
+
+Owner: Abhishek (Area 2). Decision: ADR-023. The base model is the default and must always work.
+
+1. A fine-tuned model (for example LoRA) is trained only on synthetic or consented data that excludes every eval and held-out chat.
+2. It is compared with the base model of the same tier on the held-out split with the trust-report runner.
+3. It ships only if it beats the base model by the margin set in ADR-023 and does not regress on grounding failures, injection fixtures, needs-review rate or any language slice.
+4. It is pinned by SHA-256 in `models/manifest.json`; weights are never committed.
+5. Results and data are written in MODEL_CARD.md and DATASET_CARD.md. No document, slide or answer claims fine-tuning unless it shipped.
+6. A fine-tuned model passes through the same grounding, injection defence, human confirmation and safe-mode rules as any other model.
+
+## 13. What the AI must not do
 
 It never receives sealed Blind Handshake answers before the reveal.
 
 
 Write to the vault; confirm a term; send a message; write recap text; give legal advice; predict a verdict; judge whether a chat is genuine; use the network.
 
-## 13. Logging
+## 14. Logging
 
 No message content, transcripts or identifiers in logs. Logs may hold: durations, model tier, counts of terms proposed, dropped and flagged "needs review", and error codes.
 
-## 14. Known weaknesses
+## 15. Known weaknesses
 
 - Small models are weaker on Hinglish and Kannada-English. Accuracy is reported per language in the trust report.
 - Sarcasm, negotiation back-and-forth and quoted text can mislead rules and models. Human confirmation is the control.

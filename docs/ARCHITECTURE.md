@@ -59,15 +59,16 @@ flowchart TB
 
 | Container | Responsibility | Owner |
 |---|---|---|
-| Launcher | Detect hardware tier, start the API, open the browser | Area 4 |
+| Launcher | Detect hardware tier, start the API, open the browser | Area 1 (tier thresholds: Area 2) |
 | Browser UI | Screens S1 to S12, built against mock data matching contracts | Area 4 |
-| Local API | Thin routes, SSE streams, no business logic | Areas 1 to 4 (per router) |
+| Local API | Thin routes, SSE streams, no business logic. `main.py` is Area 3; each router belongs to its area | Areas 1 to 3 |
 | Rules engine | Deterministic parsers, flags, score, suggestion text | Area 2 |
 | AI runner | Local model refinement with schema-constrained output | Area 2 |
-| Speech runner | Voice-note transcription at import | Area 1 |
-| Integrity engine | Hashing, Merkle, version chain, echo code, anchoring | Area 3 |
+| Speech runner | Voice-note transcription at import, behind an interface that `packages/ingest` calls | Area 2 |
+| Integrity engine | Hashing, Merkle, version chain, echo code | Area 3 |
+| Anchoring (P1) | Polygon contract and client, only hashes leave the device | Area 4 |
 | Vault | SQLite through SQLAlchemy 2.0, Alembic migrations, encryption, audit table, encrypted evidence folder, dispute pack | Area 3 |
-| Verify page | Standalone offline check | Area 3 |
+| Verify page | Standalone offline check; must pass Area 3's test vectors | Area 4 |
 
 ## 3. Component view of the backend
 
@@ -75,6 +76,7 @@ flowchart TB
 flowchart TB
   subgraph Routers["apps/api/routers"]
     R1["ingest.py"]
+    R1B["agreement.py"]
     R2["analysis.py"]
     R3["vault.py"]
     R4["export.py"]
@@ -85,7 +87,8 @@ flowchart TB
   subgraph Ingest["packages/ingest"]
     P["WhatsApp parser"]
     M["Media handler"]
-    V["Voice transcriber"]
+    RC["Recap builder"]
+    HS["Blind Handshake logic"]
   end
   subgraph Intel["packages/intelligence"]
     RU["Rules"]
@@ -93,16 +96,15 @@ flowchart TB
     FL["Flags"]
     SC["Score"]
     SG["Suggestion"]
-    HS["Blind Handshake logic"]
-    RC["Recap builder"]
     PB["Playbook loader"]
+    SP["Speech runner, faster-whisper"]
   end
   subgraph Integ["packages/integrity"]
     HA["Hashing and JCS"]
     MK["Merkle"]
     VC["Version chain"]
     EC["Echo code"]
-    AN["Anchoring, P1"]
+    AN["Anchoring, P1, Area 4"]
   end
   subgraph Vault["packages/vault"]
     ST["SQLAlchemy store and Alembic migrations"]
@@ -111,6 +113,7 @@ flowchart TB
     DP["Dispute pack"]
   end
   R1 --> Ingest
+  R1B --> Ingest
   R2 --> Intel
   R3 --> Integ
   R3 --> Vault
@@ -158,7 +161,7 @@ sequenceDiagram
   U->>CP: Pastes suggested message in WhatsApp
   U->>UI: Build recap
   UI->>API: POST recap
-  API->>INT: Fill templates from confirmed terms
+  API->>ING: Fill templates from confirmed terms
   API->>VLT: Create version, recap hash, echo code
   VLT-->>UI: Recap text and code
   U->>CP: Pastes recap in WhatsApp
@@ -293,9 +296,10 @@ This matches the repository skeleton and CODEOWNERS exactly.
 Veridoc/
 ├── apps/
 │   ├── api/                    FastAPI app, thin layer of routes only
-│   │   ├── main.py             registers routers; hotspot, Area 4 only
+│   │   ├── main.py             loads routers automatically; hotspot, Area 3 only
 │   │   └── routers/
-│   │       ├── ingest.py       Area 1
+│   │       ├── ingest.py       Area 1: import and voice
+│   │       ├── agreement.py    Area 1: recap and Blind Handshake
 │   │       ├── analysis.py     Area 2
 │   │       ├── vault.py        Area 3
 │   │       └── export.py       Area 3
@@ -303,37 +307,47 @@ Veridoc/
 │   │   ├── components/         shared UI pieces, Area 4 only
 │   │   ├── screens/            one folder per screen: s1-deals ... s12-whatsapp
 │   │   └── assets/             bundled CSS, JS and Indic fonts, no CDN
-│   └── verify/                 standalone verify.html, Area 3
+│   └── verify/                 standalone verify.html, Area 4
 ├── packages/
 │   ├── contracts/              shared Pydantic schemas, the ONLY shared code
-│   ├── ingest/                 Area 1: WhatsApp parser, media, voice
-│   ├── intelligence/           Area 2: rules, local AI, flags, score, suggestion, Blind Handshake logic
-│   ├── integrity/              Area 3: hashing, Merkle, version chain, echo code, anchoring
+│   ├── ingest/                 Area 1: WhatsApp parser, media, voice import wiring, recap builder, Blind Handshake logic
+│   ├── intelligence/           Area 2: rules, local AI, flags, score, suggestion
+│   │   └── speech/             Area 2: faster-whisper speech runner (interface called by ingest)
+│   ├── integrity/              Area 3: hashing, Merkle, version chain, echo code
+│   │   └── anchoring/          Area 4: Polygon anchoring (P1)
 │   └── vault/                  Area 3: SQLite, encryption, audit table, dispute pack
-├── playbooks/                  Area 2: supply_order.yaml, freelance.yaml, templates/en, templates/hi
+├── playbooks/                  Area 2: supply_order.yaml, freelance.yaml
+│   └── templates/              Area 1: recap and suggestion templates (en/, hi/)
 ├── eval/                       Area 2: chats/, labels/, runner/, reports/ (git-ignored)
 ├── test-vectors/integrity/     Area 3: hashes that Python and JS must both match
-├── packaging/                  Area 4: START.bat, start.sh, portable runtimes, tier detection
+├── packaging/                  Area 1: START.bat, start.sh, portable runtimes, tier detection
+│   └── tests/                  Area 1: end-to-end tests of the built app
 ├── models/manifest.json        model names and SHA-256 only, never weights
 ├── scripts/                    trust report and dev helpers
 ├── docs/                       each document has an owner listed in TEAM_GUIDE
-├── .github/                    CODEOWNERS, pull_request_template.md, workflows/
-├── pyproject.toml + uv.lock    dependency owner only
+├── changes/                    changelog fragments, one file per pull request
+├── .github/                    CODEOWNERS, pull_request_template.md, ISSUE_TEMPLATE/
+│   └── workflows/              Area 3: CI
+├── pyproject.toml + uv.lock    Area 3 (Jhashank) only
+├── CHANGELOG.md               combined from changes/ at phase end by the release lead
+├── .gitattributes              line endings (LF) and binary file rules
+├── .gitignore                  Python, Node, OS, secrets, weights, reports, real chats
+├── .editorconfig               indentation and final newline rules
 ├── CLAUDE.md
 ├── AGENTS.md
 └── README.md
 ```
 
-Each package has its own `tests/` folder inside it. There is no shared top-level tests folder. Alembic migrations live inside `packages/vault/migrations/` (Area 3), so they add no new top-level folder.
+Each package has its own `tests/` folder inside it. There is no shared top-level tests folder. Alembic migrations live inside `packages/vault/migrations/` (Area 3), so they add no new top-level folder. Each package keeps its fixtures in its own `fixtures/` folder (created by the owning area when needed). `apps/api/main.py` loads every module in `apps/api/routers/` automatically (ADR-022), so adding a route never touches `main.py`. The design tokens live in one file, `apps/web/assets/design-tokens.css` (Area 4, Hardik).
 
 | Area | Owns | Role |
 |---|---|---|
-| 1. Ingest and Voice | `packages/ingest`, `apps/api/routers/ingest.py`, sample chats | Ingest lead |
-| 2. Intelligence | `packages/intelligence`, `playbooks/`, `eval/`, `apps/api/routers/analysis.py` | AI and rules lead |
-| 3. Integrity and Vault | `packages/integrity`, `packages/vault`, `apps/verify`, `test-vectors/`, `apps/api/routers/vault.py`, `apps/api/routers/export.py` | Integrity lead |
-| 4. Frontend and Packaging | `apps/web`, `packaging/`, `apps/api/main.py` | UI and release lead |
+| 1. Ingest, Agreement and Release | `packages/ingest`, `apps/api/routers/ingest.py`, `apps/api/routers/agreement.py`, `playbooks/templates/`, `packaging/`, sample chats and demo voice notes | Ingest, agreement and release lead | Samanway (@notorious1337) |
+| 2. AI and ML | `packages/intelligence`, `playbooks/` (except `playbooks/templates/`), `eval/`, `apps/api/routers/analysis.py` | AI and ML lead | Abhishek (@absksync) |
+| 3. Backend, Integrity and Vault | `apps/api/main.py`, `packages/contracts` (steward), `packages/integrity` (except `packages/integrity/anchoring/`), `packages/vault`, `test-vectors/`, `apps/api/routers/vault.py`, `apps/api/routers/export.py`, `.github/workflows/`, `pyproject.toml`, `uv.lock` | Backend and integrity lead | Jhashank (@NYN-05, invitation pending; Hardik covers until accepted) |
+| 4. Frontend and Blockchain | `apps/web`, `apps/verify`, `packages/integrity/anchoring/` | Frontend and blockchain lead; project release lead | Hardik (@HARDIKSINGH150206) |
 
-Shared by all, changed only by small reviewed pull requests: `packages/contracts`, `docs/`, `.github/`. Dependency files (`pyproject.toml`, `uv.lock`) have one named owner (TBD).
+Shared by all, changed only by small reviewed pull requests: `packages/contracts` (steward: Area 3, Jhashank; every change still needs all four reviewers), `docs/`, `.github/` (except `.github/workflows/`, Area 3). Dependency files (`pyproject.toml`, `uv.lock`) are owned by Area 3 (Jhashank). Release lead: Hardik. The word "Release" in Area 1's name means building, packaging and benchmarking the demo build; merging `dev` into `main` and tagging is the project release lead's job (Hardik).
 
 ## 10. API overview
 
@@ -355,10 +369,10 @@ All routes are under `/api`, bind to 127.0.0.1, require the session token header
 | analysis | `POST /deals/{id}/terms/{key}/correct` | value | term, audit event |
 | analysis | `POST /deals/{id}/terms/{key}/reject` | none | term |
 | analysis | `GET /deals/{id}/suggestion?tone=` | none | suggestion |
-| analysis | `POST /deals/{id}/handshake/start` | none | questions |
-| analysis | `POST /deals/{id}/handshake/answers` | party, answers | seal record |
-| analysis | `POST /deals/{id}/handshake/reveal` | none | side-by-side result |
-| analysis | `POST /deals/{id}/recap` | language | recap text, lines, code |
+| agreement | `POST /deals/{id}/handshake/start` | none | questions |
+| agreement | `POST /deals/{id}/handshake/answers` | party, answers | seal record (refused until the first set is sealed) |
+| agreement | `POST /deals/{id}/handshake/reveal` | none | side-by-side result |
+| agreement | `POST /deals/{id}/recap` | language | recap text, lines, code |
 | vault | `POST /deals/{id}/recaps/{rid}/check-reply` | pasted text, sender | confirmation state |
 | vault | `GET /deals/{id}/versions` and `/versions/diff?a=&b=` | none | versions, diff |
 | vault | `GET /deals/{id}/receipt` | none | receipt |
@@ -395,6 +409,7 @@ Names only. Values live in a local `.env` (never committed) or in the launcher; 
 | `VERIDOC_MANIFEST_PATH` | Path to `models/manifest.json` |
 | `VERIDOC_MAX_IMPORT_MB` | Import size cap |
 | `VERIDOC_LOG_LEVEL` | Log level |
+| `VERIDOC_FEATURE_FLAGS` | Comma-separated names of unfinished features to switch on (see DEVELOPMENT_METHODOLOGY) |
 | `VERIDOC_ANCHOR_ENABLED` | Enable anchoring (P1; default off) |
 | `VERIDOC_ANCHOR_RPC` | Anchoring network endpoint (P1) |
 | `VERIDOC_SHARE_BASE_URL` | Share server base (P1) |

@@ -1,1 +1,1 @@
-Hindi recap templates. Owner: Area 2.
+Hindi recap templates. Owner: Area 1.

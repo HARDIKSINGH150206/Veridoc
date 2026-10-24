@@ -12,7 +12,7 @@ Status: Draft v1
 | Version | Draft v1 |
 | Status | Draft, awaiting team review |
 | Product owner | TBD |
-| Engineering owners | TBD (one per area, see [TEAM_GUIDE](TEAM_GUIDE.md)) |
+| Engineering owners | Samanway (Area 1), Abhishek (Area 2), Jhashank (Area 3), Hardik (Area 4); see [TEAM_GUIDE](TEAM_GUIDE.md) |
 | Legal reviewer | TBD (a lawyer must confirm every statement about Indian law) |
 | Source documents | `docs/source/VeriDoc-Final-Idea.md`, `docs/source/veridoc-wireframes.html` |
 | Conflict rule | This PRD wins over the source documents. Conflicts are logged in [OPEN_QUESTIONS](OPEN_QUESTIONS.md). |
@@ -97,7 +97,7 @@ These are not built and must not be claimed.
 | Full payment ledger | Out of scope for LS-06. |
 | Late-interest calculator | Legal calculation needing lawyer sign-off. |
 | Formal-notice escalation | Moves the product into legal practice. |
-| LoRA fine-tuning claims | We claim only what is done and measured. |
+| Fine-tuning claims without an eval gate | Fine-tuning is optional (P1, FR-FTN-001) and is claimed only if it beats the base model on the eval set (ADR-023). |
 | RAG | No retrieval corpus is needed; extraction is schema-driven. |
 
 ## 5. Users and personas
@@ -150,6 +150,7 @@ Judges' six requested features: **J1** Chat and voice note import · **J2** Term
 | Stamp-duty hint | FR-STP-001 | B, F | J3 |
 | Reminders for agreed dates | FR-RMD-001 | E | J4 |
 | Voice-to-text contradiction beyond MVP | FR-VTC-001 | B | J3 |
+| Optional fine-tuning with an eval gate | FR-FTN-001 | A | J2 |
 
 ### Coverage check
 
@@ -810,6 +811,7 @@ A version is confirmed only when both parties are confirmed. The user's own conf
 | FR-RED-001 | Integrity red flags | Out-of-order timestamps, impossible gaps, format irregularities. Named red flags, not fake detection. | Given a chat with a timestamp earlier than the previous message, When analysed, Then an integrity red flag is raised. |
 | FR-STP-001 | Stamp-duty hint | Hint for one or two states with a link to e-stamping. A lawyer must confirm figures. | Given a supported state, When shown, Then the hint carries the verify-with-a-lawyer note. |
 | FR-RMD-001 | Reminders for agreed dates | Local reminders for confirmed dates. | Given a confirmed delivery date, When it is within 2 days, Then a reminder appears. |
+| FR-FTN-001 | Optional fine-tuning with an eval gate | Fine-tune the extraction model (for example LoRA) for a tier. Shipped and claimed only if it beats the base model on the held-out eval split by the margin set in ADR-023, without regression on grounding, injection or language slices. Results in MODEL_CARD. | Given a fine-tuned model that does not beat the base model, When the gate is run, Then the base model stays and no fine-tuning claim appears in any document. Given one that passes, Then its hash is in the manifest and MODEL_CARD has the comparison. |
 | FR-VTC-001 | Voice-to-text contradiction beyond MVP | Wider detection across paraphrase and mixed languages. | Given a paraphrased contradiction, When analysed, Then it is flagged. |
 
 ### 8.19 Roadmap (not built)
@@ -861,6 +863,7 @@ All numeric values are **targets**, to be measured by the protocol in [PERFORMAN
 | Human in the loop | A person confirms every term (FR-EXT-005). |
 | Model tiers | By RAM at startup: 16 GB or more, about 7B; 8 GB, about 3B (default); 4 to 8 GB or old CPU, about 1.5B; below that, rules-only safe mode. Exact models are TBD pending benchmarks. |
 | Model integrity | SHA-256 pinned in `models/manifest.json`, verified at startup. |
+| Fine-tuning | Optional, P1, owned by Abhishek. Shipped and claimed only if it passes the eval gate in ADR-023 (FR-FTN-001). |
 | Kill switch | Safe mode switch in S11 (FR-AIS-005). |
 | Small-model limits | Weaker on Hinglish and Kannada-English; shown in the About and limits panel and reported by language in the trust report. |
 
@@ -962,7 +965,7 @@ Copy rules:
 | Tier | Contents |
 |---|---|
 | MVP | Features 1 to 14 in section 6 |
-| P1 | Selective disclosure, privacy mask, share link, Kannada recap, read-aloud recap, Paper Seal, optional anchoring, integrity red flags, stamp-duty hint, reminders, wider voice-to-text contradiction |
+| P1 | Selective disclosure, privacy mask, share link, Kannada recap, read-aloud recap, Paper Seal, optional anchoring, integrity red flags, stamp-duty hint, reminders, wider voice-to-text contradiction, optional fine-tuning with an eval gate |
 | Roadmap | Android app, phone web app, in-person voice sealing, UPI screenshot check, CA countersign, cloud sync, teams and billing, WhatsApp extension |
 
 **Drop order if time runs short:** share link, then Blind Handshake, then Kannada, then pendrive tiers. **Never drop:** import, term extractor, flags, chat recommendation, recap, vault, verify page.
@@ -998,7 +1001,7 @@ P1 work starts only after MVP acceptance criteria pass.
 | 1 | Why not just use ChatGPT? | A chatbot explains once. VeriDoc keeps a live structured record, warns during the chat, suggests the next message, collects confirmation from both sides and produces a verifiable receipt, offline. |
 | 2 | Is this legal advice? | No. Drafting and record-keeping aid. Some chat agreements may already be valid; our goal is to make them provable. Lawyer to confirm. |
 | 3 | Can it detect fake chats? | No, and we do not claim it. We prove the record was not changed after import. |
-| 4 | Did you train your own model? | No. We run open models locally with schema-constrained output. No fine-tuning claim. |
+| 4 | Did you train your own model? | By default we run open models locally with schema-constrained output. Fine-tuning is an optional P1 task, and we claim it only if it beats the base model on our eval set, with results in the MODEL_CARD. |
 | 5 | Does it work in Indian languages? | English and Hindi in the MVP, Kannada in P1; we show measured accuracy by language, not claims. |
 | 6 | What if the stick is lost? | The vault is passphrase-encrypted; the recovery key is printed at setup. |
 | 7 | Who is it for? | Small suppliers and vendors who deal over chat. |

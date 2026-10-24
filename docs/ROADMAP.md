@@ -28,7 +28,7 @@ Status: Draft v1
 
 ### P1 (after MVP acceptance passes)
 
-Selective disclosure · privacy mask on exports · share link · Kannada recap (after native-speaker review) · read-aloud recap · Paper Seal · optional public anchoring · integrity red flags · stamp-duty hint for one or two states · reminders for agreed dates · wider voice-to-text contradiction detection.
+Selective disclosure · privacy mask on exports · share link · Kannada recap (after native-speaker review) · read-aloud recap · Paper Seal · optional public anchoring · integrity red flags · stamp-duty hint for one or two states · reminders for agreed dates · wider voice-to-text contradiction detection · optional fine-tuning with an eval gate (ADR-023).
 
 ### Roadmap (not built)
 
@@ -36,7 +36,7 @@ Android app with "Share to VeriDoc" · installable phone web app · in-person vo
 
 ## 2. Cut list (will not be built)
 
-Counterparty reliability scores · fake-chat detection claims · verdict prediction · contract template library · full payment ledger · late-interest calculator · formal-notice escalation · LoRA fine-tuning claims · RAG. Reasons are in [DECISIONS](DECISIONS.md) ADR-020.
+Counterparty reliability scores · fake-chat detection claims · verdict prediction · contract template library · full payment ledger · late-interest calculator · formal-notice escalation · fine-tuning claims without an eval gate (ADR-023) · RAG. Reasons are in [DECISIONS](DECISIONS.md) ADR-020.
 
 ## 3. Drop order if time runs short
 
@@ -51,16 +51,16 @@ P1 work does not begin until the MVP acceptance criteria pass.
 
 ## 4. Suggested build order
 
-The team agrees contracts first (TEAM_GUIDE). Then four areas work in parallel against mock data.
+The phase plan with per-area tasks and gates is in [PHASES](PHASES.md). The summary below is kept consistent with it: Phase 0 Setup, Phase 1 Foundation, Phase 2 Core loop, Phase 3 Agreement, Phase 4 Proof and polish, Phase 5 P1 if time allows.
 
-| Phase | Area 1 | Area 2 | Area 3 | Area 4 |
-|---|---|---|---|---|
-| 0. Contracts | Agree schemas together | | | |
-| 1. Skeleton | WhatsApp parser, samples | Rules parsers, playbook loader | Hashing, JCS, test vectors | Screens on mock data, launcher |
-| 2. Core | Media, voice transcription | Extraction, flags, score, suggestion | Merkle, chain, vault, verify page | Live workspace via SSE |
-| 3. Trust | Preview and error states | AI refinement, grounding, injection tests, eval set | Echo code, tamper tests, dispute pack | Recap, receipt, verify screens |
-| 4. Polish | Voice play-the-moment | Hindi templates, trust report | Encryption, recovery | Packaging, tiers, antivirus test |
-| 5. Demo | All | Trust report | All | Recorded backup |
+| Phase | Theme | Main outcome |
+|---|---|---|
+| 0 Setup | Environment, CI, contracts, walking skeleton | A stub path runs through all four areas |
+| 1 Foundation | Parser, rules, hashing, first screens | Real import, rules terms, Merkle root, S1 to S3 on fixtures |
+| 2 Core loop | Voice, AI, flags, score, suggestion, vault write | Import to flags to suggestion works end to end |
+| 3 Agreement | Recap, echo code, Blind Handshake, versions | A recap is confirmed and a version chain exists |
+| 4 Proof and polish | Verify page, tamper tests, dispute pack, packaging, benchmarks | Demo-ready on a second laptop |
+| 5 P1 if time allows | Selective disclosure, mask, share link and others | Only after MVP acceptance passes |
 
 Calendar dates are `TBD` (see OPEN_QUESTIONS).
 

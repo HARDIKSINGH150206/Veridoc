@@ -123,7 +123,11 @@ Rules:
 3. Reports contain only fixture ids and counts, never chat text.
 4. Eval chats are never used to tune a model or rules without recording it; a held-out split of about 20 chats is kept untouched until final reporting.
 
-## 7. When to run
+## 7. Fine-tuning gate
+
+If optional fine-tuning (ADR-023) is run, the runner compares the base and fine-tuned models of the same tier on the held-out split only. Both are reported in the same trust report. The gate margin and tolerances are TBD (OPEN_QUESTIONS Q-50). Training data must not include any eval or held-out chat.
+
+## 8. When to run
 
 - Every change to `packages/intelligence`, `playbooks/` or `eval/` (rules-only run, quick).
 - Before each tier benchmark and before the demo (full run, with model).

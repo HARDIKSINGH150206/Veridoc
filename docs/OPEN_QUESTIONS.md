@@ -70,10 +70,6 @@ The ground rule is: this prompt wins, then `docs/source/VeriDoc-Final-Idea.md`, 
 
 | ID | Question | Where it appears | Owner |
 |---|---|---|---|
-| Q-29 | Named dependency owner for `pyproject.toml` and `uv.lock` (CODEOWNERS currently uses @TBD-member-4 as a placeholder) | TEAM_GUIDE, CODEOWNERS | TBD |
-| Q-30 | Member names for Areas 1 to 4 | TEAM_GUIDE, CODEOWNERS | TBD |
-| Q-31 | Document owners for PRD, ARCHITECTURE, DECISIONS, PRIOR_WORK | TEAM_GUIDE | TBD |
-| Q-32 | GitHub branch protection settings for `main` | TEAM_GUIDE | TBD |
 | Q-33 | CI workflows (tests, lint, gitleaks, pip-audit, offline check) | SETUP, `.github/workflows/` | TBD |
 | Q-34 | PDF renderer: fpdf2 with uharfbuzz, or browser rendering | ARCHITECTURE section 8 | TBD |
 | Q-35 | Tier detection rule for "old CPU" | PERFORMANCE section 1 | TBD |
@@ -83,6 +79,19 @@ The ground rule is: this prompt wins, then `docs/source/VeriDoc-Final-Idea.md`, 
 | Q-39 | Demo roles: presenter, second person, operator | DEMO_SCRIPT | TBD |
 | Q-40 | Confirmation-rate, time-to-confirm and score-improvement baselines from a pilot | PRD section 15 | TBD |
 | Q-41 | Generate real test vectors with a script; Python and JS must both reproduce them. | INTEGRITY_SPEC sections 6 and 13 | TBD |
+| Q-42 | User research: who interviews, participant mix and the notes folder | USER_RESEARCH section 3 | TBD |
+| Q-43 | Team chat platform and the project board link | ONBOARDING sections 4 and 14 | TBD |
+| Q-44 | Who owns GitHub repository settings (branch protection, merge settings, tag protection) | GIT_WORKFLOW section 7 | TBD |
+| Q-45 | Where security incidents (such as a pushed secret) are recorded | ONBOARDING section 21 | TBD |
+| Q-46 | Licence check of each chosen model for redistribution on a USB stick | MODEL_CARD | TBD |
+| Q-47 | When to raise required approvals from 0 to 1 (proposed: start of Phase 1), turn on code-owner review and include administrators (proposed: before the demo) | GIT_WORKFLOW section 7 | TBD |
+| Q-48 | Eval dataset card to be filled once the eval set exists | DATASET_CARD | TBD |
+| Q-49 | Jhashank's repository invitation is pending. Until accepted, Hardik covers Area 3 and Area 3 issues are assigned to Hardik. Reassign when accepted. | TEAM_GUIDE, PHASES | Hardik |
+| Q-50 | Fine-tuning gate values: required F1 margin over the base model, and the allowed regression tolerances per slice (ADR-023) | DECISIONS ADR-023, AI_SPEC section 12, EVALUATION section 7 | Abhishek |
+| Q-51 | Location and runner for end-to-end tests (proposed: `packaging/tests/`, Area 1) | PHASES, ARCHITECTURE | Samanway |
+| Q-52 | Anchoring design: Polygon contract, client library, relayer or wallet, Amoy settings (extends Q-26) | PHASES Phase 5, ADR-014 | Hardik |
+| Q-53 | Speech interface shape (`transcribe(audio) -> Transcript`) agreed between Area 1 and Area 2; contract for Transcript | PHASES Phase 0, ARCHITECTURE | Abhishek |
+| Q-54 | Handles `@NYN-05` in CODEOWNERS is not yet a collaborator, so GitHub may flag the line until the invite is accepted | CODEOWNERS | Hardik |
 
 ## 3. Resolved
 
@@ -94,3 +103,7 @@ The ground rule is: this prompt wins, then `docs/source/VeriDoc-Final-Idea.md`, 
 | C-04 | faster-whisper (ADR-009). | 2026-10-25 | PRD, UX_FLOWS, DEMO_SCRIPT, source idea note |
 | C-11 | FR-SCO-001 formula kept. Demo numbers come from the real formula; wireframe values are illustrative only. | 2026-10-25 | PRD, UX_FLOWS, DEMO_SCRIPT, source idea note |
 | Q-25 | Blind Handshake: reply mode is primary; handover mode is the demo mode; first party's answers must be sealed before the second can submit (FR-HSK-007). | 2026-10-25 | PRD, UX_FLOWS, DECISIONS, DATA_MODEL, INTEGRITY_SPEC, AI_SPEC, DEMO_SCRIPT |
+| Q-29 | Named dependency owner: Jhashank (Area 3). | 2026-10-25 | TEAM_GUIDE, ONBOARDING, CODEOWNERS, CLAUDE.md, AGENTS.md |
+| Q-30 | Members: Samanway @notorious1337 (Area 1), Abhishek @absksync (Area 2), Jhashank @NYN-05 (Area 3), Hardik @HARDIKSINGH150206 (Area 4). | 2026-10-25 | TEAM_GUIDE, ONBOARDING, CODEOWNERS, CLAUDE.md, AGENTS.md |
+| Q-31 | Document owners set in TEAM_GUIDE; Hardik is editor of shared docs. | 2026-10-25 | TEAM_GUIDE, ONBOARDING, CODEOWNERS, CLAUDE.md, AGENTS.md |
+| Q-32 | Branch protection set on main and dev (see GIT_WORKFLOW section 7 for the next steps). | 2026-10-25 | TEAM_GUIDE, ONBOARDING, CODEOWNERS, CLAUDE.md, AGENTS.md |
