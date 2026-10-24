@@ -38,12 +38,13 @@ Status: Draft v1
 ## 2. Clone and branch
 
 ```
-git clone <repo-url> Veridoc
+git clone https://github.com/HARDIKSINGH150206/Veridoc.git Veridoc
 cd Veridoc
+git checkout dev
 git checkout -b feat/<area>-<name>
 ```
 
-Pull and rebase every morning: `git pull --rebase origin main`.
+Always branch from `dev`, never from `main`. Pull and rebase every morning: `git pull --rebase origin dev`. The beginner walkthrough, with commands for all three systems, is in [ONBOARDING](ONBOARDING.md); branch rules are in [GIT_WORKFLOW](GIT_WORKFLOW.md).
 
 ## 3. Environment
 

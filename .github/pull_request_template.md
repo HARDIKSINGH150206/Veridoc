@@ -4,7 +4,7 @@
 
 ## Area
 
-- [ ] Area 1: Ingest and Voice
+- [ ] Area 1: Ingest, Voice and Agreement
 - [ ] Area 2: Intelligence
 - [ ] Area 3: Integrity and Vault
 - [ ] Area 4: Frontend and Packaging
@@ -13,6 +13,10 @@
 ## Linked requirement IDs
 
 <!-- For example FR-IMP-001, FR-FLG-003, NFR-OFF-001 -->
+
+## Linked issue
+
+<!-- Closes #N -->
 
 ## Priority tag
 
@@ -30,6 +34,8 @@
 - [ ] Tests added or updated, inside the package they test, and passing
 - [ ] ruff and mypy pass
 - [ ] Works with the network off
+- [ ] Branch started from `dev` and this pull request targets `dev`
+- [ ] Changelog fragment added in `changes/`
 - [ ] Docs updated (PRD criteria, specs, UX flows as needed)
 - [ ] Threat model row added or updated if a new input or boundary was added
 - [ ] If hashing, Merkle, version chain, echo code or verify changed: INTEGRITY_SPEC and test vectors updated, tamper tests pass

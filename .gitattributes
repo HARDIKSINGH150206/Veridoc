@@ -1,0 +1,28 @@
+# Normalise line endings so Windows, macOS and Linux never cause diffs.
+* text=auto eol=lf
+
+# Windows scripts need CRLF to run.
+*.bat text eol=crlf
+*.cmd text eol=crlf
+
+# Binary files: never diff or convert.
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.webp binary
+*.pdf binary
+*.zip binary
+*.mp3 binary
+*.wav binary
+*.opus binary
+*.ogg binary
+*.m4a binary
+*.aac binary
+*.woff binary
+*.woff2 binary
+*.ttf binary
+*.otf binary
+*.sqlite binary
+*.gguf binary

@@ -9,7 +9,7 @@ All Hindi text below is a draft and needs native-speaker review before the demo 
 
 ## 1. Format
 
-One YAML file per playbook in `playbooks/`. Templates live in `playbooks/templates/<lang>/`. The engine validates a playbook at startup and refuses invalid files with the line number.
+One YAML file per playbook in `playbooks/` (Area 2). Templates live in `playbooks/templates/<lang>/` (Area 1, who builds recaps and handshake messages from them). The engine validates a playbook at startup and refuses invalid files with the line number.
 
 ```yaml
 key: string                     # unique, snake_case

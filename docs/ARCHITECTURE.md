@@ -75,6 +75,7 @@ flowchart TB
 flowchart TB
   subgraph Routers["apps/api/routers"]
     R1["ingest.py"]
+    R1B["agreement.py"]
     R2["analysis.py"]
     R3["vault.py"]
     R4["export.py"]
@@ -86,6 +87,8 @@ flowchart TB
     P["WhatsApp parser"]
     M["Media handler"]
     V["Voice transcriber"]
+    RC["Recap builder"]
+    HS["Blind Handshake logic"]
   end
   subgraph Intel["packages/intelligence"]
     RU["Rules"]
@@ -93,8 +96,6 @@ flowchart TB
     FL["Flags"]
     SC["Score"]
     SG["Suggestion"]
-    HS["Blind Handshake logic"]
-    RC["Recap builder"]
     PB["Playbook loader"]
   end
   subgraph Integ["packages/integrity"]
@@ -111,6 +112,7 @@ flowchart TB
     DP["Dispute pack"]
   end
   R1 --> Ingest
+  R1B --> Ingest
   R2 --> Intel
   R3 --> Integ
   R3 --> Vault
@@ -158,7 +160,7 @@ sequenceDiagram
   U->>CP: Pastes suggested message in WhatsApp
   U->>UI: Build recap
   UI->>API: POST recap
-  API->>INT: Fill templates from confirmed terms
+  API->>ING: Fill templates from confirmed terms
   API->>VLT: Create version, recap hash, echo code
   VLT-->>UI: Recap text and code
   U->>CP: Pastes recap in WhatsApp
@@ -295,7 +297,8 @@ Veridoc/
 │   ├── api/                    FastAPI app, thin layer of routes only
 │   │   ├── main.py             registers routers; hotspot, Area 4 only
 │   │   └── routers/
-│   │       ├── ingest.py       Area 1
+│   │       ├── ingest.py       Area 1: import and voice
+│   │       ├── agreement.py    Area 1: recap and Blind Handshake
 │   │       ├── analysis.py     Area 2
 │   │       ├── vault.py        Area 3
 │   │       └── export.py       Area 3
@@ -306,30 +309,36 @@ Veridoc/
 │   └── verify/                 standalone verify.html, Area 3
 ├── packages/
 │   ├── contracts/              shared Pydantic schemas, the ONLY shared code
-│   ├── ingest/                 Area 1: WhatsApp parser, media, voice
-│   ├── intelligence/           Area 2: rules, local AI, flags, score, suggestion, Blind Handshake logic
+│   ├── ingest/                 Area 1: WhatsApp parser, media, voice, recap builder, Blind Handshake logic
+│   ├── intelligence/           Area 2: rules, local AI, flags, score, suggestion
 │   ├── integrity/              Area 3: hashing, Merkle, version chain, echo code, anchoring
 │   └── vault/                  Area 3: SQLite, encryption, audit table, dispute pack
-├── playbooks/                  Area 2: supply_order.yaml, freelance.yaml, templates/en, templates/hi
+├── playbooks/                  Area 2: supply_order.yaml, freelance.yaml
+│   └── templates/              Area 1: recap and suggestion templates (en/, hi/)
 ├── eval/                       Area 2: chats/, labels/, runner/, reports/ (git-ignored)
 ├── test-vectors/integrity/     Area 3: hashes that Python and JS must both match
 ├── packaging/                  Area 4: START.bat, start.sh, portable runtimes, tier detection
 ├── models/manifest.json        model names and SHA-256 only, never weights
 ├── scripts/                    trust report and dev helpers
 ├── docs/                       each document has an owner listed in TEAM_GUIDE
-├── .github/                    CODEOWNERS, pull_request_template.md, workflows/
+├── changes/                    changelog fragments, one file per pull request
+├── .github/                    CODEOWNERS, pull_request_template.md, ISSUE_TEMPLATE/, workflows/
 ├── pyproject.toml + uv.lock    dependency owner only
+├── CHANGELOG.md               combined from changes/ at phase end by the release lead
+├── .gitattributes              line endings (LF) and binary file rules
+├── .gitignore                  Python, Node, OS, secrets, weights, reports, real chats
+├── .editorconfig               indentation and final newline rules
 ├── CLAUDE.md
 ├── AGENTS.md
 └── README.md
 ```
 
-Each package has its own `tests/` folder inside it. There is no shared top-level tests folder. Alembic migrations live inside `packages/vault/migrations/` (Area 3), so they add no new top-level folder.
+Each package has its own `tests/` folder inside it. There is no shared top-level tests folder. Alembic migrations live inside `packages/vault/migrations/` (Area 3), so they add no new top-level folder. Each package keeps its fixtures in its own `fixtures/` folder (created by the owning area when needed). `apps/api/main.py` loads every module in `apps/api/routers/` automatically (ADR-022), so adding a route never touches `main.py`. The design tokens live in one file, `apps/web/assets/design-tokens.css` (Area 4).
 
 | Area | Owns | Role |
 |---|---|---|
-| 1. Ingest and Voice | `packages/ingest`, `apps/api/routers/ingest.py`, sample chats | Ingest lead |
-| 2. Intelligence | `packages/intelligence`, `playbooks/`, `eval/`, `apps/api/routers/analysis.py` | AI and rules lead |
+| 1. Ingest, Voice and Agreement | `packages/ingest`, `apps/api/routers/ingest.py`, `apps/api/routers/agreement.py`, `playbooks/templates/`, sample chats | Ingest and agreement lead |
+| 2. Intelligence | `packages/intelligence`, `playbooks/` (except `playbooks/templates/`), `eval/`, `apps/api/routers/analysis.py` | AI and rules lead |
 | 3. Integrity and Vault | `packages/integrity`, `packages/vault`, `apps/verify`, `test-vectors/`, `apps/api/routers/vault.py`, `apps/api/routers/export.py` | Integrity lead |
 | 4. Frontend and Packaging | `apps/web`, `packaging/`, `apps/api/main.py` | UI and release lead |
 
@@ -355,10 +364,10 @@ All routes are under `/api`, bind to 127.0.0.1, require the session token header
 | analysis | `POST /deals/{id}/terms/{key}/correct` | value | term, audit event |
 | analysis | `POST /deals/{id}/terms/{key}/reject` | none | term |
 | analysis | `GET /deals/{id}/suggestion?tone=` | none | suggestion |
-| analysis | `POST /deals/{id}/handshake/start` | none | questions |
-| analysis | `POST /deals/{id}/handshake/answers` | party, answers | seal record |
-| analysis | `POST /deals/{id}/handshake/reveal` | none | side-by-side result |
-| analysis | `POST /deals/{id}/recap` | language | recap text, lines, code |
+| agreement | `POST /deals/{id}/handshake/start` | none | questions |
+| agreement | `POST /deals/{id}/handshake/answers` | party, answers | seal record (refused until the first set is sealed) |
+| agreement | `POST /deals/{id}/handshake/reveal` | none | side-by-side result |
+| agreement | `POST /deals/{id}/recap` | language | recap text, lines, code |
 | vault | `POST /deals/{id}/recaps/{rid}/check-reply` | pasted text, sender | confirmation state |
 | vault | `GET /deals/{id}/versions` and `/versions/diff?a=&b=` | none | versions, diff |
 | vault | `GET /deals/{id}/receipt` | none | receipt |
@@ -395,6 +404,7 @@ Names only. Values live in a local `.env` (never committed) or in the launcher; 
 | `VERIDOC_MANIFEST_PATH` | Path to `models/manifest.json` |
 | `VERIDOC_MAX_IMPORT_MB` | Import size cap |
 | `VERIDOC_LOG_LEVEL` | Log level |
+| `VERIDOC_FEATURE_FLAGS` | Comma-separated names of unfinished features to switch on (see DEVELOPMENT_METHODOLOGY) |
 | `VERIDOC_ANCHOR_ENABLED` | Enable anchoring (P1; default off) |
 | `VERIDOC_ANCHOR_RPC` | Anchoring network endpoint (P1) |
 | `VERIDOC_SHARE_BASE_URL` | Share server base (P1) |
