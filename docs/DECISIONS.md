@@ -27,6 +27,7 @@ Status: Draft v1
 | ADR-018 | Share link with client-side encryption and the key in the URL fragment |
 | ADR-019 | Blind Handshake included as lite MVP with a fallback |
 | ADR-020 | Features cut |
+| ADR-021 | SQLAlchemy 2.0 with Alembic; no object store in MVP |
 
 ## ADR-001 Build from scratch; DigiVault informs design only
 
@@ -80,7 +81,7 @@ Status: Draft v1
 - **Context:** Needs a single-file, serverless, crash-safe database that lives on a stick.
 - **Decision:** One SQLite database per vault in WAL mode with insert-only tables enforced by triggers. Encrypted at the record and file level by the vault layer.
 - **Alternatives considered:** Postgres; JSON files; LevelDB.
-- **Consequences:** Simple backup (copy a folder). Triggers do not stop direct file edits, so integrity relies on hashes, not on the database.
+- **Consequences:** Simple backup (copy a folder). Triggers do not stop direct file edits, so integrity relies on hashes, not on the database. See ADR-021 for the ORM, migrations and evidence files.
 
 ## ADR-007 Rules first, AI second; AI only suggests and never touches the hash path
 
@@ -207,3 +208,12 @@ Status: Draft v1
 - **Decision:** Cut: counterparty reliability scores, fake-chat detection claims, verdict prediction, contract template library, full payment ledger, late-interest calculator, formal-notice escalation, LoRA fine-tuning claims, RAG. Reasons: they cannot be validated, drift into legal practice, or are outside LS-06.
 - **Alternatives considered:** Keep a subset as stretch goals.
 - **Consequences:** A tighter story. Each is listed in PRD non-goals so nobody builds it by accident.
+
+## ADR-021 SQLAlchemy 2.0 with Alembic; no object store in MVP
+
+- **Status:** Accepted
+- **Date:** 2026-10-25
+- **Context:** The vault needs typed database access, a versioned schema across four people's work, and insert-only audit rules that survive refactors. Evidence files (audio, attachments) must stay private and verifiable. A cloud tier may later need shared storage.
+- **Decision:** Use SQLAlchemy 2.0 for database access and Alembic for migrations. The insert-only audit triggers live in an Alembic migration as raw SQL. Evidence files are stored in an encrypted local folder, each named by its hash. MinIO or any S3-compatible store is roadmap only, for the cloud tier's share bundles.
+- **Alternatives considered:** Raw `sqlite3` with hand-written schema scripts; an ORM without migrations; storing audio as database blobs; an object store from day one.
+- **Consequences:** Two more dependencies, owned by the dependency owner. Schema changes need a migration and a trigger check in tests. File names reveal content hashes (THREAT_MODEL T29). No server to run in the MVP. Area 3 owns the migrations in `packages/vault/migrations/`.

@@ -15,6 +15,7 @@ Status: Draft v1
 | Node.js | Current LTS | Only for running the JavaScript test vectors and linting the verify page; not needed at runtime |
 | pre-commit | Current | Runs ruff and gitleaks on commit |
 | C/C++ build tools | Platform default | Needed if `llama-cpp-python` builds from source |
+| SQLAlchemy 2.0 and Alembic | Installed by uv | Database access and migrations; no separate server |
 
 ### Windows
 
@@ -56,6 +57,7 @@ Pull and rebase every morning: `git pull --rebase origin main`.
 | Create the environment and install | `TBD` |
 | Install pre-commit hooks | `TBD` (will be `pre-commit install`) |
 | Install JavaScript test dependencies | `TBD` |
+| Create or upgrade the vault schema (Alembic) | `TBD` (will run `alembic upgrade head` against a vault under `VERIDOC_HOME`) |
 
 ## 5. Models
 
@@ -94,6 +96,7 @@ Tests live inside each package under `packages/<name>/tests/`.
 | Dependency audit | `TBD` (pip-audit) |
 | Trust report | `TBD` |
 | Offline check (all screens load with the network blocked) | `TBD` |
+| Migration check (insert-only triggers block UPDATE and DELETE after `alembic upgrade head`) | `TBD` |
 
 All of these run in CI once `.github/workflows/` is added.
 

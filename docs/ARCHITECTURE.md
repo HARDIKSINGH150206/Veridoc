@@ -40,8 +40,8 @@ flowchart TB
     AI["AI runner: llama.cpp"]
     SPEECH["Speech runner: faster-whisper"]
     INT["Integrity engine"]
-    DB[("SQLite vault, WAL, encrypted")]
-    FILES[("Evidence folder: audio and files")]
+    DB[("SQLite vault via SQLAlchemy 2.0 and Alembic, WAL")]
+    FILES[("Encrypted evidence folder, files named by hash")]
     VPAGE["verify.html standalone"]
   end
   L --> API
@@ -66,7 +66,7 @@ flowchart TB
 | AI runner | Local model refinement with schema-constrained output | Area 2 |
 | Speech runner | Voice-note transcription at import | Area 1 |
 | Integrity engine | Hashing, Merkle, version chain, echo code, anchoring | Area 3 |
-| Vault | SQLite, encryption, audit table, dispute pack | Area 3 |
+| Vault | SQLite through SQLAlchemy 2.0, Alembic migrations, encryption, audit table, encrypted evidence folder, dispute pack | Area 3 |
 | Verify page | Standalone offline check | Area 3 |
 
 ## 3. Component view of the backend
@@ -105,7 +105,7 @@ flowchart TB
     AN["Anchoring, P1"]
   end
   subgraph Vault["packages/vault"]
-    ST["SQLite store"]
+    ST["SQLAlchemy store and Alembic migrations"]
     EN["Encryption"]
     AU["Audit table"]
     DP["Dispute pack"]
@@ -245,7 +245,7 @@ flowchart TB
     S2["Portable Python runtime"]
     S3["App code, bundled web assets"]
     S4["Model files (hash-checked)"]
-    S5["Encrypted vault folder"]
+    S5["Encrypted vault folder: SQLite plus evidence files"]
   end
   subgraph Laptop["MVP alternative: laptop install"]
     L1["Same build in a local folder"]
@@ -273,6 +273,9 @@ Windows, macOS and Linux runtimes ship side by side on the stick. The stick is a
 | Local AI | llama.cpp via `llama-cpp-python`, small open instruction models, JSON-schema output | CPU-friendly, offline, valid structured output |
 | Speech | faster-whisper (small; base on low tiers) | Good Hindi and English accuracy for size; Python |
 | Storage | SQLite WAL | Single file, crash-safe, no server |
+| ORM and migrations | SQLAlchemy 2.0, Alembic | Typed models; versioned schema; insert-only triggers shipped as raw SQL in a migration (ADR-021) |
+| Evidence files | Encrypted local folder, files named by hash | No object store needed on one device; content-addressed |
+| Object store (roadmap) | MinIO or any S3-compatible store | Only for the cloud tier's share bundles; not in the MVP |
 | Encryption | AES-GCM, Argon2id | Standard, reviewed primitives |
 | Integrity | SHA-256, salted Merkle, domain separation, RFC 8785 JCS | Offline verify with WebCrypto; cross-language |
 | Anchoring (P1) | Polygon, Amoy testnet in the demo | Cheap independent timestamp; hash only |
@@ -321,7 +324,7 @@ Veridoc/
 └── README.md
 ```
 
-Each package has its own `tests/` folder inside it. There is no shared top-level tests folder.
+Each package has its own `tests/` folder inside it. There is no shared top-level tests folder. Alembic migrations live inside `packages/vault/migrations/` (Area 3), so they add no new top-level folder.
 
 | Area | Owns | Role |
 |---|---|---|
@@ -413,7 +416,7 @@ No secret is ever a default value in code.
 | After the hackathon | Fix what the trust report shows; real pilot with 5 to 10 small businesses; lawyer review of wording, certificate and DPDP; Hindi and Kannada native review |
 | Hardening | Signed releases; reproducible builds; third-party security review of vault and integrity; fuzzing of parsers |
 | Product | Installable phone web app, then Android "Share to VeriDoc"; better voice; more playbooks |
-| Services | Optional cloud tier: encrypted sync, teams, billing, CA or lawyer review marketplace; WhatsApp extension; anchoring service |
+| Services | Optional cloud tier (this is where an S3-compatible store such as MinIO enters, for share bundles): encrypted sync, teams, billing, CA or lawyer review marketplace; WhatsApp extension; anchoring service |
 | Compliance | DPDP notices and consent for counterparty data; retention policy; incident process |
 
 The integrity format is versioned (`spec_version`) so older receipts stay verifiable as the product grows.

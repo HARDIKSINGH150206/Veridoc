@@ -645,7 +645,7 @@ A version is confirmed only when both parties are confirmed. The user's own conf
 
 #### FR-VLT-004 Insert-only audit
 - **Priority:** MVP
-- **Description:** An audit table records imports, confirmations, corrections, seals, exports and settings changes. SQLite triggers reject UPDATE and DELETE on it.
+- **Description:** An audit table records imports, confirmations, corrections, seals, exports and settings changes. SQLite triggers, created by an Alembic migration as raw SQL, reject UPDATE and DELETE on it.
 - **Acceptance:**
   - Given an audit row, When code attempts UPDATE or DELETE, Then the database raises an error.
 
@@ -872,7 +872,7 @@ Summary of [DATA_MODEL](DATA_MODEL.md).
 
 | Topic | Requirement |
 |---|---|
-| Storage | One SQLite database per vault (WAL mode) plus an evidence folder for media, both inside the encrypted vault. |
+| Storage | One SQLite database per vault (WAL mode, SQLAlchemy 2.0, Alembic migrations) plus an encrypted local evidence folder with files named by hash. No object store in the MVP. |
 | Core entities | Deal, Participant, Message, VoiceNote, Transcript, Term, Flag, Score snapshot, Suggestion, HandshakeAnswer, Recap, Confirmation, Version, Receipt, AuditEvent, DisputePack. |
 | Insert-only | AuditEvent, and the hash records for versions, seals and confirmations, are insert-only. Triggers block UPDATE and DELETE. |
 | Encryption | AES-GCM per record or per file; key from Argon2id passphrase; recovery key printed once. |

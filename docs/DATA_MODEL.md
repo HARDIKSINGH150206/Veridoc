@@ -9,8 +9,10 @@ Status: Draft v1
 
 | Item | Detail |
 |---|---|
-| Database | One SQLite file per vault, WAL mode |
-| Evidence folder | Audio and attachments, one encrypted file per item, named by id |
+| Database | One SQLite file per vault, WAL mode, accessed through SQLAlchemy 2.0 |
+| Schema changes | Alembic migrations in `packages/vault/migrations/`. Every schema change is a migration. |
+| Evidence folder | Audio and attachments in an encrypted local folder. Each file is AES-GCM encrypted and **named by its hash** (the lowercase hex payload digest from INTEGRITY_SPEC section 5). Content-addressed, so identical files are stored once. |
+| Object store | None in the MVP. MinIO or any S3-compatible store is roadmap only, for the cloud tier's share bundles. |
 | Location | Inside the vault folder on the stick or laptop |
 | Encryption | AES-GCM; key derived from the passphrase with Argon2id; a random data key is wrapped by the passphrase key and by the recovery key |
 | Backups | The user copies the vault folder. No cloud sync in the MVP. |
@@ -61,7 +63,7 @@ Types: `id` is a random UUID; `ts` is an ISO 8601 string with offset. "Insert-on
 `id`, `deal_id`, `seq`, `sender_participant_id`, `ts`, `text`, `attachment_id` (nullable), `is_system`, `source` (export, paste, simulator), `import_batch_id`.
 
 ### VoiceNote (insert-only)
-`id`, `deal_id`, `seq`, `message_id`, `file_id`, `duration_ms`, `audio_digest`, `status` (transcribed, not_transcribed, failed).
+`id`, `deal_id`, `seq`, `message_id`, `file_hash` (name of the encrypted evidence file), `duration_ms`, `audio_digest`, `status` (transcribed, not_transcribed, failed).
 
 ### Transcript (insert-only)
 `id`, `voice_note_id`, `model`, `model_version`, `language`, `segments` (JSON: `start_ms`, `end_ms`, `text`, `confidence`), `created_at`, `supersedes_id` (nullable, for user corrections).
@@ -125,6 +127,8 @@ Rule: a row with `order` 2 can be inserted only if a sealed row with `order` 1 e
 ## 4. Insert-only enforcement
 
 - SQLite `BEFORE UPDATE` and `BEFORE DELETE` triggers on every insert-only table call `RAISE(ABORT, ...)`.
+- The triggers live in an Alembic migration as raw SQL (`op.execute`), not in SQLAlchemy model code, so they are created and versioned with the schema and cannot be skipped by a model change. Each insert-only table's migration creates both triggers.
+- SQLAlchemy models for insert-only tables expose no update or delete methods in the vault package API.
 - The startup self-check verifies the triggers exist and abort a test write on a scratch table.
 - The only exception is crypto-shredding (section 6), which removes the key rather than rows; encrypted rows remain but are unreadable.
 - Integrity does not rely on triggers: tampering with the file directly is caught by the Merkle root and chain at verification.
@@ -148,6 +152,14 @@ Rule: a row with `order` 2 can be inserted only if a sealed row with `order` 1 e
 | Deletion | "Delete deal" removes the deal's wrapped key (crypto-shredding), deletes evidence files and clears the deal's rows where the insert-only rule allows; a final audit event records the deletion without content. A receipt bundle already given to someone else is not affected. |
 | Logs | Contain no content; rotated at a small fixed size. |
 
-## 7. Exports
+## 7. Evidence files
+
+1. Path: `<vault>/evidence/<first two hex chars>/<full hex hash>`.
+2. The name is the payload digest of the plaintext (audio bytes or attachment bytes). The file content is encrypted with AES-GCM, with the deal id and file hash as associated data.
+3. On read, the vault decrypts and recomputes the digest; a mismatch is reported as a self-check failure.
+4. Names reveal the hash of a file to anyone with disk access, so a known file could be recognised. This is accepted for the MVP (THREAT_MODEL T29); the folder is on an encrypted vault location chosen by the user.
+5. Deleting a deal removes its files and its wrapped key.
+
+## 8. Exports
 
 Exports are written only by the user's action (receipt bundle, dispute pack). They are plain files outside the vault; the user is warned of this before export. The P1 privacy mask applies to exports, shares and any cloud call (see [PRIVACY](PRIVACY.md)).

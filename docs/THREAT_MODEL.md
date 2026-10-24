@@ -87,6 +87,7 @@ STRIDE letters: S spoofing, T tampering, R repudiation, I information disclosure
 | T26 | Antivirus quarantines the launcher | Environment | D | Pre-test on target laptops; recorded backup | Venue policy |
 | T27 | Insert-only table modified by direct file edit | Dishonest user | T | Triggers are not the main control; the Merkle root and chain catch tampering at verification | Triggers do not stop a determined file editor |
 | T28 | Clipboard exposure of suggested text | Local malware | I | Text is short and non-secret; user sends it themselves | Accepted |
+| T29 | Evidence file names reveal a file's hash, so a known file can be recognised on disk | Thief, local malware | I | File content is AES-GCM encrypted; vault on an encrypted location chosen by the user | Accepted for the MVP |
 
 ## 5. Residual risks (accepted and stated)
 
