@@ -186,7 +186,7 @@ Screens are defined in [UX_FLOWS](UX_FLOWS.md). The wireframe overview calls the
 | 2 | Reads each line, and replies "CONFIRM <code>" if all is correct. | S12 |
 | 3 | If something is wrong she replies in her own words. Raju corrects the term and a new version and code are made. | S12, S7 |
 
-If Blind Handshake is used, Meena answers the same questions privately (for example on Raju's screen or in her own chat reply, see FR-HSK-001) before the reveal.
+If Blind Handshake is used, Raju answers and seals first, then Meena answers the same questions in a WhatsApp reply (reply mode, primary) or on Raju's screen (handover mode, used in the demo), see FR-HSK-001 and FR-HSK-007, before the reveal.
 
 ### Verifier
 
@@ -498,9 +498,14 @@ The wireframes show 68 as a placeholder number. The formula above is authoritati
 #### FR-HSK-001 Questions
 - **Priority:** MVP
 - **Description:** Both sides answer the same 3 to 4 key questions privately. Questions come from the playbook's `handshake_questions` (for supply or order: delivery date, final payment terms, late penalty, and one of price or quantity).
-- **Rules:** MVP method is **handover mode**: each party enters answers in turn on the primary user's device, and the screen hides the answers once sealed. A lower-assurance **reply mode** lets the counterparty answer numbered questions in a WhatsApp reply that the user pastes straight into a sealed slot. The UI states which mode was used. In-person voice sealing is Roadmap.
+- **Rules:**
+  - **Reply mode is the primary mode.** The user answers first and seals. The app then builds a WhatsApp message with the numbered questions. The counterparty answers in a WhatsApp reply, and the user pastes it into the second sealed slot. The counterparty installs nothing.
+  - **Handover mode is the demo mode.** Each party enters answers in turn on the same device, and the screen hides answers once sealed. It is used in the live demo where both people are present.
+  - The UI states which mode was used. Reply mode is lower assurance because the user sees the reply in WhatsApp before pasting it, and the UI says so. In-person voice sealing is Roadmap.
+  - The ordering rule in FR-HSK-007 applies to both modes.
 - **Acceptance:**
   - Given a playbook with four questions, When the handshake starts, Then four questions are shown to the first party and no answers of the other party are visible.
+  - Given reply mode, When party 1 has sealed, Then the WhatsApp question message becomes available to copy, and not before.
 
 #### FR-HSK-002 States
 - **Priority:** MVP
@@ -509,9 +514,9 @@ The wireframes show 68 as a placeholder number. The formula above is authoritati
 | State | Meaning | Next |
 |---|---|---|
 | not_started | No questions asked | asking |
-| asking | Questions shown to party 1 | party1_sealed |
+| asking | Questions shown to party 1 (the user in reply mode) | party1_sealed |
 | party1_sealed | Party 1 answers hashed and timestamped | party2_asking |
-| party2_asking | Questions shown to party 2 | both_sealed |
+| party2_asking | Questions sent or shown to party 2; submission allowed only after party1_sealed | both_sealed |
 | both_sealed | Both answer sets hashed | revealed |
 | revealed | Side-by-side result shown | resolved or fallback_recap |
 | resolved | All mismatches agreed (user records agreed values) | recap |
@@ -522,6 +527,15 @@ The wireframes show 68 as a placeholder number. The formula above is authoritati
 - **Description:** Each answer set is canonicalised, salted and hashed (type tag 0x13) with a device timestamp before the other set is shown. The seal hash is displayed (S5).
 - **Acceptance:**
   - Given party 1 has sealed, When party 2 starts, Then party 1's answers are not retrievable from the UI or API until both are sealed.
+
+#### FR-HSK-007 Seal-before-submit (hard requirement)
+- **Priority:** MVP
+- **Description:** The first party's answers must be sealed (hashed and timestamped) before the second party can submit.
+- **Rules:** The vault rejects a second answer set for a deal handshake unless a sealed first set exists with an earlier sealed time. Enforced in `packages/vault` and again in the router; the UI cannot bypass it. The second set's seal time must be later than the first's. A violation is refused with a plain message and logged as an audit event without content.
+- **Acceptance:**
+  - Given no sealed first set, When a second set is submitted, Then the request is refused and nothing is stored.
+  - Given a sealed first set, When the second set is submitted, Then it is sealed with a later timestamp and both seal hashes are shown.
+  - Given a test that submits both sets in one call, Then the first is sealed before the second is accepted, and the order is visible in the audit table.
 
 #### FR-HSK-004 Reveal
 - **Priority:** MVP

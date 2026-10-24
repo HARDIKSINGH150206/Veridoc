@@ -131,8 +131,8 @@ Wireframe numbers (for example Evidence strength 68, "Present 5 of 8") are illus
 
 **Elements.**
 1. Progress: 1 Ask, 2 Sealed, 3 Reveal.
-2. Mode label: Handover mode or Reply mode, with its limit in words.
-3. Question form (3 to 4 questions) for the current party; answers hidden after sealing.
+2. Mode label: Reply mode (primary) or Handover mode (demo), with its limit in words.
+3. Question form (3 to 4 questions) for the current party; answers hidden after sealing. In reply mode the user answers first and seals; then "Copy WhatsApp questions" becomes available, and a paste box accepts the counterparty's reply. The paste box and the second form stay disabled until the first set is sealed.
 4. Seal records: party, Sealed, time, short hash.
 5. Reveal table: question, answer of each party, result (✓ Match, ⚠ difference described, for example "7 days apart", "Different terms").
 6. Draft message for both, and Resolve mismatches.
@@ -140,9 +140,9 @@ Wireframe numbers (for example Evidence strength 68, "Present 5 of 8") are illus
 
 **States.** Not started; party 1 asking; party 1 sealed; party 2 asking; both sealed; revealed with matches only; revealed with mismatches; resolved; skipped.
 
-**Error.** Closing the page between parties keeps sealed answers; unsealed answers are discarded.
+**Error.** Closing the page between parties keeps sealed answers; unsealed answers are discarded. Trying to submit the second set before the first is sealed is refused: "Seal your answers first."
 
-**Copy rules.** "Neither side could see the other's answers before sealing" is shown only for Handover mode. Reply mode says "The other side's answers were visible to you in WhatsApp before sealing."
+**Copy rules.** "Neither side could see the other's answers before sealing" is shown only for Handover mode. Reply mode says "You saw the other side's reply in WhatsApp before pasting it. Your own answers were sealed first."
 
 ### S6 Recap and confirm (MVP)
 

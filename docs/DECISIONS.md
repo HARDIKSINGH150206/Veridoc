@@ -195,7 +195,7 @@ Status: Draft v1
 - **Status:** Accepted
 - **Date:** 2026-10-25
 - **Context:** Misunderstandings often show only after work starts. A sealed answer exchange exposes them early and feels like a friendly check.
-- **Decision:** Both sides answer 3 to 4 key questions privately. Answers are hashed and timestamped, then revealed side by side. MVP uses handover mode, with a lower-assurance reply mode. If time is short or the counterparty cannot take part, fall back to a plain recap. Second in the drop order.
+- **Decision:** Both sides answer 3 to 4 key questions privately. Answers are hashed and timestamped, then revealed side by side. Reply mode is the primary mode (the user seals first, then the counterparty answers in a WhatsApp reply that the user pastes); handover mode is the demo mode. In both, the first party's answers must be sealed before the second can submit. If time is short or the counterparty cannot take part, fall back to a plain recap. Second in the drop order.
 - **Alternatives considered:** Skip it; build in-person voice sealing (roadmap).
 - **Consequences:** Extra UI and state machine. Blindness is procedural in the lite version and is labelled as such.
 

@@ -60,7 +60,7 @@ Required fields by record type (field names are final once the contracts package
 |---|---|
 | Message | `id`, `sender`, `ts`, `text`, `attachment` (file name or null), `source` (`export`, `paste` or `simulator`) |
 | Transcript | `voice_note_id`, `model`, `model_version`, `language`, `segments` (list of `start_ms`, `end_ms`, `text`) |
-| Handshake answer set | `deal_id`, `party`, `mode` (`handover` or `reply`), `answers` (key to value), `sealed_at` |
+| Handshake answer set | `deal_id`, `party`, `order` (1 or 2), `mode` (`reply` or `handover`), `answers` (key to value), `sealed_at` |
 | Agreed-terms set | `deal_id`, `version`, `playbook`, `playbook_version`, `terms` (sorted by key; each with `key`, `value`, `unit`, `sources`, `confirmed_by`) |
 | Recap | `deal_id`, `version`, `language`, `lines` (each with `term_key`, `text`, `sources`), `text` |
 | Confirmation | `deal_id`, `version`, `party`, `reply_text`, `reply_ts`, `code`, `sender_entered_by_user` (boolean) |

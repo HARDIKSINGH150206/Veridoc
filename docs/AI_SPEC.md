@@ -169,6 +169,9 @@ Model files are pinned in `models/manifest.json` (name, size and SHA-256 only; w
 
 ## 12. What the AI must not do
 
+It never receives sealed Blind Handshake answers before the reveal.
+
+
 Write to the vault; confirm a term; send a message; write recap text; give legal advice; predict a verdict; judge whether a chat is genuine; use the network.
 
 ## 13. Logging

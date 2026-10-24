@@ -62,7 +62,6 @@ The ground rule is: this prompt wins, then `docs/source/VeriDoc-Final-Idea.md`, 
 | Q-22 | Echo-code length (4 characters, 20 bits) is enough, or should it be longer | INTEGRITY_SPEC section 7 | TBD |
 | Q-23 | Argon2id parameters tuned for 8 GB laptops | DATA_MODEL section 5 | TBD |
 | Q-24 | Maximum import size and archive limits | PRD FR-IMP-002, ARCHITECTURE section 12 | TBD |
-| Q-25 | Blind Handshake: is handover mode acceptable as "blind" in the lite version, and what wording describes reply mode | PRD FR-HSK-001, UX_FLOWS S5 | TBD |
 | Q-26 | Anchoring: relayer or wallet approach and cost for Polygon Amoy (P1) | DECISIONS ADR-014 | TBD |
 | Q-27 | Signed releases and publication of the verify page hash | THREAT_MODEL T19 | TBD |
 | Q-28 | Security contact address and response timelines | SECURITY | TBD |
@@ -94,3 +93,4 @@ The ground rule is: this prompt wins, then `docs/source/VeriDoc-Final-Idea.md`, 
 | C-03 | Speech-to-text = MVP. | 2026-10-25 | PRD, UX_FLOWS, DEMO_SCRIPT, source idea note |
 | C-04 | faster-whisper (ADR-009). | 2026-10-25 | PRD, UX_FLOWS, DEMO_SCRIPT, source idea note |
 | C-11 | FR-SCO-001 formula kept. Demo numbers come from the real formula; wireframe values are illustrative only. | 2026-10-25 | PRD, UX_FLOWS, DEMO_SCRIPT, source idea note |
+| Q-25 | Blind Handshake: reply mode is primary; handover mode is the demo mode; first party's answers must be sealed before the second can submit (FR-HSK-007). | 2026-10-25 | PRD, UX_FLOWS, DECISIONS, DATA_MODEL, INTEGRITY_SPEC, AI_SPEC, DEMO_SCRIPT |

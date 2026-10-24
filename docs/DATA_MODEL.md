@@ -97,7 +97,9 @@ Terms are editable while unconfirmed. Once a term is part of a version it is cop
 `id`, `deal_id`, `target_term_keys`, `tone`, `text`, `created_at`, `copied_at` (nullable). Records only that the text was copied; VeriDoc cannot know if the user sent it.
 
 ### HandshakeAnswer (insert-only)
-`id`, `deal_id`, `party`, `mode` (handover, reply), `answers` (encrypted JSON), `salt`, `seal_hash`, `sealed_at`, `revealed_at`.
+`id`, `deal_id`, `party`, `order` (1 or 2), `mode` (reply, handover), `answers` (encrypted JSON), `salt`, `seal_hash`, `sealed_at`, `revealed_at`.
+
+Rule: a row with `order` 2 can be inserted only if a sealed row with `order` 1 exists for the deal and its `sealed_at` is earlier (FR-HSK-007).
 
 ### Version (insert-only)
 `id`, `deal_id`, `n`, `terms_set` (canonical JSON), `terms_digest`, `root`, `link`, `prev_link`, `reason_message_id` (nullable), `created_at`.
