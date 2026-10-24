@@ -62,6 +62,14 @@ The code does not exist yet. When it does, follow [docs/SETUP.md](docs/SETUP.md)
 
 | Document | Contents |
 |---|---|
+| [docs/ONBOARDING.md](docs/ONBOARDING.md) | Start here: zero to first merged pull request |
+| [docs/PHASES.md](docs/PHASES.md) | Phases 0 to 5, per-area tasks and gates |
+| [docs/GIT_WORKFLOW.md](docs/GIT_WORKFLOW.md) | Branch model, releases, tags, recovery |
+| [docs/DEVELOPMENT_METHODOLOGY.md](docs/DEVELOPMENT_METHODOLOGY.md) | How four developers work in parallel |
+| [docs/RELEASE_CHECKLIST.md](docs/RELEASE_CHECKLIST.md) | What must pass before `dev` goes into `main` |
+| [docs/DEMO_DAY_RUNBOOK.md](docs/DEMO_DAY_RUNBOOK.md) | Demo day plan |
+| [docs/USER_RESEARCH.md](docs/USER_RESEARCH.md), [docs/DATASET_CARD.md](docs/DATASET_CARD.md), [docs/MODEL_CARD.md](docs/MODEL_CARD.md) | Research, dataset and model templates |
+| [CHANGELOG.md](CHANGELOG.md), [changes/](changes/README.md) | Changelog and fragments |
 | [docs/PRD.md](docs/PRD.md) | Product requirements |
 | [docs/DECISIONS.md](docs/DECISIONS.md) | Architecture decision records |
 | [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) | System design and diagrams |

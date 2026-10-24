@@ -83,6 +83,13 @@ The ground rule is: this prompt wins, then `docs/source/VeriDoc-Final-Idea.md`, 
 | Q-39 | Demo roles: presenter, second person, operator | DEMO_SCRIPT | TBD |
 | Q-40 | Confirmation-rate, time-to-confirm and score-improvement baselines from a pilot | PRD section 15 | TBD |
 | Q-41 | Generate real test vectors with a script; Python and JS must both reproduce them. | INTEGRITY_SPEC sections 6 and 13 | TBD |
+| Q-42 | User research: who interviews, participant mix and the notes folder | USER_RESEARCH section 3 | TBD |
+| Q-43 | Team chat platform and the project board link | ONBOARDING sections 4 and 14 | TBD |
+| Q-44 | Who owns GitHub repository settings (branch protection, merge settings, tag protection) | GIT_WORKFLOW section 7 | TBD |
+| Q-45 | Where security incidents (such as a pushed secret) are recorded | ONBOARDING section 21 | TBD |
+| Q-46 | Licence check of each chosen model for redistribution on a USB stick | MODEL_CARD | TBD |
+| Q-47 | When to raise required approvals from 0 to 1 (proposed: start of Phase 1), turn on code-owner review and include administrators (proposed: before the demo) | GIT_WORKFLOW section 7 | TBD |
+| Q-48 | Eval dataset card to be filled once the eval set exists | DATASET_CARD | TBD |
 
 ## 3. Resolved
 

@@ -85,7 +85,7 @@ def owned(path: str) -> dict[str, set[str]]:
 ref = owned("docs/ARCHITECTURE.md")
 if len(ref) != 4:
     errors.append("could not read 4 ownership rows in ARCHITECTURE.md")
-for doc in ("docs/TEAM_GUIDE.md", "CLAUDE.md", "AGENTS.md"):
+for doc in ("docs/TEAM_GUIDE.md", "docs/ONBOARDING.md", "CLAUDE.md", "AGENTS.md"):
     got = owned(doc)
     if got != ref:
         errors.append(f"ownership table in {doc} differs from ARCHITECTURE.md")
