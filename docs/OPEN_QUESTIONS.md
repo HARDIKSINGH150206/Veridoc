@@ -88,6 +88,7 @@ The ground rule is: this prompt wins, then `docs/source/VeriDoc-Final-Idea.md`, 
 | Q-38 | Whether Tailwind is used as a build-time tool (output must still be bundled with no CDN) | Conflict C-07 | TBD |
 | Q-39 | Demo roles: presenter, second person, operator | DEMO_SCRIPT | TBD |
 | Q-40 | Confirmation-rate, time-to-confirm and score-improvement baselines from a pilot | PRD section 15 | TBD |
+| Q-41 | Generate real test vectors with a script; Python and JS must both reproduce them. | INTEGRITY_SPEC sections 6 and 13 | TBD |
 
 ## 3. Resolved
 
