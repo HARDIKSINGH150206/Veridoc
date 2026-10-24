@@ -253,7 +253,7 @@ Always work from `dev`. (With SSH use `git@github.com:HARDIKSINGH150206/Veridoc.
 Next steps. The code does not exist yet, so the exact commands are `TBD`; the expected ones are shown and will be confirmed in [SETUP](SETUP.md). Git, `gh`, `uv` and `uv run` commands are identical on Windows, macOS and Linux; where a command differs, all three versions are shown.
 
 1. **Install dependencies:** expected `uv sync` (TBD).
-2. **Install pre-commit hooks:** expected `uv run pre-commit install` (TBD). Why: it runs ruff and the secret scan on every commit so mistakes never leave your machine.
+2. **Install pre-commit hooks:** `uv run pre-commit install`. The first commit afterwards downloads the hook tools, so it needs the internet once. Why: it runs ruff and the secret scan on every commit so mistakes never leave your machine.
 3. **Copy the environment file:**
 
 | System | Command |
