@@ -72,7 +72,7 @@ Goal: everyone can build, test and merge. A thin end-to-end path (the walking sk
 - [ ] `packages/contracts` stewarded: the first agreed models merged (all four review)
 
 ### Area 4: Frontend and Blockchain (Hardik)
-- [ ] `apps/web/assets/design-tokens.css` created; one CSS file per screen rule agreed
+- [x] `apps/web/assets/design-tokens.css` created; one CSS file per screen rule agreed
 - [ ] Screens S1 to S3 render from fixtures (no backend needed)
 - [ ] Server-sent events client with a fixture stream
 

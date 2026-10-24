@@ -21,6 +21,7 @@ Release lead: Hardik. Phase and tag: fill in per release (`v0.N-phaseN`).
 - [ ] Integrity tamper tests pass (all seven cases)
 - [ ] Python and JavaScript test vectors match (`test-vectors/integrity/`)
 - [ ] `python scripts/check_hardcoding.py` passes
+- [ ] `python scripts/check_design_tokens.py` passes
 - [ ] gitleaks secret scan passes; pip-audit has no unaddressed high findings
 - [ ] Insert-only trigger test passes after `alembic upgrade head` on a fresh vault
 - [ ] `python3 scripts/check_folder_tree.py` prints `OK`

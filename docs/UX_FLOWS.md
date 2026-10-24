@@ -46,6 +46,7 @@ Wireframe numbers (for example Evidence strength 68, "Present 5 of 8") are illus
 | Words to avoid | proof of authenticity, certainty claims, legal advice (except in "not legal advice"), fake detection |
 | Errors | Say what happened, what is safe, and what to do next. No codes alone. |
 | Loading | Show progress for transcription and model loading with a plain label |
+| Design tokens | Screens use only the tokens in `apps/web/assets/design-tokens.css` (colours, spacing, type scale, radii, light and dark themes). No raw colour values, no CDN. `python scripts/check_design_tokens.py` enforces it |
 | Mock data | Area 4 builds every screen against mock data shaped like `packages/contracts` |
 
 ## 3. Screens
