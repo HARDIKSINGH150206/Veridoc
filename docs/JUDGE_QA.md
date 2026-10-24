@@ -53,8 +53,8 @@ Salts stop guessing of hidden messages. The tree lets us share only chosen messa
 **Can the other person fake the confirmation?**
 The code is a short binding check on the exact recap, not authentication. The reply is stored as evidence and must come from the counterparty in the chat. It relies on the export being genuine, and we say that.
 
-**Is it tamper-proof?**
-No. It is tamper-evident: a change is detected, not prevented.
+**Can the record be made impossible to change?**
+No. It is tamper-evident: a change after saving is detected, not prevented.
 
 ## AI
 

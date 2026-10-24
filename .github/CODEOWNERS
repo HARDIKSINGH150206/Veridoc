@@ -1,0 +1,37 @@
+# Folder ownership. Replace the placeholders with GitHub handles on day 1.
+# Area 1: @TBD-member-1  Ingest and Voice
+# Area 2: @TBD-member-2  Intelligence
+# Area 3: @TBD-member-3  Integrity and Vault
+# Area 4: @TBD-member-4  Frontend and Packaging
+
+# Area 1
+/packages/ingest/                 @TBD-member-1
+/apps/api/routers/ingest.py       @TBD-member-1
+
+# Area 2
+/packages/intelligence/           @TBD-member-2
+/playbooks/                       @TBD-member-2
+/eval/                            @TBD-member-2
+/apps/api/routers/analysis.py     @TBD-member-2
+
+# Area 3
+/packages/integrity/              @TBD-member-3
+/packages/vault/                  @TBD-member-3
+/apps/verify/                     @TBD-member-3
+/test-vectors/                    @TBD-member-3
+/apps/api/routers/vault.py        @TBD-member-3
+/apps/api/routers/export.py       @TBD-member-3
+
+# Area 4
+/apps/web/                        @TBD-member-4
+/packaging/                       @TBD-member-4
+/apps/api/main.py                 @TBD-member-4
+
+# Shared: all four review
+/packages/contracts/              @TBD-member-1 @TBD-member-2 @TBD-member-3 @TBD-member-4
+/docs/                            @TBD-member-1 @TBD-member-2 @TBD-member-3 @TBD-member-4
+/.github/                         @TBD-member-1 @TBD-member-2 @TBD-member-3 @TBD-member-4
+
+# Dependency owner (one named person, TBD)
+/pyproject.toml                   @TBD-member-4
+/uv.lock                          @TBD-member-4
