@@ -18,7 +18,9 @@ Shared by all, changed only by small reviewed pull requests: `packages/contracts
 
 Dependency files (`pyproject.toml`, `uv.lock`) have one named owner: TBD.
 
-`models/manifest.json` and `scripts/` are changed by the area that needs the change, with a review from the Area 2 lead (models) or the Area 3 lead (scripts that touch hashing).
+Hotspots and their owners: contracts process (all four, by pull request), dependency files (named owner TBD), design tokens `apps/web/assets/design-tokens.css` (Area 4), migrations `packages/vault/migrations/` (Area 3), `apps/api/main.py` (Area 4, rarely edited because of router auto-discovery).
+
+The release lead (Area 4) combines changelog fragments into `CHANGELOG.md` at phase end. `models/manifest.json` and `scripts/` are changed by the area that needs the change, with a review from the Area 2 lead (models) or the Area 3 lead (scripts that touch hashing).
 
 ### Document owners
 
@@ -28,7 +30,9 @@ Dependency files (`pyproject.toml`, `uv.lock`) have one named owner: TBD.
 | ARCHITECTURE, DECISIONS | All areas review; one named editor TBD |
 | INTEGRITY_SPEC, DATA_MODEL, THREAT_MODEL | Area 3 |
 | AI_SPEC, PLAYBOOKS, EVALUATION | Area 2 |
-| UX_FLOWS, SETUP, PERFORMANCE | Area 4 |
+| UX_FLOWS, SETUP, PERFORMANCE, DEMO_DAY_RUNBOOK, RELEASE_CHECKLIST | Area 4 |
+| ONBOARDING, GIT_WORKFLOW, PHASES, DEVELOPMENT_METHODOLOGY | TBD (shared; one named editor) |
+| USER_RESEARCH, DATASET_CARD, MODEL_CARD | Area 2 (USER_RESEARCH: TBD) |
 | PRIVACY, LIMITS | Area 3 with Area 4 for UI copy |
 | PRIOR_WORK | TBD |
 
@@ -36,23 +40,36 @@ Dependency files (`pyproject.toml`, `uv.lock`) have one named owner: TBD.
 
 1. **Contracts first.** On day 1 the team agrees `packages/contracts` together: Message, VoiceNote, Term, Flag, Score, Suggestion, HandshakeAnswer, Recap, Confirmation, Version, Receipt, DisputePack. Any later change is its own small pull request reviewed by all four.
 2. **One owner per hotspot.** `apps/api/main.py` (Area 4), `apps/web/components/` (Area 4), dependency files (named owner). Others request changes instead of editing.
-3. **Short branches.** One feature per branch, merged within 1 to 2 days.
-4. **Rebase every morning.** `git pull --rebase origin main` before starting work.
+3. **Short branches.** One feature per branch, merged within 1 to 2 days. Unfinished work merges early behind a feature flag.
+4. **Rebase every morning.** `git pull --rebase origin dev` before starting work, and pull before you push.
 5. **Never commit generated files:** reports, caches, model weights, `node_modules`, build output.
 6. **One file per item.** One chat per eval file, one screen per folder, one playbook per YAML file.
 7. **Formatter and linter run on commit** (ruff via pre-commit), so formatting never causes conflicts.
 8. **The frontend builds against mock data** that matches the contracts, so UI work never waits on the backend.
 9. **AI coding tools** (Claude Code, Codex) are run by each member only inside that member's area.
+10. **Router auto-discovery.** `apps/api/main.py` loads every module in `apps/api/routers/` (ADR-022). Nobody edits `main.py` to add a route.
+11. **Changelog fragments.** Each pull request adds `changes/<branch-name>.md` and never edits `CHANGELOG.md`. The release lead combines fragments at phase end.
+12. **Migrations are Area 3 only.** Other areas request schema changes. Alembic multiple heads are fixed by Area 3 (see ONBOARDING section 22).
+13. **One dependency pull request per day.** The dependency owner batches changes so `uv.lock` never conflicts.
+14. **Design tokens in one file** (`apps/web/assets/design-tokens.css`, Area 4). Every screen has its own CSS file.
+15. **Line endings and style files.** `.gitattributes` (LF) and `.editorconfig` are in the repo; do not override them locally.
+16. **No generated files in Git:** reports, OpenAPI dumps, build output, caches.
+
+Onboarding for new members: [ONBOARDING](ONBOARDING.md). Phase plan: [PHASES](PHASES.md). Working method: [DEVELOPMENT_METHODOLOGY](DEVELOPMENT_METHODOLOGY.md).
 
 ## 3. Branching
+
+Full detail is in [GIT_WORKFLOW](GIT_WORKFLOW.md). In short: `main` is stable and receives phase releases only; `dev` is integration; every feature branch starts from `dev` and merges back into `dev` by pull request.
 
 | Pattern | Use |
 |---|---|
 | `feat/<area>-<name>` | A feature, for example `feat/ingest-android-parser` |
 | `fix/<name>` | A bug fix |
 | `docs/<name>` | Documentation |
+| `chore/<name>` | Tooling, dependencies, configuration |
+| `hotfix/<name>` | An urgent fix, branched from `main` |
 
-`main` should be protected on GitHub (setting TBD): no direct pushes; changes arrive by pull request.
+`main` and `dev` are protected on GitHub: pull request required, force pushes and deletion blocked.
 
 ## 4. Commits
 
@@ -73,7 +90,7 @@ Format: `type(scope): short summary`, for example `feat(ingest): parse iPhone ex
 ## 5. Pull requests and reviews
 
 1. Use the pull request template: summary, area, linked requirement IDs, checklist, whether contracts changed.
-2. Keep pull requests small (aim for under 400 changed lines).
+2. Keep pull requests small (aim for under about 300 changed lines). Add a changelog fragment in `changes/` (see `changes/README.md`).
 3. One reviewer from another area. Contracts, hashing and verify changes need the Area 3 lead. Contract changes need all four.
 4. Reviewers check: requirement IDs, tests, wording rules, no content in logs, ownership boundaries.
 5. Squash or rebase merge; keep history readable.

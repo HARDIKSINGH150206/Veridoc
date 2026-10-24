@@ -28,6 +28,7 @@ Status: Draft v1
 | ADR-019 | Blind Handshake included as lite MVP with a fallback |
 | ADR-020 | Features cut |
 | ADR-021 | SQLAlchemy 2.0 with Alembic; no object store in MVP |
+| ADR-022 | Router auto-discovery in apps/api/main.py |
 
 ## ADR-001 Build from scratch; DigiVault informs design only
 
@@ -217,3 +218,12 @@ Status: Draft v1
 - **Decision:** Use SQLAlchemy 2.0 for database access and Alembic for migrations. The insert-only audit triggers live in an Alembic migration as raw SQL. Evidence files are stored in an encrypted local folder, each named by its hash. MinIO or any S3-compatible store is roadmap only, for the cloud tier's share bundles.
 - **Alternatives considered:** Raw `sqlite3` with hand-written schema scripts; an ORM without migrations; storing audio as database blobs; an object store from day one.
 - **Consequences:** Two more dependencies, owned by the dependency owner. Schema changes need a migration and a trigger check in tests. File names reveal content hashes (THREAT_MODEL T29). No server to run in the MVP. Area 3 owns the migrations in `packages/vault/migrations/`.
+
+## ADR-022 Router auto-discovery in apps/api/main.py
+
+- **Status:** Accepted
+- **Date:** 2026-10-25
+- **Context:** `apps/api/main.py` is a hotspot owned by Area 4. If every new route needed an edit there, three other areas would queue for one file and conflict often.
+- **Decision:** `main.py` loads every module in `apps/api/routers/` automatically. Each module exposes one router object by a fixed name. Adding a route means editing only the router file in your own area. Nobody edits `main.py` to add a route.
+- **Alternatives considered:** Explicit imports in `main.py`; one router per area registered by hand; a plugin entry-point system.
+- **Consequences:** A new router file is picked up with no other change. A broken router module is reported at startup by name rather than silently skipped. Router modules must be import-safe (no work at import time). Area 4 writes the loader in Phase 0.
