@@ -77,7 +77,7 @@ STRIDE letters: S spoofing, T tampering, R repudiation, I information disclosure
 | T16 | Local web server reached from the network or another site | Network or web page | I, E | Bind to 127.0.0.1, random port, CSRF-safe design (token header, strict origin check) | Local malware can still talk to the server |
 | T17 | Content in logs | Honest developer | I | Logging rule: no content or identifiers; lint check; review | Developer error |
 | T18 | Secrets or real chats committed | Developer | I | `.gitignore`, gitleaks, pre-commit hook, rules in CLAUDE.md and AGENTS.md | Human error |
-| T19 | Verify page tampered or replaced with one that always says UNCHANGED | Verifier risk | S | Verify page is a single small file; its own SHA-256 published in release notes; independent Python verifier; open source | The verifier must obtain the page from a trusted source |
+| T19 | Verify page tampered or replaced with one that always says UNCHANGED | Verifier risk | S | Verify page is a single small file; its own SHA-256 published in release notes; independent Python verifier; published source (licence TBD) | The verifier must obtain the page from a trusted source |
 | T20 | Hash or canonicalisation differs between Python and JavaScript | Bug | T | Shared test vectors; CI runs both | Low once vectors pass |
 | T21 | Exports leak personal data | Honest user | I | Warning before export; P1 mask; selective disclosure (P1) | Mask regexes can miss data; user review via preview |
 | T22 | Share link leaks the key | Network attacker | I | Key only in URL fragment, never sent to server; expiry, revoke, access log (P1) | Link forwarding by the recipient |
