@@ -12,6 +12,7 @@ import json
 import re
 import struct
 import sys
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from typing import Any
 
@@ -31,6 +32,7 @@ from packages.integrity import (  # noqa: E402
     domain_hash,
     export_digest,
     file_leaf,
+    format_timestamp,
     import_record_hash,
     inclusion_proof,
     leaf_hash,
@@ -571,6 +573,81 @@ def record_vectors() -> dict[str, Any]:
     }
 
 
+ARABIC_INDIC_YEAR = "".join(chr(0x0660 + int(c)) for c in "2026")
+
+
+def timestamp_vectors() -> dict[str, Any]:
+    def fields(
+        y: int, mo: int, d: int, h: int, mi: int, s: int, off: int | None, **extra: int
+    ) -> dict[str, Any]:
+        return {
+            "year": y, "month": mo, "day": d, "hour": h, "minute": mi, "second": s,
+            "offset_minutes": off, **extra,
+        }  # fmt: skip
+
+    valid = {
+        "india offset": fields(2026, 9, 1, 14, 0, 0, 330),
+        "utc is plus zero": fields(2026, 9, 1, 8, 30, 0, 0),
+        "negative half hour": fields(2026, 9, 1, 14, 0, 0, -210),
+        "leap day": fields(2028, 2, 29, 23, 59, 59, 330),
+        "midnight": fields(2026, 1, 1, 0, 0, 0, 330),
+        "year end, most negative offset": fields(2026, 12, 31, 23, 59, 59, -720),
+        "most positive offset": fields(2026, 6, 1, 0, 0, 0, 840),
+        "century non-leap year is not a leap year": fields(2100, 2, 28, 12, 0, 0, 0),
+        "400-year rule leap day": fields(2000, 2, 29, 12, 0, 0, 0),
+    }
+    formats = []
+    for name, f in valid.items():
+        tz = timezone(timedelta(minutes=f["offset_minutes"]))
+        value = datetime(
+            f["year"], f["month"], f["day"], f["hour"], f["minute"], f["second"], tzinfo=tz
+        )
+        formats.append({"name": name, "fields": f, "text": format_timestamp(value)})
+    rejected_text = [
+        ("Z suffix", "2026-09-01T14:00:00Z"),
+        ("lower-case z", "2026-09-01T14:00:00z"),
+        ("no offset", "2026-09-01T14:00:00"),
+        ("fractional seconds", "2026-09-01T14:00:00.5+05:30"),
+        ("zero fractional seconds", "2026-09-01T14:00:00.000+05:30"),
+        ("no seconds", "2026-09-01T14:00+05:30"),
+        ("space instead of T", "2026-09-01 14:00:00+05:30"),
+        ("offset without colon", "2026-09-01T14:00:00+0530"),
+        ("offset hours only", "2026-09-01T14:00:00+05"),
+        ("minus zero offset", "2026-09-01T14:00:00-00:00"),
+        ("offset 24 hours", "2026-09-01T14:00:00+24:00"),
+        ("offset minutes 60", "2026-09-01T14:00:00+05:60"),
+        ("hour 24", "2026-09-01T24:00:00+05:30"),
+        ("second 60", "2026-09-01T14:00:60+05:30"),
+        ("29 February in a common year", "2026-02-29T14:00:00+05:30"),
+        ("29 February 2100", "2100-02-29T14:00:00+05:30"),
+        ("month 13", "2026-13-01T14:00:00+05:30"),
+        ("trailing newline", "2026-09-01T14:00:00+05:30" + chr(10)),
+        ("leading space", " 2026-09-01T14:00:00+05:30"),
+        ("Arabic-Indic digits", ARABIC_INDIC_YEAR + "-09-01T14:00:00+05:30"),
+        ("two-digit year", "26-09-01T14:00:00+05:30"),
+        ("empty", ""),
+    ]  # fmt: skip
+    rejected_fields = [
+        ("no offset", fields(2026, 9, 1, 14, 0, 0, None)),
+        ("fractional second", fields(2026, 9, 1, 14, 0, 0, 0, microsecond=1)),
+        ("month 13", fields(2026, 13, 1, 14, 0, 0, 0)),
+        ("30 February", fields(2026, 2, 30, 14, 0, 0, 0)),
+        ("29 February in a common year", fields(2026, 2, 29, 14, 0, 0, 0)),
+        ("second 60", fields(2026, 9, 1, 14, 0, 60, 0)),
+        ("hour 24", fields(2026, 9, 1, 24, 0, 0, 0)),
+        ("offset 24 hours", fields(2026, 9, 1, 14, 0, 0, 1440)),
+    ]
+    return {
+        "description": (
+            "hashed-record timestamps YYYY-MM-DDTHH:MM:SS+HH:MM: offset kept, whole seconds, "
+            "never Z. Fields are the parts written; offset_minutes is the signed offset."
+        ),
+        "format": formats,
+        "rejected_text": [{"name": n, "text": t} for n, t in rejected_text],
+        "rejected_fields": [{"name": n, "fields": f} for n, f in rejected_fields],
+    }
+
+
 def worked_example() -> dict[str, Any]:
     payloads: list[JsonValue] = [
         {
@@ -612,6 +689,7 @@ BUILDERS = {
     "merkle.json": merkle_vectors,
     "echo.json": echo_vectors,
     "chain.json": chain_vectors,
+    "timestamp.json": timestamp_vectors,
     "records.json": record_vectors,
     "worked_example.json": worked_example,
 }

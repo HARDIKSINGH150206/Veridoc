@@ -72,7 +72,7 @@ Numbers:
 - Floats are allowed only where a contract needs them and are never part of a hashed record (the speech confidence is shown, not hashed). NaN and infinities are rejected.
 - Dates inside records are ISO 8601 text: a term date is `YYYY-MM-DD` with a year; the model's month-and-day-only form (`--MM-DD`) is never part of an agreed version.
 
-**Timestamps** in hashed records are written `YYYY-MM-DDTHH:MM:SS+HH:MM`: whole seconds, the device's own offset kept, never `Z` (a UTC clock is written `+00:00`). The contracts enforce an offset and whole seconds. The writing function and its vectors in Python and JavaScript are a follow-up (see OPEN_QUESTIONS).
+**Timestamps** in hashed records are written `YYYY-MM-DDTHH:MM:SS+HH:MM`: whole seconds, the device's own offset kept, never `Z` (a UTC clock is written `+00:00`). The contracts enforce an offset and whole seconds. `format_timestamp` writes this form and `parse_timestamp` reads it (Python in `packages/integrity/timestamp.py`, JavaScript in `apps/verify/integrity.mjs`); both reject `Z`, a missing offset, fractional seconds, `-00:00` and impossible dates, and both reproduce `test-vectors/integrity/timestamp.json`.
 
 ### 4.1 The imported export file
 

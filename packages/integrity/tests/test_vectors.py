@@ -2,6 +2,7 @@
 
 import hashlib
 import json
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from typing import Any
 
@@ -12,6 +13,7 @@ from packages.integrity import (
     CanonicalizationError,
     MerkleError,
     ProofStep,
+    TimestampError,
     canonical_record,
     canonicalize,
     chain_links,
@@ -19,12 +21,14 @@ from packages.integrity import (
     domain_hash,
     export_digest,
     file_leaf,
+    format_timestamp,
     from_hex,
     inclusion_proof,
     leaf_hash,
     merkle_root,
     node_hash,
     normalize_code,
+    parse_timestamp,
     plain_record_hash,
     recap_hash,
     record_leaf,
@@ -47,6 +51,7 @@ def test_every_expected_vector_file_exists() -> None:
     assert names == {
         "sha256.json", "domain.json", "canonical.json", "normalize.json", "leaves.json",
         "merkle.json", "echo.json", "chain.json", "records.json", "worked_example.json",
+        "timestamp.json",
     }  # fmt: skip
 
 
@@ -215,3 +220,40 @@ def test_worked_example_vector() -> None:
     assert to_hex(node_hash(leaves[0], leaves[1])) == ex["node_1_2"]
     assert to_hex(merkle_root(leaves)) == ex["root"]
     assert canonicalize(ex["payloads"][0]).decode() == ex["payload_1_canonical"]
+
+
+def datetime_from_fields(f: dict[str, Any]) -> datetime:
+    """Build a datetime from vector fields; raises ValueError for impossible values."""
+    zone = None if f["offset_minutes"] is None else timezone(timedelta(minutes=f["offset_minutes"]))
+    return datetime(
+        f["year"], f["month"], f["day"], f["hour"], f["minute"], f["second"],
+        f.get("microsecond", 0), tzinfo=zone,
+    )  # fmt: skip
+
+
+def fields_from_datetime(value: datetime) -> dict[str, Any]:
+    offset = value.utcoffset()
+    assert offset is not None
+    return {
+        "year": value.year, "month": value.month, "day": value.day, "hour": value.hour,
+        "minute": value.minute, "second": value.second,
+        "offset_minutes": int(offset.total_seconds() // 60),
+    }  # fmt: skip
+
+
+@pytest.mark.parametrize("v", load("timestamp.json")["format"], ids=lambda v: v["name"])
+def test_timestamp_format_vectors(v: dict[str, Any]) -> None:
+    assert format_timestamp(datetime_from_fields(v["fields"])) == v["text"]
+    assert fields_from_datetime(parse_timestamp(v["text"])) == v["fields"]
+
+
+@pytest.mark.parametrize("v", load("timestamp.json")["rejected_text"], ids=lambda v: v["name"])
+def test_timestamp_rejected_text_vectors(v: dict[str, Any]) -> None:
+    with pytest.raises(TimestampError):
+        parse_timestamp(v["text"])
+
+
+@pytest.mark.parametrize("v", load("timestamp.json")["rejected_fields"], ids=lambda v: v["name"])
+def test_timestamp_rejected_field_vectors(v: dict[str, Any]) -> None:
+    with pytest.raises((TimestampError, ValueError)):
+        format_timestamp(datetime_from_fields(v["fields"]))

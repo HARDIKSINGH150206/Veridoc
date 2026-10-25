@@ -8,6 +8,7 @@ All functions are pure: bytes or JSON in, bytes or text out. No I/O, no clock, n
 | `canonical.py` | `canonicalize` (pure RFC 8785 via `rfc8785`), `normalize_text` and `normalize_strings`, `canonical_record` |
 | `merkle.py` | salted leaves (`leaf_hash`, `record_leaf`, `file_leaf`), `merkle_root`, `inclusion_proof`, `verify_inclusion` |
 | `echo.py` | `derive_echo_code`, `normalize_code` |
+| `timestamp.py` | `format_timestamp`, `parse_timestamp` (hashed-record time form, offset kept, never Z) |
 | `chain.py` | `terms_digest`, `chain_link`, `chain_links` |
 | `records.py` | plain records: recap, receipt, import record |
 
