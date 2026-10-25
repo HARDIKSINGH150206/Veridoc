@@ -202,7 +202,7 @@ If Blind Handshake is used, Raju answers and seals first, then Meena answers the
 
 Priority values: **MVP** (must work live in the demo), **P1** (after MVP), **Roadmap** (not built). Status labels in the UI are always a symbol plus a word: ✓ Clear, ! Ambiguous, ○ Missing, ⚠ Conflict.
 
-Term states used throughout:
+Term states used throughout (the four values of the contracts are the statuses the local model returns: `stated`, `unclear`, `contradicted`, `missing`; the UI words below are what the user sees):
 
 | State | Meaning |
 |---|---|
@@ -436,7 +436,7 @@ score       = round(sum(term_points))
 - Weights for the supply or order playbook: parties 10, scope 10, quantity 10, price 15, advance 10, delivery date 15, final payment 15, late penalty 15. The freelance playbook has its own weights in [PLAYBOOKS](PLAYBOOKS.md).
 - Only user-confirmed terms count as `present`. Unconfirmed terms show as "found, not confirmed" and earn nothing.
 
-Worked example (illustrative; Raju and Meena, with all found terms confirmed by Raju):
+Worked example (illustrative; Raju and Meena). Only a stated term with a concrete value can be confirmed, so the unclear delivery date is not confirmed and earns nothing:
 
 | Term | Weight | Present | Clear | Acknowledged | Points |
 |---|---|---|---|---|---|
@@ -445,15 +445,15 @@ Worked example (illustrative; Raju and Meena, with all found terms confirmed by 
 | Quantity | 10 | 1 | 1 | 1 | 10.0 |
 | Price | 15 | 1 | 1 | 1 | 15.0 |
 | Advance | 10 | 1 | 1 | 1 | 10.0 |
-| Delivery date | 15 | 1 | 0 | 0 | 6.0 |
+| Delivery date (unclear, not confirmed) | 15 | 0 | 0 | 0 | 0.0 |
 | Final payment | 15 | 0 | 0 | 0 | 0.0 |
 | Late penalty | 15 | 0 | 0 | 0 | 0.0 |
-| **Total** | 100 | | | | **61** |
+| **Total** | 100 | | | | **55** |
 
 The wireframes show 68 as a placeholder number. The formula above is authoritative (see OPEN_QUESTIONS).
 
 - **Acceptance:**
-  - Given the worked example inputs, When the score is computed, Then it equals 61.
+  - Given the worked example inputs, When the score is computed, Then it equals 55.
   - Given all eight terms Clear and acknowledged, Then the score is 100.
   - Given no terms, Then the score is 0.
 
@@ -461,7 +461,7 @@ The wireframes show 68 as a placeholder number. The formula above is authoritati
 - **Priority:** MVP
 - **Description:** Show the score with three counts (present x of n, clear x of n, acknowledged by both x of n) and per-term points on request.
 - **Acceptance:**
-  - Given score 61, When the user opens "why", Then each term shows weight, three booleans and points that sum to 61.
+  - Given score 55, When the user opens "why", Then each term shows weight, three booleans and points that sum to 55.
 
 #### FR-SCO-003 Recompute events
 - **Priority:** MVP

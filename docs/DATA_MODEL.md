@@ -77,7 +77,7 @@ Types: `id` is a random UUID; `ts` is an ISO 8601 string with offset. "Insert-on
 | value | Normalised |
 | raw | Original wording |
 | unit | |
-| state | clear, ambiguous, missing, conflict |
+| state | stated, unclear, contradicted, missing (the local model's four statuses; the UI says Clear, Ambiguous, Conflict, Missing) |
 | origin | rules, ai, both, user |
 | confidence | high, medium, low |
 | needs_review | boolean |

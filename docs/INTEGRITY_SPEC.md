@@ -28,7 +28,7 @@ The AI layer never writes to anything in this document. Only the integrity engin
 | Text normalisation | `normalize_text(s)`: Unicode NFC, then every `\r\n` and lone `\r` becomes `\n`. The record builders apply it to **every string value** of a record before canonicalisation. **Keys are never normalised.** `canonicalize` itself is pure RFC 8785 and normalises nothing. The raw imported export file is the exception: it is hashed as raw bytes with no normalisation (section 4.1). |
 | Hex encoding | Lowercase hexadecimal, 64 characters per hash, **for storage and display only**. Hashing always works on raw bytes. |
 | Salt | 16 random bytes from the operating system's secure random source, one per leaf, stored in the vault. |
-| Timestamps | ISO 8601 with offset, for example `2026-10-12T10:02:00+05:30`. Taken from the device clock unless anchored. |
+| Timestamps | Taken from the device clock unless anchored. In hashed records: `YYYY-MM-DDTHH:MM:SS+HH:MM`, whole seconds, the device offset kept, never `Z` (section 4). |
 
 ## 3. Domain separation
 
@@ -63,30 +63,38 @@ Structured records are serialised with RFC 8785 JSON Canonicalization Scheme (JC
 
 Building a record's canonical bytes is always: `normalize_text` on every string value (keys untouched), then JCS.
 
+**Field names are the names of `packages/contracts`** (decided with PR #40, D4): `sender_id`, `origin`, `attachment_hash`, `version_n` and so on. The canonical object of a record is its contract model serialised to JSON (enums as their text values, timestamps as text), restricted to the fields listed below. A field that is not listed is never hashed.
+
 Numbers:
-- Large or exact values are **strings**: money (integer paise, for example `"4800000"`), quantities and identifiers.
+- Large or exact values are **strings**: money (integer paise as text, for example `{"kind":"money","paise":"4800000"}`), quantities and identifiers (UUID text).
+- Time lengths are **integer milliseconds** (`start_ms`, `end_ms`, `duration_ms`), never seconds as floats (D3).
 - Integers must lie in the safe range -(2^53 - 1) to 2^53 - 1. An integer outside it is **rejected** with an error; it is never rounded.
-- Floats are allowed only where a contract needs them (durations, confidence). NaN and infinities are rejected.
-- Dates inside records are ISO 8601 strings.
+- Floats are allowed only where a contract needs them and are never part of a hashed record (the speech confidence is shown, not hashed). NaN and infinities are rejected.
+- Dates inside records are ISO 8601 text: a term date is `YYYY-MM-DD` with a year; the model's month-and-day-only form (`--MM-DD`) is never part of an agreed version.
+
+**Timestamps** in hashed records are written `YYYY-MM-DDTHH:MM:SS+HH:MM`: whole seconds, the device's own offset kept, never `Z` (a UTC clock is written `+00:00`). The contracts enforce an offset and whole seconds. The writing function and its vectors in Python and JavaScript are a follow-up (see OPEN_QUESTIONS).
 
 ### 4.1 The imported export file
 
 The original imported export file (the `.txt` or `.zip` as the user gave it) is hashed as **raw bytes with no normalisation and no prefix**: `export_digest = H(raw file bytes)`, so anyone can check it with a standard `sha256sum`. The digest is stored in the import record (`0x16`), which is a plain record: `H(0x16 || JCS(import_record))`.
 
-Required fields by record type (field names are final once the contracts package is agreed):
+### 4.2 Hashed fields by record type
 
-| Type | Fields in the canonical object |
-|---|---|
-| Message | `id`, `sender`, `ts`, `text`, `attachment` (file name or null), `source` (`export`, `paste` or `simulator`) |
-| Transcript span | `transcript_id`, `voice_note_id`, `model`, `model_version`, `language`, `index`, `start_ms`, `end_ms`, `text` (each span repeats the header so it can be disclosed alone) |
-| Term | `deal_id`, `key`, `value`, `unit`, `sources`, `confirmed_by` |
-| Import record | `deal_id`, `export_digest` (hex), `file_name`, `message_count`, `imported_at` |
-| Handshake answer set | `deal_id`, `party`, `order` (1 or 2), `mode` (`reply` or `handover`), `answers` (key to value), `sealed_at` |
-| Agreed-terms set | `deal_id`, `version`, `playbook`, `playbook_version`, `terms` (sorted by key; each with `key`, `value`, `unit`, `sources`, `confirmed_by`) |
+| Record | Prefix | Hashed fields (contract names) |
+|---|---|---|
+| Message | `0x10` | every field of `Message`: `id`, `deal_id`, `seq`, `sender_id`, `ts`, `text`, `attachment_hash`, `is_system`, `origin` |
+| Voice-note audio | `0x11` | the raw audio bytes |
+| Transcript span | `0x12` | `transcript_id`, `voice_note_id`, `model`, `model_version`, `language`, `index` (position of the span), `start_ms`, `end_ms`, `text` (each span repeats the header so it can be disclosed alone; the confidence is not hashed) |
+| Handshake answer set | `0x13` | `deal_id`, `party_id`, `order`, `mode`, `answers` (list of `term_key`, `value`, `raw`), `sealed_at` |
+| Attachment | `0x14` | the raw file bytes |
+| Term | `0x15` | `deal_id`, `version_n`, and the fields of `AgreedTerm`: `key`, `value`, `sources`, `confirmed_by`, `confirmed_at` |
+| Import record | `0x16` | every field of `ImportRecord`: `deal_id`, `export_digest`, `file_name`, `message_count`, `imported_at` |
+| Agreed-terms set | `0x20` | `deal_id`, `version_n`, `playbook` (`key`, `version`), `terms` (every `AgreedTerm`, sorted by `key`) |
+| Recap | `0x21` | `deal_id`, `version_n`, `language`, `lines` (each `term_key`, `text`, `sources`), `body_text`. **Not** hashed: `text`, `echo_code`, `recap_hash`, `created_at` (D1, section 7) |
+| Confirmation | `0x22` | `deal_id`, `version_n`, `party_id`, `reply_text`, `reply_ts`, `code`, `sender_entered_by_user`. **Not** hashed: `state`, `failure`, `checked_at` |
+| Receipt | `0x40` | the receipt **body** only: `spec_version`, `deal_id`, `leaf_count`, `root`, `chain`, `recorded_at`, `anchor` (D2, section 9) |
 
-The field names above are indicative. The primitives and their test vectors accept any JSON; the exact record shapes are fixed with the contracts (PR #40). The draft contracts use seconds as floats for transcript times where this table uses integer milliseconds; they are aligned when the contracts are agreed (OPEN_QUESTIONS Q-61).
-| Recap | `deal_id`, `version`, `language`, `lines` (each with `term_key`, `text`, `sources`), `text` |
-| Confirmation | `deal_id`, `version`, `party`, `reply_text`, `reply_ts`, `code`, `sender_entered_by_user` (boolean) |
+The primitives and their test vectors accept any JSON, so changing a hashed field list changes the record builders and the contracts, not the primitives.
 
 ## 5. Leaves
 
@@ -132,14 +140,14 @@ Hash values are not written here by hand. `scripts/make_test_vectors.py` generat
 Purpose: let the counterparty confirm a recap by replying with a short code, with nothing to install.
 
 ```
-recap_hash = H(0x21 || JCS(recap_object))
+recap_hash = H(0x21 || JCS(recap content WITHOUT the code line))   # fields listed in section 4.2
 digest     = H(0x50 || recap_hash)
 code_bits  = first 20 bits of digest (big-endian)
 code       = 4 characters, 5 bits each, from the Crockford base32 alphabet
              0123456789ABCDEFGHJKMNPQRSTVWXYZ
 ```
 
-`recap_hash` and `digest` are raw 32-byte values here, not hex text. Reply format: `CONFIRM <code>`.
+`recap_hash` and `digest` are raw 32-byte values here, not hex text. Order of work (D1): build `body_text`, compute `recap_hash` over the recap content, derive the code from it, then attach the code line to make the sent `text` (`body_text`, a line break and `If all correct, reply: CONFIRM <code>` in the recap language). The code and the sent text are never hashed, so the hash cannot depend on its own code. Reply format: `CONFIRM <code>`.
 
 Normalisation of a pasted reply before comparison: Unicode NFC, upper-case, trim, collapse spaces, map `O` to `0` and `I` or `L` to `1`. The code is searched for after the word `CONFIRM`; other words around it are ignored.
 
@@ -154,7 +162,7 @@ Properties and limits:
 ```
 link_0     = H(0x30 || 32 zero bytes || terms_digest_0 || root_0)
 link_n     = H(0x30 || link_(n-1)    || terms_digest_n || root_n)
-terms_digest_n = H(0x20 || JCS(terms_set_n))
+terms_digest_n = H(0x20 || JCS(terms_set_n))     # terms_set_n: deal_id, version_n, playbook, terms sorted by key (section 4.2)
 root_n     = Merkle root at the moment version n was recorded
 ```
 
@@ -164,19 +172,23 @@ root_n     = Merkle root at the moment version n was recorded
 
 ## 9. Receipt and bundle
 
-The receipt object (JCS, then `receipt_hash = H(0x40 || JCS(receipt))`):
+A receipt is an envelope `{body, receipt_hash}` (D2). The hash is computed over the body only and sits outside it, so it never hashes itself:
 
-| Field | Meaning |
+```
+receipt_hash = H(0x40 || JCS(body))
+```
+
+| Body field | Meaning |
 |---|---|
 | `spec_version` | Version of this specification |
 | `deal_id` | Identifier of the deal |
 | `leaf_count` | Number of leaves covered |
 | `root` | Current Merkle root (hex) |
-| `chain` | List of `{version, terms_digest, root, link}` |
+| `chain` | List of `{version_n, terms_digest, root, link}` |
 | `recorded_at` | Device-clock time |
 | `anchor` | Null, or `{network, tx, block_time}` (P1) |
 
-The receipt bundle (`.zip`) contains: `receipt.json`, `leaves.jsonl` (type, salt, payload or payload digest, leaf hash, sequence), `chain.json`, `media/` (audio and attachments, only if exported), `README.txt` (how to verify). Messages in the bundle appear in the original order.
+The receipt bundle (`.zip`) contains: `receipt.json` (the envelope), `leaves.jsonl` (one `LeafRow` per line: sequence, leaf type, leaf hash and, for disclosed leaves, the salt, payload digest and payload), `chain.json`, `media/` (audio and attachments, only if exported) and `README.txt` (how to verify). The manifest is the contract `ReceiptBundle`. Leaves appear in tree order.
 
 ## 10. Verification algorithm
 
@@ -196,7 +208,7 @@ Verdict:
 | Verdict | Condition |
 |---|---|
 | ✓ UNCHANGED since recording | Steps 2 to 5 pass. |
-| ⚠ ALTERED after recording | Any of steps 2 to 5 fails. Name the first differing item: a leaf (message number, voice-note id, transcript id) or a chain link. |
+| ⚠ ALTERED after recording | Any of steps 2 to 5 fails. Name the first differing item with the kind of the leaf (`message`, `voice_audio`, `transcript_span`, `handshake_seal`, `attachment`, `term`, `confirmation`), or `import_record`, or `chain_link` (the contract `FirstDifference`). |
 
 Order of "first differing item": the lowest leaf sequence number that fails; if all leaves pass, the lowest chain version that fails.
 
