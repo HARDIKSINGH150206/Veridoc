@@ -411,6 +411,7 @@ Names only. Values live in a local `.env` (never committed) or in the launcher; 
 | `VERIDOC_PORT` | Local port (default chosen at start) |
 | `VERIDOC_TIER` | Force a hardware tier |
 | `VERIDOC_SAFE_MODE` | Force rules-only mode |
+| `VERIDOC_MODEL_MODE` | Model adapter: `fake` (recorded outputs, default) or `local` (real model, issue #69) |
 | `VERIDOC_MODEL_DIR` | Folder holding model files |
 | `VERIDOC_MANIFEST_PATH` | Path to `models/manifest.json` |
 | `VERIDOC_MAX_IMPORT_MB` | Import size cap |

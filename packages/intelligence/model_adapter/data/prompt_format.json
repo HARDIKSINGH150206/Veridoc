@@ -1,0 +1,4 @@
+{
+  "message_format": "[{index}] {sender}: {text}",
+  "system_sender": "System"
+}

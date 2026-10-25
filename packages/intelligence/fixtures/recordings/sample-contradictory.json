@@ -1,0 +1,88 @@
+{
+  "_note": "Hand-written for the walking skeleton in the style of the local model's JSON; not real model output.",
+  "playbook_id": "supply_order",
+  "numbered_chat": "[1] Asha: For 100 cotton shirts, my total price is ₹50,000. Delivery will be on 15 November 2026.\n[2] Bilal: My understanding of the total price is ₹45,000 for those 100 cotton shirts.\n[3] Asha: I will send my understanding of the delivery date in a voice note.\n[4] Asha: <attached: delivery-22-nov.wav>\n[5] Bilal: We have not agreed which price or delivery date applies yet. Please clarify both before I confirm.",
+  "output": {
+    "deal_type": "supply_order",
+    "terms": {
+      "buyer": {
+        "status": "stated",
+        "value": "Bilal",
+        "quote": [
+          "Bilal"
+        ],
+        "msg": [
+          2
+        ]
+      },
+      "seller": {
+        "status": "stated",
+        "value": "Asha",
+        "quote": [
+          "Asha"
+        ],
+        "msg": [
+          1
+        ]
+      },
+      "item": {
+        "status": "stated",
+        "value": "cotton shirts",
+        "quote": [
+          "cotton shirts"
+        ],
+        "msg": [
+          1
+        ]
+      },
+      "quantity": {
+        "status": "stated",
+        "value": 100,
+        "quote": [
+          "100 cotton shirts"
+        ],
+        "msg": [
+          1
+        ]
+      },
+      "unit_price": {
+        "status": "missing"
+      },
+      "total_amount": {
+        "status": "contradicted",
+        "value": null,
+        "quote": [
+          "₹50,000",
+          "₹45,000"
+        ],
+        "msg": [
+          1,
+          2
+        ]
+      },
+      "advance_amount": {
+        "status": "missing"
+      },
+      "delivery_date": {
+        "status": "unclear",
+        "value": null,
+        "quote": [
+          "Please clarify both before I confirm"
+        ],
+        "msg": [
+          5
+        ],
+        "reason": "unconfirmed"
+      },
+      "balance_payment_date": {
+        "status": "missing"
+      },
+      "late_penalty": {
+        "status": "missing"
+      },
+      "quality_spec": {
+        "status": "missing"
+      }
+    }
+  }
+}

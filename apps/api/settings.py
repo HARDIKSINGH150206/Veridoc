@@ -38,6 +38,8 @@ class Settings(BaseSettings):
     tier_low_min_ram_gb: int = 4
 
     safe_mode: bool = False
+    # Which model adapter runs: recorded outputs (fake) or the real local model (local, issue #69).
+    model_mode: Literal["fake", "local"] = "fake"
     # Demo mode switches stubs and fixtures on. It is a setting, never a code edit.
     demo_mode: bool = False
     feature_flags: Annotated[list[str], NoDecode] = []
