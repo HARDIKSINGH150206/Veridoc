@@ -88,3 +88,15 @@ def test_the_script_talks_only_to_the_local_api_path_from_the_page() -> None:
 def test_a_status_always_has_a_symbol_and_a_word() -> None:
     script = SCRIPTS["skeleton.js"]
     assert "status__symbol" in script and "statusView" in script
+
+
+def test_the_page_has_a_model_badge_that_starts_hidden_and_is_set_from_health() -> None:
+    badge = [a for _, a in PAGE.tags if a.get("id") == "model-badge"]
+    assert len(badge) == 1 and "hidden" in badge[0] and badge[0].get("role") == "status"
+    script = SCRIPTS["skeleton.js"]
+    assert "/health" in script and "modelBadgeText" in script and "model-badge" in script
+
+
+def test_status_badges_do_not_stretch_across_the_card() -> None:
+    css = (SCREEN / "skeleton.css").read_text(encoding="utf-8")
+    assert re.search(r"\.terms__item\s+\.status[^{]*\{[^}]*justify-self:\s*start", css)

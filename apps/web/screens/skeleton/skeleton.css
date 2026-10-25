@@ -117,3 +117,28 @@
   font-size: var(--font-size-sm);
   overflow-wrap: anywhere;
 }
+
+.terms__item .status,
+.terms__item .btn {
+  justify-self: start;
+}
+
+.model-badge {
+  justify-self: start;
+  margin: 0;
+  padding: var(--space-1) var(--space-3);
+  border: var(--border-width) solid var(--status-ambiguous-border);
+  border-radius: var(--radius-md);
+  background: var(--status-ambiguous-bg);
+  color: var(--status-ambiguous-fg);
+  font-weight: 600;
+}
+
+.model-badge[hidden] {
+  display: none;
+}
+
+.recap:empty,
+.echo:empty {
+  display: none;
+}

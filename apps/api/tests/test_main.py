@@ -115,3 +115,10 @@ def test_a_router_object_is_an_api_router(routers_pkg: Path) -> None:
     add_router(routers_pkg, "gamma")
     [(name, router)] = discover_routers("fake_routers")
     assert name == "gamma" and isinstance(router, APIRouter)
+
+
+def test_health_reports_the_model_mode() -> None:
+    for mode in ("fake", "local"):
+        app = create_app(Settings(model_mode=mode))
+        with TestClient(app) as client:
+            assert client.get("/api/health").json()["model_mode"] == mode

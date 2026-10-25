@@ -34,6 +34,7 @@ class HealthResponse(BaseModel):
     status: str
     safe_mode: bool
     demo_mode: bool
+    model_mode: str
     router_count: int
 
 
@@ -81,6 +82,7 @@ def create_app(settings: Settings | None = None, routers_package: str = ROUTERS_
             status="ok",
             safe_mode=settings.safe_mode,
             demo_mode=settings.demo_mode,
+            model_mode=settings.model_mode,
             router_count=len(routers),
         )
 
