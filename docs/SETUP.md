@@ -95,6 +95,7 @@ Tests live inside each package under `packages/<name>/tests/`.
 | Lint | `uv run ruff check .` and `uv run ruff format --check .` |
 | Type check | `uv run mypy .` |
 | Design token check | `python scripts/check_design_tokens.py` (also runs in pre-commit) |
+| Export contract JSON Schemas | `uv run python scripts/export_contract_schemas.py` (writes to `out/contract-schemas/`, git-ignored) |
 | Hardcoding check | `python scripts/check_hardcoding.py` (also runs in pre-commit) |
 | Secret scan | runs in the pre-commit hook; manually: `uv run pre-commit run gitleaks --all-files` |
 | Dependency audit | `TBD` (pip-audit) |
