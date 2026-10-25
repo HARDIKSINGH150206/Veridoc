@@ -1,0 +1,57 @@
+[
+  {
+    "id": "e85e3c6a-6da8-565d-aeca-ddd6a05d7029",
+    "deal_id": "ca921d9b-c71c-5525-8231-f1b70f300cc4",
+    "seq": 1,
+    "sender_id": "bdd99f26-e079-586b-8e52-01e6a2d109f8",
+    "ts": "2026-10-25T10:00:00+05:30",
+    "text": "For 100 cotton shirts, my total price is ₹50,000. Delivery will be on 15 November 2026.",
+    "attachment_hash": null,
+    "is_system": false,
+    "origin": "export"
+  },
+  {
+    "id": "0b8da425-c3f6-5cc1-b716-135bcf93504b",
+    "deal_id": "ca921d9b-c71c-5525-8231-f1b70f300cc4",
+    "seq": 2,
+    "sender_id": "cae265a2-b455-5c45-a4b7-f27d43ecb8b2",
+    "ts": "2026-10-25T10:01:00+05:30",
+    "text": "My understanding of the total price is ₹45,000 for those 100 cotton shirts.",
+    "attachment_hash": null,
+    "is_system": false,
+    "origin": "export"
+  },
+  {
+    "id": "8a67ad43-2772-57b0-9683-097873e1dac6",
+    "deal_id": "ca921d9b-c71c-5525-8231-f1b70f300cc4",
+    "seq": 3,
+    "sender_id": "bdd99f26-e079-586b-8e52-01e6a2d109f8",
+    "ts": "2026-10-25T10:02:00+05:30",
+    "text": "I will send my understanding of the delivery date in a voice note.",
+    "attachment_hash": null,
+    "is_system": false,
+    "origin": "export"
+  },
+  {
+    "id": "104d8b9b-2f91-5240-a9a4-4d58aba34388",
+    "deal_id": "ca921d9b-c71c-5525-8231-f1b70f300cc4",
+    "seq": 4,
+    "sender_id": "bdd99f26-e079-586b-8e52-01e6a2d109f8",
+    "ts": "2026-10-25T10:03:00+05:30",
+    "text": "<attached: delivery-22-nov.wav>",
+    "attachment_hash": "37c2430d93ff7f6344f23287255aadc83c853f6734ed7730b017ad8e9ecd2ab7",
+    "is_system": false,
+    "origin": "export"
+  },
+  {
+    "id": "3066be0a-4121-5525-a379-62c72746a0e9",
+    "deal_id": "ca921d9b-c71c-5525-8231-f1b70f300cc4",
+    "seq": 5,
+    "sender_id": "cae265a2-b455-5c45-a4b7-f27d43ecb8b2",
+    "ts": "2026-10-25T10:04:00+05:30",
+    "text": "We have not agreed which price or delivery date applies yet. Please clarify both before I confirm.",
+    "attachment_hash": null,
+    "is_system": false,
+    "origin": "export"
+  }
+]

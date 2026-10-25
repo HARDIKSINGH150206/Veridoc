@@ -31,7 +31,7 @@ package = false
 [tool.pytest.ini_options]
 # Tests live inside the package they test (packages/<name>/tests/), next to the app
 # settings (apps/api/tests/) and next to the scripts they check (scripts/tests/).
-testpaths = ["packages", "apps", "scripts"]
+testpaths = ["packages", "apps", "scripts", "packaging/tests"]
 pythonpath = ["."]
 addopts = "-ra"
 
