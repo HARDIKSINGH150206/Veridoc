@@ -16,3 +16,5 @@ Shared documentation request: review the demo endpoint under THREAT_MODEL T16/T1
 and document this HTTP interface when contracts are agreed. Only synthetic
 bundled data is exposed; callers cannot supply filesystem paths or request
 arbitrary files. The app remains loopback-only and launcher access logs are off.
+
+`GET /api/ingest/samples` lists the bundled samples and `GET /api/ingest/samples/{sample_id}` returns one with its playbook id, participants and messages (demo mode only, same 404 and 503 rules).

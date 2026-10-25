@@ -71,3 +71,7 @@ The ids are deterministic UUIDs (version 5) derived from the sample name, sequen
 number and sender name, because the Message contract requires UUIDs. The contract
 tests validate each entry with the shared Message model (contracts v0.2.0).
 FR-IMP-001, FR-IMP-007.
+
+## Sample metadata (#29)
+
+`meta/<sample>.json` names the playbook a sample follows and lists its two participants (contract `Participant`, with the display names from the export). `load_sample` in `packages/ingest/samples.py` returns the metadata with the messages and fails closed if the two do not match. The demo routes `GET /api/ingest/samples` and `GET /api/ingest/samples/{id}` expose them in demo mode only.
