@@ -65,7 +65,7 @@ Goal: everyone can build, test and merge. A thin end-to-end path (the walking sk
 
 ### Area 3: Backend, Integrity and Vault (Jhashank)
 - [ ] Hashing and vault stubs return fixed fake hashes and a fake receipt
-- [ ] `scripts/make_test_vectors.py` plan and file layout in `test-vectors/integrity/` agreed (Q-41)
+- [x] `scripts/make_test_vectors.py` and the file layout in `test-vectors/integrity/` (Q-41 closed)
 - [x] Alembic initialised in `packages/vault/migrations/` (empty baseline; tables wait for the contracts, PR #40)
 - [x] Router auto-discovery implemented in `apps/api/main.py` (ADR-022)
 - [x] CI workflow `.github/workflows/ci.yml`: ruff, format, mypy, pytest, folder, hardcoding, design-token and gitleaks checks (tamper tests join when they exist) (Q-33)
@@ -109,7 +109,7 @@ Goal: real parsing, real rules, real hashing and real first screens, each agains
 ### Area 3: Backend, Integrity and Vault (Jhashank)
 - [x] SHA-256 hashing with domain separation and RFC 8785 JCS (INTEGRITY_SPEC sections 2 to 5)
 - [x] Salted Merkle tree with odd carry-up and inclusion proofs
-- [ ] `scripts/make_test_vectors.py` generates vectors; Python and JavaScript both reproduce them (Q-41)
+- [x] `scripts/make_test_vectors.py` generates vectors; Python and JavaScript both reproduce them (Q-41)
 - [ ] SQLAlchemy 2.0 models and first Alembic migrations
 - [ ] Insert-only audit triggers in an Alembic migration (raw SQL) with a test that UPDATE and DELETE fail (FR-VLT-004)
 - [ ] Encrypted evidence folder, files named by hash
