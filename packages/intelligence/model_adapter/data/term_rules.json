@@ -1,5 +1,9 @@
 {
   "kinds": {
+    "buyer": "party",
+    "seller": "party",
+    "client": "party",
+    "freelancer": "party",
     "unit_price": "money",
     "total_amount": "money",
     "advance_amount": "money",

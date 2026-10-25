@@ -448,6 +448,22 @@ def test_unclear_term_without_an_amount_is_not_flagged() -> None:
     assert not term.needs_review
 
 
+@pytest.mark.parametrize("key", ["item", "scope", "late_penalty"])
+def test_a_sender_name_is_not_grounding_for_a_non_party_term(ctx: ChatContext, key: str) -> None:
+    term = one(ctx, key, stated("x", "Raju", 1))
+    assert term.needs_review and term.confidence is Confidence.LOW
+    assert isinstance(term.sources[0], MessageSourceRef) and term.sources[0].quote is None
+
+
+@pytest.mark.parametrize("key", ["buyer", "seller", "client", "freelancer"])
+def test_a_sender_name_grounds_a_party_term(ctx: ChatContext, key: str) -> None:
+    assert not one(ctx, key, stated("Raju", "Raju", 1)).needs_review
+
+
+def test_a_party_quote_must_be_the_sender_of_that_message(ctx: ChatContext) -> None:
+    assert one(ctx, "buyer", stated("Meena", "Meena", 1)).needs_review  # message 1 is Raju's
+
+
 # ---- the AI never confirms, ids are stable ----
 
 

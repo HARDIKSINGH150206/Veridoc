@@ -80,10 +80,10 @@ def _typed_value(kind: str, value: object, rules: TermRules) -> TermValue | None
         if value in rules.events:
             return EventValue(kind="event", event=value)
         return None
-    return TextValue(kind="text", text=value) if value.strip() else None
+    return TextValue(kind="text", text=value) if value.strip() else None  # text and party
 
 
-def _sources(raw: TermOutput, chat: ChatContext) -> tuple[list[SourceRef], bool]:
+def _sources(raw: TermOutput, chat: ChatContext, kind: str) -> tuple[list[SourceRef], bool]:
     """Sources from the model's message numbers and quotes, and whether all of them held up."""
     sources: list[SourceRef] = []
     sound = len(raw.quote) == len(raw.msg)
@@ -93,11 +93,10 @@ def _sources(raw: TermOutput, chat: ChatContext) -> tuple[list[SourceRef], bool]
             sound = False
             continue
         message = chat.messages[position - 1]
-        # The model reads "[n] sender: text", so a party term may quote the sender's name.
         in_text = quote is not None and quote != "" and quote in line_text(chat, message)
-        grounded = in_text or (
-            quote is not None and quote != "" and quote in sender_label(chat, message)
-        )
+        # The model reads "[n] sender: text", so only a party term may quote the sender's name.
+        is_name = kind == "party" and quote is not None and quote == sender_label(chat, message)
+        grounded = in_text or is_name
         source: SourceRef
         evidence = chat.voice.get(message.id)
         located = locate_in_voice(evidence, quote) if evidence and in_text and quote else None
@@ -165,14 +164,14 @@ def _map_term(
     try:
         state = TermState(raw.status)
     except ValueError:
-        sources, _ = _sources(raw, chat)
+        sources, _ = _sources(raw, chat, rules.kind_of(key))
         shown = _original_wording(raw) or raw.model_dump_json(exclude_defaults=True)
         return _review_term(key, chat, shown, sources)
     if state is TermState.MISSING:
         return _build(key, chat, state, None, None, None, [], review=False)
 
     kind = rules.kind_of(key)
-    sources, sound = _sources(raw, chat)
+    sources, sound = _sources(raw, chat, kind)
     wording = _original_wording(raw)
     review = not sound
     value: TermValue | None = None
