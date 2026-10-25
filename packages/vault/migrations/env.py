@@ -7,10 +7,11 @@ packages.vault.migrate. It is never read from a file or hardcoded.
 from alembic import context
 from sqlalchemy import create_engine, pool
 
+from packages.vault.models import Base
+
 config = context.config
 
-# Set to the SQLAlchemy MetaData when the tables exist (they wait for PR #40).
-target_metadata = None
+target_metadata = Base.metadata
 
 
 def database_url() -> str:

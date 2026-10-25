@@ -111,7 +111,7 @@ Goal: real parsing, real rules, real hashing and real first screens, each agains
 - [x] Salted Merkle tree with odd carry-up and inclusion proofs
 - [x] `scripts/make_test_vectors.py` generates vectors; Python and JavaScript both reproduce them (Q-41)
 - [ ] SQLAlchemy 2.0 models and first Alembic migrations
-- [ ] Insert-only audit triggers in an Alembic migration (raw SQL) with a test that UPDATE and DELETE fail (FR-VLT-004)
+- [x] Insert-only audit triggers in an Alembic migration (raw SQL) with a test that UPDATE and DELETE fail (FR-VLT-004)
 - [ ] Encrypted evidence folder, files named by hash
 
 ### Area 4: Frontend and Blockchain (Hardik)
