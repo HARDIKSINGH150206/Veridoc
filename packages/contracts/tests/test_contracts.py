@@ -1,44 +1,52 @@
-"""Property tests that apply to every contract model (written before the models)."""
+"""Property tests that apply to every contract model."""
 
 import re
-from collections.abc import Iterator
 from pathlib import Path
 
 import pytest
-from pydantic import BaseModel, ValidationError
+from pydantic import BaseModel, TypeAdapter, ValidationError
 
 import packages.contracts as contracts
-from packages.contracts import ALL_MODELS, CONTRACTS_VERSION
+from packages.contracts import ALL_MODELS, CONTRACTS_VERSION, UNION_TYPES
 
 PACKAGE = Path(contracts.__file__).resolve().parent
-REQUIREMENT_ID = re.compile(r"^(FR|NFR)-[A-Z0-9]+-\d{3}$|^(FR|NFR)-[A-Z0-9]+-\*$")
+REQUIREMENT_ID = re.compile(r"^(FR|NFR)-[A-Z0-9]+-\d{3}$")
+UUID_A = "11111111-1111-4111-8111-111111111111"
+UUID_B = "22222222-2222-4222-8222-222222222222"
+HASH = "a" * 64
+MUTABLE = {"Term", "Flag", "Suggestion"}
 EXPECTED = {
-    "Participant", "Message", "VoiceNote", "TranscriptSpan", "Transcript", "SourceRef",
-    "MessageSourceRef", "VoiceSourceRef", "Term", "AlternativeValue", "Flag", "EvidenceScore",
-    "ScoreBreakdownItem", "Suggestion", "HandshakeQuestion", "HandshakeAnswer", "SealedAnswers",
-    "Recap", "RecapLine", "EchoCode", "Confirmation", "AgreementVersion", "VersionDiff",
-    "TermDiffRow", "ChainLink", "Anchor", "Receipt", "VerifyResult", "VerifyCheck",
-    "FirstDifference", "DisputePackManifest", "PackPart", "PlaybookRef",
+    "Participant", "Message", "VoiceNote", "TranscriptSpan", "Transcript", "MessageSourceRef",
+    "VoiceSourceRef", "PlaybookRef", "MoneyValue", "QuantityValue", "DateValue",
+    "PartialDateValue", "EventValue", "DurationValue", "TextValue", "Term", "AlternativeValue",
+    "Flag", "EvidenceScore", "ScoreBreakdownItem", "Suggestion", "HandshakeQuestion",
+    "HandshakeAnswer", "SealedAnswers", "HandshakeRevealRow", "HandshakeReveal", "Recap",
+    "RecapLine", "EchoCode", "Confirmation", "AgreedTerm", "AgreementVersion", "VersionDiff",
+    "TermDiffRow", "ChainLink", "Anchor", "ReceiptBody", "Receipt", "VerifyResult", "VerifyCheck",
+    "FirstDifference", "DisputePackManifest", "PackPart", "ImportRecord", "LeafRow", "BundleFile",
+    "ReceiptBundle", "ErrorBody", "TermEvent", "FlagEvent", "ScoreEvent", "SuggestionEvent",
+    "ProgressEvent", "DoneEvent", "ErrorEvent", "StreamEnvelope", "DealSummary",
 }  # fmt: skip
 
 
-def concrete_models() -> Iterator[type[BaseModel]]:
-    yield from ALL_MODELS
+def test_every_expected_model_is_exported_exactly_once() -> None:
+    names = [m.__name__ for m in ALL_MODELS]
+    assert set(names) == EXPECTED
+    assert len(names) == len(set(names))
 
 
-def test_every_expected_model_is_exported() -> None:
-    assert {m.__name__ for m in ALL_MODELS} >= EXPECTED - {"SourceRef"}
-    assert hasattr(contracts, "SourceRef")
+def test_the_discriminated_unions_are_exported() -> None:
+    assert set(UNION_TYPES) == {"SourceRef", "TermValue", "StreamEvent"}
 
 
 def test_version_constant_is_semver_and_in_changelog() -> None:
-    assert CONTRACTS_VERSION == "0.1.0"
+    assert CONTRACTS_VERSION == "0.2.0"
     assert re.fullmatch(r"\d+\.\d+\.\d+", CONTRACTS_VERSION)
     changelog = (PACKAGE / "CHANGELOG.md").read_text(encoding="utf-8")
-    assert f"## {CONTRACTS_VERSION}" in changelog
+    assert changelog.index(f"## {CONTRACTS_VERSION}") < changelog.index("## 0.1.0")
 
 
-@pytest.mark.parametrize("model", list(concrete_models()), ids=lambda m: m.__name__)
+@pytest.mark.parametrize("model", ALL_MODELS, ids=lambda m: m.__name__)
 def test_model_has_docstring_with_requirements(model: type[BaseModel]) -> None:
     doc = model.__doc__ or ""
     assert len(doc.strip()) > 20, "docstring missing"
@@ -52,37 +60,35 @@ def test_model_has_docstring_with_requirements(model: type[BaseModel]) -> None:
         assert req in doc, f"{req} must also appear in the docstring of {model.__name__}"
 
 
-@pytest.mark.parametrize("model", list(concrete_models()), ids=lambda m: m.__name__)
+@pytest.mark.parametrize("model", ALL_MODELS, ids=lambda m: m.__name__)
 def test_every_field_has_a_description(model: type[BaseModel]) -> None:
     for name, field in model.model_fields.items():
         assert field.description, f"{model.__name__}.{name} has no description"
 
 
-@pytest.mark.parametrize("model", list(concrete_models()), ids=lambda m: m.__name__)
+@pytest.mark.parametrize("model", ALL_MODELS, ids=lambda m: m.__name__)
 def test_models_are_strict_and_forbid_extra_fields(model: type[BaseModel]) -> None:
     assert model.model_config.get("strict") is True
     assert model.model_config.get("extra") == "forbid"
 
 
-@pytest.mark.parametrize("model", list(concrete_models()), ids=lambda m: m.__name__)
+@pytest.mark.parametrize("model", ALL_MODELS, ids=lambda m: m.__name__)
 def test_json_schema_can_be_generated(model: type[BaseModel]) -> None:
     schema = model.model_json_schema()
     assert schema["title"] == model.__name__
     assert schema["requirements"]
 
 
-def test_immutable_records_are_frozen() -> None:
-    frozen = {
-        "Participant", "Message", "VoiceNote", "TranscriptSpan", "Transcript", "MessageSourceRef",
-        "VoiceSourceRef", "AlternativeValue", "EvidenceScore", "ScoreBreakdownItem",
-        "HandshakeQuestion", "HandshakeAnswer", "SealedAnswers", "Recap", "RecapLine", "EchoCode",
-        "AgreementVersion", "VersionDiff", "TermDiffRow", "ChainLink", "Anchor", "Receipt",
-        "VerifyResult", "VerifyCheck", "FirstDifference", "PackPart", "PlaybookRef", "Confirmation",
-        "DisputePackManifest",
-    }  # fmt: skip
+@pytest.mark.parametrize("name", sorted(UNION_TYPES))
+def test_union_schemas_can_be_generated(name: str) -> None:
+    schema = TypeAdapter(UNION_TYPES[name]).json_schema()
+    assert "oneOf" in schema or "anyOf" in schema
+
+
+def test_only_term_flag_and_suggestion_are_mutable() -> None:
     for model in ALL_MODELS:
         is_frozen = model.model_config.get("frozen") is True
-        assert is_frozen == (model.__name__ in frozen), model.__name__
+        assert is_frozen == (model.__name__ not in MUTABLE), model.__name__
 
 
 def test_frozen_model_cannot_be_changed() -> None:
@@ -102,53 +108,60 @@ def test_strict_mode_does_not_coerce_types() -> None:
 
 
 def test_hashes_must_be_lowercase_sha256_hex() -> None:
-    good = "a" * 64
-    contracts.EchoCode(code="7F3K", recap_hash=good, version_n=1)
+    contracts.EchoCode(code="7F3K", recap_hash=HASH, version_n=1)
     for bad in ("A" * 64, "a" * 63, "g" * 64, ""):
         with pytest.raises(ValidationError):
             contracts.EchoCode(code="7F3K", recap_hash=bad, version_n=1)
 
 
 def test_echo_code_is_four_crockford_characters() -> None:
-    good = "a" * 64
     for bad in ("7F3", "7F3KK", "7F3I", "7f3k", "7F3U"):
         with pytest.raises(ValidationError):
-            contracts.EchoCode(code=bad, recap_hash=good, version_n=1)
+            contracts.EchoCode(code=bad, recap_hash=HASH, version_n=1)
 
 
-def test_source_ref_is_message_or_voice_with_times() -> None:
-    from pydantic import TypeAdapter
+UPPER = "AAAAAAAA-AAAA-4AAA-8AAA-AAAAAAAAAAAA"
 
+
+@pytest.mark.parametrize("bad", ["not-a-uuid", UPPER, UUID_A[:-1], "", UUID_A + "0"])
+def test_ids_must_be_lowercase_uuids(bad: str) -> None:
+    with pytest.raises(ValidationError):
+        contracts.MessageSourceRef(kind="message", message_id=bad)
+
+
+def test_source_ref_is_message_or_voice_with_millisecond_times() -> None:
     adapter = TypeAdapter(contracts.SourceRef)
-    msg = adapter.validate_python({"kind": "message", "message_id": "m1"})
+    msg = adapter.validate_python({"kind": "message", "message_id": UUID_A})
     assert isinstance(msg, contracts.MessageSourceRef)
     voice = adapter.validate_python(
-        {"kind": "voice", "voice_note_id": "v1", "start_s": 1.0, "end_s": 3.5}
+        {"kind": "voice", "voice_note_id": UUID_A, "start_ms": 1000, "end_ms": 3500}
     )
     assert isinstance(voice, contracts.VoiceSourceRef)
     with pytest.raises(ValidationError):
-        adapter.validate_python({"kind": "voice", "voice_note_id": "v1", "start_s": 1.0})
+        adapter.validate_python({"kind": "voice", "voice_note_id": UUID_A, "start_ms": 1000})
     with pytest.raises(ValidationError):
         adapter.validate_python(
-            {"kind": "voice", "voice_note_id": "v1", "start_s": 5.0, "end_s": 2.0}
+            {"kind": "voice", "voice_note_id": UUID_A, "start_ms": 5000, "end_ms": 2000}
+        )
+    with pytest.raises(ValidationError):
+        adapter.validate_python(  # seconds as a float are not allowed any more
+            {"kind": "voice", "voice_note_id": UUID_A, "start_ms": 1.5, "end_ms": 3.5}
         )
 
 
-def test_timestamps_must_carry_a_timezone() -> None:
-    base = {
-        "id": "m1", "deal_id": "d1", "seq": 1, "sender_id": "p1", "text": "hi",
-        "attachment_hash": None, "is_system": False, "origin": "export",
-    }  # fmt: skip
-    contracts.Message.model_validate_json(
-        '{"id":"m1","deal_id":"d1","seq":1,"sender_id":"p1","ts":"2026-10-12T10:02:00+05:30",'
+def message_json(ts: str) -> str:
+    return (
+        f'{{"id":"{UUID_A}","deal_id":"{UUID_B}","seq":1,"sender_id":"{UUID_B}","ts":"{ts}",'
         '"text":"hi","attachment_hash":null,"is_system":false,"origin":"export"}'
     )
-    with pytest.raises(ValidationError):
-        contracts.Message.model_validate_json(
-            '{"id":"m1","deal_id":"d1","seq":1,"sender_id":"p1","ts":"2026-10-12T10:02:00",'
-            '"text":"hi","attachment_hash":null,"is_system":false,"origin":"export"}'
-        )
-    assert base["id"] == "m1"
+
+
+def test_timestamps_need_an_offset_and_whole_seconds() -> None:
+    contracts.Message.model_validate_json(message_json("2026-10-12T10:02:00+05:30"))
+    contracts.Message.model_validate_json(message_json("2026-10-12T04:32:00Z"))
+    for bad in ("2026-10-12T10:02:00", "2026-10-12T10:02:00.5+05:30"):
+        with pytest.raises(ValidationError):
+            contracts.Message.model_validate_json(message_json(bad))
 
 
 def test_no_model_hardcodes_playbook_values() -> None:

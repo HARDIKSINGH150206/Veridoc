@@ -1,18 +1,18 @@
 {
-  "description": "Made-up clean deal: every term clear and acknowledged, recap confirmed by both. Hashes are fake placeholders, not computed.",
+  "description": "Made-up clean deal: every term stated and acknowledged, recap confirmed by both. The recap hash, echo code, leaves, root, version link and receipt hash are computed with packages/integrity.",
   "playbook": {
     "key": "supply_order",
     "version": 1
   },
   "participants": [
     {
-      "id": "p1",
+      "id": "eec0a003-b75c-5dba-a9de-0476770a9cbe",
       "display_name": "Asha",
       "role": "party",
       "is_me": true
     },
     {
-      "id": "p2",
+      "id": "a40e184e-be75-5618-9f60-b2d421cf8120",
       "display_name": "Bilal",
       "role": "party",
       "is_me": false
@@ -20,10 +20,10 @@
   ],
   "messages": [
     {
-      "id": "deal-clean-m1",
-      "deal_id": "deal-clean",
+      "id": "8716ba37-5823-532c-a664-fded086e1ef3",
+      "deal_id": "0c05f159-dbd8-5cfa-b235-584b4bd4d67d",
       "seq": 1,
-      "sender_id": "p1",
+      "sender_id": "eec0a003-b75c-5dba-a9de-0476770a9cbe",
       "ts": "2026-09-01T14:00:00+05:30",
       "text": "Hi Bilal, 50 mugs at 120 each, total 6000. OK?",
       "attachment_hash": null,
@@ -31,10 +31,10 @@
       "origin": "export"
     },
     {
-      "id": "deal-clean-m2",
-      "deal_id": "deal-clean",
+      "id": "031fe443-9239-5879-8fdc-685fb542c639",
+      "deal_id": "0c05f159-dbd8-5cfa-b235-584b4bd4d67d",
       "seq": 2,
-      "sender_id": "p2",
+      "sender_id": "a40e184e-be75-5618-9f60-b2d421cf8120",
       "ts": "2026-09-01T14:03:00+05:30",
       "text": "Yes, done. 50 mugs, 120 each.",
       "attachment_hash": null,
@@ -42,10 +42,10 @@
       "origin": "export"
     },
     {
-      "id": "deal-clean-m3",
-      "deal_id": "deal-clean",
+      "id": "129179a4-77dd-5bef-a939-9dc64f2a59ae",
+      "deal_id": "0c05f159-dbd8-5cfa-b235-584b4bd4d67d",
       "seq": 3,
-      "sender_id": "p1",
+      "sender_id": "eec0a003-b75c-5dba-a9de-0476770a9cbe",
       "ts": "2026-09-01T14:05:00+05:30",
       "text": "I will pay 3000 today and 3000 on delivery.",
       "attachment_hash": null,
@@ -53,10 +53,10 @@
       "origin": "export"
     },
     {
-      "id": "deal-clean-m4",
-      "deal_id": "deal-clean",
+      "id": "8e90cc9e-6247-528d-937f-caefe7ead372",
+      "deal_id": "0c05f159-dbd8-5cfa-b235-584b4bd4d67d",
       "seq": 4,
-      "sender_id": "p2",
+      "sender_id": "a40e184e-be75-5618-9f60-b2d421cf8120",
       "ts": "2026-09-01T14:06:00+05:30",
       "text": "Agreed. Delivery on 20 Sept.",
       "attachment_hash": null,
@@ -64,10 +64,10 @@
       "origin": "export"
     },
     {
-      "id": "deal-clean-m5",
-      "deal_id": "deal-clean",
+      "id": "49badaf8-7fab-53d7-8e41-d41e64a2ea5f",
+      "deal_id": "0c05f159-dbd8-5cfa-b235-584b4bd4d67d",
       "seq": 5,
-      "sender_id": "p1",
+      "sender_id": "eec0a003-b75c-5dba-a9de-0476770a9cbe",
       "ts": "2026-09-01T14:10:00+05:30",
       "text": "If late by more than 3 days, 5 percent off the balance.",
       "attachment_hash": null,
@@ -75,21 +75,21 @@
       "origin": "export"
     },
     {
-      "id": "deal-clean-m6",
-      "deal_id": "deal-clean",
+      "id": "2f0fc51a-5f2f-5706-ad18-7b058a9cb060",
+      "deal_id": "0c05f159-dbd8-5cfa-b235-584b4bd4d67d",
       "seq": 6,
-      "sender_id": "p2",
+      "sender_id": "a40e184e-be75-5618-9f60-b2d421cf8120",
       "ts": "2026-09-01T14:11:00+05:30",
-      "text": "Fine, agreed.",
+      "text": "Fine, agreed. White ceramic mugs as shown.",
       "attachment_hash": null,
       "is_system": false,
       "origin": "export"
     },
     {
-      "id": "deal-clean-m7",
-      "deal_id": "deal-clean",
+      "id": "351ac0e3-aeaa-5c19-86c7-03c1cc620d91",
+      "deal_id": "0c05f159-dbd8-5cfa-b235-584b4bd4d67d",
       "seq": 7,
-      "sender_id": "p1",
+      "sender_id": "eec0a003-b75c-5dba-a9de-0476770a9cbe",
       "ts": "2026-09-01T14:20:00+05:30",
       "text": "Sent 3000.",
       "attachment_hash": null,
@@ -97,224 +97,333 @@
       "origin": "export"
     }
   ],
-  "voice_notes": [],
   "terms": [
     {
-      "id": "deal-clean-t-parties",
-      "deal_id": "deal-clean",
-      "key": "parties",
-      "value_type": "party",
-      "value": "Asha, Bilal",
-      "unit": null,
+      "id": "1d7782a5-f77d-5a13-8fc6-87d7b7873d9b",
+      "deal_id": "0c05f159-dbd8-5cfa-b235-584b4bd4d67d",
+      "key": "buyer",
+      "value": {
+        "kind": "text",
+        "text": "Asha"
+      },
       "raw": null,
-      "state": "clear",
+      "state": "stated",
+      "unclear_reason": null,
       "origin": "rules",
       "confidence": "high",
       "needs_review": false,
       "sources": [
         {
           "kind": "message",
-          "message_id": "deal-clean-m1",
-          "quote": null
+          "message_id": "8716ba37-5823-532c-a664-fded086e1ef3",
+          "quote": "Asha"
         }
       ],
       "alternatives": [],
       "confirmed_at": "2026-09-01T14:30:00+05:30",
+      "confirmed_by": "eec0a003-b75c-5dba-a9de-0476770a9cbe",
       "acknowledged_by_other": true
     },
     {
-      "id": "deal-clean-t-scope",
-      "deal_id": "deal-clean",
-      "key": "scope",
-      "value_type": "text",
-      "value": "mugs",
-      "unit": null,
-      "raw": "mugs",
-      "state": "clear",
+      "id": "f0de2aac-67dc-5e18-a78e-afcbe80ca53b",
+      "deal_id": "0c05f159-dbd8-5cfa-b235-584b4bd4d67d",
+      "key": "seller",
+      "value": {
+        "kind": "text",
+        "text": "Bilal"
+      },
+      "raw": null,
+      "state": "stated",
+      "unclear_reason": null,
       "origin": "rules",
       "confidence": "high",
       "needs_review": false,
       "sources": [
         {
           "kind": "message",
-          "message_id": "deal-clean-m1",
-          "quote": "50 mugs"
+          "message_id": "8716ba37-5823-532c-a664-fded086e1ef3",
+          "quote": "Bilal"
         }
       ],
       "alternatives": [],
       "confirmed_at": "2026-09-01T14:30:00+05:30",
+      "confirmed_by": "eec0a003-b75c-5dba-a9de-0476770a9cbe",
       "acknowledged_by_other": true
     },
     {
-      "id": "deal-clean-t-quantity",
-      "deal_id": "deal-clean",
+      "id": "e93829ba-38bd-55a0-9f5f-a694cba0b9e9",
+      "deal_id": "0c05f159-dbd8-5cfa-b235-584b4bd4d67d",
+      "key": "item",
+      "value": {
+        "kind": "text",
+        "text": "mugs"
+      },
+      "raw": null,
+      "state": "stated",
+      "unclear_reason": null,
+      "origin": "rules",
+      "confidence": "high",
+      "needs_review": false,
+      "sources": [
+        {
+          "kind": "message",
+          "message_id": "8716ba37-5823-532c-a664-fded086e1ef3",
+          "quote": "mugs"
+        }
+      ],
+      "alternatives": [],
+      "confirmed_at": "2026-09-01T14:30:00+05:30",
+      "confirmed_by": "eec0a003-b75c-5dba-a9de-0476770a9cbe",
+      "acknowledged_by_other": true
+    },
+    {
+      "id": "53e0b338-4039-5ac3-9974-39816307b2ec",
+      "deal_id": "0c05f159-dbd8-5cfa-b235-584b4bd4d67d",
       "key": "quantity",
-      "value_type": "quantity",
-      "value": "50",
-      "unit": "mugs",
-      "raw": "50 mugs",
-      "state": "clear",
+      "value": {
+        "kind": "quantity",
+        "amount": "50",
+        "unit": "mugs"
+      },
+      "raw": null,
+      "state": "stated",
+      "unclear_reason": null,
       "origin": "rules",
       "confidence": "high",
       "needs_review": false,
       "sources": [
         {
           "kind": "message",
-          "message_id": "deal-clean-m2",
+          "message_id": "031fe443-9239-5879-8fdc-685fb542c639",
           "quote": "50 mugs"
         }
       ],
       "alternatives": [],
       "confirmed_at": "2026-09-01T14:30:00+05:30",
+      "confirmed_by": "eec0a003-b75c-5dba-a9de-0476770a9cbe",
       "acknowledged_by_other": true
     },
     {
-      "id": "deal-clean-t-price",
-      "deal_id": "deal-clean",
-      "key": "price",
-      "value_type": "money",
-      "value": "12000",
-      "unit": "paise",
-      "raw": "120 each",
-      "state": "clear",
+      "id": "c545e987-d985-5f91-ad05-d2b10cb39bd5",
+      "deal_id": "0c05f159-dbd8-5cfa-b235-584b4bd4d67d",
+      "key": "unit_price",
+      "value": {
+        "kind": "money",
+        "paise": "12000"
+      },
+      "raw": null,
+      "state": "stated",
+      "unclear_reason": null,
       "origin": "rules",
       "confidence": "high",
       "needs_review": false,
       "sources": [
         {
           "kind": "message",
-          "message_id": "deal-clean-m2",
+          "message_id": "031fe443-9239-5879-8fdc-685fb542c639",
           "quote": "120 each"
         }
       ],
       "alternatives": [],
       "confirmed_at": "2026-09-01T14:30:00+05:30",
+      "confirmed_by": "eec0a003-b75c-5dba-a9de-0476770a9cbe",
       "acknowledged_by_other": true
     },
     {
-      "id": "deal-clean-t-advance",
-      "deal_id": "deal-clean",
-      "key": "advance",
-      "value_type": "money",
-      "value": "300000",
-      "unit": "paise",
-      "raw": "3000 today",
-      "state": "clear",
+      "id": "c8871d4c-7c98-5c3f-a015-af628e5d9349",
+      "deal_id": "0c05f159-dbd8-5cfa-b235-584b4bd4d67d",
+      "key": "total_amount",
+      "value": {
+        "kind": "money",
+        "paise": "600000"
+      },
+      "raw": null,
+      "state": "stated",
+      "unclear_reason": null,
       "origin": "rules",
       "confidence": "high",
       "needs_review": false,
       "sources": [
         {
           "kind": "message",
-          "message_id": "deal-clean-m3",
+          "message_id": "8716ba37-5823-532c-a664-fded086e1ef3",
+          "quote": "total 6000"
+        }
+      ],
+      "alternatives": [],
+      "confirmed_at": "2026-09-01T14:30:00+05:30",
+      "confirmed_by": "eec0a003-b75c-5dba-a9de-0476770a9cbe",
+      "acknowledged_by_other": true
+    },
+    {
+      "id": "572bbfad-5980-5a2b-9823-f9b4ef7dded7",
+      "deal_id": "0c05f159-dbd8-5cfa-b235-584b4bd4d67d",
+      "key": "advance_amount",
+      "value": {
+        "kind": "money",
+        "paise": "300000"
+      },
+      "raw": null,
+      "state": "stated",
+      "unclear_reason": null,
+      "origin": "rules",
+      "confidence": "high",
+      "needs_review": false,
+      "sources": [
+        {
+          "kind": "message",
+          "message_id": "129179a4-77dd-5bef-a939-9dc64f2a59ae",
           "quote": "3000 today"
         },
         {
           "kind": "message",
-          "message_id": "deal-clean-m7",
+          "message_id": "351ac0e3-aeaa-5c19-86c7-03c1cc620d91",
           "quote": "Sent 3000"
         }
       ],
       "alternatives": [],
       "confirmed_at": "2026-09-01T14:30:00+05:30",
+      "confirmed_by": "eec0a003-b75c-5dba-a9de-0476770a9cbe",
       "acknowledged_by_other": true
     },
     {
-      "id": "deal-clean-t-delivery_date",
-      "deal_id": "deal-clean",
+      "id": "4e8eb4a9-ac1e-54f4-bb71-db910f38f031",
+      "deal_id": "0c05f159-dbd8-5cfa-b235-584b4bd4d67d",
       "key": "delivery_date",
-      "value_type": "date",
-      "value": "2026-09-20",
-      "unit": "iso8601",
-      "raw": "20 Sept",
-      "state": "clear",
-      "origin": "rules",
+      "value": {
+        "kind": "date",
+        "date": "2026-09-20"
+      },
+      "raw": null,
+      "state": "stated",
+      "unclear_reason": null,
+      "origin": "user",
       "confidence": "high",
       "needs_review": false,
       "sources": [
         {
           "kind": "message",
-          "message_id": "deal-clean-m4",
+          "message_id": "8e90cc9e-6247-528d-937f-caefe7ead372",
           "quote": "Delivery on 20 Sept"
         }
       ],
       "alternatives": [],
       "confirmed_at": "2026-09-01T14:30:00+05:30",
+      "confirmed_by": "eec0a003-b75c-5dba-a9de-0476770a9cbe",
       "acknowledged_by_other": true
     },
     {
-      "id": "deal-clean-t-final_payment",
-      "deal_id": "deal-clean",
-      "key": "final_payment",
-      "value_type": "money",
-      "value": "300000",
-      "unit": "paise",
-      "raw": "3000 on delivery",
-      "state": "clear",
+      "id": "ba5acf92-bf5b-5368-8cce-e3d8c581af9c",
+      "deal_id": "0c05f159-dbd8-5cfa-b235-584b4bd4d67d",
+      "key": "balance_payment_date",
+      "value": {
+        "kind": "event",
+        "event": "on_delivery"
+      },
+      "raw": null,
+      "state": "stated",
+      "unclear_reason": null,
       "origin": "rules",
       "confidence": "high",
       "needs_review": false,
       "sources": [
         {
           "kind": "message",
-          "message_id": "deal-clean-m3",
+          "message_id": "129179a4-77dd-5bef-a939-9dc64f2a59ae",
           "quote": "3000 on delivery"
         },
         {
           "kind": "message",
-          "message_id": "deal-clean-m4",
+          "message_id": "8e90cc9e-6247-528d-937f-caefe7ead372",
           "quote": "Agreed"
         }
       ],
       "alternatives": [],
       "confirmed_at": "2026-09-01T14:30:00+05:30",
+      "confirmed_by": "eec0a003-b75c-5dba-a9de-0476770a9cbe",
       "acknowledged_by_other": true
     },
     {
-      "id": "deal-clean-t-late_penalty",
-      "deal_id": "deal-clean",
+      "id": "ba70c154-655b-5ada-9a66-656a4cb67d7a",
+      "deal_id": "0c05f159-dbd8-5cfa-b235-584b4bd4d67d",
       "key": "late_penalty",
-      "value_type": "text",
-      "value": "5 percent off the balance after 3 days",
-      "unit": "text",
-      "raw": "5 percent off the balance",
-      "state": "clear",
+      "value": {
+        "kind": "text",
+        "text": "5 percent off the balance after 3 days"
+      },
+      "raw": null,
+      "state": "stated",
+      "unclear_reason": null,
       "origin": "rules",
       "confidence": "high",
       "needs_review": false,
       "sources": [
         {
           "kind": "message",
-          "message_id": "deal-clean-m5",
+          "message_id": "49badaf8-7fab-53d7-8e41-d41e64a2ea5f",
           "quote": "5 percent off the balance"
         },
         {
           "kind": "message",
-          "message_id": "deal-clean-m6",
+          "message_id": "2f0fc51a-5f2f-5706-ad18-7b058a9cb060",
           "quote": "Fine, agreed"
         }
       ],
       "alternatives": [],
       "confirmed_at": "2026-09-01T14:30:00+05:30",
+      "confirmed_by": "eec0a003-b75c-5dba-a9de-0476770a9cbe",
+      "acknowledged_by_other": true
+    },
+    {
+      "id": "2dd7f3e2-f995-5305-9a08-72584a39416f",
+      "deal_id": "0c05f159-dbd8-5cfa-b235-584b4bd4d67d",
+      "key": "quality_spec",
+      "value": {
+        "kind": "text",
+        "text": "white ceramic"
+      },
+      "raw": null,
+      "state": "stated",
+      "unclear_reason": null,
+      "origin": "rules",
+      "confidence": "high",
+      "needs_review": false,
+      "sources": [
+        {
+          "kind": "message",
+          "message_id": "2f0fc51a-5f2f-5706-ad18-7b058a9cb060",
+          "quote": "White ceramic mugs"
+        }
+      ],
+      "alternatives": [],
+      "confirmed_at": "2026-09-01T14:30:00+05:30",
+      "confirmed_by": "eec0a003-b75c-5dba-a9de-0476770a9cbe",
       "acknowledged_by_other": true
     }
   ],
-  "flags": [],
   "score": {
-    "deal_id": "deal-clean",
+    "deal_id": "0c05f159-dbd8-5cfa-b235-584b4bd4d67d",
     "ts": "2026-09-01T14:30:00+05:30",
     "total": 100,
     "breakdown": [
       {
-        "term_key": "parties",
-        "weight": 10,
+        "term_key": "buyer",
+        "weight": 5,
         "present": true,
         "clear": true,
         "acknowledged": true,
-        "points": 10.0
+        "points": 5.0
       },
       {
-        "term_key": "scope",
+        "term_key": "seller",
+        "weight": 5,
+        "present": true,
+        "clear": true,
+        "acknowledged": true,
+        "points": 5.0
+      },
+      {
+        "term_key": "item",
         "weight": 10,
         "present": true,
         "clear": true,
@@ -330,7 +439,7 @@
         "points": 10.0
       },
       {
-        "term_key": "price",
+        "term_key": "unit_price",
         "weight": 15,
         "present": true,
         "clear": true,
@@ -338,7 +447,15 @@
         "points": 15.0
       },
       {
-        "term_key": "advance",
+        "term_key": "total_amount",
+        "weight": 5,
+        "present": true,
+        "clear": true,
+        "acknowledged": true,
+        "points": 5.0
+      },
+      {
+        "term_key": "advance_amount",
         "weight": 10,
         "present": true,
         "clear": true,
@@ -354,41 +471,53 @@
         "points": 15.0
       },
       {
-        "term_key": "final_payment",
-        "weight": 15,
+        "term_key": "balance_payment_date",
+        "weight": 10,
         "present": true,
         "clear": true,
         "acknowledged": true,
-        "points": 15.0
+        "points": 10.0
       },
       {
         "term_key": "late_penalty",
-        "weight": 15,
+        "weight": 10,
         "present": true,
         "clear": true,
         "acknowledged": true,
-        "points": 15.0
+        "points": 10.0
+      },
+      {
+        "term_key": "quality_spec",
+        "weight": 5,
+        "present": true,
+        "clear": true,
+        "acknowledged": true,
+        "points": 5.0
       }
     ],
     "trigger": "recap_confirmed"
   },
+  "voice_notes": [],
+  "transcripts": [],
+  "flags": [],
   "suggestions": [],
   "handshake_questions": [],
   "sealed_answers": [],
+  "handshake_reveals": [],
   "recaps": [
     {
-      "id": "deal-clean-r1",
-      "deal_id": "deal-clean",
+      "id": "7fb58a91-3201-5fd6-bb5a-9ab3423a9d38",
+      "deal_id": "0c05f159-dbd8-5cfa-b235-584b4bd4d67d",
       "version_n": 1,
       "language": "en",
       "lines": [
         {
-          "term_key": "parties",
+          "term_key": "buyer",
           "text": "Hi Bilal, just confirming what we discussed:",
           "sources": [
             {
               "kind": "message",
-              "message_id": "deal-clean-m1",
+              "message_id": "8716ba37-5823-532c-a664-fded086e1ef3",
               "quote": null
             }
           ]
@@ -399,18 +528,18 @@
           "sources": [
             {
               "kind": "message",
-              "message_id": "deal-clean-m1",
+              "message_id": "8716ba37-5823-532c-a664-fded086e1ef3",
               "quote": null
             }
           ]
         },
         {
-          "term_key": "advance",
+          "term_key": "advance_amount",
           "text": "3,000 advance received",
           "sources": [
             {
               "kind": "message",
-              "message_id": "deal-clean-m1",
+              "message_id": "8716ba37-5823-532c-a664-fded086e1ef3",
               "quote": null
             }
           ]
@@ -421,18 +550,18 @@
           "sources": [
             {
               "kind": "message",
-              "message_id": "deal-clean-m1",
+              "message_id": "8716ba37-5823-532c-a664-fded086e1ef3",
               "quote": null
             }
           ]
         },
         {
-          "term_key": "final_payment",
+          "term_key": "balance_payment_date",
           "text": "Balance 3,000 on delivery",
           "sources": [
             {
               "kind": "message",
-              "message_id": "deal-clean-m1",
+              "message_id": "8716ba37-5823-532c-a664-fded086e1ef3",
               "quote": null
             }
           ]
@@ -443,17 +572,18 @@
           "sources": [
             {
               "kind": "message",
-              "message_id": "deal-clean-m1",
+              "message_id": "8716ba37-5823-532c-a664-fded086e1ef3",
               "quote": null
             }
           ]
         }
       ],
-      "text": "Hi Bilal, just confirming what we discussed:\n50 mugs at 120 = 6,000\n3,000 advance received\nDelivery by 20 Sept\nBalance 3,000 on delivery\nIf late by more than 3 days: 5 percent off the balance\nIf all correct, reply: CONFIRM 7F3K",
-      "recap_hash": "00000000000000000000000000000000000000000000000000000000000001f5",
+      "body_text": "Hi Bilal, just confirming what we discussed:\n50 mugs at 120 = 6,000\n3,000 advance received\nDelivery by 20 Sept\nBalance 3,000 on delivery\nIf late by more than 3 days: 5 percent off the balance",
+      "text": "Hi Bilal, just confirming what we discussed:\n50 mugs at 120 = 6,000\n3,000 advance received\nDelivery by 20 Sept\nBalance 3,000 on delivery\nIf late by more than 3 days: 5 percent off the balance\nIf all correct, reply: CONFIRM BKZ7",
+      "recap_hash": "59e4d7aa962e5ade3c0dd3e9378c00cf380eba604117aa4f402438db39776166",
       "echo_code": {
-        "code": "7F3K",
-        "recap_hash": "00000000000000000000000000000000000000000000000000000000000001f5",
+        "code": "BKZ7",
+        "recap_hash": "59e4d7aa962e5ade3c0dd3e9378c00cf380eba604117aa4f402438db39776166",
         "version_n": 1
       },
       "created_at": "2026-09-01T14:35:00+05:30"
@@ -461,23 +591,29 @@
   ],
   "confirmations": [
     {
-      "id": "deal-clean-c1",
-      "recap_id": "deal-clean-r1",
-      "party_id": "p1",
+      "id": "2134792b-3a24-5246-8463-5ab0438e8417",
+      "recap_id": "7fb58a91-3201-5fd6-bb5a-9ab3423a9d38",
+      "deal_id": "0c05f159-dbd8-5cfa-b235-584b4bd4d67d",
+      "version_n": 1,
+      "party_id": "eec0a003-b75c-5dba-a9de-0476770a9cbe",
       "state": "confirmed",
       "reply_text": null,
       "reply_ts": null,
+      "code": null,
       "sender_entered_by_user": false,
       "failure": null,
       "checked_at": "2026-09-01T14:36:00+05:30"
     },
     {
-      "id": "deal-clean-c2",
-      "recap_id": "deal-clean-r1",
-      "party_id": "p2",
+      "id": "8f9a86b4-dd43-5bb5-8743-3d58ffc868d0",
+      "recap_id": "7fb58a91-3201-5fd6-bb5a-9ab3423a9d38",
+      "deal_id": "0c05f159-dbd8-5cfa-b235-584b4bd4d67d",
+      "version_n": 1,
+      "party_id": "a40e184e-be75-5618-9f60-b2d421cf8120",
       "state": "confirmed",
-      "reply_text": "CONFIRM 7F3K",
+      "reply_text": "CONFIRM BKZ7",
       "reply_ts": "2026-09-01T14:41:00+05:30",
+      "code": "BKZ7",
       "sender_entered_by_user": false,
       "failure": null,
       "checked_at": "2026-09-01T14:42:00+05:30"
@@ -485,217 +621,210 @@
   ],
   "versions": [
     {
-      "id": "deal-clean-v1",
-      "deal_id": "deal-clean",
-      "n": 1,
+      "id": "e0bfb65d-3014-59c2-98c0-19fd60de6884",
+      "deal_id": "0c05f159-dbd8-5cfa-b235-584b4bd4d67d",
+      "version_n": 1,
       "playbook": {
         "key": "supply_order",
         "version": 1
       },
       "terms": [
         {
-          "id": "deal-clean-t-parties",
-          "deal_id": "deal-clean",
-          "key": "parties",
-          "value_type": "party",
-          "value": "Asha, Bilal",
-          "unit": null,
-          "raw": null,
-          "state": "clear",
-          "origin": "rules",
-          "confidence": "high",
-          "needs_review": false,
+          "key": "advance_amount",
+          "value": {
+            "kind": "money",
+            "paise": "300000"
+          },
           "sources": [
             {
               "kind": "message",
-              "message_id": "deal-clean-m1",
-              "quote": null
-            }
-          ],
-          "alternatives": [],
-          "confirmed_at": "2026-09-01T14:30:00+05:30",
-          "acknowledged_by_other": true
-        },
-        {
-          "id": "deal-clean-t-scope",
-          "deal_id": "deal-clean",
-          "key": "scope",
-          "value_type": "text",
-          "value": "mugs",
-          "unit": null,
-          "raw": "mugs",
-          "state": "clear",
-          "origin": "rules",
-          "confidence": "high",
-          "needs_review": false,
-          "sources": [
-            {
-              "kind": "message",
-              "message_id": "deal-clean-m1",
-              "quote": "50 mugs"
-            }
-          ],
-          "alternatives": [],
-          "confirmed_at": "2026-09-01T14:30:00+05:30",
-          "acknowledged_by_other": true
-        },
-        {
-          "id": "deal-clean-t-quantity",
-          "deal_id": "deal-clean",
-          "key": "quantity",
-          "value_type": "quantity",
-          "value": "50",
-          "unit": "mugs",
-          "raw": "50 mugs",
-          "state": "clear",
-          "origin": "rules",
-          "confidence": "high",
-          "needs_review": false,
-          "sources": [
-            {
-              "kind": "message",
-              "message_id": "deal-clean-m2",
-              "quote": "50 mugs"
-            }
-          ],
-          "alternatives": [],
-          "confirmed_at": "2026-09-01T14:30:00+05:30",
-          "acknowledged_by_other": true
-        },
-        {
-          "id": "deal-clean-t-price",
-          "deal_id": "deal-clean",
-          "key": "price",
-          "value_type": "money",
-          "value": "12000",
-          "unit": "paise",
-          "raw": "120 each",
-          "state": "clear",
-          "origin": "rules",
-          "confidence": "high",
-          "needs_review": false,
-          "sources": [
-            {
-              "kind": "message",
-              "message_id": "deal-clean-m2",
-              "quote": "120 each"
-            }
-          ],
-          "alternatives": [],
-          "confirmed_at": "2026-09-01T14:30:00+05:30",
-          "acknowledged_by_other": true
-        },
-        {
-          "id": "deal-clean-t-advance",
-          "deal_id": "deal-clean",
-          "key": "advance",
-          "value_type": "money",
-          "value": "300000",
-          "unit": "paise",
-          "raw": "3000 today",
-          "state": "clear",
-          "origin": "rules",
-          "confidence": "high",
-          "needs_review": false,
-          "sources": [
-            {
-              "kind": "message",
-              "message_id": "deal-clean-m3",
+              "message_id": "129179a4-77dd-5bef-a939-9dc64f2a59ae",
               "quote": "3000 today"
             },
             {
               "kind": "message",
-              "message_id": "deal-clean-m7",
+              "message_id": "351ac0e3-aeaa-5c19-86c7-03c1cc620d91",
               "quote": "Sent 3000"
             }
           ],
-          "alternatives": [],
-          "confirmed_at": "2026-09-01T14:30:00+05:30",
-          "acknowledged_by_other": true
+          "confirmed_by": "eec0a003-b75c-5dba-a9de-0476770a9cbe",
+          "confirmed_at": "2026-09-01T14:30:00+05:30"
         },
         {
-          "id": "deal-clean-t-delivery_date",
-          "deal_id": "deal-clean",
-          "key": "delivery_date",
-          "value_type": "date",
-          "value": "2026-09-20",
-          "unit": "iso8601",
-          "raw": "20 Sept",
-          "state": "clear",
-          "origin": "rules",
-          "confidence": "high",
-          "needs_review": false,
+          "key": "balance_payment_date",
+          "value": {
+            "kind": "event",
+            "event": "on_delivery"
+          },
           "sources": [
             {
               "kind": "message",
-              "message_id": "deal-clean-m4",
-              "quote": "Delivery on 20 Sept"
-            }
-          ],
-          "alternatives": [],
-          "confirmed_at": "2026-09-01T14:30:00+05:30",
-          "acknowledged_by_other": true
-        },
-        {
-          "id": "deal-clean-t-final_payment",
-          "deal_id": "deal-clean",
-          "key": "final_payment",
-          "value_type": "money",
-          "value": "300000",
-          "unit": "paise",
-          "raw": "3000 on delivery",
-          "state": "clear",
-          "origin": "rules",
-          "confidence": "high",
-          "needs_review": false,
-          "sources": [
-            {
-              "kind": "message",
-              "message_id": "deal-clean-m3",
+              "message_id": "129179a4-77dd-5bef-a939-9dc64f2a59ae",
               "quote": "3000 on delivery"
             },
             {
               "kind": "message",
-              "message_id": "deal-clean-m4",
+              "message_id": "8e90cc9e-6247-528d-937f-caefe7ead372",
               "quote": "Agreed"
             }
           ],
-          "alternatives": [],
-          "confirmed_at": "2026-09-01T14:30:00+05:30",
-          "acknowledged_by_other": true
+          "confirmed_by": "eec0a003-b75c-5dba-a9de-0476770a9cbe",
+          "confirmed_at": "2026-09-01T14:30:00+05:30"
         },
         {
-          "id": "deal-clean-t-late_penalty",
-          "deal_id": "deal-clean",
-          "key": "late_penalty",
-          "value_type": "text",
-          "value": "5 percent off the balance after 3 days",
-          "unit": "text",
-          "raw": "5 percent off the balance",
-          "state": "clear",
-          "origin": "rules",
-          "confidence": "high",
-          "needs_review": false,
+          "key": "buyer",
+          "value": {
+            "kind": "text",
+            "text": "Asha"
+          },
           "sources": [
             {
               "kind": "message",
-              "message_id": "deal-clean-m5",
+              "message_id": "8716ba37-5823-532c-a664-fded086e1ef3",
+              "quote": "Asha"
+            }
+          ],
+          "confirmed_by": "eec0a003-b75c-5dba-a9de-0476770a9cbe",
+          "confirmed_at": "2026-09-01T14:30:00+05:30"
+        },
+        {
+          "key": "delivery_date",
+          "value": {
+            "kind": "date",
+            "date": "2026-09-20"
+          },
+          "sources": [
+            {
+              "kind": "message",
+              "message_id": "8e90cc9e-6247-528d-937f-caefe7ead372",
+              "quote": "Delivery on 20 Sept"
+            }
+          ],
+          "confirmed_by": "eec0a003-b75c-5dba-a9de-0476770a9cbe",
+          "confirmed_at": "2026-09-01T14:30:00+05:30"
+        },
+        {
+          "key": "item",
+          "value": {
+            "kind": "text",
+            "text": "mugs"
+          },
+          "sources": [
+            {
+              "kind": "message",
+              "message_id": "8716ba37-5823-532c-a664-fded086e1ef3",
+              "quote": "mugs"
+            }
+          ],
+          "confirmed_by": "eec0a003-b75c-5dba-a9de-0476770a9cbe",
+          "confirmed_at": "2026-09-01T14:30:00+05:30"
+        },
+        {
+          "key": "late_penalty",
+          "value": {
+            "kind": "text",
+            "text": "5 percent off the balance after 3 days"
+          },
+          "sources": [
+            {
+              "kind": "message",
+              "message_id": "49badaf8-7fab-53d7-8e41-d41e64a2ea5f",
               "quote": "5 percent off the balance"
             },
             {
               "kind": "message",
-              "message_id": "deal-clean-m6",
+              "message_id": "2f0fc51a-5f2f-5706-ad18-7b058a9cb060",
               "quote": "Fine, agreed"
             }
           ],
-          "alternatives": [],
-          "confirmed_at": "2026-09-01T14:30:00+05:30",
-          "acknowledged_by_other": true
+          "confirmed_by": "eec0a003-b75c-5dba-a9de-0476770a9cbe",
+          "confirmed_at": "2026-09-01T14:30:00+05:30"
+        },
+        {
+          "key": "quality_spec",
+          "value": {
+            "kind": "text",
+            "text": "white ceramic"
+          },
+          "sources": [
+            {
+              "kind": "message",
+              "message_id": "2f0fc51a-5f2f-5706-ad18-7b058a9cb060",
+              "quote": "White ceramic mugs"
+            }
+          ],
+          "confirmed_by": "eec0a003-b75c-5dba-a9de-0476770a9cbe",
+          "confirmed_at": "2026-09-01T14:30:00+05:30"
+        },
+        {
+          "key": "quantity",
+          "value": {
+            "kind": "quantity",
+            "amount": "50",
+            "unit": "mugs"
+          },
+          "sources": [
+            {
+              "kind": "message",
+              "message_id": "031fe443-9239-5879-8fdc-685fb542c639",
+              "quote": "50 mugs"
+            }
+          ],
+          "confirmed_by": "eec0a003-b75c-5dba-a9de-0476770a9cbe",
+          "confirmed_at": "2026-09-01T14:30:00+05:30"
+        },
+        {
+          "key": "seller",
+          "value": {
+            "kind": "text",
+            "text": "Bilal"
+          },
+          "sources": [
+            {
+              "kind": "message",
+              "message_id": "8716ba37-5823-532c-a664-fded086e1ef3",
+              "quote": "Bilal"
+            }
+          ],
+          "confirmed_by": "eec0a003-b75c-5dba-a9de-0476770a9cbe",
+          "confirmed_at": "2026-09-01T14:30:00+05:30"
+        },
+        {
+          "key": "total_amount",
+          "value": {
+            "kind": "money",
+            "paise": "600000"
+          },
+          "sources": [
+            {
+              "kind": "message",
+              "message_id": "8716ba37-5823-532c-a664-fded086e1ef3",
+              "quote": "total 6000"
+            }
+          ],
+          "confirmed_by": "eec0a003-b75c-5dba-a9de-0476770a9cbe",
+          "confirmed_at": "2026-09-01T14:30:00+05:30"
+        },
+        {
+          "key": "unit_price",
+          "value": {
+            "kind": "money",
+            "paise": "12000"
+          },
+          "sources": [
+            {
+              "kind": "message",
+              "message_id": "031fe443-9239-5879-8fdc-685fb542c639",
+              "quote": "120 each"
+            }
+          ],
+          "confirmed_by": "eec0a003-b75c-5dba-a9de-0476770a9cbe",
+          "confirmed_at": "2026-09-01T14:30:00+05:30"
         }
       ],
-      "terms_digest": "0000000000000000000000000000000000000000000000000000000000000259",
-      "root": "000000000000000000000000000000000000000000000000000000000000025a",
-      "link": "000000000000000000000000000000000000000000000000000000000000025b",
+      "terms_digest": "49347fb28ddea52a0cd71cb36f37beb8e6cc57ca57b6c40ce332ba2408160012",
+      "root": "da5d13fb1707e1accb9d17fd3228c91bb009de7f2ab1cee8153de51b59884cea",
+      "link": "07924ee4abf869137316190fe378d1dc7a534c9c6fded91ecdeed666d73a63d0",
       "prev_link": null,
       "reason_message_id": null,
       "created_at": "2026-09-01T14:36:00+05:30"
@@ -704,21 +833,23 @@
   "version_diffs": [],
   "receipts": [
     {
-      "spec_version": "0.1-draft",
-      "deal_id": "deal-clean",
-      "leaf_count": 8,
-      "root": "000000000000000000000000000000000000000000000000000000000000025a",
-      "chain": [
-        {
-          "version_n": 1,
-          "terms_digest": "0000000000000000000000000000000000000000000000000000000000000259",
-          "root": "000000000000000000000000000000000000000000000000000000000000025a",
-          "link": "000000000000000000000000000000000000000000000000000000000000025b"
-        }
-      ],
-      "recorded_at": "2026-09-01T14:42:00+05:30",
-      "anchor": null,
-      "receipt_hash": "0000000000000000000000000000000000000000000000000000000000000642"
+      "body": {
+        "spec_version": "0.1-draft",
+        "deal_id": "0c05f159-dbd8-5cfa-b235-584b4bd4d67d",
+        "leaf_count": 7,
+        "root": "da5d13fb1707e1accb9d17fd3228c91bb009de7f2ab1cee8153de51b59884cea",
+        "chain": [
+          {
+            "version_n": 1,
+            "terms_digest": "49347fb28ddea52a0cd71cb36f37beb8e6cc57ca57b6c40ce332ba2408160012",
+            "root": "da5d13fb1707e1accb9d17fd3228c91bb009de7f2ab1cee8153de51b59884cea",
+            "link": "07924ee4abf869137316190fe378d1dc7a534c9c6fded91ecdeed666d73a63d0"
+          }
+        ],
+        "recorded_at": "2026-09-01T14:42:00+05:30",
+        "anchor": null
+      },
+      "receipt_hash": "26ad87aeeb1408bdc498fdd683857da5100450502fa9886b5852742b2989ff37"
     }
   ],
   "verify_results": [
@@ -752,7 +883,7 @@
   ],
   "dispute_packs": [
     {
-      "deal_id": "deal-clean",
+      "deal_id": "0c05f159-dbd8-5cfa-b235-584b4bd4d67d",
       "parts": [
         {
           "name": "timeline",
@@ -785,6 +916,102 @@
       "page_count": 14,
       "size_bytes": 1258291,
       "file_digest": null,
+      "created_at": "2026-09-02T10:00:00+05:30"
+    }
+  ],
+  "import_records": [
+    {
+      "deal_id": "0c05f159-dbd8-5cfa-b235-584b4bd4d67d",
+      "export_digest": "38f39656a2e2d619ef3fe19df7c3d4528314a8512fb8070ba332f960389fd9ab",
+      "file_name": "WhatsApp Chat - Bilal.txt",
+      "message_count": 7,
+      "imported_at": "2026-09-01T14:25:00+05:30"
+    }
+  ],
+  "leaf_rows": [
+    {
+      "seq": 1,
+      "leaf_type": "message",
+      "leaf_hash": "6a6c3dc488ce9320771455b6537e26b1cc6c12c566d42f9712256dce7feed753",
+      "salt": "02020202020202020202020202020202",
+      "payload_digest": "1e79fdbf7e84badc0ca94ce61ce992f4d61b3aa22f2f99f4cfe2cac404a721db",
+      "payload": "{\"attachment_hash\":null,\"deal_id\":\"0c05f159-dbd8-5cfa-b235-584b4bd4d67d\",\"id\":\"8716ba37-5823-532c-a664-fded086e1ef3\",\"is_system\":false,\"origin\":\"export\",\"sender_id\":\"eec0a003-b75c-5dba-a9de-0476770a9cbe\",\"seq\":1,\"text\":\"Hi Bilal, 50 mugs at 120 each, total 6000. OK?\",\"ts\":\"2026-09-01T14:00:00+05:30\"}"
+    },
+    {
+      "seq": 2,
+      "leaf_type": "message",
+      "leaf_hash": "77b36b645b5648cfde08c87662983da06adb1d04ffda5618e0b6238d782dcd4e",
+      "salt": "03030303030303030303030303030303",
+      "payload_digest": "913762c69057b6d532ec0def6a595d8327411a70fb412f1655c8b0734eda9578",
+      "payload": "{\"attachment_hash\":null,\"deal_id\":\"0c05f159-dbd8-5cfa-b235-584b4bd4d67d\",\"id\":\"031fe443-9239-5879-8fdc-685fb542c639\",\"is_system\":false,\"origin\":\"export\",\"sender_id\":\"a40e184e-be75-5618-9f60-b2d421cf8120\",\"seq\":2,\"text\":\"Yes, done. 50 mugs, 120 each.\",\"ts\":\"2026-09-01T14:03:00+05:30\"}"
+    },
+    {
+      "seq": 3,
+      "leaf_type": "message",
+      "leaf_hash": "3d881c68900d0af0671ac1fd910cb929fe3eafebc6f5640ec97cf1bf7cdfde88",
+      "salt": "04040404040404040404040404040404",
+      "payload_digest": "555b05e9a7215aceb3debfc015bda65a904b49b567a6d163957b0b6403beeee7",
+      "payload": "{\"attachment_hash\":null,\"deal_id\":\"0c05f159-dbd8-5cfa-b235-584b4bd4d67d\",\"id\":\"129179a4-77dd-5bef-a939-9dc64f2a59ae\",\"is_system\":false,\"origin\":\"export\",\"sender_id\":\"eec0a003-b75c-5dba-a9de-0476770a9cbe\",\"seq\":3,\"text\":\"I will pay 3000 today and 3000 on delivery.\",\"ts\":\"2026-09-01T14:05:00+05:30\"}"
+    },
+    {
+      "seq": 4,
+      "leaf_type": "message",
+      "leaf_hash": "a2b438ac21f639d57c77e38f68b6a161478b891563f8a4f2f2bbd4c2a30c5c29",
+      "salt": "05050505050505050505050505050505",
+      "payload_digest": "a1570c51747ad67af2fb2abbf689e64f8de72bb3ef55efe58d230cb73fa75bba",
+      "payload": "{\"attachment_hash\":null,\"deal_id\":\"0c05f159-dbd8-5cfa-b235-584b4bd4d67d\",\"id\":\"8e90cc9e-6247-528d-937f-caefe7ead372\",\"is_system\":false,\"origin\":\"export\",\"sender_id\":\"a40e184e-be75-5618-9f60-b2d421cf8120\",\"seq\":4,\"text\":\"Agreed. Delivery on 20 Sept.\",\"ts\":\"2026-09-01T14:06:00+05:30\"}"
+    },
+    {
+      "seq": 5,
+      "leaf_type": "message",
+      "leaf_hash": "538fac433a0f6239e15331cafe96a87e7205715d7c42d446ccc317f991db9e17",
+      "salt": "06060606060606060606060606060606",
+      "payload_digest": "d95089424d234fc169b3e4b85e38206d249845b3b2283cd8faf5f51dbb30b871",
+      "payload": "{\"attachment_hash\":null,\"deal_id\":\"0c05f159-dbd8-5cfa-b235-584b4bd4d67d\",\"id\":\"49badaf8-7fab-53d7-8e41-d41e64a2ea5f\",\"is_system\":false,\"origin\":\"export\",\"sender_id\":\"eec0a003-b75c-5dba-a9de-0476770a9cbe\",\"seq\":5,\"text\":\"If late by more than 3 days, 5 percent off the balance.\",\"ts\":\"2026-09-01T14:10:00+05:30\"}"
+    },
+    {
+      "seq": 6,
+      "leaf_type": "message",
+      "leaf_hash": "608b683b9c65fa9a0c40e6812ea3570c4891be28b4b8fc76acfa034544dd7002",
+      "salt": "07070707070707070707070707070707",
+      "payload_digest": "c2ed6e4fe38c19290be46c4d0ffb7badd0a36a9cbc763f2a50115c2ee6561759",
+      "payload": "{\"attachment_hash\":null,\"deal_id\":\"0c05f159-dbd8-5cfa-b235-584b4bd4d67d\",\"id\":\"2f0fc51a-5f2f-5706-ad18-7b058a9cb060\",\"is_system\":false,\"origin\":\"export\",\"sender_id\":\"a40e184e-be75-5618-9f60-b2d421cf8120\",\"seq\":6,\"text\":\"Fine, agreed. White ceramic mugs as shown.\",\"ts\":\"2026-09-01T14:11:00+05:30\"}"
+    },
+    {
+      "seq": 7,
+      "leaf_type": "message",
+      "leaf_hash": "a1cab678a84d2d632a02a26a5813226a685cde71a043c393d105018c7a47f37a",
+      "salt": "08080808080808080808080808080808",
+      "payload_digest": "e17891c2f4595ca222d2187db6b6132acbee4beb42b072892b2bfcc9834c15b0",
+      "payload": "{\"attachment_hash\":null,\"deal_id\":\"0c05f159-dbd8-5cfa-b235-584b4bd4d67d\",\"id\":\"351ac0e3-aeaa-5c19-86c7-03c1cc620d91\",\"is_system\":false,\"origin\":\"export\",\"sender_id\":\"eec0a003-b75c-5dba-a9de-0476770a9cbe\",\"seq\":7,\"text\":\"Sent 3000.\",\"ts\":\"2026-09-01T14:20:00+05:30\"}"
+    }
+  ],
+  "bundles": [
+    {
+      "spec_version": "0.1-draft",
+      "deal_id": "0c05f159-dbd8-5cfa-b235-584b4bd4d67d",
+      "files": [
+        {
+          "path": "receipt.json",
+          "role": "receipt",
+          "sha256": "d84199a863b709e6114748fc4b72e2135451231f73c433d8b21316d7eddff55b"
+        },
+        {
+          "path": "leaves.jsonl",
+          "role": "leaves",
+          "sha256": "6b4668f8098f61759318e9aa5f9e1cd6a811fd5653e89d2659c830d6ebeb9c14"
+        },
+        {
+          "path": "chain.json",
+          "role": "chain",
+          "sha256": "5a0ea85f32534e4a11b222d4caf8105d68a4040d0f8434b14e925f1ce1c6afe0"
+        },
+        {
+          "path": "README.txt",
+          "role": "readme",
+          "sha256": "5a6dafe6daa34cbfde09d879f9336398094f7b0d147b9e44e8ffe2973d0db50a"
+        }
+      ],
       "created_at": "2026-09-02T10:00:00+05:30"
     }
   ]
