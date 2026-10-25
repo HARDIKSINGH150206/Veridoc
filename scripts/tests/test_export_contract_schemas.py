@@ -14,11 +14,13 @@ def test_exports_one_schema_per_model_and_an_index(tmp_path: Path) -> None:
     names = {p.name for p in tmp_path.glob("*.schema.json")}
     assert "Message.schema.json" in names
     assert "Receipt.schema.json" in names
-    assert "SourceRef.schema.json" in names
+    assert {"SourceRef.schema.json", "TermValue.schema.json", "StreamEvent.schema.json"} <= names
     index = json.loads((tmp_path / "index.json").read_text(encoding="utf-8"))
-    assert index["contracts_version"] == "0.1.0"
+    assert index["contracts_version"] == "0.2.0"
     assert "Term" in index["models"]
     assert index["models"]["Term"]["requirements"]
+    assert "FR-EXT-001" in index["models"]["TermValue"]["requirements"]
+    assert index["models"]["StreamEvent"]["requirements"]
     term = json.loads((tmp_path / "Term.schema.json").read_text(encoding="utf-8"))
     assert term["title"] == "Term"
     assert "properties" in term

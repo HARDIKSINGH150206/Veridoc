@@ -11,20 +11,30 @@ import argparse
 import json
 import sys
 from pathlib import Path
-from typing import Any
+from typing import Any, get_args
 
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
 
 from pydantic import TypeAdapter  # noqa: E402
 
-from packages.contracts import ALL_MODELS, CONTRACTS_VERSION, SourceRef  # noqa: E402
+from packages.contracts import ALL_MODELS, CONTRACTS_VERSION, UNION_TYPES  # noqa: E402
 
 DEFAULT_OUT = "out/contract-schemas"
 
 
 def write_json(path: Path, data: Any) -> None:
     path.write_text(json.dumps(data, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+
+
+def union_requirements(union: Any) -> set[str]:
+    """Requirement IDs of every model inside an Annotated union."""
+    ids: set[str] = set()
+    for member in get_args(get_args(union)[0]):
+        extra = member.model_config.get("json_schema_extra")
+        if isinstance(extra, dict):
+            ids.update(str(r) for r in extra.get("requirements", []))
+    return ids
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -39,10 +49,11 @@ def main(argv: list[str] | None = None) -> int:
         schema = model.model_json_schema()
         write_json(out / f"{model.__name__}.schema.json", schema)
         index[model.__name__] = {"requirements": schema.get("requirements", [])}
-    # SourceRef is a union of two models, so it is exported through a TypeAdapter.
-    source_ref_schema = TypeAdapter(SourceRef).json_schema()
-    write_json(out / "SourceRef.schema.json", source_ref_schema)
-    index["SourceRef"] = {"requirements": ["FR-EXT-002", "FR-PLM-001"]}
+    # The discriminated unions are not model classes, so they go through a TypeAdapter. Their
+    # requirement IDs are those of the models they combine.
+    for name, union in UNION_TYPES.items():
+        write_json(out / f"{name}.schema.json", TypeAdapter(union).json_schema())
+        index[name] = {"requirements": sorted(union_requirements(union))}
 
     write_json(out / "index.json", {"contracts_version": CONTRACTS_VERSION, "models": index})
     print(f"wrote {len(index)} schemas to {out}")
