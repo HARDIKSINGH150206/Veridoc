@@ -90,7 +90,8 @@ Tests live inside each package under `packages/<name>/tests/`.
 |---|---|
 | Run all Python tests | `uv run pytest` (exits with code 5 while no tests exist yet) |
 | Run one package's tests | `TBD` |
-| Run the JavaScript cross-language vector test | `TBD` |
+| Generate or check the integrity test vectors | `uv run python scripts/make_test_vectors.py` (add `--check` to only compare) |
+| Run the JavaScript cross-language vector test | `cd apps/verify && npm ci && npm test` |
 | Lint | `uv run ruff check .` and `uv run ruff format --check .` |
 | Type check | `uv run mypy .` |
 | Design token check | `python scripts/check_design_tokens.py` (also runs in pre-commit) |
