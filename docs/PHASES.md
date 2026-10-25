@@ -107,8 +107,8 @@ Goal: real parsing, real rules, real hashing and real first screens, each agains
 - [ ] Hardware tier thresholds proposed (RAM, CPU) and model shortlist for the benchmark (Q-13, Q-35)
 
 ### Area 3: Backend, Integrity and Vault (Jhashank)
-- [ ] SHA-256 hashing with domain separation and RFC 8785 JCS (INTEGRITY_SPEC sections 2 to 5)
-- [ ] Salted Merkle tree with odd carry-up and inclusion proofs
+- [x] SHA-256 hashing with domain separation and RFC 8785 JCS (INTEGRITY_SPEC sections 2 to 5)
+- [x] Salted Merkle tree with odd carry-up and inclusion proofs
 - [ ] `scripts/make_test_vectors.py` generates vectors; Python and JavaScript both reproduce them (Q-41)
 - [ ] SQLAlchemy 2.0 models and first Alembic migrations
 - [ ] Insert-only audit triggers in an Alembic migration (raw SQL) with a test that UPDATE and DELETE fail (FR-VLT-004)
