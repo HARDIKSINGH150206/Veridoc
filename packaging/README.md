@@ -89,3 +89,9 @@ The test does not establish that those areas are integrated or that #29 passes.
   closing #29; current execution evidence covers Windows only. #3 also needs
   human account/team setup and each person's first reviewed, merged PR.
 
+
+## Walking skeleton end-to-end test (#29 to #32)
+
+`packaging/tests/test_walking_skeleton_flow.py` runs the whole demo path offline, with the network blocked: list and import the `clean` sample, get unconfirmed terms with source links, let the screen's own JavaScript logic (`apps/web/screens/skeleton/logic.js`, run with Node) decide what can be confirmed and build the request, get the recap with its echo code, record, and check every hash in Python and again with the JavaScript primitives of `apps/verify`. Changing one character of a recorded message makes the JavaScript check fail. It needs Node 22 (the test fails, it does not skip, when Node is missing). Nothing is written to disk.
+
+To try it by hand: start VeriDoc with `VERIDOC_DEMO_MODE=1` and open `/ui/screens/skeleton/index.html`. The page has not been checked in a browser by the test suite; the static checks and the logic tests cover its markup and logic.

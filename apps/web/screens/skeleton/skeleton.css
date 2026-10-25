@@ -1,0 +1,119 @@
+/* Walking skeleton screen. Tokens only. */
+
+.flow {
+  display: grid;
+  gap: var(--space-4);
+}
+
+@media (min-width: 60rem) {
+  .flow {
+    grid-template-columns: 1fr 1fr;
+    align-items: start;
+  }
+}
+
+.notice {
+  padding: var(--space-3) var(--space-4);
+  border: var(--border-width) solid var(--status-conflict-border);
+  border-radius: var(--radius-md);
+  background: var(--status-conflict-bg);
+  color: var(--status-conflict-fg);
+}
+
+.notice[hidden] {
+  display: none;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.chat {
+  display: grid;
+  gap: var(--space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.message {
+  display: grid;
+  gap: var(--space-1);
+  padding: var(--space-3);
+  border: var(--border-width) solid var(--color-border-soft);
+  border-radius: var(--radius-md);
+  background: var(--color-surface-alt);
+}
+
+.message:target,
+.message--cited {
+  border-color: var(--color-accent);
+  background: var(--color-accent-soft);
+}
+
+.message__meta {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+}
+
+.terms {
+  display: grid;
+  gap: var(--space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.terms__item {
+  display: grid;
+  gap: var(--space-2);
+  padding: var(--space-3);
+  border: var(--border-width) solid var(--color-border-soft);
+  border-radius: var(--radius-md);
+}
+
+.terms__label {
+  font-weight: 600;
+}
+
+.terms__source a {
+  color: var(--color-accent);
+}
+
+.recap {
+  margin: 0;
+  padding: var(--space-3);
+  border: var(--border-width) solid var(--color-border-soft);
+  border-radius: var(--radius-md);
+  background: var(--color-surface-alt);
+  font-family: var(--font-mono);
+  font-size: var(--font-size-sm);
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.echo {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: var(--font-size-2xl);
+  letter-spacing: 0.15em;
+}
+
+.receipt {
+  display: grid;
+  gap: var(--space-2);
+  margin: 0;
+}
+
+.receipt dt {
+  font-weight: 600;
+}
+
+.receipt dd {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: var(--font-size-sm);
+  overflow-wrap: anywhere;
+}
