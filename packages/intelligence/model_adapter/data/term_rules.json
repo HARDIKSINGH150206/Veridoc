@@ -1,0 +1,25 @@
+{
+  "kinds": {
+    "unit_price": "money",
+    "total_amount": "money",
+    "advance_amount": "money",
+    "fee": "money",
+    "quantity": "quantity",
+    "revisions": "quantity",
+    "delivery_date": "date",
+    "balance_payment_date": "date",
+    "deadline": "date",
+    "payment_date": "date"
+  },
+  "default_kind": "text",
+  "unclear_reasons": [
+    "relative_date",
+    "approximate_amount",
+    "vague_timing",
+    "conditional",
+    "unspecified_unit",
+    "unconfirmed",
+    "vague_spec"
+  ],
+  "events": ["on_delivery", "on_completion"]
+}

@@ -1,0 +1,95 @@
+{
+  "playbook_id": "supply_order",
+  "numbered_chat": "[1] Raju: 200 shirts, 480 each ok?\n[2] Meena: ok. delivery next week\n[3] Raju: advance half now\n[4] Meena: done sent 48000",
+  "output": {
+    "deal_type": "supply_order",
+    "terms": {
+      "buyer": {
+        "status": "stated",
+        "value": "Raju",
+        "quote": [
+          "Raju"
+        ],
+        "msg": [
+          1
+        ]
+      },
+      "seller": {
+        "status": "stated",
+        "value": "Meena",
+        "quote": [
+          "Meena"
+        ],
+        "msg": [
+          2
+        ]
+      },
+      "item": {
+        "status": "stated",
+        "value": "shirts",
+        "quote": [
+          "shirts",
+          "shirts"
+        ],
+        "msg": [
+          1,
+          1
+        ]
+      },
+      "quantity": {
+        "status": "stated",
+        "value": 200,
+        "quote": [
+          "200 shirts"
+        ],
+        "msg": [
+          1
+        ]
+      },
+      "unit_price": {
+        "status": "stated",
+        "value": 48000,
+        "quote": [
+          "480 each ok?"
+        ],
+        "msg": [
+          1
+        ]
+      },
+      "total_amount": {
+        "status": "missing"
+      },
+      "advance_amount": {
+        "status": "unclear",
+        "value": null,
+        "quote": [
+          "advance half now"
+        ],
+        "msg": [
+          3
+        ],
+        "reason": "unspecified_unit"
+      },
+      "delivery_date": {
+        "status": "unclear",
+        "value": null,
+        "quote": [
+          "delivery next week"
+        ],
+        "msg": [
+          2
+        ],
+        "reason": "relative_date"
+      },
+      "balance_payment_date": {
+        "status": "missing"
+      },
+      "late_penalty": {
+        "status": "missing"
+      },
+      "quality_spec": {
+        "status": "missing"
+      }
+    }
+  }
+}

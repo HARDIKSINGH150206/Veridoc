@@ -88,3 +88,15 @@ def test_tier_thresholds_are_configuration(monkeypatch: pytest.MonkeyPatch, tmp_
     assert s.tier_high_min_ram_gb == 32
     assert s.tier_default_min_ram_gb < s.tier_high_min_ram_gb
     assert s.tier_low_min_ram_gb < s.tier_default_min_ram_gb
+
+
+def test_model_mode_defaults_to_fake_and_accepts_local(
+    monkeypatch: pytest.MonkeyPatch, tmp_path: Path
+) -> None:
+    assert make(monkeypatch, tmp_path).model_mode == "fake"
+    assert make(monkeypatch, tmp_path, VERIDOC_MODEL_MODE="local").model_mode == "local"
+
+
+def test_model_mode_rejects_other_values(monkeypatch: pytest.MonkeyPatch, tmp_path: Path) -> None:
+    with pytest.raises(ValidationError):
+        make(monkeypatch, tmp_path, VERIDOC_MODEL_MODE="cloud")
