@@ -38,9 +38,11 @@ def test_demo_returns_validated_fixture(sample: str, monkeypatch: pytest.MonkeyP
     def no_network(*args: object, **kwargs: object) -> None:
         pytest.fail("Demo import must not connect to the network")
 
-    monkeypatch.setattr(socket.socket, "connect", no_network)
-    monkeypatch.setattr(socket, "getaddrinfo", no_network)
-    with client(True) as api:
+    # Windows asyncio needs a loopback socket pair to start its event loop.
+    # Block networking only while the in-process request is being served.
+    with client(True) as api, monkeypatch.context() as guard:
+        guard.setattr(socket.socket, "connect", no_network)
+        guard.setattr(socket, "getaddrinfo", no_network)
         response = api.get(f"/api/ingest/samples/{sample}/messages")
     assert response.status_code == 200
     assert response.json() == json.loads((FIXTURES / f"{sample}.json").read_text("utf-8"))
