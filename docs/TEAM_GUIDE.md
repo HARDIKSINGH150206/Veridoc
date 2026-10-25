@@ -49,6 +49,23 @@ The release lead (Hardik) combines changelog fragments into `CHANGELOG.md` at ph
 | PRIVACY, LIMITS | Area 3 with Area 4 for UI copy |
 | PRIOR_WORK | Hardik |
 
+## 1a. Working model (from 2026-10-25)
+
+Every issue is either independent or integration. The label `type:integration` marks the second kind; an issue without it is independent.
+
+| Issue type | How to recognise it | Who builds | Who merges | Reviewers |
+|---|---|---|---|---|
+| **Independent** | Touches only files in one area (the owner's own folders) and no seam | The area owner | The area owner, into `dev`, after CI passes | Optional: a teammate may review; not required for merge |
+| **Integration** (label `type:integration`) | Touches two or more areas, `packages/contracts`, or a seam listed in DEVELOPMENT_METHODOLOGY section 11 (verify page and hashing, model tiers and launcher, AI output and workspace screen, recap and handshake with the vault, voice interface) | Hardik (area owners build their own part on a branch if useful) | Hardik, into `dev`, after CI passes | The affected area owners, who are also assignees |
+
+Rules:
+1. Work goes through a pull request into `dev`. CI (`checks` and `secrets`) must pass before anyone merges.
+2. Never merge, close or push to someone else's pull request. To change it, comment on it.
+3. If an independent issue turns out to need files in another area, in `packages/contracts` or at a seam, stop, say so on the issue, and Hardik relabels it `type:integration`.
+4. The label `blocked` means the issue waits on another pull request or issue (named in a comment). Do not work around it.
+5. Contract changes are integration issues and still need all four reviewers.
+6. Phase releases (`dev` into `main`) stay with the release lead (Hardik).
+
 ## 2. Merge-conflict rules
 
 1. **Contracts first.** On day 1 the team agrees `packages/contracts` together: Message, VoiceNote, Term, Flag, Score, Suggestion, HandshakeAnswer, Recap, Confirmation, Version, Receipt, DisputePack. Any later change is its own small pull request reviewed by all four.
@@ -104,9 +121,9 @@ Format: `type(scope): short summary`, for example `feat(ingest): parse iPhone ex
 
 1. Use the pull request template: summary, area, linked requirement IDs, checklist, whether contracts changed.
 2. Keep pull requests small (aim for under about 300 changed lines). Add a changelog fragment in `changes/` (see `changes/README.md`).
-3. One reviewer from another area. Contracts and hashing changes need Jhashank (Area 3); verify-page changes need Hardik (Area 4) and Jhashank. Contract changes need all four.
+3. Independent issues: the owner merges after CI passes; a review from another area is welcome but not required. Integration issues: Hardik merges, and the affected owners review. Contracts and hashing changes need Jhashank (Area 3); verify-page changes need Hardik (Area 4) and Jhashank. Contract changes need all four (see section 1a).
 4. Reviewers check: requirement IDs, tests, wording rules, no content in logs, ownership boundaries.
-5. Squash or rebase merge; keep history readable.
+5. Squash merge into `dev`; keep history readable.
 6. Anyone who is stuck for more than an hour asks in the team channel.
 
 ## 6. Definition of done

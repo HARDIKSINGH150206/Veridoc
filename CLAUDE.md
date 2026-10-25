@@ -52,6 +52,13 @@ Shared, changed only by small reviewed pull requests: `packages/contracts`, `doc
 8. The frontend builds against mock data that matches the contracts.
 9. Run AI coding tools only inside the member's own area.
 
+## Working model (independent and integration issues)
+
+1. An independent issue touches only one area (your own folders): the area owner builds it, opens the pull request into `dev` and merges it after CI passes.
+2. An integration issue (label `type:integration`) touches two or more areas, `packages/contracts`, or a seam in `docs/DEVELOPMENT_METHODOLOGY.md` section 11: Hardik builds and merges it, with the affected owners as reviewers. If your task turns out to be one, stop and describe the change instead of editing other areas.
+3. Never merge, close or push to someone else's pull request; comment on it instead.
+4. An issue labelled `blocked` waits on another pull request or issue; do not work around it.
+
 ## Git
 
 - Branch from `dev`, never from `main`. Pull requests go into `dev`. `main` receives phase releases only.

@@ -202,3 +202,25 @@ Alembic keeps a chain of migrations. If two migrations are created from the same
 3. Run `alembic upgrade head` on a scratch vault and the insert-only trigger test.
 4. Commit the merge migration in its own pull request, reviewed by Area 3.
 Never edit a migration that is already on `dev`; add a new one.
+
+## 14. Independent and integration issues
+
+**What.** Every issue is independent or integration (label `type:integration`).
+
+**Why.** Independent work should never wait for another person. Work that crosses areas needs one person who sees all the pieces, so seams are not merged in two different shapes.
+
+**How here.**
+
+| Issue type | How to recognise it | Who builds | Who merges | Reviewers |
+|---|---|---|---|---|
+| **Independent** | Touches only files in one area (the owner's own folders) and no seam | The area owner | The area owner, into `dev`, after CI passes | Optional: a teammate may review; not required for merge |
+| **Integration** (label `type:integration`) | Touches two or more areas, `packages/contracts`, or a seam listed in DEVELOPMENT_METHODOLOGY section 11 (verify page and hashing, model tiers and launcher, AI output and workspace screen, recap and handshake with the vault, voice interface) | Hardik (area owners build their own part on a branch if useful) | Hardik, into `dev`, after CI passes | The affected area owners, who are also assignees |
+
+1. An issue is independent only if it stays inside one owner's folders and touches no seam from section 11 and no contract.
+2. Integration issues carry the owners of every affected area as assignees. Hardik builds and merges; owners may build their part on their own branch and open a pull request, which Hardik merges once the owners have reviewed.
+3. Contracts are integration issues; all four review them (section 1).
+4. `blocked` means the issue waits on a named pull request or issue; the reason is in a comment.
+5. Nobody merges, closes or pushes to another person's pull request; comment instead.
+6. CI (`checks` and `secrets`) must be green before any merge.
+7. Pairing sessions (section 11) are how the owners of an integration issue agree the shape before Hardik builds it.
+
