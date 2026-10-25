@@ -7,6 +7,8 @@ from pathlib import Path
 
 import pytest
 
+from packages.contracts import Message
+
 FIXTURES = Path(__file__).resolve().parents[1] / "fixtures"
 SAMPLES = ("clean", "ambiguous", "contradictory")
 
@@ -18,11 +20,13 @@ def test_parsed_messages_preserve_export(sample: str) -> None:
     assert len(messages) == len(lines)
     assert len({message["id"] for message in messages}) == len(messages)
     assert len({message["deal_id"] for message in messages}) == 1
+    senders: dict[str, str] = {}
     for seq, (message, line) in enumerate(zip(messages, lines, strict=True), 1):
         timestamp, content = line.split(" - ", 1)
         sender, text = content.split(": ", 1)
         assert message["seq"] == seq
-        assert message["sender_id"] == sender.lower()
+        senders.setdefault(sender, message["sender_id"])
+        assert message["sender_id"] == senders[sender]
         assert message["text"] == text
         assert message["origin"] == "export"
         assert message["is_system"] is False
@@ -34,13 +38,13 @@ def test_parsed_messages_preserve_export(sample: str) -> None:
             assert message["attachment_hash"] == hashlib.sha256(audio.read_bytes()).hexdigest()
         else:
             assert message["attachment_hash"] is None
+    assert len(set(senders.values())) == len(senders)
 
 
 @pytest.mark.parametrize("sample", SAMPLES)
 def test_every_message_validates_against_shared_contract(sample: str) -> None:
-    chat = pytest.importorskip("packages.contracts.chat", reason="Requires contracts PR #40")
     messages = json.loads((FIXTURES / "messages" / f"{sample}.json").read_text("utf-8"))
     assert messages
     for message in messages:
-        validated = chat.Message.model_validate_json(json.dumps(message))
+        validated = Message.model_validate_json(json.dumps(message))
         assert validated.model_dump(mode="json") == message

@@ -10,6 +10,8 @@ from fastapi.testclient import TestClient
 
 from apps.api.main import create_app
 from apps.api.settings import Settings
+from packages.contracts import Message
+from packages.ingest.samples import SampleUnavailable, load_messages
 
 FIXTURES = Path(__file__).resolve().parents[1] / "fixtures" / "messages"
 
@@ -33,8 +35,6 @@ def test_demo_disabled() -> None:
 
 @pytest.mark.parametrize("sample", ("clean", "ambiguous", "contradictory"))
 def test_demo_returns_validated_fixture(sample: str, monkeypatch: pytest.MonkeyPatch) -> None:
-    chat = pytest.importorskip("packages.contracts.chat", reason="Requires contracts PR #40")
-
     def no_network(*args: object, **kwargs: object) -> None:
         pytest.fail("Demo import must not connect to the network")
 
@@ -47,16 +47,16 @@ def test_demo_returns_validated_fixture(sample: str, monkeypatch: pytest.MonkeyP
     assert response.status_code == 200
     assert response.json() == json.loads((FIXTURES / f"{sample}.json").read_text("utf-8"))
     for message in response.json():
-        chat.Message.model_validate_json(json.dumps(message))
+        Message.model_validate_json(json.dumps(message))
 
 
-def test_missing_contract_returns_safe_unavailable(monkeypatch: pytest.MonkeyPatch) -> None:
-    from packages.ingest import samples
+def test_unavailable_sample_returns_safe_error(monkeypatch: pytest.MonkeyPatch) -> None:
+    from apps.api.routers import ingest
 
-    def missing(name: str) -> object:
-        raise ModuleNotFoundError("private path must not escape")
+    def broken(sample_id: str, directory: Path) -> list[Message]:
+        raise SampleUnavailable("private path must not escape")
 
-    monkeypatch.setattr(samples, "import_module", missing)
+    monkeypatch.setattr(ingest, "load_messages", broken)
     with client(True) as api:
         response = api.get("/api/ingest/samples/clean/messages")
         assert response.status_code == 503
@@ -71,9 +71,6 @@ def test_unknown_or_path_input_rejected(sample: str) -> None:
 
 
 def test_corrupt_fixture_fails_closed(tmp_path: Path) -> None:
-    pytest.importorskip("packages.contracts.chat", reason="Requires contracts PR #40")
-    from packages.ingest.samples import SampleUnavailable, load_messages
-
     (tmp_path / "broken.json").write_text('[{"text":"private"}]', encoding="utf-8")
     with pytest.raises(SampleUnavailable, match="Sample data unavailable"):
         load_messages("broken", tmp_path)

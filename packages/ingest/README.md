@@ -5,14 +5,12 @@ WhatsApp parser, media handling, voice import wiring (calls the speech interface
 With `VERIDOC_DEMO_MODE=true`, `GET /api/ingest/samples/{sample_id}/messages`
 returns an array of shared Message objects. Bundled sample IDs are `clean`,
 `ambiguous`, and `contradictory`. The endpoint is hidden (404) when demo mode is
-off. Unknown names return 404. Missing draft contracts or invalid fixture data
-return a generic 503 without exposing content or paths.
+off. Unknown names return 404. Invalid fixture data returns a generic 503 without
+exposing content or paths.
 
-Requires contracts PR #40 (validated against draft de8bc7b); there is no duplicate
-local schema. No real import, participant selection, persistence, or analysis is
+Every fixture is validated with the shared Message model (contracts v0.2.0); there is
+no duplicate local schema. No real import, participant selection, persistence, or analysis is
 implemented by this endpoint. Run `uv run pytest packages/ingest/tests`.
-Contract-dependent tests skip explicitly until the Message model is installed
-in the shared package; they must pass against the agreed models before merging.
 
 Shared documentation request: review the demo endpoint under THREAT_MODEL T16/T17
 and document this HTTP interface when contracts are agreed. Only synthetic

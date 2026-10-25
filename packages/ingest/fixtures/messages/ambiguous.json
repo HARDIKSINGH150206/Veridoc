@@ -1,57 +1,57 @@
 [
-    {
-        "id":  "ambiguous-message-1",
-        "deal_id":  "sample-ambiguous",
-        "seq":  1,
-        "sender_id":  "asha",
-        "ts":  "2026-10-25T10:00:00+05:30",
-        "text":  "I can supply 200 cotton shirts at ₹480 each, total ₹96,000.",
-        "attachment_hash":  null,
-        "is_system":  false,
-        "origin":  "export"
-    },
-    {
-        "id":  "ambiguous-message-2",
-        "deal_id":  "sample-ambiguous",
-        "seq":  2,
-        "sender_id":  "bilal",
-        "ts":  "2026-10-25T10:01:00+05:30",
-        "text":  "Yes, 200 cotton shirts at that price works for me.",
-        "attachment_hash":  null,
-        "is_system":  false,
-        "origin":  "export"
-    },
-    {
-        "id":  "ambiguous-message-3",
-        "deal_id":  "sample-ambiguous",
-        "seq":  3,
-        "sender_id":  "asha",
-        "ts":  "2026-10-25T10:02:00+05:30",
-        "text":  "Please pay ₹48,000 advance today. Delivery next week.",
-        "attachment_hash":  null,
-        "is_system":  false,
-        "origin":  "export"
-    },
-    {
-        "id":  "ambiguous-message-4",
-        "deal_id":  "sample-ambiguous",
-        "seq":  4,
-        "sender_id":  "bilal",
-        "ts":  "2026-10-25T10:03:00+05:30",
-        "text":  "I have paid the ₹48,000 advance.",
-        "attachment_hash":  null,
-        "is_system":  false,
-        "origin":  "export"
-    },
-    {
-        "id":  "ambiguous-message-5",
-        "deal_id":  "sample-ambiguous",
-        "seq":  5,
-        "sender_id":  "asha",
-        "ts":  "2026-10-25T10:04:00+05:30",
-        "text":  "Advance received, thank you.",
-        "attachment_hash":  null,
-        "is_system":  false,
-        "origin":  "export"
-    }
+  {
+    "id": "2dacab22-d248-5104-8afe-794155c3dba3",
+    "deal_id": "ac370ada-9a58-51b0-9feb-1012123011c0",
+    "seq": 1,
+    "sender_id": "9ff2a8e8-2378-5d3b-a40d-692d89f28765",
+    "ts": "2026-10-25T10:00:00+05:30",
+    "text": "I can supply 200 cotton shirts at ₹480 each, total ₹96,000.",
+    "attachment_hash": null,
+    "is_system": false,
+    "origin": "export"
+  },
+  {
+    "id": "f70971f2-1194-5000-aaf2-d1326683a3ed",
+    "deal_id": "ac370ada-9a58-51b0-9feb-1012123011c0",
+    "seq": 2,
+    "sender_id": "1929a61f-a9e6-5095-b4fc-77ab299dab57",
+    "ts": "2026-10-25T10:01:00+05:30",
+    "text": "Yes, 200 cotton shirts at that price works for me.",
+    "attachment_hash": null,
+    "is_system": false,
+    "origin": "export"
+  },
+  {
+    "id": "fd816b34-741c-5fb8-a8ca-52ba471ccdf0",
+    "deal_id": "ac370ada-9a58-51b0-9feb-1012123011c0",
+    "seq": 3,
+    "sender_id": "9ff2a8e8-2378-5d3b-a40d-692d89f28765",
+    "ts": "2026-10-25T10:02:00+05:30",
+    "text": "Please pay ₹48,000 advance today. Delivery next week.",
+    "attachment_hash": null,
+    "is_system": false,
+    "origin": "export"
+  },
+  {
+    "id": "362a94d2-be9a-5098-a424-867ea41bcfbe",
+    "deal_id": "ac370ada-9a58-51b0-9feb-1012123011c0",
+    "seq": 4,
+    "sender_id": "1929a61f-a9e6-5095-b4fc-77ab299dab57",
+    "ts": "2026-10-25T10:03:00+05:30",
+    "text": "I have paid the ₹48,000 advance.",
+    "attachment_hash": null,
+    "is_system": false,
+    "origin": "export"
+  },
+  {
+    "id": "10d747e4-99b2-5177-a356-141c6584e5ae",
+    "deal_id": "ac370ada-9a58-51b0-9feb-1012123011c0",
+    "seq": 5,
+    "sender_id": "9ff2a8e8-2378-5d3b-a40d-692d89f28765",
+    "ts": "2026-10-25T10:04:00+05:30",
+    "text": "Advance received, thank you.",
+    "attachment_hash": null,
+    "is_system": false,
+    "origin": "export"
+  }
 ]

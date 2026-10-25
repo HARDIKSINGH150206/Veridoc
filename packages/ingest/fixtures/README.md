@@ -19,7 +19,7 @@ objects. Parsed Message fixtures and their contract validation belong to #13.
 The clean sample's acknowledgements are conversation evidence, not automatic
 user confirmation in VeriDoc. No sample supplies a score, fabricated receipt or
 integrity hash. Analysis assertions are future integration work with Area 2;
-the tests here check the inputs only. PR #40 is still a draft dependency for #13.
+the tests here check the inputs only.
 
 ## Voice provenance and regeneration
 
@@ -55,8 +55,7 @@ IDs after contracts are agreed. Until then, these are one-based raw chat lines:
 | ambiguous | Scope/quantity/price: lines 1–2. Advance and ambiguous delivery: line 3. Advance paid/received: lines 4–5. No sources exist for final-payment timing or late penalty. |
 | contradictory | Total-price alternatives: lines 1–2. Text delivery: line 1. Voice attachment: line 4. Unresolved status: line 5. Listen to the audio and annotate the actual date span before assigning voice time ranges. |
 
-Decide unit-price versus total-price keys with the PR #40 review. Do not treat
-the proposed contract changes as merged, or invent transcript confidence/time
+Term keys come from the playbooks (Q-62). Do not invent transcript confidence/time
 ranges. The eval integration and gold labels remain pending Area 2's change.
 
 Run the input checks with `uv run pytest packages/ingest/tests/test_sample_fixtures.py`.
@@ -68,9 +67,7 @@ Timestamps use the documented Asia/Kolkata assumption (+05:30), sequence numbers
 start at one, sender IDs are fictional names in lowercase, and the attachment
 hash is computed from the accompanying WAV bytes. No vault records are created.
 
-Schema reference: draft PR #40, commit
-`de8bc7b11384e2e3fcb89f4ec0debe0b3a38f541`. The contract tests validate each entry
-with the actual shared Message model when available. On dev without #40 they
-explicitly skip; passing preservation tests alone does not prove compatibility.
-Re-run the contract tests after the agreed contracts merge. FR-IMP-001, FR-IMP-007.
-
+The ids are deterministic UUIDs (version 5) derived from the sample name, sequence
+number and sender name, because the Message contract requires UUIDs. The contract
+tests validate each entry with the shared Message model (contracts v0.2.0).
+FR-IMP-001, FR-IMP-007.

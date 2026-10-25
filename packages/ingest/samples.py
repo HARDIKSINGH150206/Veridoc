@@ -1,10 +1,11 @@
 """Read bundled demo messages without parsing user input or writing records."""
 
 import json
-from importlib import import_module
 from pathlib import Path
 
-from pydantic import BaseModel, ValidationError
+from pydantic import ValidationError
+
+from packages.contracts import Message
 
 
 class SampleNotFound(Exception):
@@ -12,22 +13,18 @@ class SampleNotFound(Exception):
 
 
 class SampleUnavailable(Exception):
-    """Bundled data or its shared contract is unavailable."""
+    """Bundled data does not match the shared contract."""
 
 
-def load_messages(sample_id: str, directory: Path) -> list[BaseModel]:
+def load_messages(sample_id: str, directory: Path) -> list[Message]:
     """Validate a bundled array with the actual shared contract, never a local copy."""
     candidates = {path.stem: path for path in directory.glob("*.json") if not path.is_symlink()}
     if sample_id not in candidates:
         raise SampleNotFound
     try:
-        # Resolve lazily so dev still boots before contracts PR #40 is merged.
-        model = import_module("packages.contracts.chat").Message
-        if not isinstance(model, type) or not issubclass(model, BaseModel):
-            raise TypeError
         payload = json.loads(candidates[sample_id].read_text(encoding="utf-8"))
         if not isinstance(payload, list) or not payload:
             raise ValueError
-        return [model.model_validate_json(json.dumps(item)) for item in payload]
-    except (ImportError, AttributeError, OSError, ValueError, TypeError, ValidationError):
+        return [Message.model_validate_json(json.dumps(item)) for item in payload]
+    except (OSError, ValueError, ValidationError):
         raise SampleUnavailable("Sample data unavailable") from None

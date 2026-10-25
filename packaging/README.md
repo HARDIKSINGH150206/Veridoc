@@ -68,34 +68,19 @@ These shared files were not edited in this Area 1 change. No hashing, vault
 storage, contracts, model loading or frontend files are changed by the launcher.
 # Contract-flow harness (#16)
 
-Run `uv run pytest packaging/tests -q` explicitly: the shared pytest configuration
-does not yet collect this directory by default. The new harness imports messages
+`packaging/tests` is part of the default pytest paths. The harness imports messages
 through the real demo route, passes them to a test-only analysis adapter, requires
 a simulated human confirmation and obtains a contract-validated fake receipt.
 Its sentinel hashes are computed from a test label, not from evidence; the receipt
 is marked `test-only-fake-not-verifiable` and is never written to the vault.
 
-This test requires draft contracts PR #40 (validated at de8bc7b). It skips visibly
-without those models. Replace the fake adapters with #30 and #31 once their ports
+The harness uses the merged contracts v0.2.0 (Term, Receipt envelope). Replace the fake adapters with #30 and #31 once their ports
 are agreed, then connect the real screen flow from #32 and the offline verifier.
 The test does not establish that those areas are integrated or that #29 passes.
 
-To reproduce draft-contract validation without changing shared files, create a
-separate checkout of PR #40 at the reviewed commit. From this repository, run
-the following, substituting that checkout's path for `../veridoc-contracts-review`:
-
-```sh
-uv run python -c "import packages; packages.__path__.append('../veridoc-contracts-review/packages'); import packages.contracts.chat; import pytest; raise SystemExit(pytest.main(['packages', 'apps', 'scripts', 'packaging/tests', '-q']))"
-```
-
-Importing the draft models before pytest starts is intentional: pytest adjusts
-namespace paths. This only changes the validation process; the normal application
-still requires the agreed contracts in its own checkout.
-
 ## Remaining owner handoffs
 
-- Jhashank/Hardik: merge agreed contracts (#4/#40), provide the record adapter
-  (#21/#31), include `packaging/tests` in default pytest discovery and Windows CI.
+- Hardik: provide the record adapter (#31) and add Windows CI.
 - Abhishek: provide the analysis adapter (#17/#30), and finish the eval labels
   handoff described in `packages/ingest/fixtures/README.md` (#12/#18).
 - Hardik: connect S1-S3 and receipt display to the adapters (#27/#32), review the
