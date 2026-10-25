@@ -1,0 +1,17 @@
+{
+  "playbook_id": "supply_order",
+  "participants": [
+    {
+      "id": "9ff2a8e8-2378-5d3b-a40d-692d89f28765",
+      "display_name": "Asha",
+      "role": "party",
+      "is_me": true
+    },
+    {
+      "id": "1929a61f-a9e6-5095-b4fc-77ab299dab57",
+      "display_name": "Bilal",
+      "role": "party",
+      "is_me": false
+    }
+  ]
+}
