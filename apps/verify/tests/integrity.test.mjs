@@ -14,7 +14,8 @@ test('every vector file is present', () => {
   const names = readdirSync(dir).filter((n) => n.endsWith('.json')).sort();
   assert.deepEqual(names, [
     'canonical.json', 'chain.json', 'domain.json', 'echo.json', 'leaves.json',
-    'merkle.json', 'normalize.json', 'records.json', 'sha256.json', 'worked_example.json',
+    'merkle.json', 'normalize.json', 'records.json', 'sha256.json', 'timestamp.json',
+    'worked_example.json',
   ]);
 });
 
@@ -168,4 +169,18 @@ test('worked example of the specification', async () => {
   assert.equal(hex(await lib.nodeHash(leaves[0], leaves[1])), ex.node_1_2);
   assert.equal(hex(await lib.merkleRoot(leaves)), ex.root);
   assert.equal(new TextDecoder().decode(lib.canonicalBytes(ex.payloads[0])), ex.payload_1_canonical);
+});
+
+test('timestamps: format, parse and rejections', () => {
+  const data = load('timestamp.json');
+  for (const v of data.format) {
+    assert.equal(lib.formatTimestamp(v.fields), v.text, v.name);
+    assert.deepEqual(lib.parseTimestamp(v.text), v.fields, v.name);
+  }
+  for (const v of data.rejected_text) {
+    assert.throws(() => lib.parseTimestamp(v.text), lib.IntegrityError, v.name);
+  }
+  for (const v of data.rejected_fields) {
+    assert.throws(() => lib.formatTimestamp(v.fields), lib.IntegrityError, v.name);
+  }
 });

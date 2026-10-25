@@ -36,6 +36,7 @@ from .merkle import (
     verify_inclusion,
 )
 from .records import import_record_hash, plain_record_hash, recap_hash, receipt_hash
+from .timestamp import TimestampError, format_timestamp, parse_timestamp
 
 __all__ = [
     "CROCKFORD",
@@ -47,6 +48,7 @@ __all__ = [
     "JsonValue",
     "MerkleError",
     "ProofStep",
+    "TimestampError",
     "canonical_record",
     "canonicalize",
     "chain_link",
@@ -55,6 +57,7 @@ __all__ = [
     "domain_hash",
     "export_digest",
     "file_leaf",
+    "format_timestamp",
     "from_hex",
     "import_record_hash",
     "inclusion_proof",
@@ -64,6 +67,7 @@ __all__ = [
     "normalize_code",
     "normalize_strings",
     "normalize_text",
+    "parse_timestamp",
     "payload_digest",
     "plain_record_hash",
     "receipt_hash",

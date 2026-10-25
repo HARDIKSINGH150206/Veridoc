@@ -306,3 +306,54 @@ export async function plainRecordHash(prefix, record) {
 export const recapHash = (recap) => plainRecordHash(PREFIXES.RECAP, recap);
 export const receiptHash = (receipt) => plainRecordHash(PREFIXES.RECEIPT, receipt);
 export const importRecordHash = (record) => plainRecordHash(PREFIXES.IMPORT_RECORD, record);
+
+// ---------------------------------------------------------------- timestamps in hashed records
+
+const TIMESTAMP_FORM = /^([0-9]{4})-([0-9]{2})-([0-9]{2})T([0-9]{2}):([0-9]{2}):([0-9]{2})([+-])([0-9]{2}):([0-9]{2})$/;
+
+function daysInMonth(year, month) {
+  if (month === 2) return year % 4 === 0 && (year % 100 !== 0 || year % 400 === 0) ? 29 : 28;
+  return [4, 6, 9, 11].includes(month) ? 30 : 31;
+}
+
+const isInt = (n) => Number.isInteger(n);
+const pad = (n, width) => String(n).padStart(width, '0');
+
+function checkTimestampFields(f) {
+  const { year, month, day, hour, minute, second, offset_minutes: offset } = f;
+  if (offset === null || offset === undefined) throw new IntegrityError('a timestamp needs an offset');
+  if (f.microsecond) throw new IntegrityError('a timestamp has whole seconds only');
+  if (![year, month, day, hour, minute, second, offset].every(isInt)) {
+    throw new IntegrityError('timestamp fields must be integers');
+  }
+  const valid = year >= 1 && year <= 9999 && month >= 1 && month <= 12 && day >= 1
+    && day <= daysInMonth(year, month) && hour <= 23 && hour >= 0 && minute >= 0 && minute <= 59
+    && second >= 0 && second <= 59 && Math.abs(offset) < 24 * 60;
+  if (!valid) throw new IntegrityError('not a real date and time');
+}
+
+/** Write fields {year, month, day, hour, minute, second, offset_minutes} as
+ *  YYYY-MM-DDTHH:MM:SS+HH:MM. The offset is kept; there is no conversion to UTC and never a Z. */
+export function formatTimestamp(f) {
+  checkTimestampFields(f);
+  const sign = f.offset_minutes < 0 ? '-' : '+';
+  const abs = Math.abs(f.offset_minutes);
+  return `${pad(f.year, 4)}-${pad(f.month, 2)}-${pad(f.day, 2)}T${pad(f.hour, 2)}:${pad(f.minute, 2)}:${pad(f.second, 2)}`
+    + `${sign}${pad(Math.floor(abs / 60), 2)}:${pad(abs % 60, 2)}`;
+}
+
+/** Read the exact written form into fields. Rejects Z, a missing offset, fractional seconds,
+ *  -00:00 and impossible dates or times. */
+export function parseTimestamp(text) {
+  const m = TIMESTAMP_FORM.exec(text);
+  if (m === null) throw new IntegrityError('not in the form YYYY-MM-DDTHH:MM:SS+HH:MM');
+  const [year, month, day, hour, minute, second] = m.slice(1, 7).map(Number);
+  const hours = Number(m[8]);
+  const minutes = Number(m[9]);
+  if (hours > 23 || minutes > 59) throw new IntegrityError('the offset is out of range');
+  const total = hours * 60 + minutes;
+  if (m[7] === '-' && total === 0) throw new IntegrityError('a zero offset is written +00:00');
+  const fields = { year, month, day, hour, minute, second, offset_minutes: m[7] === '-' ? -total : total };
+  checkTimestampFields(fields);
+  return fields;
+}
