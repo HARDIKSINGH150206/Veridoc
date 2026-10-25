@@ -307,7 +307,7 @@ Term states used throughout:
 #### FR-VOI-002 Separate hashing of audio and transcript
 - **Priority:** MVP
 - **Description:** The audio file and its transcript are separate evidence items.
-- **Rules:** Audio is hashed as bytes (type tag 0x11). Transcript is hashed as canonical text (type tag 0x12) together with the model name and version, so a changed transcript is detectable. A corrected transcript creates a new transcript record; the old one stays.
+- **Rules:** Audio is hashed as bytes (type tag 0x11). Each transcript span is hashed as canonical text (type tag 0x12, one leaf per span) together with the model name and version, so a changed transcript is detectable and a single span can be disclosed. A corrected transcript creates a new transcript record; the old one stays.
 - **Acceptance:**
   - Given a voice note, When the transcript is edited, Then the audio hash is unchanged and a new transcript hash exists.
 
