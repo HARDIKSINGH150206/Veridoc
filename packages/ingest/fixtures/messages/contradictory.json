@@ -1,0 +1,57 @@
+[
+    {
+        "id":  "contradictory-message-1",
+        "deal_id":  "sample-contradictory",
+        "seq":  1,
+        "sender_id":  "asha",
+        "ts":  "2026-10-25T10:00:00+05:30",
+        "text":  "For 100 cotton shirts, my total price is ₹50,000. Delivery will be on 15 November 2026.",
+        "attachment_hash":  null,
+        "is_system":  false,
+        "origin":  "export"
+    },
+    {
+        "id":  "contradictory-message-2",
+        "deal_id":  "sample-contradictory",
+        "seq":  2,
+        "sender_id":  "bilal",
+        "ts":  "2026-10-25T10:01:00+05:30",
+        "text":  "My understanding of the total price is ₹45,000 for those 100 cotton shirts.",
+        "attachment_hash":  null,
+        "is_system":  false,
+        "origin":  "export"
+    },
+    {
+        "id":  "contradictory-message-3",
+        "deal_id":  "sample-contradictory",
+        "seq":  3,
+        "sender_id":  "asha",
+        "ts":  "2026-10-25T10:02:00+05:30",
+        "text":  "I will send my understanding of the delivery date in a voice note.",
+        "attachment_hash":  null,
+        "is_system":  false,
+        "origin":  "export"
+    },
+    {
+        "id":  "contradictory-message-4",
+        "deal_id":  "sample-contradictory",
+        "seq":  4,
+        "sender_id":  "asha",
+        "ts":  "2026-10-25T10:03:00+05:30",
+        "text":  "\u003cattached: delivery-22-nov.wav\u003e",
+        "attachment_hash":  "37c2430d93ff7f6344f23287255aadc83c853f6734ed7730b017ad8e9ecd2ab7",
+        "is_system":  false,
+        "origin":  "export"
+    },
+    {
+        "id":  "contradictory-message-5",
+        "deal_id":  "sample-contradictory",
+        "seq":  5,
+        "sender_id":  "bilal",
+        "ts":  "2026-10-25T10:04:00+05:30",
+        "text":  "We have not agreed which price or delivery date applies yet. Please clarify both before I confirm.",
+        "attachment_hash":  null,
+        "is_system":  false,
+        "origin":  "export"
+    }
+]

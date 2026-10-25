@@ -1,0 +1,68 @@
+[
+    {
+        "id":  "clean-message-1",
+        "deal_id":  "sample-clean",
+        "seq":  1,
+        "sender_id":  "asha",
+        "ts":  "2026-10-25T10:00:00+05:30",
+        "text":  "I can supply 200 cotton shirts at ₹480 each, total ₹96,000.",
+        "attachment_hash":  null,
+        "is_system":  false,
+        "origin":  "export"
+    },
+    {
+        "id":  "clean-message-2",
+        "deal_id":  "sample-clean",
+        "seq":  2,
+        "sender_id":  "bilal",
+        "ts":  "2026-10-25T10:01:00+05:30",
+        "text":  "Yes, I will buy the 200 cotton shirts at that price.",
+        "attachment_hash":  null,
+        "is_system":  false,
+        "origin":  "export"
+    },
+    {
+        "id":  "clean-message-3",
+        "deal_id":  "sample-clean",
+        "seq":  3,
+        "sender_id":  "asha",
+        "ts":  "2026-10-25T10:02:00+05:30",
+        "text":  "Please pay ₹48,000 advance today and the ₹48,000 balance on delivery. Delivery will be on 15 November 2026.",
+        "attachment_hash":  null,
+        "is_system":  false,
+        "origin":  "export"
+    },
+    {
+        "id":  "clean-message-4",
+        "deal_id":  "sample-clean",
+        "seq":  4,
+        "sender_id":  "asha",
+        "ts":  "2026-10-25T10:03:00+05:30",
+        "text":  "If delivery is late, we agree there is no late penalty.",
+        "attachment_hash":  null,
+        "is_system":  false,
+        "origin":  "export"
+    },
+    {
+        "id":  "clean-message-5",
+        "deal_id":  "sample-clean",
+        "seq":  5,
+        "sender_id":  "bilal",
+        "ts":  "2026-10-25T10:04:00+05:30",
+        "text":  "Agreed to all those terms, including delivery and no late penalty. I have paid the ₹48,000 advance.",
+        "attachment_hash":  null,
+        "is_system":  false,
+        "origin":  "export"
+    },
+    {
+        "id":  "clean-message-6",
+        "deal_id":  "sample-clean",
+        "seq":  6,
+        "sender_id":  "asha",
+        "ts":  "2026-10-25T10:05:00+05:30",
+        "text":  "Agreed. Payment received; I confirm the order and delivery terms above.",
+        "attachment_hash":  null,
+        "is_system":  false,
+        "origin":  "export"
+    }
+]

@@ -60,3 +60,17 @@ the proposed contract changes as merged, or invent transcript confidence/time
 ranges. The eval integration and gold labels remain pending Area 2's change.
 
 Run the input checks with `uv run pytest packages/ingest/tests/test_sample_fixtures.py`.
+# Parsed Message fixtures (#13)
+
+`messages/*.json` contains ordered Message arrays corresponding exactly to the
+three exports below. These are curated synthetic fixtures, not parser output.
+Timestamps use the documented Asia/Kolkata assumption (+05:30), sequence numbers
+start at one, sender IDs are fictional names in lowercase, and the attachment
+hash is computed from the accompanying WAV bytes. No vault records are created.
+
+Schema reference: draft PR #40, commit
+`de8bc7b11384e2e3fcb89f4ec0debe0b3a38f541`. The contract tests validate each entry
+with the actual shared Message model when available. On dev without #40 they
+explicitly skip; passing preservation tests alone does not prove compatibility.
+Re-run the contract tests after the agreed contracts merge. FR-IMP-001, FR-IMP-007.
+
