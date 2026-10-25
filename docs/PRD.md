@@ -12,7 +12,7 @@ Status: Draft v1
 | Version | Draft v1 |
 | Status | Draft, awaiting team review |
 | Product owner | TBD |
-| Engineering owners | Samanway (Area 1), Abhishek (Area 2), Jhashank (Area 3), Hardik (Area 4); see [TEAM_GUIDE](TEAM_GUIDE.md) |
+| Engineering owners | Hardik (Areas 1, 3 and 4), Abhishek (Area 2); see [TEAM_GUIDE](TEAM_GUIDE.md) |
 | Legal reviewer | TBD (a lawyer must confirm every statement about Indian law) |
 | Source documents | `docs/source/VeriDoc-Final-Idea.md`, `docs/source/veridoc-wireframes.html` |
 | Conflict rule | This PRD wins over the source documents. Conflicts are logged in [OPEN_QUESTIONS](OPEN_QUESTIONS.md). |

@@ -35,14 +35,14 @@ Read first: [ONBOARDING](docs/ONBOARDING.md), [PHASES](docs/PHASES.md), [PRD](do
 |---|---|
 | 1. Ingest, Agreement and Release | `packages/ingest`, `apps/api/routers/ingest.py`, `apps/api/routers/agreement.py`, `playbooks/templates/`, `packaging/`, sample chats and demo voice notes |
 | 2. AI and ML | `packages/intelligence`, `playbooks/` (except `playbooks/templates/`), `eval/`, `apps/api/routers/analysis.py` |
-| 3. Backend, Integrity and Vault | `apps/api/main.py`, `packages/contracts` (steward), `packages/integrity` (except `packages/integrity/anchoring/`), `packages/vault`, `test-vectors/`, `apps/api/routers/vault.py`, `apps/api/routers/export.py`, `.github/workflows/`, `pyproject.toml`, `uv.lock` |
+| 3. Backend, Integrity and Vault | `apps/api/main.py`, `packages/contracts` (steward: Hardik; approval by Hardik and Abhishek), `packages/integrity` (except `packages/integrity/anchoring/`), `packages/vault`, `test-vectors/`, `apps/api/routers/vault.py`, `apps/api/routers/export.py`, `.github/workflows/`, `pyproject.toml`, `uv.lock` |
 | 4. Frontend and Blockchain | `apps/web`, `apps/verify`, `packages/integrity/anchoring/` |
 
-Shared, changed only by small reviewed pull requests: `packages/contracts`, `docs/`, `.github/`. Dependency files (`pyproject.toml`, `uv.lock`) are owned by Area 3 (Jhashank). Release lead: Hardik. Contracts steward: Jhashank (changes still need all four reviewers). Ask which area you are working in if it is not stated.
+Shared, changed only by small reviewed pull requests: `packages/contracts`, `docs/`, `.github/`. Dependency files (`pyproject.toml`, `uv.lock`) are owned by Area 3 (Hardik). Release lead: Hardik. Contracts steward: Hardik (every contracts change needs approval from Hardik and Abhishek). Hardik owns Areas 1, 3 and 4 and Abhishek owns Area 2 (Samanway and Jhashank are no longer active). Ask which area you are working in if it is not stated.
 
 ## Merge-conflict rules
 
-1. Contracts first: the team agrees `packages/contracts` together on day 1. Later changes are their own small pull request reviewed by all four.
+1. Contracts first: Hardik and Abhishek agree `packages/contracts` together. Later changes are their own small pull request approved by Hardik and Abhishek.
 2. One owner per hotspot: `apps/api/main.py` (Area 3), `apps/web/components/` and design tokens (Area 4), dependency files and migrations (Area 3). Request changes instead of editing.
 3. Short branches: one feature per branch, merged within 1 to 2 days.
 4. Rebase every morning: `git pull --rebase origin dev`.

@@ -26,7 +26,7 @@ flowchart TB
 
 **How here.**
 1. On day 1 the team writes `packages/contracts` together: Message, VoiceNote, Term, Flag, Score, Suggestion, HandshakeAnswer, Recap, Confirmation, Version, Receipt, DisputePack.
-2. A change later is its own small pull request, labelled `type:contracts`, reviewed by all four, merged before the feature code that needs it.
+2. A change later is its own small pull request, labelled `type:contracts`, approved by Hardik and Abhishek, merged before the feature code that needs it.
 3. Breaking changes (renaming or removing a field) bump a `contract_version` and list every affected area in the pull request.
 4. Prefer adding optional fields over changing existing ones.
 5. Nobody changes a contract inside a feature pull request.
@@ -125,7 +125,7 @@ flowchart TB
 
 **How here.**
 1. Morning: rebase on `dev`, post the three-line async standup (done, doing, blocked).
-2. Evening integration hour: all four online, merge ready pull requests, run the full suite on `dev`, fix breakage, pair on seams.
+2. Evening integration hour: both online, merge ready pull requests, run the full suite on `dev`, fix breakage, pair on seams.
 3. Weekly: a team demo of what runs on `dev`, followed by a backlog check against the phase gate.
 4. Questions that block more than an hour go to the team chat at once.
 
@@ -155,12 +155,12 @@ The CI workflow is `.github/workflows/ci.yml` (jobs `checks` and `secrets`, both
 **Why.** Misunderstandings at joints are the main source of rework.
 
 **How here.** Planned pairs (six seams):
-1. **Verify page and hashing** (Hardik + Jhashank): the verify page must pass Jhashank's test vectors; they agree the receipt bundle format and run Python and JavaScript side by side.
-2. **Model tiers and launcher** (Abhishek + Samanway): Abhishek sets tier thresholds and model choice; Samanway's launcher detects the tier and starts the right model; they test on the three laptops.
+1. **Verify page and hashing** (Area 4 and Area 3, both Hardik): the verify page must pass the test vectors; Python and JavaScript are checked side by side in CI.
+2. **Model tiers and launcher** (Abhishek + Hardik): Abhishek sets tier thresholds and model choice; Hardik's launcher (Area 1) detects the tier and starts the right model; they test on the three laptops.
 3. **AI output and the workspace screen** (Abhishek + Hardik): SSE events for terms, flags and score, and how needs-review is displayed.
-4. **Recap and handshake with the vault** (Samanway + Jhashank): import commit and vault write; seal-before-submit for the Blind Handshake.
-5. **Voice interface** (Abhishek + Samanway): the speech interface Abhishek owns and the import step that calls it; sample voice notes and time ranges.
-6. **Contracts** (Jhashank + everyone): any contract change is shaped by the steward before the pull request.
+4. **Recap and handshake with the vault** (Areas 1 and 3, both Hardik): import commit and vault write; seal-before-submit for the Blind Handshake.
+5. **Voice interface** (Abhishek + Hardik): the speech interface Abhishek owns and the import step (Area 1) that calls it; sample voice notes and time ranges.
+6. **Contracts** (Hardik and Abhishek): any contract change is shaped by the steward (Hardik) and approved by both before it merges.
 Pairs agree the outcome in writing (a contract change, a fixture, an issue) before they part.
 
 ## 12. AI coding discipline
@@ -185,7 +185,7 @@ These repository measures work together with the practices above.
 |---|---|---|
 | 1 | Router auto-discovery | `apps/api/main.py` loads every module in `apps/api/routers/` automatically (ADR-022), so nobody edits it to add a route. |
 | 2 | Changelog fragments | Each pull request adds `changes/<branch-name>.md`. `CHANGELOG.md` is combined by the release lead (Hardik) at phase end. See `changes/README.md`. |
-| 3 | Migrations owned by Area 3 | Other areas request schema changes in an issue. Area 3 (Jhashank) writes the Alembic migration. See below for multiple heads. |
+| 3 | Migrations owned by Area 3 | Other areas request schema changes in an issue. Area 3 (Hardik) writes the Alembic migration. See below for multiple heads. |
 | 4 | One dependency pull request per day | The dependency owner batches changes so `uv.lock` never conflicts. Others ask for a dependency in an issue. |
 | 5 | Design tokens in one file | `apps/web/assets/design-tokens.css` is owned by Area 4 (Hardik). Every screen has its own CSS file. |
 | 6 | `.gitattributes` | `* text=auto eol=lf` plus binary rules, so Windows and macOS line endings never create diffs. |
@@ -218,7 +218,7 @@ Never edit a migration that is already on `dev`; add a new one.
 
 1. An issue is independent only if it stays inside one owner's folders and touches no seam from section 11 and no contract.
 2. Integration issues carry the owners of every affected area as assignees. Hardik builds and merges; owners may build their part on their own branch and open a pull request, which Hardik merges once the owners have reviewed.
-3. Contracts are integration issues; all four review them (section 1).
+3. Contracts are integration issues; Hardik and Abhishek approve them (section 1).
 4. `blocked` means the issue waits on a named pull request or issue; the reason is in a comment.
 5. Nobody merges, closes or pushes to another person's pull request; comment instead.
 6. CI (`checks` and `secrets`) must be green before any merge.

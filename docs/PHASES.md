@@ -11,9 +11,9 @@ How to read this file: each phase has one checklist per area, then the gate. Tic
 
 | Area | Name | Member |
 |---|---|---|
-| 1 | Ingest, Agreement and Release | Samanway (@notorious1337) |
+| 1 | Ingest, Agreement and Release | Hardik (@HARDIKSINGH150206) |
 | 2 | AI and ML | Abhishek (@absksync) |
-| 3 | Backend, Integrity and Vault | Jhashank (@NYN-05); invitation pending, Hardik covers until accepted |
+| 3 | Backend, Integrity and Vault | Hardik (@HARDIKSINGH150206) |
 | 4 | Frontend and Blockchain | Hardik (@HARDIKSINGH150206); project release lead |
 
 ```mermaid
@@ -32,7 +32,7 @@ flowchart LR
 | Morning | `git pull --rebase origin dev` on your branch. Post the async standup (three lines: done, doing, blocked). |
 | During the day | One task at a time, at most two in progress per person. Small commits. Open the pull request early as a draft. |
 | Review | Review other people's pull requests the same day. |
-| Evening integration hour | Fixed hour, all four online. Merge ready pull requests into `dev`, run the full suite on `dev`, fix anything broken, pair at integration seams. Nobody leaves with a broken `dev`. |
+| Evening integration hour | Fixed hour, both online. Merge ready pull requests into `dev`, run the full suite on `dev`, fix anything broken, pair at integration seams. Nobody leaves with a broken `dev`. |
 | Weekly | A team demo of what works on `dev`. |
 
 ## Phase 0: Setup
@@ -41,16 +41,16 @@ Goal: everyone can build, test and merge. A thin end-to-end path (the walking sk
 
 ### Shared
 - [ ] Everyone completes the first-day checklist in [ONBOARDING](ONBOARDING.md)
-- [ ] Contracts agreed together and merged: Message, VoiceNote, Term, Flag, Score, Suggestion, HandshakeAnswer, Recap, Confirmation, Version, Receipt, DisputePack (reviewed by all four)
-- [x] `pyproject.toml` and `uv.lock` created by the dependency owner (Jhashank; Hardik until the invitation is accepted)
+- [ ] Contracts agreed together and merged: Message, VoiceNote, Term, Flag, Score, Suggestion, HandshakeAnswer, Recap, Confirmation, Version, Receipt, DisputePack (approved by Hardik and Abhishek)
+- [x] `pyproject.toml` and `uv.lock` created by the dependency owner (Hardik)
 - [x] Pre-commit with ruff and gitleaks working
 - [x] `.env.example` with names only
 - [x] Project board created with columns, labels and the first issues from this file (https://github.com/users/HARDIKSINGH150206/projects/1)
-- [ ] Jhashank accepts the repository invitation; Area 3 issues are reassigned from Hardik (Q-49)
+- [x] Samanway and Jhashank are no longer active; their open issues were reassigned to Hardik (2026-10-25)
 - [ ] GitHub settings from GIT_WORKFLOW section 7 reviewed
 - [x] OPEN_QUESTIONS owners assigned
 
-### Area 1: Ingest, Agreement and Release (Samanway)
+### Area 1: Ingest, Agreement and Release (Hardik)
 - [ ] Three synthetic sample chats (clean, ambiguous, contradictory) and one voice sample committed as fixtures
 - [ ] `packages/ingest/fixtures/` with parsed `Message` fixtures matching the contracts
 - [ ] Stub ingest route returns fixture messages (FR-IMP-007)
@@ -63,13 +63,13 @@ Goal: everyone can build, test and merge. A thin end-to-end path (the walking sk
 - [ ] Playbook file format validated against PLAYBOOKS.md with a stub loader plan
 - [ ] Speech interface (port) defined: `transcribe(audio) -> Transcript`, with a fake adapter for tests
 
-### Area 3: Backend, Integrity and Vault (Jhashank)
+### Area 3: Backend, Integrity and Vault (Hardik)
 - [ ] Hashing and vault stubs return fixed fake hashes and a fake receipt
 - [x] `scripts/make_test_vectors.py` and the file layout in `test-vectors/integrity/` (Q-41 closed)
 - [x] Alembic initialised in `packages/vault/migrations/` (empty baseline; tables wait for the contracts, PR #40)
 - [x] Router auto-discovery implemented in `apps/api/main.py` (ADR-022)
 - [x] CI workflow `.github/workflows/ci.yml`: ruff, format, mypy, pytest, folder, hardcoding, design-token and gitleaks checks (tamper tests join when they exist) (Q-33)
-- [ ] `packages/contracts` stewarded: the first agreed models merged (all four review)
+- [ ] `packages/contracts` stewarded: the first agreed models merged (Hardik and Abhishek approve)
 
 ### Area 4: Frontend and Blockchain (Hardik)
 - [x] `apps/web/assets/design-tokens.css` created; one CSS file per screen rule agreed
@@ -82,14 +82,14 @@ Goal: everyone can build, test and merge. A thin end-to-end path (the walking sk
 **Gate to merge `dev` into `main` (tag `v0.0-phase0`):**
 - CI is green on `dev`
 - The walking skeleton runs from a clean clone on Windows, macOS and Linux
-- All four members have merged a pull request
+- Hardik and Abhishek have each merged a pull request
 - Contracts are merged
 
 ## Phase 1: Foundation
 
 Goal: real parsing, real rules, real hashing and real first screens, each against fixtures.
 
-### Area 1: Ingest, Agreement and Release (Samanway)
+### Area 1: Ingest, Agreement and Release (Hardik)
 - [ ] WhatsApp parser, Android format (FR-IMP-001)
 - [ ] WhatsApp parser, iPhone format, 12 and 24 hour clocks, date-order detection (FR-IMP-001)
 - [ ] Paste text, multiple participants, which-one-is-you, malformed files (FR-IMP-003 to 006)
@@ -106,7 +106,7 @@ Goal: real parsing, real rules, real hashing and real first screens, each agains
 - [ ] First 30 eval chats labelled; runner prints per-field precision and recall for rules only
 - [ ] Hardware tier thresholds proposed (RAM, CPU) and model shortlist for the benchmark (Q-13, Q-35)
 
-### Area 3: Backend, Integrity and Vault (Jhashank)
+### Area 3: Backend, Integrity and Vault (Hardik)
 - [x] SHA-256 hashing with domain separation and RFC 8785 JCS (INTEGRITY_SPEC sections 2 to 5)
 - [x] Salted Merkle tree with odd carry-up and inclusion proofs
 - [x] `scripts/make_test_vectors.py` generates vectors; Python and JavaScript both reproduce them (Q-41)
@@ -131,7 +131,7 @@ Goal: real parsing, real rules, real hashing and real first screens, each agains
 
 Goal: import to terms to flags to suggestion works end to end on the sample chats, including a voice note.
 
-### Area 1: Ingest, Agreement and Release (Samanway)
+### Area 1: Ingest, Agreement and Release (Hardik)
 - [ ] Audio hashing hook calls the integrity interface with audio bytes (FR-VOI-002)
 - [ ] "Play the moment" clip endpoint by time range (FR-PLM-001)
 - [ ] Simulator messages (FR-IMP-008)
@@ -152,7 +152,7 @@ Goal: import to terms to flags to suggestion works end to end on the sample chat
 - [ ] Model benchmark per tier; model choice recorded in an ADR (Q-13)
 - [ ] Speech runner with faster-whisper behind the speech interface: segments, confidence, progress, timeouts, safe-mode behaviour (FR-VOI-001, FR-VOI-003)
 
-### Area 3: Backend, Integrity and Vault (Jhashank)
+### Area 3: Backend, Integrity and Vault (Hardik)
 - [ ] Vault write path for messages, voice notes, transcripts; leaves and the Merkle root (FR-VLT-001, 002)
 - [ ] Encryption: AES-GCM, Argon2id, recovery key (FR-VLT-005)
 - [ ] Crash-safe writes and startup self-check (NFR-REL-001, 002)
@@ -167,7 +167,7 @@ Goal: import to terms to flags to suggestion works end to end on the sample chat
 - [ ] Demo mode (load a sample deal in one click)
 - [ ] Unlock and first-run setup flow (passphrase, recovery key display)
 - [ ] Verify page v1 reads a bundle and checks leaves, root and chain; passes Area 3's test vectors in the browser (FR-VFY-001 to 004)
-- [ ] Verify page reproduces every Python test vector in JavaScript (with Jhashank)
+- [ ] Verify page reproduces every Python test vector in JavaScript
 
 **Gate (tag `v0.2-phase2`):**
 - On the ambiguous sample, the app shows delivery as Ambiguous, final payment and late penalty as Missing, a score equal to the formula result, and a suggested message in three tones
@@ -181,7 +181,7 @@ Goal: import to terms to flags to suggestion works end to end on the sample chat
 
 Goal: a recap is generated, confirmed with an echo code, versioned and receipted.
 
-### Area 1: Ingest, Agreement and Release (Samanway)
+### Area 1: Ingest, Agreement and Release (Hardik)
 - [ ] Recap templates in English and Hindi for both playbooks; native-speaker review requested (Q-17)
 - [ ] Recap builder from confirmed terms with source links (FR-RCP-001 to 004)
 - [ ] WhatsApp message builder with the echo code line (S12)
@@ -196,7 +196,7 @@ Goal: a recap is generated, confirmed with an echo code, versioned and receipted
 - [ ] Adversarial tests from EVALUATION section 5
 - [ ] Contradiction detection tuned using the eval set
 
-### Area 3: Backend, Integrity and Vault (Jhashank)
+### Area 3: Backend, Integrity and Vault (Hardik)
 - [ ] Echo code generation and verification, including stale code and wrong sender (FR-ECH-001 to 004)
 - [ ] Confirmation leaf stored; confirmation states (sent, confirmed, not confirmed)
 - [ ] Version diff and linked reason (FR-VER-002, 003)
@@ -221,7 +221,7 @@ Goal: a recap is generated, confirmed with an echo code, versioned and receipted
 
 Goal: demo-ready on a second laptop, with measured numbers and a recorded backup.
 
-### Area 1: Ingest, Agreement and Release (Samanway)
+### Area 1: Ingest, Agreement and Release (Hardik)
 - [ ] Parser hardening and error states for every S2 message
 - [ ] Demo chats and voice notes finalised; synthetic only
 - [ ] Hindi templates reviewed by a native speaker (Q-17)
@@ -240,7 +240,7 @@ Goal: demo-ready on a second laptop, with measured numbers and a recorded backup
 - [ ] Rules latency measured (NFR-PERF-003)
 - [ ] Hardware tier thresholds confirmed from the three-laptop benchmarks
 
-### Area 3: Backend, Integrity and Vault (Jhashank)
+### Area 3: Backend, Integrity and Vault (Hardik)
 - [ ] All seven tamper tests (INTEGRITY_SPEC section 11) pass
 - [ ] Dispute pack PDF: timeline, evidence index, versions, verification guide, draft Section 63 BSA certificate, Indic text rendering (FR-DSP-001 to 005)
 - [ ] Trust report command assembling integrity, safety and performance sections (FR-EVL-003)
@@ -261,7 +261,7 @@ Goal: demo-ready on a second laptop, with measured numbers and a recorded backup
 
 Starts only after the Phase 4 gate. Follow the drop order backwards: build in the order below only as time remains.
 
-### Area 1: Ingest, Agreement and Release (Samanway)
+### Area 1: Ingest, Agreement and Release (Hardik)
 - [ ] Kannada recap templates after native-speaker review (FR-KAN-001)
 - [ ] Read-aloud recap (FR-AUD-001)
 
@@ -271,7 +271,7 @@ Starts only after the Phase 4 gate. Follow the drop order backwards: build in th
 - [ ] Stamp-duty hint content for one or two states, lawyer-verified (FR-STP-001)
 - [ ] Optional fine-tuning with an eval gate (ADR-023, FR-FTN-001): shipped and claimed only if it beats the base model; results in MODEL_CARD.md
 
-### Area 3: Backend, Integrity and Vault (Jhashank)
+### Area 3: Backend, Integrity and Vault (Hardik)
 - [ ] Selective disclosure with inclusion proofs (FR-SEL-001)
 - [ ] Privacy mask (FR-MSK-001)
 - [ ] Share link with client-side encryption (FR-SHR-001)

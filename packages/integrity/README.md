@@ -1,4 +1,4 @@
-Integrity primitives: hashing, canonical JSON, salted Merkle tree, echo code, version chain. Owner: Area 3 (Jhashank; Hardik covers until the invitation is accepted). The anchoring/ subfolder is owned by Area 4. Tests go in packages/integrity/tests/.
+Integrity primitives: hashing, canonical JSON, salted Merkle tree, echo code, version chain. Owner: Area 3 (Hardik). The anchoring/ subfolder is owned by Area 4. Tests go in packages/integrity/tests/.
 
 All functions are pure: bytes or JSON in, bytes or text out. No I/O, no clock, no randomness (salts are passed in), no dependency on the contract shapes. The rules are in [docs/INTEGRITY_SPEC.md](../../docs/INTEGRITY_SPEC.md); any change here must update the spec and the test vectors in the same change.
 

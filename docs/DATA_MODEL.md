@@ -1,6 +1,6 @@
 # Data Model
 
-This document lists VeriDoc's entities, fields, relationships, retention, encryption and insert-only rules. Field names are indicative until `packages/contracts` is agreed by all four members.
+This document lists VeriDoc's entities, fields, relationships, retention, encryption and insert-only rules. Field names are indicative until `packages/contracts` is agreed by Hardik and Abhishek.
 
 Last updated: 2026-10-25
 Status: Draft v1
