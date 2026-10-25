@@ -9,6 +9,7 @@ dependencies = [
     "fastapi>=0.115",
     "pydantic>=2.7,<3",
     "pydantic-settings>=2.3",
+    "rfc8785==0.1.4",
     "sqlalchemy>=2.0",
     "uvicorn>=0.30",
 ]
@@ -16,6 +17,7 @@ dependencies = [
 [dependency-groups]
 dev = [
     "httpx2>=2.16.0",
+    "hypothesis>=6.100",
     "mypy>=1.10",
     "pre-commit>=3.7",
     "pytest>=8.2",
