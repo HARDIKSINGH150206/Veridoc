@@ -45,7 +45,7 @@ def exists(path: str) -> bool:
     return bool(list(ROOT.glob(p))) if "*" in p else (ROOT / p).exists()
 
 
-arch = (ROOT / "docs/ARCHITECTURE.md").read_text()
+arch = (ROOT / "docs/ARCHITECTURE.md").read_text(encoding="utf-8")
 paths = tree_paths(arch)
 checked = 0
 for raw in paths:
@@ -79,7 +79,7 @@ for entry in sorted(ROOT.iterdir()):
 # CODEOWNERS paths exist and are covered by the tree
 co = [
     line.split()[0]
-    for line in (ROOT / ".github/CODEOWNERS").read_text().splitlines()
+    for line in (ROOT / ".github/CODEOWNERS").read_text(encoding="utf-8").splitlines()
     if line.strip() and not line.startswith("#")
 ]
 tree_set = {p.rstrip("/") for p in paths}
@@ -97,7 +97,7 @@ for c in co:
 # ownership tables must list the same paths in every document
 def owned(path: str) -> dict[str, set[str]]:
     res: dict[str, set[str]] = {}
-    for line in (ROOT / path).read_text().splitlines():
+    for line in (ROOT / path).read_text(encoding="utf-8").splitlines():
         m = re.match(r"^\| (\d)\. [^|]+\|([^|]+)\|", line)
         if m:
             res[m.group(1)] = set(re.findall(r"`([^`]+)`", m.group(2)))
