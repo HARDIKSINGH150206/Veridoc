@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="api-base" content="/api">
+  <title>Walking skeleton - VeriDoc</title>
+  <link rel="stylesheet" href="../../assets/fonts.css">
+  <link rel="stylesheet" href="../../assets/design-tokens.css">
+  <link rel="stylesheet" href="../../components/components.css">
+  <link rel="stylesheet" href="skeleton.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <header class="app-header">
+    <div class="app-header__inner">
+      <a class="app-header__brand" href="../s1-deals/index.html">VeriDoc</a>
+      <nav class="app-nav" aria-label="Main">
+        <a class="app-nav__item" href="../s1-deals/index.html">Deals</a>
+        <a class="app-nav__item" href="../s2-import/index.html">Import</a>
+        <span class="app-nav__item" aria-current="page">Walking skeleton</span>
+      </nav>
+      <div class="app-header__right">
+        <span class="mode-indicator">Offline mode</span>
+      </div>
+    </div>
+  </header>
+
+  <main id="main" class="page">
+    <p class="placeholder-banner" role="note">
+      <strong>Demo data.</strong>
+      <span>This page walks one synthetic chat through import, terms, recap and receipt. The terms are recorded demo answers, not real analysis, and the receipt is labelled as a demo: not for evidence.</span>
+    </p>
+
+    <div class="page-title">
+      <div>
+        <h1>Walking skeleton</h1>
+        <p class="muted">Import a sample chat, confirm terms yourself, get a recap with an echo code and a receipt.</p>
+      </div>
+    </div>
+
+    <p id="notice" class="notice" role="status" hidden></p>
+
+    <div class="flow">
+      <section class="card" aria-labelledby="import-title">
+        <div class="card__head">
+          <h2 id="import-title"><span class="step" aria-hidden="true">1</span> Import a sample chat</h2>
+        </div>
+        <div class="field">
+          <label for="sample">Sample chat</label>
+          <select class="input" id="sample"></select>
+        </div>
+        <div class="actions">
+          <button class="btn btn--primary" type="button" id="import">Import sample</button>
+        </div>
+        <p class="muted" id="chat-count"></p>
+        <ol class="chat" id="chat" aria-label="Chat messages"></ol>
+      </section>
+
+      <section class="card" aria-labelledby="terms-title">
+        <div class="card__head">
+          <h2 id="terms-title"><span class="step" aria-hidden="true">2</span> Terms found</h2>
+        </div>
+        <p class="muted">Proposed by the analysis. Nothing is recorded until you confirm a term.</p>
+        <ul class="terms" id="terms" aria-label="Terms found"></ul>
+        <div class="actions">
+          <button class="btn btn--primary" type="button" id="make-recap" disabled>Build recap from confirmed terms</button>
+        </div>
+      </section>
+
+      <section class="card" aria-labelledby="recap-title">
+        <div class="card__head">
+          <h2 id="recap-title"><span class="step" aria-hidden="true">3</span> Recap and echo code</h2>
+        </div>
+        <pre class="recap" id="recap" aria-label="Recap text"></pre>
+        <p class="echo" id="echo"></p>
+        <p class="muted">The code ties a reply to this exact recap version. It does not show who typed the reply.</p>
+        <div class="actions">
+          <button class="btn btn--primary" type="button" id="record" disabled>Record and get receipt</button>
+        </div>
+      </section>
+
+      <section class="card" aria-labelledby="receipt-title">
+        <div class="card__head">
+          <h2 id="receipt-title"><span class="step" aria-hidden="true">4</span> Receipt</h2>
+        </div>
+        <p class="muted" id="receipt-label"></p>
+        <dl class="receipt" id="receipt"></dl>
+      </section>
+    </div>
+  </main>
+  <script type="module" src="skeleton.js"></script>
+</body>
+</html>

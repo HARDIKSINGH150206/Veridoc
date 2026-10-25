@@ -1,0 +1,11 @@
+{
+  "name": "veridoc-web",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Static web screens. No build step; the type marks the scripts as ES modules.",
+  "type": "module",
+  "engines": { "node": ">=22" },
+  "scripts": {
+    "test": "node --test \"tests/*.test.mjs\""
+  }
+}

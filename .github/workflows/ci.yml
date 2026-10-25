@@ -73,6 +73,10 @@ jobs:
           npm ci
           npm test
 
+      - name: Walking skeleton screen logic
+        working-directory: apps/web
+        run: npm test
+
   secrets:
     name: secrets
     runs-on: ubuntu-latest
