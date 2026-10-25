@@ -104,3 +104,9 @@ test('a receipt is summarised with its demo label', () => {
   assert.equal(summary.demo, true);
   assert.deepEqual(summary.rows.map((r) => r[0]), ['Recording type', 'Messages recorded', 'Merkle root', 'Version 1 link', 'Receipt hash']);
 });
+
+test('the model badge is shown exactly when the recorded fake model is in use', () => {
+  assert.equal(logic.modelBadgeText('fake'), 'Demo mode: recorded model output');
+  assert.equal(logic.modelBadgeText('local'), null);
+  assert.equal(logic.modelBadgeText(undefined), null);
+});

@@ -107,3 +107,8 @@ export function summariseReceipt(record) {
   ];
   return { demo: record.demo === true, rows };
 }
+
+/** The badge text while the recorded fake model answers, otherwise null. */
+export function modelBadgeText(mode) {
+  return mode === 'fake' ? 'Demo mode: recorded model output' : null;
+}

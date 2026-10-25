@@ -3,6 +3,7 @@
 import {
   canConfirm,
   describeValue,
+  modelBadgeText,
   primaryUser,
   sourceLabels,
   statusView,
@@ -170,6 +171,10 @@ function guarded(action) {
 }
 
 async function start() {
+  const health = await api('/health');
+  const badgeText = modelBadgeText(health.model_mode);
+  $('model-badge').textContent = badgeText ?? '';
+  $('model-badge').hidden = badgeText === null;
   const { samples } = await api('/ingest/samples');
   const select = $('sample');
   for (const id of samples) select.append(new Option(id, id));
