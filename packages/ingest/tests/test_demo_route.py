@@ -74,3 +74,31 @@ def test_corrupt_fixture_fails_closed(tmp_path: Path) -> None:
     (tmp_path / "broken.json").write_text('[{"text":"private"}]', encoding="utf-8")
     with pytest.raises(SampleUnavailable, match="Sample data unavailable"):
         load_messages("broken", tmp_path)
+
+
+def test_sample_list_and_detail_in_demo_mode() -> None:
+    from packages.contracts import Participant
+
+    with client(True) as api:
+        listing = api.get("/api/ingest/samples")
+        detail = api.get("/api/ingest/samples/clean")
+    assert listing.status_code == 200 and listing.json() == {
+        "samples": ["ambiguous", "clean", "contradictory"]
+    }
+    body = detail.json()
+    assert detail.status_code == 200 and body["playbook_id"] == "supply_order"
+    assert body["messages"] == json.loads((FIXTURES / "clean.json").read_text("utf-8"))
+    for participant in body["participants"]:
+        Participant.model_validate_json(json.dumps(participant))
+
+
+def test_sample_list_and_detail_are_hidden_outside_demo_mode() -> None:
+    with client(False) as api:
+        assert api.get("/api/ingest/samples").status_code == 404
+        assert api.get("/api/ingest/samples/clean").status_code == 404
+
+
+@pytest.mark.parametrize("sample", ("unknown", "clean.json", "%2e%2e", "meta%2fclean"))
+def test_sample_detail_rejects_unknown_or_path_input(sample: str) -> None:
+    with client(True) as api:
+        assert api.get(f"/api/ingest/samples/{sample}").status_code == 404

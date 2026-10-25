@@ -24,3 +24,7 @@ Mapping rules (acceptance criteria of #63 and #64):
 `VERIDOC_MODEL_MODE=fake|local` picks the adapter (default `fake`; `local` raises `NotImplementedError`). Recorded outputs are in `fixtures/recordings/`, including the two real mistakes of the v1 model: `unit_price` 48000 against the quote "480 each ok?", and the advance in "done sent 48000" missed.
 
 Open: Q-62 (playbook keys), issue #69 (local adapter).
+
+## Demo analysis (#30)
+
+`demo_analysis.analyze_demo(sample, adapter)` asks a `ModelAdapter` about a bundled sample and maps the answer to unconfirmed `Term`s. `GET /api/analysis/samples/{sample_id}/terms` (demo mode only) does this with `build_adapter(settings.model_mode, ...)`; `local` answers 501 with the reason. `fixtures/recordings/sample-*.json` are hand-written in the style of the local model's JSON, one per bundled sample (clean, ambiguous, contradictory); they are not real model output, and a test checks each matches the sample's exact numbered chat. Flags, score and suggestion are not part of this step.
