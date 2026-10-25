@@ -365,7 +365,7 @@ Steps with commands:
 10. **Open a pull request into `dev`** with `gh pr create --base dev` or on GitHub. Fill in the template.
 11. **Review.** A teammate from another area reviews the same day (section 13).
 12. **Fix comments.** Push more commits to the same branch; reply to each comment.
-13. **Merge** with "Squash and merge" into `dev`. Delete the branch.
+13. **Merge** with "Squash and merge" into `dev` once CI passes (branches are deleted automatically). **Who merges depends on the issue type:** for an *independent* issue (one area, your own files) you merge your own pull request; for an *integration* issue (label `type:integration`: two or more areas, `packages/contracts`, or a seam) Hardik merges it and the affected owners review. Never merge, close or push to someone else's pull request. See section 12a.
 14. **Evening integration hour.** Everyone merges what is ready, runs the full suite on `dev`, and fixes anything broken.
 
 ## 11. Branch model
@@ -373,7 +373,7 @@ Steps with commands:
 | Branch | What it is | Who may merge into it |
 |---|---|---|
 | `main` | Stable. Phase releases only. Always runnable. | Release lead (Hardik, Area 4), by pull request from `dev`, after the phase gate |
-| `dev` | Integration. All finished features land here. | Anyone, by pull request, after review and green checks |
+| `dev` | Integration. All finished features land here. | The area owner for an independent issue, Hardik for an integration issue; always by pull request, after green CI |
 | `feat/<area>-<name>`, `fix/<name>`, `docs/<name>`, `chore/<name>` | Your work, from `dev` | You, then it is deleted |
 | `hotfix/<name>` | Urgent fix, from `main` | Release lead |
 
@@ -409,6 +409,17 @@ Why: a readable history, and tools can build the changelog.
 6. Checklist from the definition of done.
 7. A changelog fragment in `changes/`.
 
+## 12a. Independent and integration issues
+
+Every issue is one of two kinds. This decides who merges.
+
+| Issue type | How to recognise it | Who builds | Who merges | Reviewers |
+|---|---|---|---|---|
+| **Independent** | Touches only files in one area (the owner's own folders) and no seam | The area owner | The area owner, into `dev`, after CI passes | Optional: a teammate may review; not required for merge |
+| **Integration** (label `type:integration`) | Touches two or more areas, `packages/contracts`, or a seam listed in DEVELOPMENT_METHODOLOGY section 11 (verify page and hashing, model tiers and launcher, AI output and workspace screen, recap and handshake with the vault, voice interface) | Hardik (area owners build their own part on a branch if useful) | Hardik, into `dev`, after CI passes | The affected area owners, who are also assignees |
+
+How to decide: does the change stay inside your own folders (see section 3) and avoid `packages/contracts` and the seams? Then it is independent. If not, say so on the issue; Hardik adds the label `type:integration` and the affected owners become assignees. An issue labelled `blocked` waits on another pull request or issue; do not work around it. Full rules: [TEAM_GUIDE](TEAM_GUIDE.md) section 1a.
+
 ## 13. Code review
 
 **How to review.** Read the description first, then the tests, then the code. Run it if you can. Be kind and specific: say what and why, and suggest a fix. Use GitHub's "Request changes" only for things that must change; use comments for suggestions.
@@ -428,7 +439,7 @@ Why: a readable history, and tools can build the changelog.
 
 **Response time.** Review the same day you are asked. If you cannot, say so and name someone else.
 
-**Deciding.** Approve when the checklist passes. Request changes when something on it fails. The author replies to each comment and re-requests review after fixing. The author merges (squash) after approval, unless the team decides otherwise.
+**Deciding.** Approve when the checklist passes. Request changes when something on it fails. The author replies to each comment and re-requests review after fixing. For an independent issue the author merges (squash) after CI passes; a review is welcome but not required. For an integration issue Hardik merges after the affected owners have reviewed. Nobody merges, closes or pushes to another person's pull request.
 
 ## 14. The project board
 
