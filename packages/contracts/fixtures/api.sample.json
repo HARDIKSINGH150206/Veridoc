@@ -1,0 +1,287 @@
+{
+  "description": "Made-up samples of the live-analysis event stream, the error body and the deals list.",
+  "stream_events": [
+    {
+      "event_id": 1,
+      "deal_id": "235a0b73-6715-595c-a0b0-e22e53b9fac6",
+      "sent_at": "2026-10-13T09:30:01+05:30",
+      "event": {
+        "type": "progress",
+        "stage": "rules",
+        "done": 5,
+        "total": 5
+      }
+    },
+    {
+      "event_id": 2,
+      "deal_id": "235a0b73-6715-595c-a0b0-e22e53b9fac6",
+      "sent_at": "2026-10-13T09:30:02+05:30",
+      "event": {
+        "type": "term",
+        "term": {
+          "id": "a2f94708-78b9-509e-9c51-e011edbd1d39",
+          "deal_id": "235a0b73-6715-595c-a0b0-e22e53b9fac6",
+          "key": "delivery_date",
+          "value": null,
+          "raw": "next week",
+          "state": "unclear",
+          "unclear_reason": "relative_date",
+          "origin": "rules",
+          "confidence": "high",
+          "needs_review": false,
+          "sources": [
+            {
+              "kind": "message",
+              "message_id": "89fbe45e-a173-52a5-bc76-607776217801",
+              "quote": "delivery next week"
+            }
+          ],
+          "alternatives": [],
+          "confirmed_at": null,
+          "confirmed_by": null,
+          "acknowledged_by_other": false
+        }
+      }
+    },
+    {
+      "event_id": 3,
+      "deal_id": "235a0b73-6715-595c-a0b0-e22e53b9fac6",
+      "sent_at": "2026-10-13T09:30:03+05:30",
+      "event": {
+        "type": "flag",
+        "flag": {
+          "id": "b84347f3-72f6-569e-bb9c-c15d0a6c244f",
+          "deal_id": "235a0b73-6715-595c-a0b0-e22e53b9fac6",
+          "kind": "ambiguous",
+          "rule_id": "rel_date",
+          "term_key": "delivery_date",
+          "reason_code": "relative_date",
+          "reason_params": {
+            "phrase": "next week",
+            "message": "2"
+          },
+          "sources": [
+            {
+              "kind": "message",
+              "message_id": "89fbe45e-a173-52a5-bc76-607776217801",
+              "quote": "delivery next week"
+            }
+          ],
+          "created_at": "2026-10-13T09:30:00+05:30",
+          "resolved_at": null
+        }
+      }
+    },
+    {
+      "event_id": 4,
+      "deal_id": "235a0b73-6715-595c-a0b0-e22e53b9fac6",
+      "sent_at": "2026-10-13T09:30:04+05:30",
+      "event": {
+        "type": "score",
+        "score": {
+          "deal_id": "235a0b73-6715-595c-a0b0-e22e53b9fac6",
+          "ts": "2026-10-13T09:30:00+05:30",
+          "total": 55,
+          "breakdown": [
+            {
+              "term_key": "buyer",
+              "weight": 5,
+              "present": true,
+              "clear": true,
+              "acknowledged": true,
+              "points": 5.0
+            },
+            {
+              "term_key": "seller",
+              "weight": 5,
+              "present": true,
+              "clear": true,
+              "acknowledged": true,
+              "points": 5.0
+            },
+            {
+              "term_key": "item",
+              "weight": 10,
+              "present": true,
+              "clear": true,
+              "acknowledged": true,
+              "points": 10.0
+            },
+            {
+              "term_key": "quantity",
+              "weight": 10,
+              "present": true,
+              "clear": true,
+              "acknowledged": true,
+              "points": 10.0
+            },
+            {
+              "term_key": "unit_price",
+              "weight": 15,
+              "present": true,
+              "clear": true,
+              "acknowledged": true,
+              "points": 15.0
+            },
+            {
+              "term_key": "total_amount",
+              "weight": 5,
+              "present": false,
+              "clear": false,
+              "acknowledged": false,
+              "points": 0.0
+            },
+            {
+              "term_key": "advance_amount",
+              "weight": 10,
+              "present": true,
+              "clear": true,
+              "acknowledged": true,
+              "points": 10.0
+            },
+            {
+              "term_key": "delivery_date",
+              "weight": 15,
+              "present": false,
+              "clear": false,
+              "acknowledged": false,
+              "points": 0.0
+            },
+            {
+              "term_key": "balance_payment_date",
+              "weight": 10,
+              "present": false,
+              "clear": false,
+              "acknowledged": false,
+              "points": 0.0
+            },
+            {
+              "term_key": "late_penalty",
+              "weight": 10,
+              "present": false,
+              "clear": false,
+              "acknowledged": false,
+              "points": 0.0
+            },
+            {
+              "term_key": "quality_spec",
+              "weight": 5,
+              "present": false,
+              "clear": false,
+              "acknowledged": false,
+              "points": 0.0
+            }
+          ],
+          "trigger": "confirm_term"
+        }
+      }
+    },
+    {
+      "event_id": 5,
+      "deal_id": "235a0b73-6715-595c-a0b0-e22e53b9fac6",
+      "sent_at": "2026-10-13T09:30:05+05:30",
+      "event": {
+        "type": "suggestion",
+        "suggestion": {
+          "id": "f8298033-3fbf-5109-a9db-0da8122c30df",
+          "deal_id": "235a0b73-6715-595c-a0b0-e22e53b9fac6",
+          "target_term_keys": [
+            "delivery_date",
+            "balance_payment_date"
+          ],
+          "tone": "polite",
+          "language": "en",
+          "text": "Just to confirm, delivery by 15 Nov and the balance on delivery, right?",
+          "created_at": "2026-10-13T09:30:00+05:30",
+          "copied_at": null
+        }
+      }
+    },
+    {
+      "event_id": 6,
+      "deal_id": "235a0b73-6715-595c-a0b0-e22e53b9fac6",
+      "sent_at": "2026-10-13T09:30:06+05:30",
+      "event": {
+        "type": "progress",
+        "stage": "ai",
+        "done": 1,
+        "total": 3
+      }
+    },
+    {
+      "event_id": 7,
+      "deal_id": "235a0b73-6715-595c-a0b0-e22e53b9fac6",
+      "sent_at": "2026-10-13T09:30:07+05:30",
+      "event": {
+        "type": "error",
+        "error": {
+          "code": "model_unavailable",
+          "message_en": "The AI helper is unavailable. Showing rules-only results.",
+          "message_hi": null,
+          "hint": "Open settings to check the model status."
+        }
+      }
+    },
+    {
+      "event_id": 8,
+      "deal_id": "235a0b73-6715-595c-a0b0-e22e53b9fac6",
+      "sent_at": "2026-10-13T09:30:08+05:30",
+      "event": {
+        "type": "done"
+      }
+    }
+  ],
+  "error_body": {
+    "code": "vault_locked",
+    "message_en": "The vault is locked.",
+    "message_hi": null,
+    "hint": "Unlock it with your passphrase."
+  },
+  "deal_summaries": [
+    {
+      "deal_id": "235a0b73-6715-595c-a0b0-e22e53b9fac6",
+      "title": "Raju x Meena",
+      "playbook": {
+        "key": "supply_order",
+        "version": 1
+      },
+      "score": 55,
+      "open_gap_count": 4,
+      "conflict_count": 0,
+      "next_date": null,
+      "status": "awaiting",
+      "updated_at": "2026-10-13T09:31:00+05:30"
+    },
+    {
+      "deal_id": "0c05f159-dbd8-5cfa-b235-584b4bd4d67d",
+      "title": "Asha x Bilal",
+      "playbook": {
+        "key": "supply_order",
+        "version": 1
+      },
+      "score": 100,
+      "open_gap_count": 0,
+      "conflict_count": 0,
+      "next_date": {
+        "kind": "date",
+        "date": "2026-09-20"
+      },
+      "status": "confirmed",
+      "updated_at": "2026-09-01T14:42:00+05:30"
+    },
+    {
+      "deal_id": "5af0afe0-e090-57fa-a977-3439660d9045",
+      "title": "Chetan x Divya",
+      "playbook": {
+        "key": "supply_order",
+        "version": 1
+      },
+      "score": 37,
+      "open_gap_count": 3,
+      "conflict_count": 2,
+      "next_date": null,
+      "status": "draft",
+      "updated_at": "2026-08-11T09:51:00+05:30"
+    }
+  ]
+}

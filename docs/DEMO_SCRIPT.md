@@ -32,7 +32,7 @@ Setup checklist:
 | Voice sample | Shows text versus voice contradiction and play the moment | Text says 15 Nov; a voice note says 22 Nov |
 | Hinglish sample | Shows rules for number words | Includes "pachaas hazaar" and "aadha advance" |
 
-All samples are synthetic. Each has a gold label file in `eval/labels/` (Area 2) and the chat file is provided by Area 1 (Samanway).
+All samples are synthetic. Each has a gold label file in `eval/labels/` (Area 2) and the chat file is provided by Area 1 (Hardik).
 
 ## 3. The four-minute script
 

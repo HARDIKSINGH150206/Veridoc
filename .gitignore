@@ -4,6 +4,7 @@ __pycache__/
 .venv/
 venv/
 .pytest_cache/
+.hypothesis/
 .mypy_cache/
 .ruff_cache/
 *.egg-info/
@@ -54,3 +55,6 @@ out/
 *.log
 packaging/runtimes/
 packaging/dist/
+
+*graphify-out/
+directory_structure.txt

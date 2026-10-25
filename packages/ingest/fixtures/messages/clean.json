@@ -1,0 +1,68 @@
+[
+  {
+    "id": "a199a890-5810-5266-aef2-e02bf02f54f1",
+    "deal_id": "e3dd36e4-3ba8-5528-96c0-2fbd3781e658",
+    "seq": 1,
+    "sender_id": "4fdb158e-3789-5be7-92f4-a95ba9fe81bf",
+    "ts": "2026-10-25T10:00:00+05:30",
+    "text": "I can supply 200 cotton shirts at ₹480 each, total ₹96,000.",
+    "attachment_hash": null,
+    "is_system": false,
+    "origin": "export"
+  },
+  {
+    "id": "20d51f44-23e7-51c1-a15d-55816f88ccd0",
+    "deal_id": "e3dd36e4-3ba8-5528-96c0-2fbd3781e658",
+    "seq": 2,
+    "sender_id": "7488227c-7b97-5073-84b8-face5eed34bc",
+    "ts": "2026-10-25T10:01:00+05:30",
+    "text": "Yes, I will buy the 200 cotton shirts at that price.",
+    "attachment_hash": null,
+    "is_system": false,
+    "origin": "export"
+  },
+  {
+    "id": "d88ee365-9bf0-5a85-adbb-2e01a427b87d",
+    "deal_id": "e3dd36e4-3ba8-5528-96c0-2fbd3781e658",
+    "seq": 3,
+    "sender_id": "4fdb158e-3789-5be7-92f4-a95ba9fe81bf",
+    "ts": "2026-10-25T10:02:00+05:30",
+    "text": "Please pay ₹48,000 advance today and the ₹48,000 balance on delivery. Delivery will be on 15 November 2026.",
+    "attachment_hash": null,
+    "is_system": false,
+    "origin": "export"
+  },
+  {
+    "id": "b2433f97-5303-5022-baca-2353d30f9258",
+    "deal_id": "e3dd36e4-3ba8-5528-96c0-2fbd3781e658",
+    "seq": 4,
+    "sender_id": "4fdb158e-3789-5be7-92f4-a95ba9fe81bf",
+    "ts": "2026-10-25T10:03:00+05:30",
+    "text": "If delivery is late, we agree there is no late penalty.",
+    "attachment_hash": null,
+    "is_system": false,
+    "origin": "export"
+  },
+  {
+    "id": "037c3535-1c3f-5d19-867e-ba5800e88af8",
+    "deal_id": "e3dd36e4-3ba8-5528-96c0-2fbd3781e658",
+    "seq": 5,
+    "sender_id": "7488227c-7b97-5073-84b8-face5eed34bc",
+    "ts": "2026-10-25T10:04:00+05:30",
+    "text": "Agreed to all those terms, including delivery and no late penalty. I have paid the ₹48,000 advance.",
+    "attachment_hash": null,
+    "is_system": false,
+    "origin": "export"
+  },
+  {
+    "id": "99a6970e-e908-570d-a014-3da50121313e",
+    "deal_id": "e3dd36e4-3ba8-5528-96c0-2fbd3781e658",
+    "seq": 6,
+    "sender_id": "4fdb158e-3789-5be7-92f4-a95ba9fe81bf",
+    "ts": "2026-10-25T10:05:00+05:30",
+    "text": "Agreed. Payment received; I confirm the order and delivery terms above.",
+    "attachment_hash": null,
+    "is_system": false,
+    "origin": "export"
+  }
+]

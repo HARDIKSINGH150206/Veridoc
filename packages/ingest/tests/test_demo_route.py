@@ -1,0 +1,104 @@
+"""Demo ingest boundary for #14: FR-IMP-007, FR-IMP-009."""
+
+import json
+import os
+import socket
+from pathlib import Path
+
+import pytest
+from fastapi.testclient import TestClient
+
+from apps.api.main import create_app
+from apps.api.settings import Settings
+from packages.contracts import Message
+from packages.ingest.samples import SampleUnavailable, load_messages
+
+FIXTURES = Path(__file__).resolve().parents[1] / "fixtures" / "messages"
+
+
+@pytest.fixture(autouse=True)
+def isolate_settings(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
+    monkeypatch.chdir(tmp_path)
+    for name in os.environ:
+        if name.startswith("VERIDOC_"):
+            monkeypatch.delenv(name)
+
+
+def client(demo: bool) -> TestClient:
+    return TestClient(create_app(Settings(demo_mode=demo)))
+
+
+def test_demo_disabled() -> None:
+    with client(False) as api:
+        assert api.get("/api/ingest/samples/clean/messages").status_code == 404
+
+
+@pytest.mark.parametrize("sample", ("clean", "ambiguous", "contradictory"))
+def test_demo_returns_validated_fixture(sample: str, monkeypatch: pytest.MonkeyPatch) -> None:
+    def no_network(*args: object, **kwargs: object) -> None:
+        pytest.fail("Demo import must not connect to the network")
+
+    # Windows asyncio needs a loopback socket pair to start its event loop.
+    # Block networking only while the in-process request is being served.
+    with client(True) as api, monkeypatch.context() as guard:
+        guard.setattr(socket.socket, "connect", no_network)
+        guard.setattr(socket, "getaddrinfo", no_network)
+        response = api.get(f"/api/ingest/samples/{sample}/messages")
+    assert response.status_code == 200
+    assert response.json() == json.loads((FIXTURES / f"{sample}.json").read_text("utf-8"))
+    for message in response.json():
+        Message.model_validate_json(json.dumps(message))
+
+
+def test_unavailable_sample_returns_safe_error(monkeypatch: pytest.MonkeyPatch) -> None:
+    from apps.api.routers import ingest
+
+    def broken(sample_id: str, directory: Path) -> list[Message]:
+        raise SampleUnavailable("private path must not escape")
+
+    monkeypatch.setattr(ingest, "load_messages", broken)
+    with client(True) as api:
+        response = api.get("/api/ingest/samples/clean/messages")
+        assert response.status_code == 503
+        assert "private" not in response.text
+        assert api.get("/api/health").status_code == 200
+
+
+@pytest.mark.parametrize("sample", ("unknown", "clean.json", "%2e%2e", "%2e%2e%2fclean"))
+def test_unknown_or_path_input_rejected(sample: str) -> None:
+    with client(True) as api:
+        assert api.get(f"/api/ingest/samples/{sample}/messages").status_code == 404
+
+
+def test_corrupt_fixture_fails_closed(tmp_path: Path) -> None:
+    (tmp_path / "broken.json").write_text('[{"text":"private"}]', encoding="utf-8")
+    with pytest.raises(SampleUnavailable, match="Sample data unavailable"):
+        load_messages("broken", tmp_path)
+
+
+def test_sample_list_and_detail_in_demo_mode() -> None:
+    from packages.contracts import Participant
+
+    with client(True) as api:
+        listing = api.get("/api/ingest/samples")
+        detail = api.get("/api/ingest/samples/clean")
+    assert listing.status_code == 200 and listing.json() == {
+        "samples": ["ambiguous", "clean", "contradictory"]
+    }
+    body = detail.json()
+    assert detail.status_code == 200 and body["playbook_id"] == "supply_order"
+    assert body["messages"] == json.loads((FIXTURES / "clean.json").read_text("utf-8"))
+    for participant in body["participants"]:
+        Participant.model_validate_json(json.dumps(participant))
+
+
+def test_sample_list_and_detail_are_hidden_outside_demo_mode() -> None:
+    with client(False) as api:
+        assert api.get("/api/ingest/samples").status_code == 404
+        assert api.get("/api/ingest/samples/clean").status_code == 404
+
+
+@pytest.mark.parametrize("sample", ("unknown", "clean.json", "%2e%2e", "meta%2fclean"))
+def test_sample_detail_rejects_unknown_or_path_input(sample: str) -> None:
+    with client(True) as api:
+        assert api.get(f"/api/ingest/samples/{sample}").status_code == 404

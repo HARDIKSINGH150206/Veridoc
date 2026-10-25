@@ -297,6 +297,7 @@ Veridoc/
 ├── apps/
 │   ├── api/                    FastAPI app, thin layer of routes only
 │   │   ├── main.py             loads routers automatically; hotspot, Area 3 only
+│   │   ├── settings.py         the one settings module (pydantic-settings); Area 3
 │   │   └── routers/
 │   │       ├── ingest.py       Area 1: import and voice
 │   │       ├── agreement.py    Area 1: recap and Blind Handshake
@@ -307,6 +308,9 @@ Veridoc/
 │   │   ├── components/         shared UI pieces, Area 4 only
 │   │   ├── screens/            one folder per screen: s1-deals ... s12-whatsapp
 │   │   └── assets/             bundled CSS, JS and Indic fonts, no CDN
+│   │       ├── design-tokens.css   the one tokens file: colours, spacing, type, radii, light and dark
+│   │       ├── fonts.css           @font-face for the bundled fonts
+│   │       └── fonts/              Noto Sans, Devanagari and Kannada (woff2, SIL OFL)
 │   └── verify/                 standalone verify.html, Area 4
 ├── packages/
 │   ├── contracts/              shared Pydantic schemas, the ONLY shared code
@@ -328,10 +332,12 @@ Veridoc/
 ├── changes/                    changelog fragments, one file per pull request
 ├── .github/                    CODEOWNERS, pull_request_template.md, ISSUE_TEMPLATE/
 │   └── workflows/              Area 3: CI
-├── pyproject.toml + uv.lock    Area 3 (Jhashank) only
+├── pyproject.toml + uv.lock    Area 3 (Hardik) only
 ├── CHANGELOG.md               combined from changes/ at phase end by the release lead
 ├── .gitattributes              line endings (LF) and binary file rules
 ├── .gitignore                  Python, Node, OS, secrets, weights, reports, real chats
+├── .env.example                names of environment variables, no values
+├── .pre-commit-config.yaml     ruff (lint, format) and gitleaks on every commit
 ├── .editorconfig               indentation and final newline rules
 ├── CLAUDE.md
 ├── AGENTS.md
@@ -342,12 +348,12 @@ Each package has its own `tests/` folder inside it. There is no shared top-level
 
 | Area | Owns | Role |
 |---|---|---|
-| 1. Ingest, Agreement and Release | `packages/ingest`, `apps/api/routers/ingest.py`, `apps/api/routers/agreement.py`, `playbooks/templates/`, `packaging/`, sample chats and demo voice notes | Ingest, agreement and release lead | Samanway (@notorious1337) |
+| 1. Ingest, Agreement and Release | `packages/ingest`, `apps/api/routers/ingest.py`, `apps/api/routers/agreement.py`, `playbooks/templates/`, `packaging/`, sample chats and demo voice notes | Ingest, agreement and release lead | Hardik (@HARDIKSINGH150206) |
 | 2. AI and ML | `packages/intelligence`, `playbooks/` (except `playbooks/templates/`), `eval/`, `apps/api/routers/analysis.py` | AI and ML lead | Abhishek (@absksync) |
-| 3. Backend, Integrity and Vault | `apps/api/main.py`, `packages/contracts` (steward), `packages/integrity` (except `packages/integrity/anchoring/`), `packages/vault`, `test-vectors/`, `apps/api/routers/vault.py`, `apps/api/routers/export.py`, `.github/workflows/`, `pyproject.toml`, `uv.lock` | Backend and integrity lead | Jhashank (@NYN-05, invitation pending; Hardik covers until accepted) |
+| 3. Backend, Integrity and Vault | `apps/api/main.py`, `packages/contracts` (steward: Hardik; changes need Hardik and Abhishek), `packages/integrity` (except `packages/integrity/anchoring/`), `packages/vault`, `test-vectors/`, `apps/api/routers/vault.py`, `apps/api/routers/export.py`, `.github/workflows/`, `pyproject.toml`, `uv.lock` | Backend and integrity lead | Hardik (@HARDIKSINGH150206) |
 | 4. Frontend and Blockchain | `apps/web`, `apps/verify`, `packages/integrity/anchoring/` | Frontend and blockchain lead; project release lead | Hardik (@HARDIKSINGH150206) |
 
-Shared by all, changed only by small reviewed pull requests: `packages/contracts` (steward: Area 3, Jhashank; every change still needs all four reviewers), `docs/`, `.github/` (except `.github/workflows/`, Area 3). Dependency files (`pyproject.toml`, `uv.lock`) are owned by Area 3 (Jhashank). Release lead: Hardik. The word "Release" in Area 1's name means building, packaging and benchmarking the demo build; merging `dev` into `main` and tagging is the project release lead's job (Hardik).
+Shared, changed only by small reviewed pull requests: `packages/contracts` (steward: Hardik; every change needs approval from Hardik and Abhishek), `docs/`, `.github/` (except `.github/workflows/`, Area 3). Dependency files (`pyproject.toml`, `uv.lock`) are owned by Area 3 (Jhashank). Release lead: Hardik. The word "Release" in Area 1's name means building, packaging and benchmarking the demo build; merging `dev` into `main` and tagging is the project release lead's job (Hardik).
 
 ## 10. API overview
 
@@ -405,16 +411,19 @@ Names only. Values live in a local `.env` (never committed) or in the launcher; 
 | `VERIDOC_PORT` | Local port (default chosen at start) |
 | `VERIDOC_TIER` | Force a hardware tier |
 | `VERIDOC_SAFE_MODE` | Force rules-only mode |
+| `VERIDOC_MODEL_MODE` | Model adapter: `fake` (recorded outputs, default) or `local` (real model, issue #69) |
 | `VERIDOC_MODEL_DIR` | Folder holding model files |
 | `VERIDOC_MANIFEST_PATH` | Path to `models/manifest.json` |
 | `VERIDOC_MAX_IMPORT_MB` | Import size cap |
 | `VERIDOC_LOG_LEVEL` | Log level |
+| `VERIDOC_DEMO_MODE` | Switch stubs and fixtures on for the demo (never a code edit) |
+| `VERIDOC_TIER_HIGH_MIN_RAM_GB`, `VERIDOC_TIER_DEFAULT_MIN_RAM_GB`, `VERIDOC_TIER_LOW_MIN_RAM_GB` | Hardware tier thresholds in GB of RAM (tuned by benchmark, Q-35) |
 | `VERIDOC_FEATURE_FLAGS` | Comma-separated names of unfinished features to switch on (see DEVELOPMENT_METHODOLOGY) |
 | `VERIDOC_ANCHOR_ENABLED` | Enable anchoring (P1; default off) |
 | `VERIDOC_ANCHOR_RPC` | Anchoring network endpoint (P1) |
 | `VERIDOC_SHARE_BASE_URL` | Share server base (P1) |
 
-No secret is ever a default value in code.
+No secret is ever a default value in code. All settings are read by one module, `apps/api/settings.py` (pydantic-settings, environment variables plus `.env`); packages receive values as arguments. Business rules are data (playbooks, templates, `models/manifest.json`), not code. `scripts/check_hardcoding.py` enforces this.
 
 ## 13. Logging rules
 

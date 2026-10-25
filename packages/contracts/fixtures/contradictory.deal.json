@@ -1,0 +1,1037 @@
+{
+  "description": "Made-up contradictory deal: the amount changes between messages and a voice note disagrees with the text about delivery. Includes a transcript in milliseconds, two versions, a diff and an ALTERED verify result.",
+  "playbook": {
+    "key": "supply_order",
+    "version": 1
+  },
+  "participants": [
+    {
+      "id": "a9705889-8daa-5353-bf3b-fe2c7ca715ea",
+      "display_name": "Chetan",
+      "role": "party",
+      "is_me": true
+    },
+    {
+      "id": "fcef7eb4-f7a5-5edd-9d31-fa57260d4c1a",
+      "display_name": "Divya",
+      "role": "party",
+      "is_me": false
+    }
+  ],
+  "messages": [
+    {
+      "id": "0a1c53ff-c5ca-5dfc-b740-bb9ca4f964a4",
+      "deal_id": "5af0afe0-e090-57fa-a977-3439660d9045",
+      "seq": 1,
+      "sender_id": "a9705889-8daa-5353-bf3b-fe2c7ca715ea",
+      "ts": "2026-08-10T11:00:00+05:30",
+      "text": "Banner set for the fair, 30 banners. 50000 total ok?",
+      "attachment_hash": null,
+      "is_system": false,
+      "origin": "export"
+    },
+    {
+      "id": "0acf3e82-cc5e-5d4a-a7f7-f387d97a32ae",
+      "deal_id": "5af0afe0-e090-57fa-a977-3439660d9045",
+      "seq": 2,
+      "sender_id": "fcef7eb4-f7a5-5edd-9d31-fa57260d4c1a",
+      "ts": "2026-08-10T11:02:00+05:30",
+      "text": "ok 30 banners. delivery 15 Nov?",
+      "attachment_hash": null,
+      "is_system": false,
+      "origin": "export"
+    },
+    {
+      "id": "87c28ad9-4388-5a4d-b653-14c74782be91",
+      "deal_id": "5af0afe0-e090-57fa-a977-3439660d9045",
+      "seq": 3,
+      "sender_id": "a9705889-8daa-5353-bf3b-fe2c7ca715ea",
+      "ts": "2026-08-10T11:04:00+05:30",
+      "text": "yes 15 Nov. I will send 10000 advance now.",
+      "attachment_hash": null,
+      "is_system": false,
+      "origin": "export"
+    },
+    {
+      "id": "c8c3e5cd-c99c-5569-ad2e-becac5a31a14",
+      "deal_id": "5af0afe0-e090-57fa-a977-3439660d9045",
+      "seq": 4,
+      "sender_id": "fcef7eb4-f7a5-5edd-9d31-fa57260d4c1a",
+      "ts": "2026-08-10T11:30:00+05:30",
+      "text": "[voice note 0:41]",
+      "attachment_hash": null,
+      "is_system": false,
+      "origin": "export"
+    },
+    {
+      "id": "55ee2c94-c76e-587a-9d8d-ee812ca8a3d8",
+      "deal_id": "5af0afe0-e090-57fa-a977-3439660d9045",
+      "seq": 5,
+      "sender_id": "fcef7eb4-f7a5-5edd-9d31-fa57260d4c1a",
+      "ts": "2026-08-11T09:00:00+05:30",
+      "text": "ok then 45000 final price, I checked the cost.",
+      "attachment_hash": null,
+      "is_system": false,
+      "origin": "export"
+    },
+    {
+      "id": "102be5c2-7456-50bd-934e-a44677029f54",
+      "deal_id": "5af0afe0-e090-57fa-a977-3439660d9045",
+      "seq": 6,
+      "sender_id": "a9705889-8daa-5353-bf3b-fe2c7ca715ea",
+      "ts": "2026-08-11T09:10:00+05:30",
+      "text": "Fine, move delivery to 22 Nov then.",
+      "attachment_hash": null,
+      "is_system": false,
+      "origin": "export"
+    }
+  ],
+  "terms": [
+    {
+      "id": "633b4a2f-d097-50f4-bdad-94f05d542196",
+      "deal_id": "5af0afe0-e090-57fa-a977-3439660d9045",
+      "key": "buyer",
+      "value": {
+        "kind": "text",
+        "text": "Chetan"
+      },
+      "raw": null,
+      "state": "stated",
+      "unclear_reason": null,
+      "origin": "rules",
+      "confidence": "high",
+      "needs_review": false,
+      "sources": [
+        {
+          "kind": "message",
+          "message_id": "0a1c53ff-c5ca-5dfc-b740-bb9ca4f964a4",
+          "quote": "Chetan"
+        }
+      ],
+      "alternatives": [],
+      "confirmed_at": "2026-08-11T09:30:00+05:30",
+      "confirmed_by": "a9705889-8daa-5353-bf3b-fe2c7ca715ea",
+      "acknowledged_by_other": true
+    },
+    {
+      "id": "e02b6478-214d-5601-bb9a-a2027a404834",
+      "deal_id": "5af0afe0-e090-57fa-a977-3439660d9045",
+      "key": "seller",
+      "value": {
+        "kind": "text",
+        "text": "Divya"
+      },
+      "raw": null,
+      "state": "stated",
+      "unclear_reason": null,
+      "origin": "rules",
+      "confidence": "high",
+      "needs_review": false,
+      "sources": [
+        {
+          "kind": "message",
+          "message_id": "0acf3e82-cc5e-5d4a-a7f7-f387d97a32ae",
+          "quote": "Divya"
+        }
+      ],
+      "alternatives": [],
+      "confirmed_at": "2026-08-11T09:30:00+05:30",
+      "confirmed_by": "a9705889-8daa-5353-bf3b-fe2c7ca715ea",
+      "acknowledged_by_other": true
+    },
+    {
+      "id": "8e7b623c-51c1-5cd3-99ce-350fba70b2cb",
+      "deal_id": "5af0afe0-e090-57fa-a977-3439660d9045",
+      "key": "item",
+      "value": {
+        "kind": "text",
+        "text": "banners"
+      },
+      "raw": null,
+      "state": "stated",
+      "unclear_reason": null,
+      "origin": "rules",
+      "confidence": "high",
+      "needs_review": false,
+      "sources": [
+        {
+          "kind": "message",
+          "message_id": "0a1c53ff-c5ca-5dfc-b740-bb9ca4f964a4",
+          "quote": "banner set"
+        }
+      ],
+      "alternatives": [],
+      "confirmed_at": "2026-08-11T09:30:00+05:30",
+      "confirmed_by": "a9705889-8daa-5353-bf3b-fe2c7ca715ea",
+      "acknowledged_by_other": true
+    },
+    {
+      "id": "a01a234c-4452-58cd-8be2-dae6ddbdaac8",
+      "deal_id": "5af0afe0-e090-57fa-a977-3439660d9045",
+      "key": "quantity",
+      "value": {
+        "kind": "quantity",
+        "amount": "30",
+        "unit": "banners"
+      },
+      "raw": null,
+      "state": "stated",
+      "unclear_reason": null,
+      "origin": "rules",
+      "confidence": "high",
+      "needs_review": false,
+      "sources": [
+        {
+          "kind": "message",
+          "message_id": "0a1c53ff-c5ca-5dfc-b740-bb9ca4f964a4",
+          "quote": "30 banners"
+        },
+        {
+          "kind": "message",
+          "message_id": "0acf3e82-cc5e-5d4a-a7f7-f387d97a32ae",
+          "quote": "30 banners"
+        }
+      ],
+      "alternatives": [],
+      "confirmed_at": "2026-08-11T09:30:00+05:30",
+      "confirmed_by": "a9705889-8daa-5353-bf3b-fe2c7ca715ea",
+      "acknowledged_by_other": true
+    },
+    {
+      "id": "38417416-e44f-54c0-9ffc-436a0c5aa186",
+      "deal_id": "5af0afe0-e090-57fa-a977-3439660d9045",
+      "key": "unit_price",
+      "value": null,
+      "raw": null,
+      "state": "missing",
+      "unclear_reason": null,
+      "origin": "rules",
+      "confidence": "high",
+      "needs_review": false,
+      "sources": [],
+      "alternatives": [],
+      "confirmed_at": null,
+      "confirmed_by": null,
+      "acknowledged_by_other": false
+    },
+    {
+      "id": "74bc324a-9482-5750-a145-cae35c288e61",
+      "deal_id": "5af0afe0-e090-57fa-a977-3439660d9045",
+      "key": "total_amount",
+      "value": null,
+      "raw": null,
+      "state": "contradicted",
+      "unclear_reason": null,
+      "origin": "rules",
+      "confidence": "high",
+      "needs_review": true,
+      "sources": [
+        {
+          "kind": "message",
+          "message_id": "0a1c53ff-c5ca-5dfc-b740-bb9ca4f964a4",
+          "quote": "50000 total"
+        },
+        {
+          "kind": "message",
+          "message_id": "55ee2c94-c76e-587a-9d8d-ee812ca8a3d8",
+          "quote": "45000 final price"
+        }
+      ],
+      "alternatives": [
+        {
+          "value": {
+            "kind": "money",
+            "paise": "5000000"
+          },
+          "origin": "rules",
+          "sources": [
+            {
+              "kind": "message",
+              "message_id": "0a1c53ff-c5ca-5dfc-b740-bb9ca4f964a4",
+              "quote": "50000 total"
+            }
+          ]
+        },
+        {
+          "value": {
+            "kind": "money",
+            "paise": "4500000"
+          },
+          "origin": "rules",
+          "sources": [
+            {
+              "kind": "message",
+              "message_id": "55ee2c94-c76e-587a-9d8d-ee812ca8a3d8",
+              "quote": "45000 final price"
+            }
+          ]
+        }
+      ],
+      "confirmed_at": null,
+      "confirmed_by": null,
+      "acknowledged_by_other": false
+    },
+    {
+      "id": "0c812ed7-83b4-521b-a2a1-d24b6e201f44",
+      "deal_id": "5af0afe0-e090-57fa-a977-3439660d9045",
+      "key": "advance_amount",
+      "value": {
+        "kind": "money",
+        "paise": "1000000"
+      },
+      "raw": null,
+      "state": "stated",
+      "unclear_reason": null,
+      "origin": "rules",
+      "confidence": "high",
+      "needs_review": false,
+      "sources": [
+        {
+          "kind": "message",
+          "message_id": "87c28ad9-4388-5a4d-b653-14c74782be91",
+          "quote": "10000 advance"
+        }
+      ],
+      "alternatives": [],
+      "confirmed_at": "2026-08-11T09:30:00+05:30",
+      "confirmed_by": "a9705889-8daa-5353-bf3b-fe2c7ca715ea",
+      "acknowledged_by_other": false
+    },
+    {
+      "id": "ceddaaf7-bd0c-5ef5-bd32-8214b2b11980",
+      "deal_id": "5af0afe0-e090-57fa-a977-3439660d9045",
+      "key": "delivery_date",
+      "value": null,
+      "raw": null,
+      "state": "contradicted",
+      "unclear_reason": null,
+      "origin": "both",
+      "confidence": "medium",
+      "needs_review": true,
+      "sources": [
+        {
+          "kind": "message",
+          "message_id": "87c28ad9-4388-5a4d-b653-14c74782be91",
+          "quote": "15 Nov"
+        },
+        {
+          "kind": "voice",
+          "voice_note_id": "46d04afb-a526-59fa-aea4-f1d9ac7044d2",
+          "start_ms": 12000,
+          "end_ms": 18000,
+          "quote": "delivery will be on twenty second November"
+        }
+      ],
+      "alternatives": [
+        {
+          "value": {
+            "kind": "partial_date",
+            "month_day": "--11-15"
+          },
+          "origin": "rules",
+          "sources": [
+            {
+              "kind": "message",
+              "message_id": "87c28ad9-4388-5a4d-b653-14c74782be91",
+              "quote": "15 Nov"
+            }
+          ]
+        },
+        {
+          "value": {
+            "kind": "partial_date",
+            "month_day": "--11-22"
+          },
+          "origin": "ai",
+          "sources": [
+            {
+              "kind": "voice",
+              "voice_note_id": "46d04afb-a526-59fa-aea4-f1d9ac7044d2",
+              "start_ms": 12000,
+              "end_ms": 18000,
+              "quote": "delivery will be on twenty second November"
+            }
+          ]
+        }
+      ],
+      "confirmed_at": null,
+      "confirmed_by": null,
+      "acknowledged_by_other": false
+    },
+    {
+      "id": "6e170cb6-9dfe-5666-9aac-e57ab15386c4",
+      "deal_id": "5af0afe0-e090-57fa-a977-3439660d9045",
+      "key": "balance_payment_date",
+      "value": null,
+      "raw": null,
+      "state": "missing",
+      "unclear_reason": null,
+      "origin": "rules",
+      "confidence": "high",
+      "needs_review": false,
+      "sources": [],
+      "alternatives": [],
+      "confirmed_at": null,
+      "confirmed_by": null,
+      "acknowledged_by_other": false
+    },
+    {
+      "id": "310fbbd5-70c1-5f45-8e14-19532f9ba81c",
+      "deal_id": "5af0afe0-e090-57fa-a977-3439660d9045",
+      "key": "late_penalty",
+      "value": null,
+      "raw": null,
+      "state": "missing",
+      "unclear_reason": null,
+      "origin": "rules",
+      "confidence": "high",
+      "needs_review": false,
+      "sources": [],
+      "alternatives": [],
+      "confirmed_at": null,
+      "confirmed_by": null,
+      "acknowledged_by_other": false
+    },
+    {
+      "id": "6731c2f9-a544-5414-ad29-e6e59ed8f797",
+      "deal_id": "5af0afe0-e090-57fa-a977-3439660d9045",
+      "key": "quality_spec",
+      "value": null,
+      "raw": null,
+      "state": "missing",
+      "unclear_reason": null,
+      "origin": "rules",
+      "confidence": "high",
+      "needs_review": false,
+      "sources": [],
+      "alternatives": [],
+      "confirmed_at": null,
+      "confirmed_by": null,
+      "acknowledged_by_other": false
+    }
+  ],
+  "score": {
+    "deal_id": "5af0afe0-e090-57fa-a977-3439660d9045",
+    "ts": "2026-08-11T09:30:00+05:30",
+    "total": 37,
+    "breakdown": [
+      {
+        "term_key": "buyer",
+        "weight": 5,
+        "present": true,
+        "clear": true,
+        "acknowledged": true,
+        "points": 5.0
+      },
+      {
+        "term_key": "seller",
+        "weight": 5,
+        "present": true,
+        "clear": true,
+        "acknowledged": true,
+        "points": 5.0
+      },
+      {
+        "term_key": "item",
+        "weight": 10,
+        "present": true,
+        "clear": true,
+        "acknowledged": true,
+        "points": 10.0
+      },
+      {
+        "term_key": "quantity",
+        "weight": 10,
+        "present": true,
+        "clear": true,
+        "acknowledged": true,
+        "points": 10.0
+      },
+      {
+        "term_key": "unit_price",
+        "weight": 15,
+        "present": false,
+        "clear": false,
+        "acknowledged": false,
+        "points": 0.0
+      },
+      {
+        "term_key": "total_amount",
+        "weight": 5,
+        "present": false,
+        "clear": false,
+        "acknowledged": false,
+        "points": 0.0
+      },
+      {
+        "term_key": "advance_amount",
+        "weight": 10,
+        "present": true,
+        "clear": true,
+        "acknowledged": false,
+        "points": 7.0
+      },
+      {
+        "term_key": "delivery_date",
+        "weight": 15,
+        "present": false,
+        "clear": false,
+        "acknowledged": false,
+        "points": 0.0
+      },
+      {
+        "term_key": "balance_payment_date",
+        "weight": 10,
+        "present": false,
+        "clear": false,
+        "acknowledged": false,
+        "points": 0.0
+      },
+      {
+        "term_key": "late_penalty",
+        "weight": 10,
+        "present": false,
+        "clear": false,
+        "acknowledged": false,
+        "points": 0.0
+      },
+      {
+        "term_key": "quality_spec",
+        "weight": 5,
+        "present": false,
+        "clear": false,
+        "acknowledged": false,
+        "points": 0.0
+      }
+    ],
+    "trigger": "flags_updated"
+  },
+  "voice_notes": [
+    {
+      "id": "46d04afb-a526-59fa-aea4-f1d9ac7044d2",
+      "deal_id": "5af0afe0-e090-57fa-a977-3439660d9045",
+      "seq": 1,
+      "message_id": "c8c3e5cd-c99c-5569-ad2e-becac5a31a14",
+      "sender_id": "fcef7eb4-f7a5-5edd-9d31-fa57260d4c1a",
+      "ts": "2026-08-10T11:30:00+05:30",
+      "audio_hash": "9f2d2461c54a93051268823dbbd54e7160d76b2daacb971d75c3160247eebc27",
+      "duration_ms": 41000,
+      "status": "transcribed",
+      "transcript_id": "27c288fe-1b86-5f8a-bd6a-463088cbc983"
+    }
+  ],
+  "transcripts": [
+    {
+      "id": "27c288fe-1b86-5f8a-bd6a-463088cbc983",
+      "voice_note_id": "46d04afb-a526-59fa-aea4-f1d9ac7044d2",
+      "model": "speech-model-placeholder",
+      "model_version": "0",
+      "language": "hi",
+      "spans": [
+        {
+          "start_ms": 0,
+          "end_ms": 11500,
+          "text": "About the banners, the cloth supplier is slow this week.",
+          "confidence": 0.91
+        },
+        {
+          "start_ms": 12000,
+          "end_ms": 18000,
+          "text": "Actually delivery will be on twenty second November.",
+          "confidence": 0.62
+        }
+      ],
+      "supersedes_id": null,
+      "created_at": "2026-08-10T11:31:00+05:30"
+    }
+  ],
+  "flags": [
+    {
+      "id": "63840cf9-e801-5a44-a9c1-16285633e56d",
+      "deal_id": "5af0afe0-e090-57fa-a977-3439660d9045",
+      "kind": "contradiction",
+      "rule_id": "value_changed",
+      "term_key": "total_amount",
+      "reason_code": "value_changed",
+      "reason_params": {
+        "first": "1",
+        "second": "5"
+      },
+      "sources": [
+        {
+          "kind": "message",
+          "message_id": "0a1c53ff-c5ca-5dfc-b740-bb9ca4f964a4",
+          "quote": "50000 total"
+        },
+        {
+          "kind": "message",
+          "message_id": "55ee2c94-c76e-587a-9d8d-ee812ca8a3d8",
+          "quote": "45000 final price"
+        }
+      ],
+      "created_at": "2026-08-11T09:30:00+05:30",
+      "resolved_at": null
+    },
+    {
+      "id": "bb30fedb-14d1-520f-9f72-e72fe0cef790",
+      "deal_id": "5af0afe0-e090-57fa-a977-3439660d9045",
+      "kind": "contradiction",
+      "rule_id": "text_vs_voice",
+      "term_key": "delivery_date",
+      "reason_code": "text_vs_voice",
+      "reason_params": {
+        "message": "3",
+        "from": "12000",
+        "to": "18000"
+      },
+      "sources": [
+        {
+          "kind": "message",
+          "message_id": "87c28ad9-4388-5a4d-b653-14c74782be91",
+          "quote": "15 Nov"
+        },
+        {
+          "kind": "voice",
+          "voice_note_id": "46d04afb-a526-59fa-aea4-f1d9ac7044d2",
+          "start_ms": 12000,
+          "end_ms": 18000,
+          "quote": "delivery will be on twenty second November"
+        }
+      ],
+      "created_at": "2026-08-11T09:30:00+05:30",
+      "resolved_at": null
+    },
+    {
+      "id": "dbfd089b-eb73-5b65-bd67-9f078c15fe52",
+      "deal_id": "5af0afe0-e090-57fa-a977-3439660d9045",
+      "kind": "needs_review",
+      "rule_id": "low_voice_confidence",
+      "term_key": "delivery_date",
+      "reason_code": "low_voice_confidence",
+      "reason_params": {},
+      "sources": [
+        {
+          "kind": "voice",
+          "voice_note_id": "46d04afb-a526-59fa-aea4-f1d9ac7044d2",
+          "start_ms": 12000,
+          "end_ms": 18000,
+          "quote": "delivery will be on twenty second November"
+        }
+      ],
+      "created_at": "2026-08-11T09:30:00+05:30",
+      "resolved_at": null
+    },
+    {
+      "id": "573d5594-e927-555e-bbf9-95147fc1c7da",
+      "deal_id": "5af0afe0-e090-57fa-a977-3439660d9045",
+      "kind": "missing",
+      "rule_id": "required_term",
+      "term_key": "balance_payment_date",
+      "reason_code": "term_missing",
+      "reason_params": {
+        "term": "balance_payment_date"
+      },
+      "sources": [],
+      "created_at": "2026-08-11T09:30:00+05:30",
+      "resolved_at": null
+    }
+  ],
+  "suggestions": [],
+  "handshake_questions": [],
+  "sealed_answers": [],
+  "handshake_reveals": [],
+  "recaps": [],
+  "confirmations": [],
+  "versions": [
+    {
+      "id": "add8d661-db00-501d-b57e-42ed9f915022",
+      "deal_id": "5af0afe0-e090-57fa-a977-3439660d9045",
+      "version_n": 1,
+      "playbook": {
+        "key": "supply_order",
+        "version": 1
+      },
+      "terms": [
+        {
+          "key": "buyer",
+          "value": {
+            "kind": "text",
+            "text": "Chetan"
+          },
+          "sources": [
+            {
+              "kind": "message",
+              "message_id": "0a1c53ff-c5ca-5dfc-b740-bb9ca4f964a4",
+              "quote": "Chetan"
+            }
+          ],
+          "confirmed_by": "a9705889-8daa-5353-bf3b-fe2c7ca715ea",
+          "confirmed_at": "2026-08-11T09:30:00+05:30"
+        },
+        {
+          "key": "delivery_date",
+          "value": {
+            "kind": "date",
+            "date": "2026-11-15"
+          },
+          "sources": [
+            {
+              "kind": "message",
+              "message_id": "87c28ad9-4388-5a4d-b653-14c74782be91",
+              "quote": null
+            }
+          ],
+          "confirmed_by": "a9705889-8daa-5353-bf3b-fe2c7ca715ea",
+          "confirmed_at": "2026-08-10T11:08:00+05:30"
+        },
+        {
+          "key": "item",
+          "value": {
+            "kind": "text",
+            "text": "banners"
+          },
+          "sources": [
+            {
+              "kind": "message",
+              "message_id": "0a1c53ff-c5ca-5dfc-b740-bb9ca4f964a4",
+              "quote": "banner set"
+            }
+          ],
+          "confirmed_by": "a9705889-8daa-5353-bf3b-fe2c7ca715ea",
+          "confirmed_at": "2026-08-11T09:30:00+05:30"
+        },
+        {
+          "key": "quantity",
+          "value": {
+            "kind": "quantity",
+            "amount": "30",
+            "unit": "banners"
+          },
+          "sources": [
+            {
+              "kind": "message",
+              "message_id": "0a1c53ff-c5ca-5dfc-b740-bb9ca4f964a4",
+              "quote": "30 banners"
+            },
+            {
+              "kind": "message",
+              "message_id": "0acf3e82-cc5e-5d4a-a7f7-f387d97a32ae",
+              "quote": "30 banners"
+            }
+          ],
+          "confirmed_by": "a9705889-8daa-5353-bf3b-fe2c7ca715ea",
+          "confirmed_at": "2026-08-11T09:30:00+05:30"
+        },
+        {
+          "key": "seller",
+          "value": {
+            "kind": "text",
+            "text": "Divya"
+          },
+          "sources": [
+            {
+              "kind": "message",
+              "message_id": "0acf3e82-cc5e-5d4a-a7f7-f387d97a32ae",
+              "quote": "Divya"
+            }
+          ],
+          "confirmed_by": "a9705889-8daa-5353-bf3b-fe2c7ca715ea",
+          "confirmed_at": "2026-08-11T09:30:00+05:30"
+        }
+      ],
+      "terms_digest": "0386943df3b1f68499f0f553fc8e2543b077b5158c1e4f2191c67a4fe79de2e8",
+      "root": "9837988d0169e036ac3a775461dbb09c22bc5747c6e4a366edc026accbf47006",
+      "link": "a206db793e020dfa38121f07553f47fcea017ebf537da9b43c08f77c0b4006b5",
+      "prev_link": null,
+      "reason_message_id": null,
+      "created_at": "2026-08-10T11:10:00+05:30"
+    },
+    {
+      "id": "d6f3cf23-6c65-5d2d-b9f1-a2b6f47e17e9",
+      "deal_id": "5af0afe0-e090-57fa-a977-3439660d9045",
+      "version_n": 2,
+      "playbook": {
+        "key": "supply_order",
+        "version": 1
+      },
+      "terms": [
+        {
+          "key": "buyer",
+          "value": {
+            "kind": "text",
+            "text": "Chetan"
+          },
+          "sources": [
+            {
+              "kind": "message",
+              "message_id": "0a1c53ff-c5ca-5dfc-b740-bb9ca4f964a4",
+              "quote": "Chetan"
+            }
+          ],
+          "confirmed_by": "a9705889-8daa-5353-bf3b-fe2c7ca715ea",
+          "confirmed_at": "2026-08-11T09:30:00+05:30"
+        },
+        {
+          "key": "delivery_date",
+          "value": {
+            "kind": "date",
+            "date": "2026-11-22"
+          },
+          "sources": [
+            {
+              "kind": "message",
+              "message_id": "102be5c2-7456-50bd-934e-a44677029f54",
+              "quote": null
+            }
+          ],
+          "confirmed_by": "a9705889-8daa-5353-bf3b-fe2c7ca715ea",
+          "confirmed_at": "2026-08-11T09:45:00+05:30"
+        },
+        {
+          "key": "item",
+          "value": {
+            "kind": "text",
+            "text": "banners"
+          },
+          "sources": [
+            {
+              "kind": "message",
+              "message_id": "0a1c53ff-c5ca-5dfc-b740-bb9ca4f964a4",
+              "quote": "banner set"
+            }
+          ],
+          "confirmed_by": "a9705889-8daa-5353-bf3b-fe2c7ca715ea",
+          "confirmed_at": "2026-08-11T09:30:00+05:30"
+        },
+        {
+          "key": "quantity",
+          "value": {
+            "kind": "quantity",
+            "amount": "30",
+            "unit": "banners"
+          },
+          "sources": [
+            {
+              "kind": "message",
+              "message_id": "0a1c53ff-c5ca-5dfc-b740-bb9ca4f964a4",
+              "quote": "30 banners"
+            },
+            {
+              "kind": "message",
+              "message_id": "0acf3e82-cc5e-5d4a-a7f7-f387d97a32ae",
+              "quote": "30 banners"
+            }
+          ],
+          "confirmed_by": "a9705889-8daa-5353-bf3b-fe2c7ca715ea",
+          "confirmed_at": "2026-08-11T09:30:00+05:30"
+        },
+        {
+          "key": "seller",
+          "value": {
+            "kind": "text",
+            "text": "Divya"
+          },
+          "sources": [
+            {
+              "kind": "message",
+              "message_id": "0acf3e82-cc5e-5d4a-a7f7-f387d97a32ae",
+              "quote": "Divya"
+            }
+          ],
+          "confirmed_by": "a9705889-8daa-5353-bf3b-fe2c7ca715ea",
+          "confirmed_at": "2026-08-11T09:30:00+05:30"
+        }
+      ],
+      "terms_digest": "358bb3d5e3b0d96665623d0c81ae12a5b78cbb8a3a84123a30d35e69c9e4efa7",
+      "root": "9f98504d88af6e8bc4a10205427e23e7f9ad47656bf8eeb8c65915e73a07d969",
+      "link": "9bcb643eeef12b6101a26f203aa5e35035d6f25fca39235c595e7c3cfc38dca5",
+      "prev_link": "a206db793e020dfa38121f07553f47fcea017ebf537da9b43c08f77c0b4006b5",
+      "reason_message_id": "102be5c2-7456-50bd-934e-a44677029f54",
+      "created_at": "2026-08-11T09:50:00+05:30"
+    }
+  ],
+  "version_diffs": [
+    {
+      "deal_id": "5af0afe0-e090-57fa-a977-3439660d9045",
+      "from_version_n": 1,
+      "to_version_n": 2,
+      "rows": [
+        {
+          "term_key": "buyer",
+          "before": {
+            "kind": "text",
+            "text": "Chetan"
+          },
+          "after": {
+            "kind": "text",
+            "text": "Chetan"
+          },
+          "change": "no_change"
+        },
+        {
+          "term_key": "delivery_date",
+          "before": {
+            "kind": "date",
+            "date": "2026-11-15"
+          },
+          "after": {
+            "kind": "date",
+            "date": "2026-11-22"
+          },
+          "change": "changed"
+        },
+        {
+          "term_key": "item",
+          "before": {
+            "kind": "text",
+            "text": "banners"
+          },
+          "after": {
+            "kind": "text",
+            "text": "banners"
+          },
+          "change": "no_change"
+        },
+        {
+          "term_key": "quantity",
+          "before": {
+            "kind": "quantity",
+            "amount": "30",
+            "unit": "banners"
+          },
+          "after": {
+            "kind": "quantity",
+            "amount": "30",
+            "unit": "banners"
+          },
+          "change": "no_change"
+        },
+        {
+          "term_key": "seller",
+          "before": {
+            "kind": "text",
+            "text": "Divya"
+          },
+          "after": {
+            "kind": "text",
+            "text": "Divya"
+          },
+          "change": "no_change"
+        }
+      ],
+      "reason_message_id": "102be5c2-7456-50bd-934e-a44677029f54"
+    }
+  ],
+  "receipts": [
+    {
+      "body": {
+        "spec_version": "0.1-draft",
+        "deal_id": "5af0afe0-e090-57fa-a977-3439660d9045",
+        "leaf_count": 6,
+        "root": "9f98504d88af6e8bc4a10205427e23e7f9ad47656bf8eeb8c65915e73a07d969",
+        "chain": [
+          {
+            "version_n": 1,
+            "terms_digest": "0386943df3b1f68499f0f553fc8e2543b077b5158c1e4f2191c67a4fe79de2e8",
+            "root": "9837988d0169e036ac3a775461dbb09c22bc5747c6e4a366edc026accbf47006",
+            "link": "a206db793e020dfa38121f07553f47fcea017ebf537da9b43c08f77c0b4006b5"
+          },
+          {
+            "version_n": 2,
+            "terms_digest": "358bb3d5e3b0d96665623d0c81ae12a5b78cbb8a3a84123a30d35e69c9e4efa7",
+            "root": "9f98504d88af6e8bc4a10205427e23e7f9ad47656bf8eeb8c65915e73a07d969",
+            "link": "9bcb643eeef12b6101a26f203aa5e35035d6f25fca39235c595e7c3cfc38dca5"
+          }
+        ],
+        "recorded_at": "2026-08-11T09:51:00+05:30",
+        "anchor": null
+      },
+      "receipt_hash": "cb35350c164288dcafe62ceab2fc63cd7e955a877c07aedfadb9c52933c73792"
+    }
+  ],
+  "verify_results": [
+    {
+      "verdict": "altered",
+      "spec_version": "0.1-draft",
+      "checks": [
+        {
+          "name": "chain",
+          "status": "fail",
+          "detail": "chain breaks at link 2 of 2"
+        },
+        {
+          "name": "merkle_root",
+          "status": "fail",
+          "detail": "root does not match the receipt"
+        },
+        {
+          "name": "timestamp_order",
+          "status": "pass",
+          "detail": null
+        },
+        {
+          "name": "anchor",
+          "status": "not_anchored",
+          "detail": "device clock only"
+        }
+      ],
+      "first_difference": {
+        "kind": "message",
+        "ref": "4"
+      }
+    }
+  ],
+  "dispute_packs": [],
+  "import_records": [],
+  "leaf_rows": [
+    {
+      "seq": 1,
+      "leaf_type": "message",
+      "leaf_hash": "36c64ba99fe8156fe9c6eaf824bb96062c0192a867e76ea87747683dae552bbb",
+      "salt": "02020202020202020202020202020202",
+      "payload_digest": "9c57668ca292564cc67b92fd2471fac36f80d9dbe23ca094f73dcb82b6eaa37a",
+      "payload": "{\"attachment_hash\":null,\"deal_id\":\"5af0afe0-e090-57fa-a977-3439660d9045\",\"id\":\"0a1c53ff-c5ca-5dfc-b740-bb9ca4f964a4\",\"is_system\":false,\"origin\":\"export\",\"sender_id\":\"a9705889-8daa-5353-bf3b-fe2c7ca715ea\",\"seq\":1,\"text\":\"Banner set for the fair, 30 banners. 50000 total ok?\",\"ts\":\"2026-08-10T11:00:00+05:30\"}"
+    },
+    {
+      "seq": 2,
+      "leaf_type": "message",
+      "leaf_hash": "9258e5ee0b927613c7aed8973eb22585bd57ec71d00abcaba56761a47354ce5c",
+      "salt": "03030303030303030303030303030303",
+      "payload_digest": "bbc7cf2ab166073d911cfa69144afda2e2bbd27d49b9fe84e62633e005c50a87",
+      "payload": "{\"attachment_hash\":null,\"deal_id\":\"5af0afe0-e090-57fa-a977-3439660d9045\",\"id\":\"0acf3e82-cc5e-5d4a-a7f7-f387d97a32ae\",\"is_system\":false,\"origin\":\"export\",\"sender_id\":\"fcef7eb4-f7a5-5edd-9d31-fa57260d4c1a\",\"seq\":2,\"text\":\"ok 30 banners. delivery 15 Nov?\",\"ts\":\"2026-08-10T11:02:00+05:30\"}"
+    },
+    {
+      "seq": 3,
+      "leaf_type": "message",
+      "leaf_hash": "643a29ee210e1fcc7695c2b6ec2ea69c293a2ea3f3deb4815d67247b9b5b1c4f",
+      "salt": "04040404040404040404040404040404",
+      "payload_digest": "ca64dd69f45f02653d69cbd613a9f946a8d120905b5c53f6660260ab1ae803ff",
+      "payload": "{\"attachment_hash\":null,\"deal_id\":\"5af0afe0-e090-57fa-a977-3439660d9045\",\"id\":\"87c28ad9-4388-5a4d-b653-14c74782be91\",\"is_system\":false,\"origin\":\"export\",\"sender_id\":\"a9705889-8daa-5353-bf3b-fe2c7ca715ea\",\"seq\":3,\"text\":\"yes 15 Nov. I will send 10000 advance now.\",\"ts\":\"2026-08-10T11:04:00+05:30\"}"
+    },
+    {
+      "seq": 4,
+      "leaf_type": "message",
+      "leaf_hash": "ecdb5343a0b812a84f0b0e7b171015688d758c67a83a935fb594b84505dca082",
+      "salt": "05050505050505050505050505050505",
+      "payload_digest": "caba931089a4e420cd407c7005339a75c1fada648b5e53a538944d675a07df1e",
+      "payload": "{\"attachment_hash\":null,\"deal_id\":\"5af0afe0-e090-57fa-a977-3439660d9045\",\"id\":\"c8c3e5cd-c99c-5569-ad2e-becac5a31a14\",\"is_system\":false,\"origin\":\"export\",\"sender_id\":\"fcef7eb4-f7a5-5edd-9d31-fa57260d4c1a\",\"seq\":4,\"text\":\"[voice note 0:41]\",\"ts\":\"2026-08-10T11:30:00+05:30\"}"
+    },
+    {
+      "seq": 5,
+      "leaf_type": "message",
+      "leaf_hash": "08cd54cc6732a6c2f557b3c581c703e5e24aeacc444ec982e5a2462c0e643f5b",
+      "salt": "06060606060606060606060606060606",
+      "payload_digest": "82672b84dd8266914fb90e5306cec025533b4dd3b97217e5cd3e9405b6110eea",
+      "payload": "{\"attachment_hash\":null,\"deal_id\":\"5af0afe0-e090-57fa-a977-3439660d9045\",\"id\":\"55ee2c94-c76e-587a-9d8d-ee812ca8a3d8\",\"is_system\":false,\"origin\":\"export\",\"sender_id\":\"fcef7eb4-f7a5-5edd-9d31-fa57260d4c1a\",\"seq\":5,\"text\":\"ok then 45000 final price, I checked the cost.\",\"ts\":\"2026-08-11T09:00:00+05:30\"}"
+    },
+    {
+      "seq": 6,
+      "leaf_type": "message",
+      "leaf_hash": "39eaf258fbf8004209ca0387f69948a4cf7145d1b8a28eac00317d01868ebe49",
+      "salt": "07070707070707070707070707070707",
+      "payload_digest": "6a47c9a2ec1f318e78e8b669b748f1a2dc6930cab0ed99267ca98c69af38b5ba",
+      "payload": "{\"attachment_hash\":null,\"deal_id\":\"5af0afe0-e090-57fa-a977-3439660d9045\",\"id\":\"102be5c2-7456-50bd-934e-a44677029f54\",\"is_system\":false,\"origin\":\"export\",\"sender_id\":\"a9705889-8daa-5353-bf3b-fe2c7ca715ea\",\"seq\":6,\"text\":\"Fine, move delivery to 22 Nov then.\",\"ts\":\"2026-08-11T09:10:00+05:30\"}"
+    }
+  ],
+  "bundles": []
+}

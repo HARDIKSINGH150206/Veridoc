@@ -48,17 +48,17 @@ Always branch from `dev`, never from `main`. Pull and rebase every morning: `git
 
 ## 3. Environment
 
-1. Copy `.env.example` to `.env` (the example file will list names only; see ARCHITECTURE section 12 for the names). `.env` is git-ignored and must never be committed.
+1. Copy `.env.example` to `.env` (the example file lists names only; see ARCHITECTURE section 12 for what each one means). `.env` is git-ignored and must never be committed.
 2. Set `VERIDOC_HOME` to a folder outside the repository.
 
 ## 4. Install dependencies
 
 | Step | Command |
 |---|---|
-| Create the environment and install | `TBD` |
-| Install pre-commit hooks | `TBD` (will be `pre-commit install`) |
+| Create the environment and install | `uv sync` |
+| Install pre-commit hooks | `uv run pre-commit install` (run once per clone) |
 | Install JavaScript test dependencies | `TBD` |
-| Create or upgrade the vault schema (Alembic) | `TBD` (will run `alembic upgrade head` against a vault under `VERIDOC_HOME`) |
+| Create or upgrade the vault schema (Alembic) | `uv run alembic -c packages/vault/alembic.ini -x url=sqlite:///<path-to-vault-database> upgrade head` (the app calls `packages.vault.migrate.upgrade(url)` with a URL built from `VERIDOC_HOME`) |
 
 ## 5. Models
 
@@ -77,7 +77,7 @@ Speech models for faster-whisper are downloaded the same way and listed in the m
 
 | Task | Command |
 |---|---|
-| Start the app in development | `TBD` |
+| Start the app in development | `uv run uvicorn apps.api.main:app` (listens on 127.0.0.1 only; the launcher in `packaging/` will wrap this) |
 | Open the UI | `http://127.0.0.1:<port>` (the port is printed at startup) |
 | Force safe mode | Set `VERIDOC_SAFE_MODE=1` (name only; behaviour `TBD`) |
 | Open the verify page | Open `apps/verify/verify.html` directly in a browser |
@@ -88,16 +88,20 @@ Tests live inside each package under `packages/<name>/tests/`.
 
 | Task | Command |
 |---|---|
-| Run all Python tests | `TBD` |
+| Run all Python tests | `uv run pytest` (exits with code 5 while no tests exist yet) |
 | Run one package's tests | `TBD` |
-| Run the JavaScript cross-language vector test | `TBD` |
-| Lint | `TBD` (ruff) |
-| Type check | `TBD` (mypy) |
-| Secret scan | `TBD` (gitleaks) |
+| Generate or check the integrity test vectors | `uv run python scripts/make_test_vectors.py` (add `--check` to only compare) |
+| Run the JavaScript cross-language vector test | `cd apps/verify && npm ci && npm test` |
+| Lint | `uv run ruff check .` and `uv run ruff format --check .` |
+| Type check | `uv run mypy .` |
+| Design token check | `python scripts/check_design_tokens.py` (also runs in pre-commit) |
+| Export contract JSON Schemas | `uv run python scripts/export_contract_schemas.py` (writes to `out/contract-schemas/`, git-ignored) |
+| Hardcoding check | `python scripts/check_hardcoding.py` (also runs in pre-commit) |
+| Secret scan | runs in the pre-commit hook; manually: `uv run pre-commit run gitleaks --all-files` |
 | Dependency audit | `TBD` (pip-audit) |
 | Trust report | `TBD` |
 | Offline check (all screens load with the network blocked) | `TBD` |
-| Migration check (insert-only triggers block UPDATE and DELETE after `alembic upgrade head`) | `TBD` |
+| Migration check (the baseline migrates up and down on a scratch database) | `uv run pytest packages/vault` (insert-only trigger tests are added with the tables) |
 
 All of these run in CI once `.github/workflows/` is added.
 

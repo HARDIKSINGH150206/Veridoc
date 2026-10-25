@@ -1,0 +1,803 @@
+{
+  "description": "Made-up ambiguous deal: delivery is unclear, final payment and late penalty are missing, the unconfirmed delivery term earns nothing. Hashes are computed with packages/integrity from the fixture data.",
+  "playbook": {
+    "key": "supply_order",
+    "version": 1
+  },
+  "participants": [
+    {
+      "id": "646970f5-1dbf-5a40-a21a-94a64c4574a6",
+      "display_name": "Raju",
+      "role": "party",
+      "is_me": true
+    },
+    {
+      "id": "d45984b4-4aa3-5e87-8280-6f97100714a9",
+      "display_name": "Meena",
+      "role": "party",
+      "is_me": false
+    }
+  ],
+  "messages": [
+    {
+      "id": "e8739171-daba-539b-a799-e0948c4fcb6f",
+      "deal_id": "235a0b73-6715-595c-a0b0-e22e53b9fac6",
+      "seq": 1,
+      "sender_id": "646970f5-1dbf-5a40-a21a-94a64c4574a6",
+      "ts": "2026-10-12T10:02:00+05:30",
+      "text": "200 shirts, 480 each ok?",
+      "attachment_hash": null,
+      "is_system": false,
+      "origin": "export"
+    },
+    {
+      "id": "89fbe45e-a173-52a5-bc76-607776217801",
+      "deal_id": "235a0b73-6715-595c-a0b0-e22e53b9fac6",
+      "seq": 2,
+      "sender_id": "d45984b4-4aa3-5e87-8280-6f97100714a9",
+      "ts": "2026-10-12T10:04:00+05:30",
+      "text": "ok. delivery next week",
+      "attachment_hash": null,
+      "is_system": false,
+      "origin": "export"
+    },
+    {
+      "id": "b574ba83-827b-57a1-8812-d69ce2e7486a",
+      "deal_id": "235a0b73-6715-595c-a0b0-e22e53b9fac6",
+      "seq": 3,
+      "sender_id": "646970f5-1dbf-5a40-a21a-94a64c4574a6",
+      "ts": "2026-10-12T10:05:00+05:30",
+      "text": "advance half now",
+      "attachment_hash": null,
+      "is_system": false,
+      "origin": "export"
+    },
+    {
+      "id": "150cc0fe-c4ff-50d1-b532-a9d7f81ee9e0",
+      "deal_id": "235a0b73-6715-595c-a0b0-e22e53b9fac6",
+      "seq": 4,
+      "sender_id": "d45984b4-4aa3-5e87-8280-6f97100714a9",
+      "ts": "2026-10-12T10:21:00+05:30",
+      "text": "done sent 48000",
+      "attachment_hash": null,
+      "is_system": false,
+      "origin": "export"
+    },
+    {
+      "id": "8582c6a8-13ba-5937-9152-52d1a3ec86ba",
+      "deal_id": "235a0b73-6715-595c-a0b0-e22e53b9fac6",
+      "seq": 5,
+      "sender_id": "646970f5-1dbf-5a40-a21a-94a64c4574a6",
+      "ts": "2026-10-13T09:15:00+05:30",
+      "text": "received. will message when ready",
+      "attachment_hash": null,
+      "is_system": false,
+      "origin": "export"
+    }
+  ],
+  "terms": [
+    {
+      "id": "66ea8751-35f8-5656-bf83-3a787349564f",
+      "deal_id": "235a0b73-6715-595c-a0b0-e22e53b9fac6",
+      "key": "buyer",
+      "value": {
+        "kind": "text",
+        "text": "Raju"
+      },
+      "raw": null,
+      "state": "stated",
+      "unclear_reason": null,
+      "origin": "rules",
+      "confidence": "high",
+      "needs_review": false,
+      "sources": [
+        {
+          "kind": "message",
+          "message_id": "e8739171-daba-539b-a799-e0948c4fcb6f",
+          "quote": "Raju"
+        }
+      ],
+      "alternatives": [],
+      "confirmed_at": "2026-10-13T09:30:00+05:30",
+      "confirmed_by": "646970f5-1dbf-5a40-a21a-94a64c4574a6",
+      "acknowledged_by_other": true
+    },
+    {
+      "id": "1a5494d8-1b36-5b60-98dd-842a56bcfaaf",
+      "deal_id": "235a0b73-6715-595c-a0b0-e22e53b9fac6",
+      "key": "seller",
+      "value": {
+        "kind": "text",
+        "text": "Meena"
+      },
+      "raw": null,
+      "state": "stated",
+      "unclear_reason": null,
+      "origin": "rules",
+      "confidence": "high",
+      "needs_review": false,
+      "sources": [
+        {
+          "kind": "message",
+          "message_id": "89fbe45e-a173-52a5-bc76-607776217801",
+          "quote": "Meena"
+        }
+      ],
+      "alternatives": [],
+      "confirmed_at": "2026-10-13T09:30:00+05:30",
+      "confirmed_by": "646970f5-1dbf-5a40-a21a-94a64c4574a6",
+      "acknowledged_by_other": true
+    },
+    {
+      "id": "d100f57f-de93-5202-bb4a-397bd2225308",
+      "deal_id": "235a0b73-6715-595c-a0b0-e22e53b9fac6",
+      "key": "item",
+      "value": {
+        "kind": "text",
+        "text": "shirts"
+      },
+      "raw": null,
+      "state": "stated",
+      "unclear_reason": null,
+      "origin": "rules",
+      "confidence": "high",
+      "needs_review": false,
+      "sources": [
+        {
+          "kind": "message",
+          "message_id": "e8739171-daba-539b-a799-e0948c4fcb6f",
+          "quote": "shirts"
+        }
+      ],
+      "alternatives": [],
+      "confirmed_at": "2026-10-13T09:30:00+05:30",
+      "confirmed_by": "646970f5-1dbf-5a40-a21a-94a64c4574a6",
+      "acknowledged_by_other": true
+    },
+    {
+      "id": "7a352b66-4e44-5c27-9acd-ff57c17c5906",
+      "deal_id": "235a0b73-6715-595c-a0b0-e22e53b9fac6",
+      "key": "quantity",
+      "value": {
+        "kind": "quantity",
+        "amount": "200",
+        "unit": "shirts"
+      },
+      "raw": null,
+      "state": "stated",
+      "unclear_reason": null,
+      "origin": "rules",
+      "confidence": "high",
+      "needs_review": false,
+      "sources": [
+        {
+          "kind": "message",
+          "message_id": "e8739171-daba-539b-a799-e0948c4fcb6f",
+          "quote": "200 shirts"
+        }
+      ],
+      "alternatives": [],
+      "confirmed_at": "2026-10-13T09:30:00+05:30",
+      "confirmed_by": "646970f5-1dbf-5a40-a21a-94a64c4574a6",
+      "acknowledged_by_other": true
+    },
+    {
+      "id": "7e4050e1-3ac3-5c17-9726-d1a33e04e121",
+      "deal_id": "235a0b73-6715-595c-a0b0-e22e53b9fac6",
+      "key": "unit_price",
+      "value": {
+        "kind": "money",
+        "paise": "48000"
+      },
+      "raw": null,
+      "state": "stated",
+      "unclear_reason": null,
+      "origin": "rules",
+      "confidence": "high",
+      "needs_review": false,
+      "sources": [
+        {
+          "kind": "message",
+          "message_id": "e8739171-daba-539b-a799-e0948c4fcb6f",
+          "quote": "480 each"
+        }
+      ],
+      "alternatives": [],
+      "confirmed_at": "2026-10-13T09:30:00+05:30",
+      "confirmed_by": "646970f5-1dbf-5a40-a21a-94a64c4574a6",
+      "acknowledged_by_other": true
+    },
+    {
+      "id": "88acd4e8-5e0c-59e8-a293-18d8c2591a61",
+      "deal_id": "235a0b73-6715-595c-a0b0-e22e53b9fac6",
+      "key": "total_amount",
+      "value": null,
+      "raw": null,
+      "state": "missing",
+      "unclear_reason": null,
+      "origin": "rules",
+      "confidence": "high",
+      "needs_review": false,
+      "sources": [],
+      "alternatives": [],
+      "confirmed_at": null,
+      "confirmed_by": null,
+      "acknowledged_by_other": false
+    },
+    {
+      "id": "5a41a681-5d39-54f5-84d4-7741ba446348",
+      "deal_id": "235a0b73-6715-595c-a0b0-e22e53b9fac6",
+      "key": "advance_amount",
+      "value": {
+        "kind": "money",
+        "paise": "4800000"
+      },
+      "raw": null,
+      "state": "stated",
+      "unclear_reason": null,
+      "origin": "both",
+      "confidence": "high",
+      "needs_review": false,
+      "sources": [
+        {
+          "kind": "message",
+          "message_id": "b574ba83-827b-57a1-8812-d69ce2e7486a",
+          "quote": "advance half now"
+        },
+        {
+          "kind": "message",
+          "message_id": "150cc0fe-c4ff-50d1-b532-a9d7f81ee9e0",
+          "quote": "sent 48000"
+        }
+      ],
+      "alternatives": [],
+      "confirmed_at": "2026-10-13T09:30:00+05:30",
+      "confirmed_by": "646970f5-1dbf-5a40-a21a-94a64c4574a6",
+      "acknowledged_by_other": true
+    },
+    {
+      "id": "a2f94708-78b9-509e-9c51-e011edbd1d39",
+      "deal_id": "235a0b73-6715-595c-a0b0-e22e53b9fac6",
+      "key": "delivery_date",
+      "value": null,
+      "raw": "next week",
+      "state": "unclear",
+      "unclear_reason": "relative_date",
+      "origin": "rules",
+      "confidence": "high",
+      "needs_review": false,
+      "sources": [
+        {
+          "kind": "message",
+          "message_id": "89fbe45e-a173-52a5-bc76-607776217801",
+          "quote": "delivery next week"
+        }
+      ],
+      "alternatives": [],
+      "confirmed_at": null,
+      "confirmed_by": null,
+      "acknowledged_by_other": false
+    },
+    {
+      "id": "658439eb-4fd4-51e0-9de4-40d854a37fa8",
+      "deal_id": "235a0b73-6715-595c-a0b0-e22e53b9fac6",
+      "key": "balance_payment_date",
+      "value": null,
+      "raw": null,
+      "state": "missing",
+      "unclear_reason": null,
+      "origin": "rules",
+      "confidence": "high",
+      "needs_review": false,
+      "sources": [],
+      "alternatives": [],
+      "confirmed_at": null,
+      "confirmed_by": null,
+      "acknowledged_by_other": false
+    },
+    {
+      "id": "05aa0f28-aed8-5c15-8dba-673c6e91489a",
+      "deal_id": "235a0b73-6715-595c-a0b0-e22e53b9fac6",
+      "key": "late_penalty",
+      "value": null,
+      "raw": null,
+      "state": "missing",
+      "unclear_reason": null,
+      "origin": "rules",
+      "confidence": "high",
+      "needs_review": false,
+      "sources": [],
+      "alternatives": [],
+      "confirmed_at": null,
+      "confirmed_by": null,
+      "acknowledged_by_other": false
+    },
+    {
+      "id": "560ac21c-309f-524b-8a6d-d360dee60e4b",
+      "deal_id": "235a0b73-6715-595c-a0b0-e22e53b9fac6",
+      "key": "quality_spec",
+      "value": null,
+      "raw": null,
+      "state": "missing",
+      "unclear_reason": null,
+      "origin": "rules",
+      "confidence": "high",
+      "needs_review": false,
+      "sources": [],
+      "alternatives": [],
+      "confirmed_at": null,
+      "confirmed_by": null,
+      "acknowledged_by_other": false
+    }
+  ],
+  "score": {
+    "deal_id": "235a0b73-6715-595c-a0b0-e22e53b9fac6",
+    "ts": "2026-10-13T09:30:00+05:30",
+    "total": 55,
+    "breakdown": [
+      {
+        "term_key": "buyer",
+        "weight": 5,
+        "present": true,
+        "clear": true,
+        "acknowledged": true,
+        "points": 5.0
+      },
+      {
+        "term_key": "seller",
+        "weight": 5,
+        "present": true,
+        "clear": true,
+        "acknowledged": true,
+        "points": 5.0
+      },
+      {
+        "term_key": "item",
+        "weight": 10,
+        "present": true,
+        "clear": true,
+        "acknowledged": true,
+        "points": 10.0
+      },
+      {
+        "term_key": "quantity",
+        "weight": 10,
+        "present": true,
+        "clear": true,
+        "acknowledged": true,
+        "points": 10.0
+      },
+      {
+        "term_key": "unit_price",
+        "weight": 15,
+        "present": true,
+        "clear": true,
+        "acknowledged": true,
+        "points": 15.0
+      },
+      {
+        "term_key": "total_amount",
+        "weight": 5,
+        "present": false,
+        "clear": false,
+        "acknowledged": false,
+        "points": 0.0
+      },
+      {
+        "term_key": "advance_amount",
+        "weight": 10,
+        "present": true,
+        "clear": true,
+        "acknowledged": true,
+        "points": 10.0
+      },
+      {
+        "term_key": "delivery_date",
+        "weight": 15,
+        "present": false,
+        "clear": false,
+        "acknowledged": false,
+        "points": 0.0
+      },
+      {
+        "term_key": "balance_payment_date",
+        "weight": 10,
+        "present": false,
+        "clear": false,
+        "acknowledged": false,
+        "points": 0.0
+      },
+      {
+        "term_key": "late_penalty",
+        "weight": 10,
+        "present": false,
+        "clear": false,
+        "acknowledged": false,
+        "points": 0.0
+      },
+      {
+        "term_key": "quality_spec",
+        "weight": 5,
+        "present": false,
+        "clear": false,
+        "acknowledged": false,
+        "points": 0.0
+      }
+    ],
+    "trigger": "confirm_term"
+  },
+  "voice_notes": [],
+  "transcripts": [],
+  "flags": [
+    {
+      "id": "b84347f3-72f6-569e-bb9c-c15d0a6c244f",
+      "deal_id": "235a0b73-6715-595c-a0b0-e22e53b9fac6",
+      "kind": "ambiguous",
+      "rule_id": "rel_date",
+      "term_key": "delivery_date",
+      "reason_code": "relative_date",
+      "reason_params": {
+        "phrase": "next week",
+        "message": "2"
+      },
+      "sources": [
+        {
+          "kind": "message",
+          "message_id": "89fbe45e-a173-52a5-bc76-607776217801",
+          "quote": "delivery next week"
+        }
+      ],
+      "created_at": "2026-10-13T09:30:00+05:30",
+      "resolved_at": null
+    },
+    {
+      "id": "8f12977f-8c2d-5934-ba4c-14870b9576de",
+      "deal_id": "235a0b73-6715-595c-a0b0-e22e53b9fac6",
+      "kind": "missing",
+      "rule_id": "required_term",
+      "term_key": "balance_payment_date",
+      "reason_code": "term_missing",
+      "reason_params": {
+        "term": "balance_payment_date"
+      },
+      "sources": [],
+      "created_at": "2026-10-13T09:30:00+05:30",
+      "resolved_at": null
+    },
+    {
+      "id": "1810a88a-8016-5d9f-a2b1-dceda9a34fe8",
+      "deal_id": "235a0b73-6715-595c-a0b0-e22e53b9fac6",
+      "kind": "missing",
+      "rule_id": "required_term",
+      "term_key": "late_penalty",
+      "reason_code": "term_missing",
+      "reason_params": {
+        "term": "late_penalty"
+      },
+      "sources": [],
+      "created_at": "2026-10-13T09:30:00+05:30",
+      "resolved_at": null
+    }
+  ],
+  "suggestions": [
+    {
+      "id": "f8298033-3fbf-5109-a9db-0da8122c30df",
+      "deal_id": "235a0b73-6715-595c-a0b0-e22e53b9fac6",
+      "target_term_keys": [
+        "delivery_date",
+        "balance_payment_date"
+      ],
+      "tone": "polite",
+      "language": "en",
+      "text": "Just to confirm, delivery by 15 Nov and the balance on delivery, right?",
+      "created_at": "2026-10-13T09:30:00+05:30",
+      "copied_at": null
+    }
+  ],
+  "handshake_questions": [
+    {
+      "term_key": "delivery_date",
+      "prompt": "What is the delivery date?",
+      "language": "en",
+      "value_kind": "date"
+    },
+    {
+      "term_key": "balance_payment_date",
+      "prompt": "When is the balance due?",
+      "language": "en",
+      "value_kind": "event"
+    },
+    {
+      "term_key": "late_penalty",
+      "prompt": "What happens if delivery is late?",
+      "language": "en",
+      "value_kind": "text"
+    },
+    {
+      "term_key": "unit_price",
+      "prompt": "What is the price for each shirt?",
+      "language": "en",
+      "value_kind": "money"
+    }
+  ],
+  "sealed_answers": [
+    {
+      "deal_id": "235a0b73-6715-595c-a0b0-e22e53b9fac6",
+      "party_id": "646970f5-1dbf-5a40-a21a-94a64c4574a6",
+      "order": 1,
+      "mode": "handover",
+      "seal_hash": "e4fcc7ebae4d06c329c5b84076f1a62c8a071e89fc71ca79a9d463dd6c34e3f3",
+      "sealed_at": "2026-10-24T11:02:00+05:30",
+      "revealed_at": "2026-10-24T11:15:00+05:30",
+      "answers": [
+        {
+          "term_key": "delivery_date",
+          "value": {
+            "kind": "date",
+            "date": "2026-11-15"
+          },
+          "raw": "15 Nov"
+        },
+        {
+          "term_key": "balance_payment_date",
+          "value": {
+            "kind": "event",
+            "event": "on_delivery"
+          },
+          "raw": "on delivery"
+        },
+        {
+          "term_key": "late_penalty",
+          "value": {
+            "kind": "text",
+            "text": "none"
+          },
+          "raw": "none"
+        },
+        {
+          "term_key": "unit_price",
+          "value": {
+            "kind": "money",
+            "paise": "48000"
+          },
+          "raw": "480"
+        }
+      ]
+    },
+    {
+      "deal_id": "235a0b73-6715-595c-a0b0-e22e53b9fac6",
+      "party_id": "d45984b4-4aa3-5e87-8280-6f97100714a9",
+      "order": 2,
+      "mode": "reply",
+      "seal_hash": "c72a40a39f33ddb1b22b8da689e4cb7bf2bdade29b0c15f4ce1dcad16c96e751",
+      "sealed_at": "2026-10-24T11:09:00+05:30",
+      "revealed_at": "2026-10-24T11:15:00+05:30",
+      "answers": [
+        {
+          "term_key": "delivery_date",
+          "value": {
+            "kind": "date",
+            "date": "2026-11-22"
+          },
+          "raw": "22 Nov"
+        },
+        {
+          "term_key": "balance_payment_date",
+          "value": {
+            "kind": "duration",
+            "amount": 30,
+            "unit": "days"
+          },
+          "raw": "30 days after delivery"
+        },
+        {
+          "term_key": "late_penalty",
+          "value": {
+            "kind": "text",
+            "text": "none"
+          },
+          "raw": "none"
+        },
+        {
+          "term_key": "unit_price",
+          "value": {
+            "kind": "money",
+            "paise": "48000"
+          },
+          "raw": "480"
+        }
+      ]
+    }
+  ],
+  "handshake_reveals": [
+    {
+      "deal_id": "235a0b73-6715-595c-a0b0-e22e53b9fac6",
+      "revealed_at": "2026-10-24T11:15:00+05:30",
+      "rows": [
+        {
+          "term_key": "delivery_date",
+          "first": {
+            "term_key": "delivery_date",
+            "value": {
+              "kind": "date",
+              "date": "2026-11-15"
+            },
+            "raw": "15 Nov"
+          },
+          "second": {
+            "term_key": "delivery_date",
+            "value": {
+              "kind": "date",
+              "date": "2026-11-22"
+            },
+            "raw": "22 Nov"
+          },
+          "result": "mismatch",
+          "difference_code": "days_apart",
+          "difference_params": {
+            "days": "7"
+          }
+        },
+        {
+          "term_key": "balance_payment_date",
+          "first": {
+            "term_key": "balance_payment_date",
+            "value": {
+              "kind": "event",
+              "event": "on_delivery"
+            },
+            "raw": "on delivery"
+          },
+          "second": {
+            "term_key": "balance_payment_date",
+            "value": {
+              "kind": "duration",
+              "amount": 30,
+              "unit": "days"
+            },
+            "raw": "30 days after delivery"
+          },
+          "result": "mismatch",
+          "difference_code": "different_terms",
+          "difference_params": {}
+        },
+        {
+          "term_key": "late_penalty",
+          "first": {
+            "term_key": "late_penalty",
+            "value": {
+              "kind": "text",
+              "text": "none"
+            },
+            "raw": "none"
+          },
+          "second": {
+            "term_key": "late_penalty",
+            "value": {
+              "kind": "text",
+              "text": "none"
+            },
+            "raw": "none"
+          },
+          "result": "match",
+          "difference_code": null,
+          "difference_params": {}
+        },
+        {
+          "term_key": "unit_price",
+          "first": {
+            "term_key": "unit_price",
+            "value": {
+              "kind": "money",
+              "paise": "48000"
+            },
+            "raw": "480"
+          },
+          "second": {
+            "term_key": "unit_price",
+            "value": {
+              "kind": "money",
+              "paise": "48000"
+            },
+            "raw": "480"
+          },
+          "result": "match",
+          "difference_code": null,
+          "difference_params": {}
+        }
+      ]
+    }
+  ],
+  "recaps": [],
+  "confirmations": [],
+  "versions": [],
+  "version_diffs": [],
+  "receipts": [
+    {
+      "body": {
+        "spec_version": "0.1-draft",
+        "deal_id": "235a0b73-6715-595c-a0b0-e22e53b9fac6",
+        "leaf_count": 5,
+        "root": "94c3ba25b5c8010ac484ba3fae6d84258982526aacfc2b137e6c371adb6fce66",
+        "chain": [],
+        "recorded_at": "2026-10-13T09:31:00+05:30",
+        "anchor": null
+      },
+      "receipt_hash": "d895b20d24d78c810d5018b9998cb779da204937a58ee8a531a9e6b4195ea941"
+    }
+  ],
+  "verify_results": [
+    {
+      "verdict": "unchanged",
+      "spec_version": "0.1-draft",
+      "checks": [
+        {
+          "name": "chain",
+          "status": "pass",
+          "detail": "all links match"
+        },
+        {
+          "name": "merkle_root",
+          "status": "pass",
+          "detail": "root matches the receipt"
+        },
+        {
+          "name": "timestamp_order",
+          "status": "pass",
+          "detail": null
+        },
+        {
+          "name": "anchor",
+          "status": "not_anchored",
+          "detail": "device clock only"
+        }
+      ],
+      "first_difference": null
+    }
+  ],
+  "dispute_packs": [],
+  "import_records": [],
+  "leaf_rows": [
+    {
+      "seq": 1,
+      "leaf_type": "message",
+      "leaf_hash": "01af4bc834fa5aa70d1d75a36c3bfafca900c643baea61cf5ae61edbea9cd85d",
+      "salt": "02020202020202020202020202020202",
+      "payload_digest": "9db0c052ba27ff541e5fffd3750ddb7f96e3344d823020e048e565404e9be0fe",
+      "payload": "{\"attachment_hash\":null,\"deal_id\":\"235a0b73-6715-595c-a0b0-e22e53b9fac6\",\"id\":\"e8739171-daba-539b-a799-e0948c4fcb6f\",\"is_system\":false,\"origin\":\"export\",\"sender_id\":\"646970f5-1dbf-5a40-a21a-94a64c4574a6\",\"seq\":1,\"text\":\"200 shirts, 480 each ok?\",\"ts\":\"2026-10-12T10:02:00+05:30\"}"
+    },
+    {
+      "seq": 2,
+      "leaf_type": "message",
+      "leaf_hash": "0b8ce1ce9053676d2cb5a78c18ec065477111c5e7a4f92c279dae1c130d6bec4",
+      "salt": "03030303030303030303030303030303",
+      "payload_digest": "356fe196037b020514d23b3389f43149b638f2273ddc162fc0143b15f3ee6ab3",
+      "payload": "{\"attachment_hash\":null,\"deal_id\":\"235a0b73-6715-595c-a0b0-e22e53b9fac6\",\"id\":\"89fbe45e-a173-52a5-bc76-607776217801\",\"is_system\":false,\"origin\":\"export\",\"sender_id\":\"d45984b4-4aa3-5e87-8280-6f97100714a9\",\"seq\":2,\"text\":\"ok. delivery next week\",\"ts\":\"2026-10-12T10:04:00+05:30\"}"
+    },
+    {
+      "seq": 3,
+      "leaf_type": "message",
+      "leaf_hash": "d7faee6ca227d0ebf087b0148bf712fe2d70deb6b60af67b075891f93065bb5f",
+      "salt": "04040404040404040404040404040404",
+      "payload_digest": "c06d04e7edca05e8200bcdbefb537475550b9b617b4afbe9c5e0f20cb3526fec",
+      "payload": "{\"attachment_hash\":null,\"deal_id\":\"235a0b73-6715-595c-a0b0-e22e53b9fac6\",\"id\":\"b574ba83-827b-57a1-8812-d69ce2e7486a\",\"is_system\":false,\"origin\":\"export\",\"sender_id\":\"646970f5-1dbf-5a40-a21a-94a64c4574a6\",\"seq\":3,\"text\":\"advance half now\",\"ts\":\"2026-10-12T10:05:00+05:30\"}"
+    },
+    {
+      "seq": 4,
+      "leaf_type": "message",
+      "leaf_hash": "0d9330487a3a4b1773da456edb677b8c3e0001915f26408fe7a8250d97714cfe",
+      "salt": "05050505050505050505050505050505",
+      "payload_digest": "16600cb62b6023d88db4bfedef9a5f81ae71dcc4d3e99f14857ec3aaa47b3d4a",
+      "payload": "{\"attachment_hash\":null,\"deal_id\":\"235a0b73-6715-595c-a0b0-e22e53b9fac6\",\"id\":\"150cc0fe-c4ff-50d1-b532-a9d7f81ee9e0\",\"is_system\":false,\"origin\":\"export\",\"sender_id\":\"d45984b4-4aa3-5e87-8280-6f97100714a9\",\"seq\":4,\"text\":\"done sent 48000\",\"ts\":\"2026-10-12T10:21:00+05:30\"}"
+    },
+    {
+      "seq": 5,
+      "leaf_type": "message",
+      "leaf_hash": "223381be9b0a765285eb936d92e5150fe0da7e3d04847d642790191413e400b3",
+      "salt": "06060606060606060606060606060606",
+      "payload_digest": "bd4dfa11a722d34d94c7ce550760f519f3c641bd3147b8839824d2dbd80583ec",
+      "payload": "{\"attachment_hash\":null,\"deal_id\":\"235a0b73-6715-595c-a0b0-e22e53b9fac6\",\"id\":\"8582c6a8-13ba-5937-9152-52d1a3ec86ba\",\"is_system\":false,\"origin\":\"export\",\"sender_id\":\"646970f5-1dbf-5a40-a21a-94a64c4574a6\",\"seq\":5,\"text\":\"received. will message when ready\",\"ts\":\"2026-10-13T09:15:00+05:30\"}"
+    }
+  ],
+  "bundles": []
+}

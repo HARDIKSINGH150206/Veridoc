@@ -1,43 +1,45 @@
 # Folder ownership. Last match wins, so specific lines come after general ones.
-# Area 1: @notorious1337        Samanway   Ingest, Agreement and Release
-# Area 2: @absksync             Abhishek   AI and ML
-# Area 3: @NYN-05               Jhashank   Backend, Integrity and Vault
-#         (invitation pending: until it is accepted, Hardik covers Area 3 work)
-# Area 4: @HARDIKSINGH150206    Hardik     Frontend and Blockchain; project release lead
+# From 2026-10-25: Hardik owns Areas 1, 3 and 4; Abhishek owns Area 2.
+# Samanway (@notorious1337) and Jhashank (@NYN-05) are no longer active; see README (Contributors).
+# Area 1: Ingest, Agreement and Release   @HARDIKSINGH150206
+# Area 2: AI and ML                       @absksync
+# Area 3: Backend, Integrity and Vault    @HARDIKSINGH150206
+# Area 4: Frontend and Blockchain         @HARDIKSINGH150206
 
 # Area 1
-/packages/ingest/                 @notorious1337
-/apps/api/routers/ingest.py       @notorious1337
-/apps/api/routers/agreement.py    @notorious1337
-/packaging/                       @notorious1337
+/packages/ingest/                 @HARDIKSINGH150206
+/apps/api/routers/ingest.py       @HARDIKSINGH150206
+/apps/api/routers/agreement.py    @HARDIKSINGH150206
+/packaging/                       @HARDIKSINGH150206
 
 # Area 2
 /packages/intelligence/           @absksync
 /playbooks/                       @absksync
-/playbooks/templates/             @notorious1337   # Area 1; must stay after /playbooks/
+/playbooks/templates/             @HARDIKSINGH150206   # Area 1; must stay after /playbooks/
 /eval/                            @absksync
 /apps/api/routers/analysis.py     @absksync
 
 # Area 3
-/packages/integrity/              @NYN-05
-/packages/integrity/anchoring/    @HARDIKSINGH150206   # Area 4; must stay after /packages/integrity/
-/packages/vault/                  @NYN-05
-/test-vectors/                    @NYN-05
-/apps/api/main.py                 @NYN-05
-/apps/api/routers/vault.py        @NYN-05
-/apps/api/routers/export.py       @NYN-05
+/packages/integrity/              @HARDIKSINGH150206
+/packages/integrity/anchoring/    @HARDIKSINGH150206   # Area 4
+/packages/vault/                  @HARDIKSINGH150206
+/test-vectors/                    @HARDIKSINGH150206
+/apps/api/main.py                 @HARDIKSINGH150206
+/apps/api/settings.py             @HARDIKSINGH150206
+/apps/api/routers/vault.py        @HARDIKSINGH150206
+/apps/api/routers/export.py       @HARDIKSINGH150206
 
 # Area 4
 /apps/web/                        @HARDIKSINGH150206
 /apps/verify/                     @HARDIKSINGH150206
 /CHANGELOG.md                     @HARDIKSINGH150206
 
-# Shared: all four review
-/packages/contracts/              @notorious1337 @absksync @NYN-05 @HARDIKSINGH150206
-/docs/                            @notorious1337 @absksync @NYN-05 @HARDIKSINGH150206
-/.github/                         @notorious1337 @absksync @NYN-05 @HARDIKSINGH150206
-/.github/workflows/               @NYN-05   # Area 3; must stay after /.github/
+# Shared: Hardik and Abhishek review
+/packages/contracts/              @HARDIKSINGH150206 @absksync
+/docs/                            @HARDIKSINGH150206 @absksync
+/.github/                         @HARDIKSINGH150206 @absksync
+/.github/workflows/               @HARDIKSINGH150206   # Area 3; must stay after /.github/
 
-# Dependency files: Area 3 (Jhashank)
-/pyproject.toml                   @NYN-05
-/uv.lock                          @NYN-05
+# Dependency files: Area 3 (Hardik)
+/pyproject.toml                   @HARDIKSINGH150206
+/uv.lock                          @HARDIKSINGH150206

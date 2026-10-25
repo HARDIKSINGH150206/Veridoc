@@ -1,0 +1,113 @@
+{
+  "_note": "Hand-written for the walking skeleton in the style of the local model's JSON; not real model output.",
+  "playbook_id": "supply_order",
+  "numbered_chat": "[1] Asha: I can supply 200 cotton shirts at ₹480 each, total ₹96,000.\n[2] Bilal: Yes, I will buy the 200 cotton shirts at that price.\n[3] Asha: Please pay ₹48,000 advance today and the ₹48,000 balance on delivery. Delivery will be on 15 November 2026.\n[4] Asha: If delivery is late, we agree there is no late penalty.\n[5] Bilal: Agreed to all those terms, including delivery and no late penalty. I have paid the ₹48,000 advance.\n[6] Asha: Agreed. Payment received; I confirm the order and delivery terms above.",
+  "output": {
+    "deal_type": "supply_order",
+    "terms": {
+      "buyer": {
+        "status": "stated",
+        "value": "Bilal",
+        "quote": [
+          "Bilal"
+        ],
+        "msg": [
+          2
+        ]
+      },
+      "seller": {
+        "status": "stated",
+        "value": "Asha",
+        "quote": [
+          "Asha"
+        ],
+        "msg": [
+          1
+        ]
+      },
+      "item": {
+        "status": "stated",
+        "value": "cotton shirts",
+        "quote": [
+          "cotton shirts"
+        ],
+        "msg": [
+          1
+        ]
+      },
+      "quantity": {
+        "status": "stated",
+        "value": 200,
+        "quote": [
+          "200 cotton shirts"
+        ],
+        "msg": [
+          1
+        ]
+      },
+      "unit_price": {
+        "status": "stated",
+        "value": 480,
+        "quote": [
+          "₹480 each"
+        ],
+        "msg": [
+          1
+        ]
+      },
+      "total_amount": {
+        "status": "stated",
+        "value": 96000,
+        "quote": [
+          "₹96,000"
+        ],
+        "msg": [
+          1
+        ]
+      },
+      "advance_amount": {
+        "status": "stated",
+        "value": 48000,
+        "quote": [
+          "₹48,000 advance"
+        ],
+        "msg": [
+          3
+        ]
+      },
+      "delivery_date": {
+        "status": "stated",
+        "value": "11-15",
+        "quote": [
+          "15 November 2026"
+        ],
+        "msg": [
+          3
+        ]
+      },
+      "balance_payment_date": {
+        "status": "stated",
+        "value": "on_delivery",
+        "quote": [
+          "balance on delivery"
+        ],
+        "msg": [
+          3
+        ]
+      },
+      "late_penalty": {
+        "status": "stated",
+        "value": "no late penalty",
+        "quote": [
+          "no late penalty"
+        ],
+        "msg": [
+          4
+        ]
+      },
+      "quality_spec": {
+        "status": "missing"
+      }
+    }
+  }
+}

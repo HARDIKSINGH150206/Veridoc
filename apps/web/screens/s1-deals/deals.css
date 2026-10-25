@@ -1,0 +1,34 @@
+/* S1 Deals home. Tokens only. */
+
+.toolbar {
+  display: grid;
+  gap: var(--space-3);
+}
+
+.toolbar__row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  align-items: end;
+}
+
+.toolbar__search {
+  flex: 1;
+  min-width: 14rem;
+}
+
+.deal-name {
+  display: grid;
+}
+
+.score {
+  display: grid;
+  grid-template-columns: minmax(6rem, 1fr) auto;
+  align-items: center;
+  gap: var(--space-2);
+  min-width: 11rem;
+}
+
+.score__value {
+  font-weight: var(--font-weight-bold);
+}

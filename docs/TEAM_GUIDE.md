@@ -1,6 +1,6 @@
 # Team Guide
 
-This guide tells the four team members how to work together: branching, commits, reviews, the definition of done, priority tags, ownership areas and the merge-conflict rules. Members and their GitHub handles are listed below. Jhashank's repository invitation is still pending, so Hardik covers Area 3 work until it is accepted.
+This guide tells the team how to work together: branching, commits, reviews, the definition of done, priority tags, ownership areas and the merge-conflict rules. From 2026-10-25 the active team is Hardik, who owns Areas 1, 3 and 4, and Abhishek, who owns Area 2. Samanway (@notorious1337) and Jhashank (@NYN-05) are no longer active; they stay in the repository and are credited in the README (Contributors).
 
 Last updated: 2026-10-25
 Status: Draft v1
@@ -9,30 +9,30 @@ Status: Draft v1
 
 | Area | Owns | Role | Member |
 |---|---|---|---|
-| 1. Ingest, Agreement and Release | `packages/ingest`, `apps/api/routers/ingest.py`, `apps/api/routers/agreement.py`, `playbooks/templates/`, `packaging/`, sample chats and demo voice notes | Ingest, agreement and release lead | Samanway (@notorious1337) |
+| 1. Ingest, Agreement and Release | `packages/ingest`, `apps/api/routers/ingest.py`, `apps/api/routers/agreement.py`, `playbooks/templates/`, `packaging/`, sample chats and demo voice notes | Ingest, agreement and release lead | Hardik (@HARDIKSINGH150206) |
 | 2. AI and ML | `packages/intelligence`, `playbooks/` (except `playbooks/templates/`), `eval/`, `apps/api/routers/analysis.py` | AI and ML lead | Abhishek (@absksync) |
-| 3. Backend, Integrity and Vault | `apps/api/main.py`, `packages/contracts` (steward), `packages/integrity` (except `packages/integrity/anchoring/`), `packages/vault`, `test-vectors/`, `apps/api/routers/vault.py`, `apps/api/routers/export.py`, `.github/workflows/`, `pyproject.toml`, `uv.lock` | Backend and integrity lead | Jhashank (@NYN-05, invitation pending; Hardik covers until accepted) |
+| 3. Backend, Integrity and Vault | `apps/api/main.py`, `packages/contracts` (steward: Hardik; changes need Hardik and Abhishek), `packages/integrity` (except `packages/integrity/anchoring/`), `packages/vault`, `test-vectors/`, `apps/api/routers/vault.py`, `apps/api/routers/export.py`, `.github/workflows/`, `pyproject.toml`, `uv.lock` | Backend and integrity lead | Hardik (@HARDIKSINGH150206) |
 | 4. Frontend and Blockchain | `apps/web`, `apps/verify`, `packages/integrity/anchoring/` | Frontend and blockchain lead; project release lead | Hardik (@HARDIKSINGH150206) |
 
-Shared by all, changed only by small reviewed pull requests: `packages/contracts` (steward: Jhashank; every change still needs all four reviewers), `docs/`, `.github/` (except `.github/workflows/`, Area 3).
+Shared, changed only by small reviewed pull requests: `packages/contracts` (steward: Hardik; every change needs approval from **Hardik and Abhishek**), `docs/`, `.github/` (except `.github/workflows/`, Area 3).
 
-Dependency files (`pyproject.toml`, `uv.lock`) are owned by Area 3 (Jhashank).
+Dependency files (`pyproject.toml`, `uv.lock`) are owned by Area 3 (Hardik).
 
 **Hotspot owners:**
 
 | Hotspot | Owner |
 |---|---|
 | Release lead (merge `dev` into `main`, tags, changelog) | Hardik |
-| Dependency files and migrations | Jhashank |
+| Dependency files and migrations | Hardik |
 | Design tokens `apps/web/assets/design-tokens.css` | Hardik |
-| Contracts steward (`packages/contracts`) | Jhashank |
-| `apps/api/main.py` (rarely edited because of router auto-discovery) | Jhashank |
+| Contracts steward (`packages/contracts`); approval by Hardik and Abhishek | Hardik |
+| `apps/api/main.py` (rarely edited because of router auto-discovery) | Hardik |
 | Anchoring (`packages/integrity/anchoring/`) | Hardik |
 | Hardware tier thresholds and model choice | Abhishek |
 
-While Jhashank's invitation is pending, Hardik does the Area 3 work and Area 3 issues are assigned to Hardik. When Jhashank accepts, the issues are reassigned (OPEN_QUESTIONS Q-49).
+Samanway and Jhashank are no longer active, so every open issue that was theirs is assigned to Hardik (done 2026-10-25). Their pull requests #55 and #56 stay open until Hardik decides what to do with them.
 
-The release lead (Hardik) combines changelog fragments into `CHANGELOG.md` at phase end. `models/manifest.json` and `scripts/` are changed by the area that needs the change, with a review from Abhishek (models) or Jhashank (scripts that touch hashing).
+The release lead (Hardik) combines changelog fragments into `CHANGELOG.md` at phase end. `models/manifest.json` and `scripts/` are changed by the area that needs the change, with a review from Abhishek (models); Hardik reviews scripts that touch hashing.
 
 ### Document owners
 
@@ -49,9 +49,28 @@ The release lead (Hardik) combines changelog fragments into `CHANGELOG.md` at ph
 | PRIVACY, LIMITS | Area 3 with Area 4 for UI copy |
 | PRIOR_WORK | Hardik |
 
+## 1a. Working model (from 2026-10-25)
+
+Every issue is either independent or integration. The label `type:integration` marks the second kind; an issue without it is independent.
+
+| Issue type | How to recognise it | Who builds | Who merges | Reviewers |
+|---|---|---|---|---|
+| **Independent** | Touches only files in one area (the owner's own folders) and no seam | The area owner | The area owner, into `dev`, after CI passes | Optional: a teammate may review; not required for merge |
+| **Integration** (label `type:integration`) | Touches two or more areas, `packages/contracts`, or a seam listed in DEVELOPMENT_METHODOLOGY section 11 (verify page and hashing, model tiers and launcher, AI output and workspace screen, recap and handshake with the vault, voice interface) | Hardik (area owners build their own part on a branch if useful) | Hardik, into `dev`, after CI passes | The affected area owners, who are also assignees |
+
+With two people, read the table this way: an issue inside Areas 1, 3 and 4 only is independent and Hardik merges it; an issue inside Area 2 only is independent and Abhishek merges it; anything that crosses Area 2 and another area, or touches `packages/contracts` or a seam, is an integration issue that Hardik merges after Abhishek has reviewed.
+
+Rules:
+1. Work goes through a pull request into `dev`. CI (`checks` and `secrets`) must pass before anyone merges.
+2. Never merge, close or push to someone else's pull request. To change it, comment on it.
+3. If an independent issue turns out to need files in another area, in `packages/contracts` or at a seam, stop, say so on the issue, and Hardik relabels it `type:integration`.
+4. The label `blocked` means the issue waits on another pull request or issue (named in a comment). Do not work around it.
+5. Contract changes are integration issues and need approval from Hardik and Abhishek.
+6. Phase releases (`dev` into `main`) stay with the release lead (Hardik).
+
 ## 2. Merge-conflict rules
 
-1. **Contracts first.** On day 1 the team agrees `packages/contracts` together: Message, VoiceNote, Term, Flag, Score, Suggestion, HandshakeAnswer, Recap, Confirmation, Version, Receipt, DisputePack. Any later change is its own small pull request reviewed by all four.
+1. **Contracts first.** The team agrees `packages/contracts` together: Message, VoiceNote, Term, Flag, Score, Suggestion, HandshakeAnswer, Recap, Confirmation, Version, Receipt, DisputePack. Any later change is its own small pull request reviewed by all four.
 2. **One owner per hotspot.** `apps/api/main.py` (Area 3), `apps/web/components/` (Area 4), dependency files and migrations (Area 3). Others request changes instead of editing.
 3. **Short branches.** One feature per branch, merged within 1 to 2 days. Unfinished work merges early behind a feature flag.
 4. **Rebase every morning.** `git pull --rebase origin dev` before starting work, and pull before you push.
@@ -62,7 +81,7 @@ The release lead (Hardik) combines changelog fragments into `CHANGELOG.md` at ph
 9. **AI coding tools** (Claude Code, Codex) are run by each member only inside that member's area.
 10. **Router auto-discovery.** `apps/api/main.py` loads every module in `apps/api/routers/` (ADR-022). Nobody edits `main.py` to add a route.
 11. **Changelog fragments.** Each pull request adds `changes/<branch-name>.md` and never edits `CHANGELOG.md`. The release lead combines fragments at phase end.
-12. **Migrations are Area 3 only (Jhashank).** Other areas request schema changes. Alembic multiple heads are fixed by Area 3 (see ONBOARDING section 22).
+12. **Migrations are Area 3 only (Hardik).** Other areas request schema changes. Alembic multiple heads are fixed by Area 3 (see ONBOARDING section 22).
 13. **One dependency pull request per day.** The dependency owner batches changes so `uv.lock` never conflicts.
 14. **Design tokens in one file** (`apps/web/assets/design-tokens.css`, Area 4, Hardik). Every screen has its own CSS file.
 15. **Line endings and style files.** `.gitattributes` (LF) and `.editorconfig` are in the repo; do not override them locally.
@@ -104,9 +123,9 @@ Format: `type(scope): short summary`, for example `feat(ingest): parse iPhone ex
 
 1. Use the pull request template: summary, area, linked requirement IDs, checklist, whether contracts changed.
 2. Keep pull requests small (aim for under about 300 changed lines). Add a changelog fragment in `changes/` (see `changes/README.md`).
-3. One reviewer from another area. Contracts and hashing changes need Jhashank (Area 3); verify-page changes need Hardik (Area 4) and Jhashank. Contract changes need all four.
+3. Independent issues: the owner merges after CI passes; a review from the other person is welcome but not required. Integration issues: Hardik merges, and Abhishek reviews anything touching Area 2. Contract changes need approval from Hardik and Abhishek (see section 1a). Hashing and verify-page changes are Hardik's.
 4. Reviewers check: requirement IDs, tests, wording rules, no content in logs, ownership boundaries.
-5. Squash or rebase merge; keep history readable.
+5. Squash merge into `dev`; keep history readable.
 6. Anyone who is stuck for more than an hour asks in the team channel.
 
 ## 6. Definition of done
@@ -122,6 +141,7 @@ A change is done when:
 7. No secrets, real chats, model weights or content in logs.
 8. Wording follows LIMITS (tamper-evident, court-ready evidence package, targets are targets).
 9. The change is linked to requirement IDs.
+10. **No hardcoding** (see CLAUDE.md): configuration only from `apps/api/settings.py`, business rules in playbooks, templates and the model manifest, stubs only in tests or demo mode with `# STUB: replaced by #<issue>`, no sample names or amounts in logic. `python scripts/check_hardcoding.py` passes.
 
 ## 7. Priority tags
 
@@ -148,4 +168,3 @@ Issues and pull requests carry one tag. Follow the drop order if time runs short
 4. Set up pre-commit with ruff and gitleaks.
 5. Add CI workflows.
 6. Fill OPEN_QUESTIONS owners.
-7. Jhashank accepts the repository invitation; Area 3 issues are reassigned from Hardik.

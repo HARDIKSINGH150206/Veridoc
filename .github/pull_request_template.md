@@ -4,9 +4,9 @@
 
 ## Area
 
-- [ ] Area 1: Ingest, Agreement and Release (Samanway)
+- [ ] Area 1: Ingest, Agreement and Release (Hardik)
 - [ ] Area 2: AI and ML (Abhishek)
-- [ ] Area 3: Backend, Integrity and Vault (Jhashank)
+- [ ] Area 3: Backend, Integrity and Vault (Hardik)
 - [ ] Area 4: Frontend and Blockchain (Hardik)
 - [ ] Shared (contracts, docs, .github)
 
@@ -27,7 +27,7 @@
 ## Contracts changed
 
 - [ ] No
-- [ ] Yes (needs review by all four members)
+- [ ] Yes (needs approval from Hardik and Abhishek)
 
 ## Checklist (definition of done)
 

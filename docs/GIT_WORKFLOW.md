@@ -5,7 +5,7 @@ This document gives the full branch model with exact commands: creating a branch
 Last updated: 2026-10-25
 Status: Draft v1
 
-Remote: `https://github.com/HARDIKSINGH150206/Veridoc.git` (called `origin`). Members: Samanway, Abhishek, Jhashank, Hardik (see TEAM_GUIDE). See [ONBOARDING](ONBOARDING.md) for the beginner path and [TEAM_GUIDE](TEAM_GUIDE.md) for team rules.
+Remote: `https://github.com/HARDIKSINGH150206/Veridoc.git` (called `origin`). Active members: Hardik and Abhishek (see TEAM_GUIDE). See [ONBOARDING](ONBOARDING.md) for the beginner path and [TEAM_GUIDE](TEAM_GUIDE.md) for team rules.
 
 ## 1. Branch model
 
@@ -138,7 +138,7 @@ If you are lost, abort and start over: `git rebase --abort`.
 
 Special files:
 - `uv.lock` conflict: do not edit by hand. Ask the dependency owner; they regenerate it with `uv lock`.
-- `packages/contracts` conflict: stop and ask in the team chat; contract changes need all four reviewers.
+- `packages/contracts` conflict: stop and ask in the team chat; contract changes need approval from Hardik and Abhishek.
 - Alembic "multiple heads": see ONBOARDING section 22.
 - A conflict in a folder you do not own means you edited outside your area. Undo that part and request the change from the owner.
 
@@ -229,7 +229,7 @@ If the release lead prefers, open a pull request from `main` into `dev` instead 
 
 ## 7. GitHub settings to configure
 
-Already set (2026-10-25): default branch `main`; protection on `main` and `dev` with a pull request required, 0 approvals, no force pushes, no deletion. Settings below are to be configured as the team grows. Owner of settings: Hardik (repo owner).
+Applied and read back (2026-10-25): default branch `main`; protection on `main` and `dev` with a pull request required, 0 approvals, required checks `checks` and `secrets` (strict), conversation resolution required, no force pushes, no deletion, code-owner review off until Jhashank accepts the invitation; rebase merging off, branches deleted automatically after merge; a repository ruleset "protect release tags v*" that blocks creating, moving and deleting `v*` tags except for repository admins. The tables below describe the target; the remaining open items are raising approvals to 1 from Phase 1, code-owner review and including administrators. Owner of settings: Hardik (repo owner).
 
 ### Branch protection for `main`
 
@@ -239,7 +239,7 @@ Already set (2026-10-25): default branch `main`; protection on `main` and `dev` 
 | Required approving reviews | 0 now; raise to 1 at the start of Phase 1 |
 | Dismiss stale approvals on new commits | On (once approvals are required) |
 | Require review from code owners | On once CODEOWNERS has real handles |
-| Require status checks to pass | On once CI exists (lint, types, tests, contract tests, secret scan, tamper tests) |
+| Require status checks to pass | On, with the checks `checks` and `secrets` from `.github/workflows/ci.yml` (strict: branch must be up to date) |
 | Require branches to be up to date | On |
 | Require conversation resolution | On |
 | Require linear history | Off (`main` uses merge commits) |
@@ -250,7 +250,7 @@ Already set (2026-10-25): default branch `main`; protection on `main` and `dev` 
 
 ### Branch protection for `dev`
 
-Same as `main`, with: required approving reviews 0 now and 1 from Phase 1; linear history On (squash merges only); status checks On once CI exists.
+Same as `main`: required approving reviews 0 now and 1 from Phase 1; status checks On (`checks`, `secrets`). Linear history stays **Off** on `dev` too, because the `main` into `dev` sync pull requests use merge commits.
 
 ### Repository merge settings
 
@@ -260,7 +260,7 @@ Same as `main`, with: required approving reviews 0 now and 1 from Phase 1; linea
 | Allow merge commits | On (used only for `dev` into `main`) |
 | Allow rebase merging | Off |
 | Automatically delete head branches | On |
-| Tag protection | Pattern `v*`: only the release lead (Hardik) may create tags |
+| Tag protection | Ruleset on `refs/tags/v*`: only repository admins (the release lead, Hardik) may create, move or delete tags |
 
 Example commands (to be run by the repo owner; they change repo settings):
 

@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>New deal - VeriDoc</title>
+  <link rel="stylesheet" href="../../assets/fonts.css">
+  <link rel="stylesheet" href="../../assets/design-tokens.css">
+  <link rel="stylesheet" href="../../components/components.css">
+  <link rel="stylesheet" href="import.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <header class="app-header">
+    <div class="app-header__inner">
+      <a class="app-header__brand" href="../s1-deals/index.html">VeriDoc</a>
+      <nav class="app-nav" aria-label="Main">
+        <a class="app-nav__item" href="../s1-deals/index.html">Deals</a>
+        <a class="app-nav__item" href="index.html" aria-current="page">Import</a>
+        <span class="app-nav__item app-nav__item--later" title="Settings screen comes later">Settings</span>
+      </nav>
+      <div class="app-header__right">
+        <span class="mode-indicator">Offline mode</span>
+      </div>
+    </div>
+  </header>
+
+  <main id="main" class="page">
+    <p class="placeholder-banner" role="note">
+      <strong>Layout preview.</strong>
+      <span>The file details, names and counts below are placeholder content. Importing is not connected yet.</span>
+    </p>
+
+    <div class="page-title">
+      <div>
+        <h1>New deal</h1>
+        <p class="page-title__sub">Step 1 of 2 · choose a source, then check the preview</p>
+      </div>
+    </div>
+
+    <div class="import-grid">
+      <section class="card" aria-labelledby="source-title">
+        <div class="card__head">
+          <h2 id="source-title"><span class="step" aria-hidden="true">1</span> Source</h2>
+        </div>
+        <ul class="tabs" aria-label="Source">
+          <li><button class="tab" type="button" aria-pressed="true">WhatsApp export</button></li>
+          <li><button class="tab" type="button" aria-pressed="false">Paste text</button></li>
+          <li><button class="tab" type="button" aria-pressed="false">Simulator</button></li>
+        </ul>
+        <div class="dropzone">
+          <p><strong>Drop the exported .txt or .zip here</strong></p>
+          <p class="muted">Android and iPhone formats supported</p>
+          <label class="btn" for="chat-file">Choose file</label>
+          <input class="visually-hidden" id="chat-file" type="file" accept=".txt,.zip">
+        </div>
+        <div>
+          <p class="field__label">Or try a sample deal</p>
+          <div class="samples">
+            <button class="btn btn--small" type="button">Clean chat</button>
+            <button class="btn btn--small" type="button">Ambiguous chat</button>
+            <button class="btn btn--small" type="button">Contradictory chat</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="card" aria-labelledby="preview-title">
+        <div class="card__head">
+          <h2 id="preview-title"><span class="step" aria-hidden="true">2</span> Preview</h2>
+          <span class="muted">Placeholder</span>
+        </div>
+        <dl class="facts" data-placeholder>
+          <dt>File</dt><dd>WhatsApp Chat - placeholder.txt</dd>
+          <dt>Messages</dt><dd>N text · N media omitted</dd>
+          <dt>Participants</dt><dd>Party A, Party B</dd>
+          <dt>Date range</dt><dd>DD Mon YYYY – DD Mon YYYY</dd>
+        </dl>
+        <fieldset class="choice">
+          <legend>Which one is you?</legend>
+          <label for="me-a"><input id="me-a" type="radio" name="me" checked> Party A</label>
+          <label for="me-b"><input id="me-b" type="radio" name="me"> Party B</label>
+        </fieldset>
+      </section>
+    </div>
+
+    <section class="card" aria-labelledby="type-title">
+      <div class="card__head">
+        <h2 id="type-title"><span class="step" aria-hidden="true">3</span> Deal type</h2>
+      </div>
+      <ul class="tabs" aria-label="Deal type">
+        <li><button class="tab" type="button" aria-pressed="true">Supply or order</button></li>
+        <li><button class="tab" type="button" aria-pressed="false">Freelance job</button></li>
+        <li><button class="tab" type="button" aria-pressed="false" disabled>Rent · later</button></li>
+      </ul>
+    </section>
+
+    <p class="privacy-line">This chat stays on this device. Nothing is uploaded.</p>
+
+    <div class="actions">
+      <a class="btn" href="../s1-deals/index.html">Cancel</a>
+      <a class="btn btn--primary" href="../s3-workspace/index.html">Analyse chat</a>
+    </div>
+  </main>
+</body>
+</html>
