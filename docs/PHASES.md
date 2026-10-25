@@ -41,7 +41,7 @@ Goal: everyone can build, test and merge. A thin end-to-end path (the walking sk
 
 ### Shared
 - [ ] Everyone completes the first-day checklist in [ONBOARDING](ONBOARDING.md)
-- [ ] Contracts agreed together and merged: Message, VoiceNote, Term, Flag, Score, Suggestion, HandshakeAnswer, Recap, Confirmation, Version, Receipt, DisputePack (approved by Hardik and Abhishek)
+- [x] Contracts agreed together and merged (v0.2.0, PR #40): Message, VoiceNote, Term, Flag, Score, Suggestion, HandshakeAnswer, Recap, Confirmation, Version, Receipt, DisputePack (approved by Hardik and Abhishek)
 - [x] `pyproject.toml` and `uv.lock` created by the dependency owner (Hardik)
 - [x] Pre-commit with ruff and gitleaks working
 - [x] `.env.example` with names only
@@ -51,11 +51,11 @@ Goal: everyone can build, test and merge. A thin end-to-end path (the walking sk
 - [x] OPEN_QUESTIONS owners assigned
 
 ### Area 1: Ingest, Agreement and Release (Hardik)
-- [ ] Three synthetic sample chats (clean, ambiguous, contradictory) and one voice sample committed as fixtures
-- [ ] `packages/ingest/fixtures/` with parsed `Message` fixtures matching the contracts
-- [ ] Stub ingest route returns fixture messages (FR-IMP-007)
-- [ ] Launcher stub starts the API and opens the browser on one OS
-- [ ] Skeleton for end-to-end tests in `packaging/tests/`
+- [x] Three synthetic sample chats (clean, ambiguous, contradictory) and one voice sample committed as fixtures
+- [x] `packages/ingest/fixtures/` with parsed `Message` fixtures matching the contracts
+- [x] Stub ingest route returns fixture messages (FR-IMP-007)
+- [x] Launcher stub starts the API and opens the browser on one OS
+- [x] Skeleton for end-to-end tests in `packaging/tests/`
 
 ### Area 2: AI and ML (Abhishek)
 - [ ] Stub analysis route returns fixture `Term`, `Flag`, `Score`, `Suggestion`
@@ -66,14 +66,14 @@ Goal: everyone can build, test and merge. A thin end-to-end path (the walking sk
 ### Area 3: Backend, Integrity and Vault (Hardik)
 - [ ] Hashing and vault stubs return fixed fake hashes and a fake receipt
 - [x] `scripts/make_test_vectors.py` and the file layout in `test-vectors/integrity/` (Q-41 closed)
-- [x] Alembic initialised in `packages/vault/migrations/` (empty baseline; tables wait for the contracts, PR #40)
+- [x] Alembic initialised in `packages/vault/migrations/` (empty baseline; the contract-dependent tables are issue #57)
 - [x] Router auto-discovery implemented in `apps/api/main.py` (ADR-022)
 - [x] CI workflow `.github/workflows/ci.yml`: ruff, format, mypy, pytest, folder, hardcoding, design-token and gitleaks checks (tamper tests join when they exist) (Q-33)
-- [ ] `packages/contracts` stewarded: the first agreed models merged (Hardik and Abhishek approve)
+- [x] `packages/contracts` stewarded: the first agreed models merged (Hardik and Abhishek approve)
 
 ### Area 4: Frontend and Blockchain (Hardik)
 - [x] `apps/web/assets/design-tokens.css` created; one CSS file per screen rule agreed
-- [ ] Screens S1 to S3 render from fixtures (no backend needed). Static layout done (placeholder content, tokens only, offline); data binding waits for the contracts (PR #40)
+- [ ] Screens S1 to S3 render from fixtures (no backend needed). Static layout done (placeholder content, tokens only, offline); data binding is issue #27
 - [ ] Server-sent events client with a fixture stream
 
 **Walking skeleton (all areas):**
