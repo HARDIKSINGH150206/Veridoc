@@ -52,12 +52,19 @@ Judges' six requested features: Chat and voice note import · Term extractor · 
 
 | Area | Owner | GitHub |
 |---|---|---|
-| 1. Ingest, Agreement and Release | Samanway | @notorious1337 |
+| 1. Ingest, Agreement and Release | Hardik | @HARDIKSINGH150206 |
 | 2. AI and ML | Abhishek | @absksync |
-| 3. Backend, Integrity and Vault | Jhashank (invitation pending; Hardik covers) | @NYN-05 |
+| 3. Backend, Integrity and Vault | Hardik | @HARDIKSINGH150206 |
 | 4. Frontend and Blockchain; project release lead | Hardik | @HARDIKSINGH150206 |
 
 New here? Start with [docs/ONBOARDING.md](docs/ONBOARDING.md).
+
+## Contributors
+
+VeriDoc was started by four people. Samanway and Jhashank are no longer active on the project; their work is credited here.
+
+- **Samanway** ([@notorious1337](https://github.com/notorious1337)), Area 1 (Ingest, Agreement and Release): built the Phase 0 sample-import path, with synthetic chat and audio fixtures, parsed Message fixtures, a demo ingest endpoint, a Windows launcher and a test-only contract-flow harness ([#55](https://github.com/HARDIKSINGH150206/Veridoc/pull/55), draft), and validated the draft contracts against that branch ([comment on #40](https://github.com/HARDIKSINGH150206/Veridoc/pull/40)).
+- **Jhashank** ([@NYN-05](https://github.com/NYN-05)), Area 3 (Backend, Integrity and Vault): the Windows fix for the folder check ([#54](https://github.com/HARDIKSINGH150206/Veridoc/pull/54)), the `audit_event` and `leaf` tables with insert-only triggers ([#58](https://github.com/HARDIKSINGH150206/Veridoc/pull/58)), a demo-only receipt endpoint ([#56](https://github.com/HARDIKSINGH150206/Veridoc/pull/56), open), and the contracts steward review D1 to D7 ([#40](https://github.com/HARDIKSINGH150206/Veridoc/pull/40#issuecomment-6392060778)) that shaped contracts v0.2.0.
 
 ## Honest limits
 

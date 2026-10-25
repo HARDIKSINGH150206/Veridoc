@@ -1,6 +1,6 @@
 # Onboarding
 
-This file takes a developer who has never seen VeriDoc from zero to a first merged pull request. It is written for a beginner: numbered steps, exact commands for Windows, macOS and Linux, and a short reason for each rule. Follow the sections in order. Members: Samanway (Area 1), Abhishek (Area 2), Jhashank (Area 3) and Hardik (Area 4).
+This file takes a developer who has never seen VeriDoc from zero to a first merged pull request. It is written for a beginner: numbered steps, exact commands for Windows, macOS and Linux, and a short reason for each rule. Follow the sections in order. Active members: Hardik (Areas 1, 3 and 4) and Abhishek (Area 2). Samanway and Jhashank are no longer active; see the README (Contributors).
 
 Last updated: 2026-10-25
 Status: Draft v1
@@ -43,26 +43,26 @@ Read them in this order. Plan about two hours. You do not need to memorise them;
 
 ## 3. Team and areas
 
-The repository is split into four ownership areas so each person mostly edits their own folders. Members: Samanway (Area 1), Abhishek (Area 2), Jhashank (Area 3) and Hardik (Area 4).
+The repository is split into four ownership areas so each person mostly edits their own folders. Active members: Hardik (Areas 1, 3 and 4) and Abhishek (Area 2). Samanway and Jhashank are no longer active; see the README (Contributors).
 
 | Area | Owns | Role | Member |
 |---|---|---|---|
-| 1. Ingest, Agreement and Release | `packages/ingest`, `apps/api/routers/ingest.py`, `apps/api/routers/agreement.py`, `playbooks/templates/`, `packaging/`, sample chats and demo voice notes | Ingest, agreement and release lead | Samanway (@notorious1337) |
+| 1. Ingest, Agreement and Release | `packages/ingest`, `apps/api/routers/ingest.py`, `apps/api/routers/agreement.py`, `playbooks/templates/`, `packaging/`, sample chats and demo voice notes | Ingest, agreement and release lead | Hardik (@HARDIKSINGH150206) |
 | 2. AI and ML | `packages/intelligence`, `playbooks/` (except `playbooks/templates/`), `eval/`, `apps/api/routers/analysis.py` | AI and ML lead | Abhishek (@absksync) |
-| 3. Backend, Integrity and Vault | `apps/api/main.py`, `packages/contracts` (steward), `packages/integrity` (except `packages/integrity/anchoring/`), `packages/vault`, `test-vectors/`, `apps/api/routers/vault.py`, `apps/api/routers/export.py`, `.github/workflows/`, `pyproject.toml`, `uv.lock` | Backend and integrity lead | Jhashank (@NYN-05, invitation pending; Hardik covers until accepted) |
+| 3. Backend, Integrity and Vault | `apps/api/main.py`, `packages/contracts` (steward: Hardik; changes need Hardik and Abhishek), `packages/integrity` (except `packages/integrity/anchoring/`), `packages/vault`, `test-vectors/`, `apps/api/routers/vault.py`, `apps/api/routers/export.py`, `.github/workflows/`, `pyproject.toml`, `uv.lock` | Backend and integrity lead | Hardik (@HARDIKSINGH150206) |
 | 4. Frontend and Blockchain | `apps/web`, `apps/verify`, `packages/integrity/anchoring/` | Frontend and blockchain lead; project release lead | Hardik (@HARDIKSINGH150206) |
 
-Shared by all, changed only by small reviewed pull requests: `packages/contracts` (steward: Jhashank; every change still needs all four reviewers), `docs/`, `.github/` (except `.github/workflows/`, Area 3). Jhashank's invitation is pending; until it is accepted Hardik covers Area 3 work.
+Shared, changed only by small reviewed pull requests: `packages/contracts` (steward: Hardik; every change needs approval from Hardik and Abhishek), `docs/`, `.github/` (except `.github/workflows/`, Area 3).
 
 **Hotspots and who owns them (and why: one owner per hotspot means no two people edit the same file at once):**
 
 | Hotspot | Owner | What you do instead of editing it |
 |---|---|---|
-| Contracts (`packages/contracts`) | All four, by pull request | Open a small contracts pull request, see section 16 |
-| Dependency files (`pyproject.toml`, `uv.lock`) | Area 3 (Jhashank) | Open an issue asking for the dependency |
+| Contracts (`packages/contracts`) | Hardik (steward) and Abhishek approve, by pull request | Open a small contracts pull request, see section 16 |
+| Dependency files (`pyproject.toml`, `uv.lock`) | Area 3 (Hardik) | Open an issue asking for the dependency |
 | Design tokens (`apps/web/assets/design-tokens.css`) | Area 4 (Hardik) | Ask in an issue |
-| Migrations (`packages/vault/migrations/`) | Area 3 (Jhashank) | Open an issue describing the schema change you need |
-| `apps/api/main.py` | Area 3 (Jhashank) | You never need to edit it: routers load automatically (ADR-022) |
+| Migrations (`packages/vault/migrations/`) | Area 3 (Hardik) | Open an issue describing the schema change you need |
+| `apps/api/main.py` | Area 3 (Hardik) | You never need to edit it: routers load automatically (ADR-022) |
 | Release (merge `dev` into `main`, tags, changelog) | Hardik | Ask in the team chat |
 | Hardware tier thresholds and model choice | Abhishek | Open an issue |
 
@@ -75,7 +75,7 @@ Ask Hardik (repo owner) if anything is missing.
 - [ ] An invitation to `HARDIKSINGH150206/Veridoc` accepted (check your email or github.com/notifications)
 - [ ] Added to the team chat (platform TBD)
 - [ ] Open the project board and find your area's cards: [VeriDoc board](https://github.com/users/HARDIKSINGH150206/projects/1) (public: anyone can view it; only collaborators can move cards)
-- [ ] Your GitHub handle is in `.github/CODEOWNERS` (current handles: `@notorious1337` Samanway, `@absksync` Abhishek, `@NYN-05` Jhashank, `@HARDIKSINGH150206` Hardik)
+- [ ] Your GitHub handle is in `.github/CODEOWNERS` (current handles: `@HARDIKSINGH150206` Hardik for Areas 1, 3 and 4, `@absksync` Abhishek for Area 2)
 
 ## 5. Install tools
 
@@ -297,7 +297,7 @@ Veridoc/
 │   ├── web/                    Area 4: screens, components, bundled assets (no CDN)
 │   └── verify/                 Area 4: standalone offline verify.html
 ├── packages/
-│   ├── contracts/              shared schemas, the ONLY shared code (all four, by PR)
+│   ├── contracts/              shared schemas, the ONLY shared code (Hardik and Abhishek approve, by PR)
 │   ├── ingest/                 Area 1: parser, media, voice import wiring, recap builder, Blind Handshake logic
 │   ├── intelligence/           Area 2: rules, local AI, flags, score, suggestion, speech runner (speech/)
 │   ├── integrity/              Area 3: hashing, Merkle, version chain, echo code; anchoring/ is Area 4
@@ -472,8 +472,8 @@ The project moves through Phase 0 Setup, 1 Foundation, 2 Core loop, 3 Agreement,
 2. Branch from `dev`: `git checkout -b feat/shared-contract-<name>`.
 3. Change only `packages/contracts` (and the fixtures that must follow, with their owners' agreement). Prefer adding optional fields over renaming or removing.
 4. Add or update the contract tests.
-5. Open a pull request into `dev` labelled `type:contracts`. Request review from all four members.
-6. All four approve. Then merge.
+5. Open a pull request into `dev` labelled `type:contracts`. Request review from Abhishek (Hardik is the steward and author or co-author).
+6. Hardik and Abhishek both approve. Then merge.
 7. Feature code that needs the change comes in a separate, later pull request.
 
 ## 17. Working in parallel
@@ -557,11 +557,11 @@ The non-negotiables from `CLAUDE.md`, in plain words:
 | Need | Ask |
 |---|---|
 | Git, GitHub, branch protection, releases | Hardik (release lead) |
-| Import, parsing, recap templates, Blind Handshake, packaging, launcher, benchmarks, demo runbook | Samanway (Area 1) |
+| Import, parsing, recap templates, Blind Handshake, packaging, launcher, benchmarks, demo runbook | Hardik (Area 1) |
 | Rules, AI, voice transcription model, flags, score, playbooks, eval, model and tier choice | Abhishek (Area 2) |
-| Hashing, vault, encryption, migrations, API main, CI, dependencies, contracts | Jhashank (Area 3; Hardik covers until the invitation is accepted) |
+| Hashing, vault, encryption, migrations, API main, CI, dependencies, contracts | Hardik (Area 3) |
 | Screens, design tokens, verify page, anchoring | Hardik (Area 4) |
-| Dependencies | Jhashank (Area 3) |
+| Dependencies | Hardik (Area 3) |
 | Legal wording or privacy | Do not guess. Add to OPEN_QUESTIONS; a lawyer must confirm. |
 
 **How to write a good question.** Say: what you wanted to do; the exact command you ran; the exact error (copy and paste text, not a photo); what you already tried; your OS and branch. Do not paste secrets or real chats. Ask in the team chat, not in a private message, so others can learn. If you are stuck for more than an hour, ask.
@@ -592,11 +592,11 @@ The non-negotiables from `CLAUDE.md`, in plain words:
 
 **Why is the code not there yet?** We are in the documentation and setup phase. Phase 0 builds the skeleton.
 
-**What if I need a new library?** Open an issue for Jhashank (Area 3). Dependency changes are batched once a day.
+**What if I need a new library?** Open an issue for Hardik (Area 3). Dependency changes are batched once a day.
 
 **What if I need a new field in a model?** Follow section 16.
 
-**What if I need a database change?** Ask Jhashank (Area 3) in an issue. They write the migration.
+**What if I need a database change?** Ask Hardik (Area 3) in an issue. Hardik writes the migration.
 
 **Can I use the Hindi or Kannada text I wrote?** Only after a native speaker reviews it (OPEN_QUESTIONS Q-17, Q-18). Mark it as a draft until then.
 

@@ -1,1 +1,1 @@
-Shared Pydantic schemas: Message, VoiceNote, Term, Flag, Score, Suggestion, HandshakeAnswer, Recap, Confirmation, Version, Receipt, DisputePack. The only shared code. Changes need a PR reviewed by all four members.
+Shared Pydantic schemas: Message, VoiceNote, Term, Flag, Score, Suggestion, HandshakeAnswer, Recap, Confirmation, Version, Receipt, DisputePack. The only shared code. Changes need a PR approved by Hardik and Abhishek.

@@ -224,7 +224,7 @@ Status: Draft v1
 
 - **Status:** Accepted
 - **Date:** 2026-10-25
-- **Context:** `apps/api/main.py` is a hotspot owned by Area 3 (Jhashank). If every new route needed an edit there, three other areas would queue for one file and conflict often.
+- **Context:** `apps/api/main.py` is a hotspot owned by Area 3 (Hardik). If every new route needed an edit there, three other areas would queue for one file and conflict often.
 - **Decision:** `main.py` loads every module in `apps/api/routers/` automatically. Each module exposes one router object by a fixed name. Adding a route means editing only the router file in your own area. Nobody edits `main.py` to add a route.
 - **Alternatives considered:** Explicit imports in `main.py`; one router per area registered by hand; a plugin entry-point system.
 - **Consequences:** A new router file is picked up with no other change. A broken router module is reported at startup by name rather than silently skipped. Router modules must be import-safe (no work at import time). Area 3 writes the loader in Phase 0.

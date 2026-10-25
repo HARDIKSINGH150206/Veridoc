@@ -1,6 +1,6 @@
 # Vault migrations (Alembic)
 
-The vault database (SQLite, WAL mode) is created and changed only by Alembic migrations. Owner: Area 3 (Jhashank; Hardik covers until the invitation is accepted). Other areas ask for schema changes in an issue and never add migrations ([ADR-021](../../../docs/DECISIONS.md), [DATA_MODEL](../../../docs/DATA_MODEL.md)).
+The vault database (SQLite, WAL mode) is created and changed only by Alembic migrations. Owner: Area 3 (Hardik). Other areas ask for schema changes in an issue and never add migrations ([ADR-021](../../../docs/DECISIONS.md), [DATA_MODEL](../../../docs/DATA_MODEL.md)).
 
 Status: `0001` is an empty baseline. `0002` adds the two tables that do not depend on `packages/contracts`: `audit_event` and `leaf`, both insert-only with their triggers (issue #23, FR-VLT-004). The models are in `../models.py` and are `target_metadata` in `env.py`. The other tables (deal, messages, versions, recaps and the rest) wait for the agreed contracts (PR #40).
 

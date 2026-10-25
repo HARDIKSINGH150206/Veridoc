@@ -5,7 +5,7 @@ This document gives the full branch model with exact commands: creating a branch
 Last updated: 2026-10-25
 Status: Draft v1
 
-Remote: `https://github.com/HARDIKSINGH150206/Veridoc.git` (called `origin`). Members: Samanway, Abhishek, Jhashank, Hardik (see TEAM_GUIDE). See [ONBOARDING](ONBOARDING.md) for the beginner path and [TEAM_GUIDE](TEAM_GUIDE.md) for team rules.
+Remote: `https://github.com/HARDIKSINGH150206/Veridoc.git` (called `origin`). Active members: Hardik and Abhishek (see TEAM_GUIDE). See [ONBOARDING](ONBOARDING.md) for the beginner path and [TEAM_GUIDE](TEAM_GUIDE.md) for team rules.
 
 ## 1. Branch model
 
@@ -138,7 +138,7 @@ If you are lost, abort and start over: `git rebase --abort`.
 
 Special files:
 - `uv.lock` conflict: do not edit by hand. Ask the dependency owner; they regenerate it with `uv lock`.
-- `packages/contracts` conflict: stop and ask in the team chat; contract changes need all four reviewers.
+- `packages/contracts` conflict: stop and ask in the team chat; contract changes need approval from Hardik and Abhishek.
 - Alembic "multiple heads": see ONBOARDING section 22.
 - A conflict in a folder you do not own means you edited outside your area. Undo that part and request the change from the owner.
 

@@ -332,7 +332,7 @@ Veridoc/
 ├── changes/                    changelog fragments, one file per pull request
 ├── .github/                    CODEOWNERS, pull_request_template.md, ISSUE_TEMPLATE/
 │   └── workflows/              Area 3: CI
-├── pyproject.toml + uv.lock    Area 3 (Jhashank) only
+├── pyproject.toml + uv.lock    Area 3 (Hardik) only
 ├── CHANGELOG.md               combined from changes/ at phase end by the release lead
 ├── .gitattributes              line endings (LF) and binary file rules
 ├── .gitignore                  Python, Node, OS, secrets, weights, reports, real chats
@@ -348,12 +348,12 @@ Each package has its own `tests/` folder inside it. There is no shared top-level
 
 | Area | Owns | Role |
 |---|---|---|
-| 1. Ingest, Agreement and Release | `packages/ingest`, `apps/api/routers/ingest.py`, `apps/api/routers/agreement.py`, `playbooks/templates/`, `packaging/`, sample chats and demo voice notes | Ingest, agreement and release lead | Samanway (@notorious1337) |
+| 1. Ingest, Agreement and Release | `packages/ingest`, `apps/api/routers/ingest.py`, `apps/api/routers/agreement.py`, `playbooks/templates/`, `packaging/`, sample chats and demo voice notes | Ingest, agreement and release lead | Hardik (@HARDIKSINGH150206) |
 | 2. AI and ML | `packages/intelligence`, `playbooks/` (except `playbooks/templates/`), `eval/`, `apps/api/routers/analysis.py` | AI and ML lead | Abhishek (@absksync) |
-| 3. Backend, Integrity and Vault | `apps/api/main.py`, `packages/contracts` (steward), `packages/integrity` (except `packages/integrity/anchoring/`), `packages/vault`, `test-vectors/`, `apps/api/routers/vault.py`, `apps/api/routers/export.py`, `.github/workflows/`, `pyproject.toml`, `uv.lock` | Backend and integrity lead | Jhashank (@NYN-05, invitation pending; Hardik covers until accepted) |
+| 3. Backend, Integrity and Vault | `apps/api/main.py`, `packages/contracts` (steward: Hardik; changes need Hardik and Abhishek), `packages/integrity` (except `packages/integrity/anchoring/`), `packages/vault`, `test-vectors/`, `apps/api/routers/vault.py`, `apps/api/routers/export.py`, `.github/workflows/`, `pyproject.toml`, `uv.lock` | Backend and integrity lead | Hardik (@HARDIKSINGH150206) |
 | 4. Frontend and Blockchain | `apps/web`, `apps/verify`, `packages/integrity/anchoring/` | Frontend and blockchain lead; project release lead | Hardik (@HARDIKSINGH150206) |
 
-Shared by all, changed only by small reviewed pull requests: `packages/contracts` (steward: Area 3, Jhashank; every change still needs all four reviewers), `docs/`, `.github/` (except `.github/workflows/`, Area 3). Dependency files (`pyproject.toml`, `uv.lock`) are owned by Area 3 (Jhashank). Release lead: Hardik. The word "Release" in Area 1's name means building, packaging and benchmarking the demo build; merging `dev` into `main` and tagging is the project release lead's job (Hardik).
+Shared, changed only by small reviewed pull requests: `packages/contracts` (steward: Hardik; every change needs approval from Hardik and Abhishek), `docs/`, `.github/` (except `.github/workflows/`, Area 3). Dependency files (`pyproject.toml`, `uv.lock`) are owned by Area 3 (Jhashank). Release lead: Hardik. The word "Release" in Area 1's name means building, packaging and benchmarking the demo build; merging `dev` into `main` and tagging is the project release lead's job (Hardik).
 
 ## 10. API overview
 
