@@ -1,0 +1,100 @@
+{
+  "_note": "Hand-written for the walking skeleton in the style of the local model's JSON; not real model output.",
+  "playbook_id": "supply_order",
+  "numbered_chat": "[1] Asha: I can supply 200 cotton shirts at ₹480 each, total ₹96,000.\n[2] Bilal: Yes, 200 cotton shirts at that price works for me.\n[3] Asha: Please pay ₹48,000 advance today. Delivery next week.\n[4] Bilal: I have paid the ₹48,000 advance.\n[5] Asha: Advance received, thank you.",
+  "output": {
+    "deal_type": "supply_order",
+    "terms": {
+      "buyer": {
+        "status": "stated",
+        "value": "Bilal",
+        "quote": [
+          "Bilal"
+        ],
+        "msg": [
+          2
+        ]
+      },
+      "seller": {
+        "status": "stated",
+        "value": "Asha",
+        "quote": [
+          "Asha"
+        ],
+        "msg": [
+          1
+        ]
+      },
+      "item": {
+        "status": "stated",
+        "value": "cotton shirts",
+        "quote": [
+          "cotton shirts"
+        ],
+        "msg": [
+          1
+        ]
+      },
+      "quantity": {
+        "status": "stated",
+        "value": 200,
+        "quote": [
+          "200 cotton shirts"
+        ],
+        "msg": [
+          1
+        ]
+      },
+      "unit_price": {
+        "status": "stated",
+        "value": 480,
+        "quote": [
+          "₹480 each"
+        ],
+        "msg": [
+          1
+        ]
+      },
+      "total_amount": {
+        "status": "stated",
+        "value": 96000,
+        "quote": [
+          "₹96,000"
+        ],
+        "msg": [
+          1
+        ]
+      },
+      "advance_amount": {
+        "status": "stated",
+        "value": 48000,
+        "quote": [
+          "₹48,000 advance"
+        ],
+        "msg": [
+          3
+        ]
+      },
+      "delivery_date": {
+        "status": "unclear",
+        "value": null,
+        "quote": [
+          "Delivery next week"
+        ],
+        "msg": [
+          3
+        ],
+        "reason": "relative_date"
+      },
+      "balance_payment_date": {
+        "status": "missing"
+      },
+      "late_penalty": {
+        "status": "missing"
+      },
+      "quality_spec": {
+        "status": "missing"
+      }
+    }
+  }
+}
